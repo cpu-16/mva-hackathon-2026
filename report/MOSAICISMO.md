@@ -1,117 +1,133 @@
-# ¿Se puede ver el mosaicismo de MVA en el WGS bulk? — Análisis y resultado negativo
+# ¿Se puede medir la carga de aneuploidía de MVA en el WGS bulk? — Análisis de sensibilidad
 
-Fecha: 29-ago-2026. Datos: `WGS_EX2312012`, GRCh38, 44x, 4.74 M variantes PASS.
-**Solo el VCF** — no se usaron los FASTQ.
+Fecha: 29-ago-2026. Datos: **solo el VCF** de `WGS_EX2312012` (GRCh38, GATK 4.2.4.0, 44× nominal).
+No se usaron los FASTQ ni hay BAM disponibles, lo que limita el análisis y se declara desde el inicio.
+
+> **Versión 2.** La primera versión de este documento afirmaba haber *demostrado* que no hay
+> mosaicismo. Una revisión adversarial mostró que el estadístico empleado no tenía potencia para esa
+> afirmación. Esta versión corrige el error, calcula el límite de detección real y reformula la
+> conclusión. El argumento resultante es más débil en lo que afirma y más fuerte en lo que sostiene.
 
 ## La pregunta
 
-MVA se define por **aneuploidías mosaico variegadas**: distintas células portan trisomías o
-monosomías de **cromosomas distintos**. La pregunta es si esa firma se ve en un WGS bulk de sangre,
-lo que sería un diferenciador frente a un análisis de variante germinal estándar.
+MVA se define por aneuploidías mosaico *variegadas*. Cualquier terapia futura necesitaría medir la
+**carga de aneuploidía** como desenlace. La pregunta operativa es: **¿sirve el WGS bulk para eso?**
 
-## Método
+Ésta no es una pregunta sobre si este niño tiene mosaicismo — lo tiene, por definición diagnóstica.
+Es una pregunta sobre el poder de resolución del ensayo.
 
-Tres pruebas independientes, cada una diseñada para descartar el artefacto de la anterior.
+## Métrica y por qué
 
-### Prueba 1 — Desbalance alélico (BAF) por cromosoma
-En un cromosoma diploide las variantes heterocigotas se agrupan en una fracción alterna de 0.50. Una
-trisomía las separa hacia 0.33/0.67. Se midió la fracción de het "desbalanceadas" (BAF <0.38 o >0.62)
-sobre 2.27 M de SNVs het PASS.
+En una trisomía, los sitios heterocigotos se separan hacia `1/(2+f)` y `(1+f)/(2+f)`, donde *f* es la
+fracción de células trisómicas. **La media del BAF no se mueve** (la separación es simétrica); lo que
+cambia es la dispersión. La métrica correcta es por tanto la **desviación media |BAF − 0.5|**, no la
+media ni un conteo de valores atípicos.
 
-**Resultado bruto:** chr20, 21, 22 y X por encima del basal (16.4%).
+*(La primera versión usó la fracción de sitios fuera de 0.38–0.62. Ese umbral está dominado por la
+cola binomial: a 44× y sin mosaicismo alguno, el 9.7% de los sitios cae fuera solo por muestreo de
+lecturas. Un mosaico del 14% lo llevaría a 12.8% — tres puntos, indistinguibles de la variación
+técnica entre cromosomas. **El test no tenía potencia para la hipótesis que decía evaluar.**)*
 
-### Prueba 2 — Control por profundidad
-El desbalance aparente crece cuando baja la cobertura. Repetido restringiendo a **DP 40–48**:
+## Límite de detección, calculado
 
-| Cromosoma | % desbalance | vs basal | Veredicto |
-|---|---|---|---|
-| chr20 | 19.1% | 1.38× | sobrevive |
-| chr22 | 17.8% | 1.28× | sobrevive |
-| chr21 | 14.3% | 1.03× | **se cae — era artefacto de cobertura** (DP medio 50.7) |
-| chrX | 16.9% | 1.22× | esperado: varón, solo regiones PAR |
-| chrY | 60.3% | 4.33× | esperado: haploide |
+Simulación de la desviación media |BAF − 0.5| a DP = 44, con 40,000 sitios por condición:
 
-### Prueba 3 — Distribución espacial (ventanas de 5 Mb)
-Una aneuploidía de cromosoma completo eleva **todas** las ventanas. Un artefacto de mapeo eleva unas
-pocas.
-
-| Cromosoma | Mediana por ventana | Ventanas altas | Rango |
-|---|---|---|---|
-| chr20 | **13.1%** (normal) | 2 de 13 | 11.1–65.2% |
-| chr22 | **14.0%** (normal) | 2 de 7 | 11.9–26.1% |
-| chr18 (control) | 13.1% | 0 de 15 | 10.6–15.4% |
-
-Las ventanas altas de chr20 y chr22 caen en el centrómero y en **22q11**, la región de duplicaciones
-segmentales más conocida del genoma. **Artefacto de mapeo, no aneuploidía.**
-
-### Prueba 4 — Dosis por cobertura (media recortada al 10%)
-Más sensible al mosaico bajo: una trisomía presente en el X% de las células sube la cobertura X/2 %.
-
-| Cromosoma | Desvío | Equivaldría a |
+| Fracción de células con trisomía | Desviación media | Efecto sobre el basal |
 |---|---|---|
-| chr21 | **+7.02%** | ~14% de células |
-| chr22 | **+6.14%** | ~12% de células |
-| chr20 | +4.51% | ~9% de células |
-| chr17 | +3.71% | ~7% de células |
-| chr19 | +3.15% | ~6% de células |
-| chr16 | +2.92% | ~6% de células |
-| los otros 16 autosomas | −1.2% a +1.5% | ruido |
+| 0% (sin mosaicismo) | 0.0601 | — |
+| 5% | 0.0603 | +0.0001 |
+| 10% | 0.0629 | +0.0027 |
+| **14%** | 0.0656 | **+0.0055** |
+| 20% | 0.0704 | +0.0103 |
+| 30% | 0.0808 | +0.0206 |
 
-## El conflicto entre pruebas, y cómo se resuelve
+El ruido que hay que superar no es el estadístico sino el **sistemático entre cromosomas**. En estos
+datos, la desviación medida a profundidad fija (DP 40–48) varía entre 0.0532 y 0.0581 según el
+cromosoma — una dispersión de **≈0.005** atribuible a contenido GC, mapeabilidad y duplicaciones
+segmentales.
 
-**La prueba 4 sugiere ganancia en 6 cromosomas. Las pruebas 1–3 (BAF) dicen que no.** No se pueden
-sostener las dos.
+**Límite de detección práctico de este VCF: trisomía clonal de un cromosoma completo presente en
+~12–15% de las células.** Por debajo de eso, el efecto queda enterrado en la variación técnica entre
+cromosomas.
 
-Argumentos por los que gana el BAF:
+Un punto que conviene decir explícitamente porque es contraintuitivo: **el cuello de botella no es la
+cobertura**. El error de Poisson al promediar un cromosoma entero a 44× es del orden del 0.03%.
+Secuenciar a 200× no bajaría el LOD de forma apreciable, porque lo que limita es el sesgo sistemático
+de la librería, no el muestreo de lecturas.
 
-1. **El patrón de la prueba 4 sigue propiedades técnicas del cromosoma, no biológicas.** Cinco de los
-   seis (19, 22, 17, 16, 20) son precisamente los cromosomas más ricos en GC del genoma, y el sesgo
-   de GC en librerías con PCR es un artefacto documentado que infla la cobertura ahí. El sexto,
-   chr21, es acrocéntrico y pequeño, con brazo p de heterocromatina no ensamblada que atrae lecturas
-   mal mapeadas. chr18, de tamaño casi idéntico a chr17 pero pobre en GC, no se desvía (+0.10%).
-2. **Una aneuploidía *variegada* no produciría un patrón ordenado.** Por definición la variegación es
-   estocástica; que los cromosomas afectados coincidan con el ranking de GC es demasiada coincidencia.
-3. **Las dos medidas deberían coincidir y no lo hacen.** Una trisomía en el 14% de las células (lo que
-   implicaría el +7% de chr21) desplazaría el BAF de las heterocigotas a ~0.47/0.53, detectable con
-   11,463 SNVs. La prueba 2 da a chr21 un desbalance de 14.3% — indistinguible del basal de 13.9%.
-4. **El BAF es intrínsecamente más robusto**: es un cociente interno de cada sitio, así que se cancela
-   el sesgo de cobertura. La dosis compara profundidades absolutas entre regiones y hereda todos los
-   sesgos de librería.
+## Qué se observó
 
-**Verificación parcial y su límite:** la correlación medida entre GC y cobertura dio r = 0.43 (n = 22),
-más baja de lo esperado — pero el GC se estimó con solo 2–3 ventanas de 200 kb por cromosoma, muestreo
-demasiado pobre para caracterizar un cromosoma entero. **No es una refutación de la hipótesis del GC;
-es una medición insuficiente**, y se reporta como tal. Confirmarla exigiría GC por ventana sobre la
-referencia completa y una normalización tipo GC-LOESS sobre los BAM.
+Cuatro análisis — **tres son refinamientos del mismo estadístico de BAF, uno es ortogonal**
+(dosis por profundidad). No son cuatro pruebas independientes, y la primera versión de este documento
+los presentaba como tales.
 
-**Veredicto:** no hay evidencia sólida de aneuploidía mosaico. La señal de dosis es más
-parsimoniosamente explicada por sesgo técnico, y queda registrada como hipótesis pendiente en vez de
-como hallazgo.
+| Análisis | Resultado |
+|---|---|
+| BAF por cromosoma (2.27 M SNVs het) | Señal aparente en chr20, 21, 22, X |
+| Mismo test a profundidad fija (DP 40–48) | chr21 **desaparece** — era artefacto de cobertura (DP medio 50.7). chr20 y chr22 persisten |
+| Perfil espacial en ventanas de 5 Mb | chr20 y chr22 tienen **medianas normales** (13.1% y 14.0%); las ventanas altas caen en el centrómero y en **22q11**, la duplicación segmental más conocida del genoma. Artefacto de mapeo local |
+| Dosis por profundidad (media recortada) | Ganancia aparente de +2.9% a +7.0% en chr16, 17, 19, 20, 21, 22 |
 
-## Por qué el resultado negativo era esperable — y por qué importa
+### La señal de dosis: una explicación parcial, honestamente incompleta
 
-No es una limitación de los datos: **es la naturaleza de la enfermedad.**
+Es tentador atribuir el patrón de dosis al contenido GC, ya que chr19, 22, 17 y 16 están entre los más
+ricos en GC del genoma. **Pero nuestros propios datos no sostienen esa explicación de forma limpia:**
+la correlación medida entre GC y cobertura fue **r = 0.43** (n = 22), y **chr21 —el mayor desvío
+(+7.0%)— es de los cromosomas más pobres en GC**. La explicación por GC funciona para chr19, 22, 17 y
+16, y falla para chr20 y chr21, que son más plausiblemente artefactos de mapeo en acrocéntricos y
+regiones de baja complejidad.
 
-En MVA la aneuploidía es *variegada* — cada célula pierde o gana un cromosoma **distinto**. El
-criterio diagnóstico clásico es >25% de metafases con aneuploidías **de cromosomas variados**. Si el
-30% de los linfocitos es aneuploide y esa carga se reparte entre 22 autosomas posibles, cada
-cromosoma individual queda alterado en ~1.4% de las células, lo que equivale a un cambio de dosis
-de ~0.7%. **Un WGS bulk a 44x no puede resolver eso**, y promediar sobre millones de células borra
-justo la heterogeneidad que define el fenotipo.
+Además, el GC se estimó con 2–3 ventanas de 200 kb por cromosoma: un muestreo demasiado pobre para
+caracterizar un cromosoma entero. **Es una medición insuficiente, no una explicación establecida**, y
+resolverla exigiría normalización GC-LOESS sobre los BAM, que no tenemos.
 
-Es la razón por la que MVA se diagnostica con **cariotipo célula a célula**, no con secuenciación bulk.
+Lo que sí se sostiene: la señal de dosis **no la corrobora el indicador más robusto**. El BAF es un
+cociente interno de cada sitio y cancela el sesgo de cobertura; la dosis compara profundidades
+absolutas y hereda todos los sesgos de librería. Cuando ambos discrepan, la carga de la prueba recae
+en la dosis.
 
-Consecuencias prácticas:
+## Conclusión
 
-1. Para el **Track 1** esto es un control negativo útil: descarta que la señal causal esté en una
-   aneuploidía constitucional y refuerza que el hallazgo es la variante germinal en **BUB1B**
-   (ver `HALLAZGOS.md`).
-2. Para el **Track 2** es una advertencia: cualquier propuesta terapéutica cuyo desenlace se mida
-   como "reducción de la carga de aneuploidía" **no es evaluable con estos datos**. Necesitaría
-   cariotipo, FISH o secuenciación de célula única.
-3. El análisis con los FASTQ crudos y corrección de GC podría bajar el límite de detección, pero no
-   por debajo de la barrera estadística que impone la variegación. Conviene decirlo antes de gastar
-   85 GB y horas de cómputo persiguiéndolo.
+**No es que hayamos demostrado la ausencia de mosaicismo. Es que este ensayo no puede detectarlo al
+nivel en que la enfermedad lo produce.**
+
+La aritmética de la variegación, presentada como **cota ilustrativa y no como medida de este
+paciente**: si el 30% de las células fuera aneuploide —el orden de magnitud del criterio diagnóstico
+clásico, no un dato de este niño— y cada célula alterara un cromosoma distinto entre 22 autosomas,
+cada cromosoma quedaría afectado en ~1.4% de las células. Con *k* cromosomas alterados por célula la
+cifra sube a `0.30 × k / 22`, y ganancias y pérdidas del mismo cromosoma **se cancelan en bulk**. Aun
+en el escenario más favorable, la carga por cromosoma queda **muy por debajo del LOD de ~12–15%**.
+
+Y algo que ninguna mejora técnica resuelve: **promediar millones de células borra la variegación por
+construcción.** Más cobertura, mejor química o corrección de GC subirían la sensibilidad para una
+aneuploidía *clonal*, no para una *variegada*.
+
+**Limitación adicional que no puede pasarse por alto:** el sello citogenético de MVA es la
+**separación prematura de cromátidas (PCS)**, que es un fenómeno de metafase y **no deja huella
+alguna en la secuencia de ADN extraído**. Ninguna profundidad de WGS lo detectaría. Además, la sangre
+de un paciente post-quimioterapia por ERMS puede tener una carga de aneuploidía muy distinta de la de
+un cultivo de linfocitos en metafase.
+
+## Consecuencia práctica
+
+Los endpoints adecuados **ya existen y son estándar** — no los proponemos como novedad:
+
+| Endpoint | Estado en el campo |
+|---|---|
+| Cariotipo de metafases con recuento de PCS | El criterio diagnóstico de MVA |
+| Ensayo de micronúcleos | Estándar internacional de mis-segregación (OECD TG 487) |
+| scDNA-seq de baja cobertura | Establecido para aneuploidía desde Knouse et al. 2014 (PMID 25197050), que mostró precisamente que el bulk promedia y borra lo que la célula única sí ve |
+| **WGS bulk** | **Insuficiente — cuantificado aquí: LOD ~12–15% clonal** |
+
+Nuestra contribución no es inventar el endpoint. Es **cuantificar, con los datos que este hackathon
+entrega, cuánto se queda corto el atajo** — y por tanto por qué cualquier evaluación de una terapia
+candidata para MVA debe medir mis-segregación célula a célula y no puede sustituirla por
+secuenciación en bloque.
+
+Para el Track 2 esto tiene una consecuencia directa: **ninguna propuesta terapéutica cuyo desenlace
+sea "reducir la carga de aneuploidía" es evaluable con los datos de este hackathon**, y cualquier
+screen de compuestos debe incluir mis-segregación en las células supervivientes como criterio de
+descarte, no solo viabilidad.
 
 ## Reproducir
 
@@ -119,5 +135,6 @@ Consecuencias prácticas:
 cd ~/datos/HACKATHON-MVA-2026/data
 bcftools view -f PASS -g het -v snps WGS_EX2312012_HGWCNDSX7.vcf.gz \
   | bcftools query -f '%CHROM\t%POS\t[%AD]\t[%DP]\n'
-# luego las cuatro pruebas descritas arriba
+# métrica: media de |BAF-0.5| por cromosoma, estratificada a DP 40-48
+# poder: simulación binomial con BAF = (1+f)/(2+f) y 1/(2+f)
 ```

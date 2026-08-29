@@ -46,14 +46,17 @@ Four approaches — per-chromosome B-allele frequency, the same at fixed read de
 profile, and chromosomal dosage — found no robust evidence. Every candidate signal traced to
 coverage, segmental duplications (22q11, centromeres) or GC content.
 
-That negative follows from the biology: in *variegated* mosaicism different cells carry aneuploidies
-of different chromosomes, so a 30% aneuploid fraction spread over 22 autosomes leaves each chromosome
-altered in ~1–2% of cells — below the resolution of 44× bulk sequencing.
+Rather than assert a negative, we computed the **detection limit**: simulation of mean |BAF − 0.5| at
+DP 44 against the systematic between-chromosome noise floor gives **~12–15% of cells for a clonal
+trisomy**. Variegation distributes the burden so each chromosome sits 6–14× below that — and coverage
+is not the constraint (Poisson error over a whole chromosome at 44× is ~0.03%; library bias sets the
+floor). Bulk averaging erases variegation by construction, at any depth.
 
-**Consequence:** "aneuploidy burden" is not a measurable endpoint in these data, which constrains any
-therapeutic proposal whose outcome depends on measuring it. The Track 2 report builds on this to
-propose a two-tier endpoint (micronucleus frequency → low-coverage scDNA-seq). Details in
-[`report/MOSAICISMO.md`](report/MOSAICISMO.md).
+**We do not claim the child lacks mosaic aneuploidy** — he has it by diagnostic definition. We claim
+this assay cannot resolve it. The correct endpoints already exist and are standard (metaphase
+karyotype with PCS scoring, micronucleus assay per OECD TG 487, low-coverage scDNA-seq since
+[Knouse 2014](https://pubmed.ncbi.nlm.nih.gov/25197050/)); our contribution is quantifying how far
+the bulk shortcut falls short. Details in [`report/MOSAICISMO.md`](report/MOSAICISMO.md).
 
 ## Layout
 

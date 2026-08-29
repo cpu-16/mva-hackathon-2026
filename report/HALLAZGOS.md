@@ -156,7 +156,9 @@ clínicas: alarmar a una familia que ya carga bastante.
 - [ ] **Análisis genome-wide con Exomiser + los 8 HPO**, sin panel — para poder afirmar en el write-up
       que el pipeline *descubre* la respuesta en lugar de confirmarla.
 - [ ] **Hallazgos secundarios/incidentales** (se pueden reportar en la columna `notes`, no penalizan).
-- [ ] **Mosaicismo desde los FASTQ** — el ángulo diferenciador; MVA es mosaico por definición.
+- [x] **Mosaicismo** — analizado desde el VCF con cálculo de límite de detección (~12–15% clonal).
+      Ver `MOSAICISMO.md`. Los FASTQ no cambiarían la conclusión: el bulk promedia la variegación
+      por construcción, a cualquier profundidad.
 
 ## Reproducir
 

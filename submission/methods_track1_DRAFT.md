@@ -65,18 +65,26 @@ WGS, using four approaches: per-chromosome B-allele frequency of 2.27 M heterozy
 restricted to a fixed depth window (DP 40–48) to remove the coverage confounder; a spatial profile in
 5 Mb windows; and chromosomal dosage via 10%-trimmed mean depth.
 
-No robust evidence of mosaic aneuploidy was found. Every candidate signal was attributable to
-coverage, segmental duplications (22q11, centromeres) or GC content. Where the dosage test and the
-BAF test disagreed, we resolved it in favour of BAF, which is an internal per-site ratio and therefore
-immune to library coverage bias, and we report the dosage signal as an open hypothesis rather than a
-finding.
+Note that three of these are refinements of the same BAF statistic and only the dosage test is
+orthogonal; they are not four independent tests. Analysis used the VCF only — no BAM was available,
+so no GC-LOESS normalisation was possible.
 
-This negative result is expected from first principles and is informative: in *variegated* mosaicism
-different cells carry aneuploidies of different chromosomes, so if 30% of cells are aneuploid spread
-across 22 autosomes, each individual chromosome is altered in roughly 1–2% of cells — a dosage shift
-below the resolution of 44× bulk sequencing. It is why MVA is diagnosed by single-cell karyotyping.
-The practical consequence is that "aneuploidy burden" is not a measurable endpoint in bulk WGS, which
-matters for any Track 2 proposal whose outcome depends on measuring it.
+**We computed the detection limit rather than asserting a negative.** Simulating mean |BAF − 0.5| at
+DP 44 shows a clonal trisomy is detectable above the systematic between-chromosome noise floor
+(≈0.005) only when present in **~12–15% of cells**. Coverage is not the constraint: Poisson error
+over a whole chromosome at 44× is ~0.03%, so the limit is set by library bias, not read sampling.
+
+Every candidate signal traced to coverage, segmental duplications (22q11, centromeres) or — partially
+— GC content. We flag that the GC explanation is incomplete: our measured GC–coverage correlation was
+r = 0.43 from a sparse sample, and chr21, the largest deviation, is GC-poor. Where dosage and BAF
+disagreed we favoured BAF, which cancels coverage bias, and report dosage as an open hypothesis.
+
+**We therefore do not claim the child lacks mosaic aneuploidy — he has it by diagnostic definition.**
+We claim this assay cannot resolve it: variegation distributes the burden across chromosomes so that
+each sits 6–14× below the detection limit, and bulk averaging erases variegation by construction, at
+any depth. The cytogenetic hallmark of MVA, premature chromatid separation, leaves no trace in DNA
+sequence at all. The practical consequence is that "aneuploidy burden" is not a measurable endpoint
+here, which constrains any Track 2 proposal whose outcome depends on it.
 
 ## Q4 — Automated output or manual review?
 

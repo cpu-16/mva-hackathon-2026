@@ -19,9 +19,12 @@ that are missing:
 
 1. **What is actionable today without any drug.** Structured tumour surveillance and individualised
    chemotherapy planning are the interventions that measurably change this child's prognosis now.
-2. **The biomarker the field does not have.** Every candidate therapy for MVA needs *aneuploidy
-   burden* as an endpoint. Using this child's own genome, we show empirically that this endpoint is
-   not measurable in bulk sequencing, and we propose a two-tier assay that is.
+2. **A quantified limit on what the hackathon data can measure.** Every candidate therapy for MVA
+   needs *aneuploidy burden* as an endpoint. The correct assays already exist and are standard — we
+   do not claim to have invented them. What we contribute is the number: using this child's own
+   genome we compute the detection limit of bulk WGS for this purpose (~12–15% clonal), show that
+   variegated mosaicism falls 6–14× below it, and demonstrate that **more coverage does not fix
+   it**.
 3. **An advancement criterion** that disqualifies a whole class of superficially attractive
    candidates: a compound that kills aneuploid cells but raises mis-segregation among the survivors
    makes the disease worse.
@@ -42,17 +45,22 @@ attachment control. Its 1,050-residue architecture places the two variants as fo
 
 ```
 aa 1                                                                    1050
-   | KEN1 |--- N-terminal TPR ---| KEN2/ABBA | GLEBS/Bub3 |-- KARD --| pseudokinase |
-     ~26       ~50–204              ~304       ~392–426     ~665–682    ~705–1034
+   | KEN1 |--- N-terminal TPR ---| KEN2/ABBA | GLEBS/Bub3 |-- KARD --|~~| pseudokinase |
+     ~26       ~50–204              ~304       ~392–426     ~665–682       ~757–1044
                                                                    ↑            ↑
                                                                Leu737Ter    Asn1002Lys
 ```
 
-**p.Leu737Ter** truncates at the start of the pseudokinase domain, removing roughly 313 residues.
+**p.Leu737Ter** truncates in the linker immediately N-terminal to the pseudokinase fold (UniProt/Pfam
+place the kinase domain at ~757–1044), removing the entire domain — roughly 313 residues. Note the
+schematic above gives approximate literature intervals, not clinical coordinates.
+
+It is worth stating how close this is to a characterised allele: the human `2211insGTTA` allele
+produces an unstable X753 truncation, only 16 residues downstream. This is not a "related" model —
+it is very nearly the same truncation (PMID 31738183).
 The N-terminal MCC-forming region, the GLEBS/Bub3 motif and the KARD motif remain in sequence, but a
-truncated protein should not be assumed stable. In a closely related MVA model, the human
-`2211insGTTA` allele produced an unstable X753 truncation, and allelic combinations produced effects
-not explained by protein quantity or aneuploidy rate alone (PMID 31738183).
+truncated protein should not be assumed stable — in that model, allelic combinations produced effects
+not explained by protein quantity or aneuploidy rate alone.
 
 *Our inference, not a verified fact:* a premature stop this far upstream of the final exon junction
 would typically trigger nonsense-mediated decay. Without patient RNA we cannot say whether the
@@ -67,8 +75,8 @@ question rather than a characterised allele.
 The functional consequence at the cellular level is well documented in MVA patient fibroblasts:
 reduced BubR1 levels, a weakened spindle assembly checkpoint, and chromosome alignment defects
 (PMID 20516114). The KARD motif recruits PP2A-B56 to antagonise Aurora B and stabilise
-kinetochore–microtubule attachments; its disruption causes congression defects in MVA cells
-(PMID 23789096, PMID 23345399).
+kinetochore–microtubule attachments; its disruption causes congression defects
+(Xu et al., *Biol Open* 2013, PMID 23789096; Kruse et al., *J Cell Sci* 2013, PMID 23345399).
 
 **Genotype–phenotype, honestly stated:** the recurrent pattern in viable MVA1 is one truncating
 allele plus one amino-acid substitution, often C-terminal (PMID 20516114). Homozygous `Bub1b`
@@ -76,7 +84,7 @@ knockout is embryonic lethal in mouse, while hypomorphs age prematurely and accu
 (PMID 15208629). But there is **no validated correlation** between these two specific alleles — or
 between "truncating + missense" generally — and differential risk of embryonal rhabdomyosarcoma
 versus Wilms tumour. The child's rhabdomyosarcoma is consistent with the MVA spectrum
-(PMID 16182441, PMID 28553959); it does not by itself establish the function of p.Asn1002Lys.
+(PMID 16182441); it does not by itself establish the function of p.Asn1002Lys.
 
 ---
 
@@ -87,10 +95,10 @@ The intervention with the strongest evidence base is not a molecule.
 ### Tumour surveillance
 
 MVA/BUB1B predisposes principally to early embryonal tumours: embryonal rhabdomyosarcoma, Wilms
-tumour, and leukaemia (PMID 16182441, PMID 28553959). UK surveillance recommendations covering
+tumour, and leukaemia (PMID 16182441). UK surveillance recommendations covering
 children with mosaic aneuploidy or BUB1B variants propose **renal ultrasound every 3–4 months from
 diagnosis until age 5**, because nearly all reported Wilms tumours in those series occurred before
-that age (PMID 17652220). Contemporary guidance for genomic instability syndromes emphasises
+that age (PMID 16857697). Contemporary guidance for genomic instability syndromes emphasises
 individualised planning, minimising ionising radiation, and management in expert centres
 (DOI 10.1158/1078-0432.CCR-24-1101).
 
@@ -129,68 +137,101 @@ equivalent.
 
 ---
 
-## 3. Piece two — the biomarker the field does not have
+## 3. Piece two — a quantified limit on the hackathon's own data
 
-**This is our principal contribution.**
+Any therapy for MVA needs a measurable endpoint, and the natural one is **aneuploidy burden**. So we
+asked whether the data this hackathon provides can supply it.
 
-Any therapy for MVA needs a measurable endpoint, and the natural one is **aneuploidy burden**. No
-candidate can be evaluated without it. So we asked whether that endpoint is measurable in the data
-this hackathon provides.
+**We are not proposing a new assay.** The correct endpoints already exist and are standard: metaphase
+karyotyping with premature chromatid separation scoring is the diagnostic criterion for MVA; the
+micronucleus assay is an international standard for mis-segregation (OECD TG 487); and low-coverage
+single-cell DNA sequencing has been established for aneuploidy since Knouse et al. 2014
+(PMID 25197050), which showed precisely that bulk averaging erases what single cells reveal.
 
-### What we did
+What we contribute is **the number**: how far short the bulk shortcut falls, computed on this
+patient's genome.
 
-Four independent tests on the proband's own 44× WGS, each designed to rule out the artefact of the
-previous one:
+### Method and its limits, stated first
 
-1. **Per-chromosome B-allele frequency** over 2.27 M heterozygous SNVs. In a diploid chromosome,
-   heterozygous sites cluster at 0.50; a trisomy splits them towards 0.33/0.67. Raw signal appeared
-   on chr20, 21, 22 and X.
-2. **Fixed-depth control** (DP 40–48), removing the coverage confounder. chr21 collapsed to baseline
-   — it had been a coverage artefact. chr20 (1.38×) and chr22 (1.28×) survived.
-3. **Spatial profile** in 5 Mb windows. A whole-chromosome aneuploidy elevates *every* window; a
-   mapping artefact elevates a few. chr20 and chr22 both had **normal medians** (13.1% and 14.0%)
-   with two high windows each, falling on the centromere and on **22q11** — the best-known segmental
-   duplication region in the genome.
-4. **Chromosomal dosage** by 10%-trimmed mean depth. Six chromosomes showed apparent gain (chr16, 17,
-   19, 20, 21, 22) — but five of those six are the most GC-rich chromosomes in the genome, the
-   signature of GC bias in PCR-based libraries, and the sixth is a small acrocentric. chr18, nearly
-   the size of chr17 but GC-poor, showed +0.10%.
+Analysis used **the VCF only** — no BAM or FASTQ were available to us, so no GC-LOESS normalisation
+or read-level dosage was possible. Four analyses were run, of which **three are refinements of the
+same B-allele-frequency statistic and one (depth-based dosage) is orthogonal**. They are not four
+independent tests.
 
-**Where tests 1–3 and test 4 disagreed, we resolved in favour of BAF**, which is an internal per-site
-ratio and therefore immune to library coverage bias, while dosage compares absolute depths and
-inherits every library artefact. A trisomy in 14% of cells (implied by chr21's +7% dosage) would
-shift heterozygous BAF to ~0.47/0.53, detectable across 11,463 SNVs — and it is not there. We record
-the dosage signal as an open hypothesis, not a finding.
+In a trisomy, heterozygous sites split symmetrically towards `1/(2+f)` and `(1+f)/(2+f)`, so **the
+mean BAF does not move** — the dispersion does. The correct statistic is therefore the mean
+|BAF − 0.5|.
 
-### Why the negative result was predictable — and why it matters
+### The detection limit
 
-This is not a limitation of the data. It follows from the definition of the disease.
+Simulating mean |BAF − 0.5| at DP = 44 across 40,000 sites per condition:
 
-In *variegated* mosaicism, different cells gain or lose **different** chromosomes. The diagnostic
-criterion is >25% of metaphases carrying aneuploidies of varied chromosomes. If 30% of lymphocytes
-are aneuploid and that burden is distributed across 22 autosomes, **each individual chromosome is
-altered in roughly 1.4% of cells** — a dosage shift near 0.7%, far below what 44× bulk sequencing can
-resolve. Averaging over millions of cells erases precisely the heterogeneity that defines the
-phenotype. This is why MVA is diagnosed by cell-by-cell karyotyping, not by sequencing.
+| Cells carrying a trisomy | Mean deviation | Effect over baseline |
+|---|---|---|
+| 0% | 0.0601 | — |
+| 5% | 0.0603 | +0.0001 |
+| 10% | 0.0629 | +0.0027 |
+| **14%** | 0.0656 | **+0.0055** |
+| 20% | 0.0704 | +0.0103 |
+| 30% | 0.0808 | +0.0206 |
 
-### The proposal
+The noise floor is not statistical but **systematic between chromosomes**: in these data the measured
+deviation at fixed depth (DP 40–48) ranges 0.0532–0.0581 across chromosomes, a spread of ≈0.005
+attributable to GC content, mappability and segmental duplications.
 
-| Candidate endpoint | Resolution | Cost | Verdict |
-|---|---|---|---|
-| Bulk WGS (BAF or dosage) | insufficient — demonstrated here | already paid | ❌ unusable |
-| Metaphase karyotype | diagnostic standard, cell-by-cell | high, manual, slow | reference, not scalable |
-| **Low-coverage scDNA-seq** | per cell, genome-wide | medium | ✅ the correct endpoint |
-| **Micronucleus frequency** | per-cell proxy for mis-segregation | **low**, microscopy | ✅ cheap screening tier |
+**Practical detection limit of this VCF: a clonal whole-chromosome trisomy present in ~12–15% of
+cells.**
 
-We propose the pair **micronucleus frequency (screening) → low-coverage scDNA-seq (confirmation)** as
-a standardised endpoint for therapeutic studies in chromosomal instability disorders. Micronuclei are
-cheap enough to run across a compound matrix; scDNA-seq confirms the hits. Neither requires the
-patient to be dosed with anything.
+One point deserves emphasis because it is counter-intuitive: **coverage is not the bottleneck.**
+Poisson error when averaging an entire chromosome at 44× is on the order of 0.03%. Sequencing at 200×
+would barely move the limit, because what constrains it is library bias, not read sampling.
 
-This proposal is not a literature review conclusion. It falls out of having analysed this specific
-child's genome and found the standard approach empirically insufficient.
+### Why variegation falls below that limit
 
----
+As an **illustrative bound, not a measurement of this child**: if 30% of cells were aneuploid — the
+order of magnitude of the classical diagnostic criterion, not a figure from this patient — and each
+cell altered a different chromosome across 22 autosomes, each chromosome would be affected in ~1.4%
+of cells. With *k* altered chromosomes per aneuploid cell that becomes `0.30 × k / 22`, and gains and
+losses of the same chromosome **cancel in bulk**. Even on favourable assumptions the per-chromosome
+burden sits **6–14× below the ~12–15% limit**.
+
+And no technical improvement resolves this: **averaging over millions of cells erases variegation by
+construction.** Better chemistry raises sensitivity for a *clonal* aneuploidy, not a *variegated* one.
+
+**A further limitation that no sequencing depth addresses:** the cytogenetic hallmark of MVA is
+**premature chromatid separation**, a metaphase phenomenon that leaves no trace whatsoever in
+extracted DNA sequence. Additionally, blood from a patient treated for ERMS may carry a very
+different aneuploidy burden than a metaphase lymphocyte culture.
+
+### What we actually observed
+
+| Analysis | Result |
+|---|---|
+| BAF per chromosome (2.27 M het SNVs) | Apparent signal on chr20, 21, 22, X |
+| Same, at fixed depth (DP 40–48) | chr21 **disappears** — a coverage artefact (mean DP 50.7). chr20 and chr22 persist |
+| Spatial profile, 5 Mb windows | chr20 and chr22 have **normal medians** (13.1%, 14.0%); the high windows fall on the centromere and on **22q11**, the best-characterised segmental duplication region in the genome |
+| Depth-based dosage | Apparent gain of +2.9% to +7.0% on chr16, 17, 19, 20, 21, 22 |
+
+**On the dosage signal we are deliberately incomplete.** GC bias explains chr19, 22, 17 and 16, which
+are among the most GC-rich chromosomes. It does **not** explain chr21 — the largest deviation (+7.0%)
+and one of the most GC-poor chromosomes — nor chr20; acrocentric and low-complexity mapping is the
+more plausible cause there. Our measured GC–coverage correlation was **r = 0.43** (n = 22), estimated
+from only 2–3 windows of 200 kb per chromosome: too sparse to characterise a chromosome. **This is an
+insufficient measurement, not an established explanation.** Resolving it would require GC-LOESS
+normalisation on BAMs we do not have.
+
+What does hold: the dosage signal is **not corroborated by the more robust indicator**. BAF is an
+internal per-site ratio that cancels coverage bias; dosage compares absolute depths and inherits
+every library artefact. Where they disagree, the burden of proof lies with dosage.
+
+### The consequence for Track 2
+
+We have **not** shown this child lacks mosaic aneuploidy — he has it by diagnostic definition. We have
+shown that **this assay cannot resolve it at the level the disease produces it**.
+
+Therefore: **no therapeutic proposal whose endpoint is "reduced aneuploidy burden" can be evaluated
+with the hackathon data**, and any compound screen must measure per-cell mis-segregation rather than
+substitute bulk sequencing for it. That is the constraint the next section turns into a filter.
 
 ## 4. Piece three — the advancement criterion
 
@@ -305,13 +346,16 @@ candidates are eliminated. This design is built to be able to fail, which is the
 
 None of the above is specific to this child:
 
-- The **11-gene panel and rarity+impact filter** apply to any suspected chromosomal instability
-  disorder — MVA by CEP57 (PMID 21552266) or TRIP13 (PMID 28553959), and adjacent phenotypes.
+- The **gene panel and rarity+impact filter** (BUB1B, CEP57, TRIP13, CENATAC, MAD1L1, MAD2L1BP,
+  CEP192, BUB1, SMC5, TRIM37, CENPE) apply to any suspected MVA or PCS phenotype — MVA by CEP57
+  (PMID 21552266) or TRIP13 (PMID 28553959).
 - The **mosaicism artefact controls** (fixed-depth stratification, spatial windowing, GC awareness)
   apply to any attempt to detect mosaic aneuploidy from bulk sequencing, and would have prevented
   three false positives here.
-- The **micronucleus → scDNA-seq endpoint** applies to any CIN disorder, including Fanconi anaemia and
-  Bloom syndrome.
+- The **micronucleus → scDNA-seq endpoint** applies to mitotic CIN disorders — MVA and PCS
+  syndromes. It does **not** transfer to Fanconi anaemia or Bloom syndrome, whose diagnostic assays
+  are chromosome breakage under DEB/MMC and sister-chromatid exchange respectively; those measure a
+  different lesion and should not be substituted.
 - The **advancement criterion**, especially the mis-segregation clause, applies to any compound screen
   in a chromosomal instability background.
 
@@ -358,7 +402,7 @@ compounds which would make the disease worse, and a surveillance plan that helps
 6. Baker DJ, et al. Clearance of p16^Ink4a-positive senescent cells delays ageing-associated disorders. *Nature* 2011. PMID 22048312 · DOI 10.1038/nature10600
 7. Sieben CJ, et al. BubR1 allelic effects drive phenotypic heterogeneity in mosaic variegated aneuploidy. *J Clin Invest* 2020. PMID 31738183 · DOI 10.1172/JCI126863
 8. Nishitani-Isa M, et al. Embryonal rhabdomyosarcoma with PCS/MVA treated with reduced-intensity chemotherapy. *Pediatr Int* 2019. PMID 31184400 · DOI 10.1111/ped.13849
-9. Scott RH, et al. Surveillance for Wilms tumour in at-risk children. *Arch Dis Child* 2006. PMID 17652220
+9. Scott RH, et al. Surveillance for Wilms tumour in at-risk children. *Arch Dis Child* 2006. PMID 16857697
 10. Yost S, et al. Biallelic *TRIP13* mutations predispose to Wilms tumor and chromosome missegregation. *Nat Genet* 2017. PMID 28553959
 11. Snape K, et al. Mutations in *CEP57* cause mosaic variegated aneuploidy syndrome. *Nat Genet* 2011. PMID 21552266
 12. Suijkerbuijk SJE, et al. Integration of kinase and phosphatase activities by BUBR1 ensures chromosome segregation fidelity. *Dev Cell* 2012 / related KARD–PP2A-B56 work. PMID 23789096, PMID 23345399
