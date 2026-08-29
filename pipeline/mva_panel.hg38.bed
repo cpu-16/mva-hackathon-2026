@@ -1,0 +1,18 @@
+# MVA gene panel, GRCh38 / hg38, ±5 kb padding.
+# Source: Ensembl REST lookup/symbol/homo_sapiens (release 116), retrieved 2026-08-29.
+# Endpoint: https://rest.ensembl.org/lookup/symbol/homo_sapiens/<SYMBOL>
+# Assembly field from API: GRCh38. Gene span (not CDS). 0-based half-open BED.
+# Chrom names: UCSC (chrN). triage.sh strips the prefix if the VCF is NCBI-style.
+# Full provenance: mva_panel.provenance.tsv
+# This panel is a FAST CONTROL, not the primary analysis (that is genome-wide Exomiser).
+chr2	110630467	110683098	BUB1	ENSG00000169679	-
+chr4	103100348	103203463	CENPE	ENSG00000138778	-
+chr5	887848	924357	TRIP13	ENSG00000071539	+
+chr6	43624493	43645960	MAD2L1BP	ENSG00000124688	+
+chr7	1810786	2238243	MAD1L1	ENSG00000002822	-
+chr9	70253269	70359874	SMC5	ENSG00000198887	+
+chr11	95784964	95842070	CEP57	ENSG00000166037	+
+chr11	118993050	119020811	CENATAC	ENSG00000186166	+
+chr15	40155983	40226137	BUB1B	ENSG00000156970	+
+chr17	58977632	59111921	TRIM37	ENSG00000108395	-
+chr18	12986282	13130053	CEP192	ENSG00000101639	+

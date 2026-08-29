@@ -1,0 +1,19 @@
+# NUNCA subir datos del paciente ni nada derivado del genoma
+data/
+*.vcf
+*.vcf.gz
+*.vcf.gz.tbi
+*.bam
+*.cram
+*.fastq*
+*.fq.gz
+*.docx
+*variants.tsv
+*genes.tsv
+*.jsonl
+baf_*.tsv
+dp_all.tsv
+*vep_in.txt
+results/
+tools/data/
+tools/downloads/

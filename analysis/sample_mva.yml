@@ -1,0 +1,18 @@
+---
+id: MVA-hackathon-2026-proband
+subject:
+  id: WGS_EX2312012
+  sex: MALE
+phenotypicFeatures:
+  - type: { id: "HP:0002859", label: "Rhabdomyosarcoma" }
+  - type: { id: "HP:0000121", label: "Nephrocalcinosis" }
+  - type: { id: "HP:0004322", label: "Short stature" }
+  - type: { id: "HP:0001508", label: "Failure to thrive" }
+  - type: { id: "HP:0003202", label: "Skeletal muscle atrophy" }
+  - type: { id: "HP:0001622", label: "Premature birth" }
+  - type: { id: "HP:0001518", label: "Small for gestational age" }
+  - type: { id: "HP:0200067", label: "Recurrent spontaneous abortion" }
+metaData:
+  created: "2026-08-29T01:00:00Z"
+  createdBy: "MVA hackathon pipeline"
+  phenopacketSchemaVersion: "1.0.0"

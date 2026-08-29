@@ -1,0 +1,29 @@
+---
+# Analisis genome-wide COMPLETO: incluye variantes no codificantes (REMM).
+# Sin variantEffectFilter -> no se descartan intronicas ni reguladoras.
+# Es el control que verifica que la respuesta no dependa de haber filtrado el no-codificante.
+analysisMode: PASS_ONLY
+inheritanceModes: {
+  AUTOSOMAL_DOMINANT: 0.1,
+  AUTOSOMAL_RECESSIVE_HOM_ALT: 0.1,
+  AUTOSOMAL_RECESSIVE_COMP_HET: 2.0,
+  X_DOMINANT: 0.1,
+  X_RECESSIVE_HOM_ALT: 0.1,
+  X_RECESSIVE_COMP_HET: 2.0,
+  MITOCHONDRIAL: 0.2
+}
+frequencySources: [
+  UK10K,
+  GNOMAD_E_AFR, GNOMAD_E_AMR, GNOMAD_E_EAS, GNOMAD_E_NFE, GNOMAD_E_SAS,
+  GNOMAD_G_AFR, GNOMAD_G_AMR, GNOMAD_G_EAS, GNOMAD_G_NFE, GNOMAD_G_SAS
+]
+pathogenicitySources: [ REVEL, MVP, ALPHA_MISSENSE, SPLICE_AI ]
+steps: [
+  hiPhivePrioritiser: { },
+  geneBlacklistFilter: { },
+  failedVariantFilter: { },
+  frequencyFilter: { maxFrequency: 2.0 },
+  pathogenicityFilter: { keepNonPathogenic: true },
+  inheritanceFilter: { },
+  omimPrioritiser: { }
+]
