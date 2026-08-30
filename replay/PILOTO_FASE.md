@@ -51,8 +51,9 @@ deterministic, so the differences above are signal, not run-to-run noise.
    pathogenic nonsense alleles declared to be on the *same* chromosome, Exomiser still calls
    AUTOSOMAL_RECESSIVE_COMP_HET, still marks both alleles as contributing, still classifies both as
    PATHOGENIC, and still ranks the gene first.
-3. **The penalty for being on the wrong haplotype is 0.34%** (0.9339 → 0.9305). Being unphased costs
-   0.15%. Neither changes the call or the rank.
+3. **The cost of being on the wrong haplotype is 0.0034 in absolute score** (trans 0.9339, cis 0.9305).
+   Being unphased costs 0.0014. We report these as absolute differences: the combined score is a
+   non-linear function of its inputs, so a percentage share of it is not defined. Neither changes the call or the rank.
 
 ## Consequence for our own submission
 

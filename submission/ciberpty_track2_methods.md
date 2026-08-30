@@ -123,7 +123,7 @@ apart elsewhere in the same VCF. Reference-panel phasing fails separately: all t
 sites inside the interval are absent from the 1000 Genomes 3,202-sample phased panel, and Beagle 5.5
 drops all three. Our retrieval pipeline is insensitive to phase in any case: two pathogenic nonsense
 alleles declared in cis are still called compound heterozygous, still PATHOGENIC and still ranked
-first, at a 0.34% score penalty. Nonsense-mediated decay of the truncated
+first, at an absolute score difference of 0.0034. Nonsense-mediated decay of the truncated
 transcript is unmeasured and we do not assert it either way without patient RNA. p.Asn1002Lys has
 no published functional assay, and its in-silico predictors disagree (REVEL 0.472, AlphaMissense
 0.923), which is why we let it stand as a VUS.

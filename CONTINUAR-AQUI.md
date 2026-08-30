@@ -133,8 +133,8 @@ ese delta mide lo que valían los dos términos contaminantes. El par correcto e
 una línea base sin fenotipo. ⛔ **El porcentaje se RETIRA, no se corrige a 28,7%.** Los dos revisores
 coincidieron: cambiar 24 por 28,7 es corregir un error de encuadre con un error de redondeo.
 
-**(b) "the ClinVar-whitelisted nonsense allele carries the ranking".** El whitelist vale **0.0128 =
-2,2% del score**, no el ranking. Lo que lo carga es la **consecuencia nonsense**. Ver el contrafactual
+**(b) "the ClinVar-whitelisted nonsense allele carries the ranking".** El whitelist vale **0.0128 en score absoluto**, no el ranking. (Y no se expresa como % — es la
+misma operación inválida que se retiró para el fenotipo.) Lo que lo carga es la **consecuencia nonsense**. Ver el contrafactual
 abajo. El hallazgo es *más* robusto de lo que dijimos —no depende de la base de datos— pero la
 atribución del reporte está mal.
 
@@ -153,7 +153,7 @@ resultados de MVA-Replay.** El CSV que da los 100/100 no cambia.
 |---|---|
 | **El score no depende del genoma.** Plantando los dos registros ClinVar del Track 1 en tres genomas sanos ajenos | **0.5871 (HPO real) y 0.4187 (HPO ajeno), idénticos a 4 decimales en los tres**. El fondo solo cambia el *rank* |
 | Gradiente por arquitectura de alelos (pre-registrado, P-C **confirmada**) | dos P/LP **0.9332** · P/LP+VUS (la del niño) **0.5871** · dos VUS **0.1120**. Caída de 0.8212 (umbral 0.10) |
-| ⛔ **Pero la interpretación era falsa.** Escribí "ClinVar vale el 88%" y "sin ClinVar las mismas dos variantes darían 0.1120" — **nunca corrí ese contrafactual**; C-lo usa *otros* alelos. Los dos revisores lo exigieron y se corrió | **Quitar ClinVar entero cuesta 0.0128 = 2,2%.** La arquitectura molecular exacta del niño sin ninguna clasificación ClinVar da **0.5743** y sigue rank 1 en los dos fondos. El gradiente lo manda la **consecuencia**, no la base de datos |
+| ⛔ **Pero la interpretación era falsa.** Escribí "ClinVar vale el 88%" y "sin ClinVar las mismas dos variantes darían 0.1120" — **nunca corrí ese contrafactual**; C-lo usa *otros* alelos. Los dos revisores lo exigieron y se corrió | **Quitar ClinVar entero cuesta 0.0128 en score absoluto.** La arquitectura molecular exacta del niño sin ninguna clasificación ClinVar da **0.5743** y sigue rank 1 en los dos fondos. El gradiente lo manda la **consecuencia**, no la base de datos |
 | El registro VUS del missense aporta **0.0000** | plantar el alelo REAL del niño (ausente de ClinVar) en vez del registro VUS da el mismo 0.5871 hasta el cuarto decimal |
 | **Escala del 0.5871** en 7 genomas GIAB sanos con nuestros 8 HPO | gen top entre 0.0578 y **0.5619**; nuestro 0.5871 les gana a los 7 pero por **0.025**. BUB1B no aparece en ninguno. **P-A queda ABIERTA, no "se sostiene"**: null sesgado a favor, y HG001+dos tríos son 3 unidades independientes, no 7. ⏳ faltan 30 genomas 1000G · las frases pre-comprometidas para cada desenlace están en `replay/RESULTADOS.md` §8 |
 | Los fondos GIAB rankean menos genes | mediana **2.387** vs 4.565 del paciente → el null está sesgado **a nuestro favor**; el endpoint portátil es el *score*, no el rank |

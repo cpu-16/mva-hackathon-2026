@@ -715,8 +715,7 @@ phenotype, and would inform any future pregnancy. It is cheap, it can be done th
 - **The retrieval pipeline is itself insensitive to phase.** In a controlled test on public data,
   Exomiser 15.1.0 reads phase into its ACMG evidence (trans → PM3, cis → BP2) but not into the
   compound-heterozygous model: two pathogenic nonsense alleles declared on the *same* chromosome are
-  still called AR_COMP_HET, still classified PATHOGENIC and still ranked first, at a combined-score
-  penalty of 0.34%. Nothing in the Track 1 retrieval would have flagged a *cis* configuration.
+  still called AR_COMP_HET, still classified PATHOGENIC and still ranked first, at an absolute combined-score difference of 0.0034. Nothing in the Track 1 retrieval would have flagged a *cis* configuration.
 - **p.Asn1002Lys has no functional assay**, and its apparent ClinVar entry is for a different
   nucleotide.
 - **The bortezomib EC50 is a conservative upper bound** read from a figure panel rather than a

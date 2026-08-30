@@ -336,3 +336,20 @@ and its six cells are rebuilt and re-run. The affected pre-amendment cells are r
 weaker. In the pre-amendment run the decoy reached rank 58 and 69; in the first re-run cell it reaches
 **rank 1**. The amendment therefore works against prediction P-B3's failure and against our own
 framing — it is not a fix in our favour.
+
+
+### Amendment 4 — 2026-08-30, arithmetic correction to the declared pilot result
+
+The phase pilot summarised at the top of this file reports the cis penalty as "0.34%". That is the
+**absolute** difference (0.9339 − 0.9305 = 0.0034) written as if it were a percentage; expressed as a
+share of the score it would be 0.36%. Both reviewers caught it independently in the round-8
+verification.
+
+**We are not restating it as a share at all.** The combined score is a non-linear function of its
+inputs, which is exactly the reason we withdrew the phenotype percentage from the Track 1 report, and
+the same objection applies here and to the 0.0128 ClinVar difference. All three are reported as
+absolute differences from here on: **cis costs 0.0034, unphased costs 0.0014, and removing ClinVar
+costs 0.0128.** The pilot's conclusion — that phase does not reach the compound-heterozygous model —
+is unaffected, since it never depended on the size of the difference.
+
+The original text above is left as written, per this file's own rule.

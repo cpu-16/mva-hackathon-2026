@@ -43,23 +43,41 @@ inheritance-mode compatibility, distributed across 3,139 genes.
 
 ### Result
 
-**BUB1B ranked 2nd of 3,139 genes under the autosomal recessive model, and Exomiser assigned that
-ranking to ORPHA:1052, mosaic variegated aneuploidy syndrome** — the correct disease, reached without
+**BUB1B is the top-ranked gene of the 3,139 in this run, and its recessive row is first of the 2,100
+recessive-model rows, mapped by Exomiser to ORPHA:1052, mosaic variegated aneuploidy syndrome** — the correct disease, reached without
 being told. Under the recessive model both variants were marked as contributing, so Exomiser
 reconstructed the compound heterozygous pair on its own.
 
 The same gene also took rank 1 under the autosomal dominant model, but that entry is an artefact we
 report rather than claim: Exomiser attached it to **OMIM:114500, colorectal cancer (somatic)**, and
-it wins the top slot because a single truncating allele saturates the variant term of the dominant
-model. We originally wrote that the ClinVar whitelist was what short-circuited variant scoring to 1.0;
+a single truncating allele saturates the variant term of the dominant model, which is why that row's
+score is 0.5871. **It is not why the dominant row outranks the recessive one**: in our benchmark the
+dominant row wins for BUB1B in every construct tested, including one with two missense VUS and no
+truncating allele at all (0.1120 dominant against 0.0925 recessive). Exomiser's ordering prefers the
+dominant model here regardless of the allele architecture, and we report that rather than explain it.
+We also originally wrote that the ClinVar whitelist was what short-circuited variant scoring to 1.0;
 **we tested that and it is wrong.** Planting an unclassified ClinVar nonsense record in the same gene
 (`chr15:40212550 G>T`, no CLNSIG, not whitelisted) gives the identical variant score of 1.0000 — the
 `stop_gained` consequence alone saturates it (§ Benchmark, below). A single truncating allele in a
 recessive gene is not a dominant colorectal cancer diagnosis. **The result we stand behind is rank 2, not rank 1.** We say so
 because the honest reading of our own output matters more than the better-sounding headline.
 
-The combined score gap is real but moderate: 0.5871 (rank 1, AD) and 0.5538 (rank 2, AR) against
-0.2137 for the third-ranked gene — **2.59× the third gene for the recessive result we stand behind** (2.75× for the dominant artefact), not an order of magnitude.
+*A note on what "rank 2" counts.* Exomiser's table lists one row per gene × inheritance mode. BUB1B
+occupies the first two rows: 0.5871 (dominant) and 0.5538 (recessive). The next row, 0.2137, belongs
+to FANCD2 — the **second gene**, not the third. So BUB1B is gene rank 1 of 3,139 and its recessive row
+is rank 1 of 2,100 recessive rows; it sits second in the overall row ordering only because its own
+dominant row sits first. The combined score gap is real but moderate: **2.59× the next gene for the
+recessive result we stand behind** (2.75× for the dominant artefact), not an order of magnitude.
+
+**Stated plainly, because it is the honest reading of our own output.** The pipeline's top-ranked row
+for BUB1B is a *dominant* single-allele model, not the recessive compound-heterozygous model the
+diagnosis rests on — and our benchmark shows the dominant row wins for BUB1B in every construct we
+tested, including one with no truncating allele. The compound-heterozygous call is also invariant to
+phase: declaring both alleles on the same chromosome changes neither the call, nor the
+classification, nor the rank. **The recessive interpretation is supplied by the inheritance model of
+the disease and by the two-allele architecture, not by the ranking.** What the retrieval delivers is
+the right gene; the diagnosis is an interpretation we make on top of it, and we say so rather than
+let the leaderboard number imply otherwise.
 
 ### Robustness controls — including one that argues against us
 
@@ -90,9 +108,10 @@ the dominant row.** The conclusion survives a clean control.
 
 *A note on the denominator, because we had this wrong.* An earlier version of this sentence said
 "rank 1 of 4,565 genes". 4,565 is the number of gene × inheritance-mode **rows** in that output file,
-not genes: the run covers **3,139 genes**, and of those only **257 receive a combined score above
-zero** (32 score ≥ 0.01) while the remaining rows are tied at the bottom rank with score 0. The
-honest denominator is 3,139 genes, of which 257 were scored at all.
+not genes. The run covers **3,139 unique genes**; **257 of them have at least one row scoring above
+zero** and 32 have a row ≥ 0.01. Separately, and in the other unit, **4,262 of the 4,565 rows carry a
+score of zero** and are tied at the bottom rank. The honest denominator is 3,139 genes, of which 257
+were scored at all.
 
 The comparison is informative, but we previously drew the wrong number from it. We wrote that
 removing the two contaminating terms drops the score from 0.5506 to 0.4187, "about 24%", and called
@@ -119,10 +138,18 @@ HPO term, so this control could not be run.
 comes from the **variant** — a pathogenic nonsense allele in a constrained gene (LOEUF 0.588) — not
 from the phenotype, and not from the database record either: with both ClinVar classifications
 stripped, the same molecular architecture still scores 0.5743 and still ranks first (§ Benchmark). The accurate description is **variant-driven and
-phenotype-consistent**. What the phenotype does contribute is the choice between competing
-interpretations of the same variant: it is the phenotype that makes Exomiser attach the recessive
-model to mosaic variegated aneuploidy rather than to somatic colorectal cancer, and the
-least-specific-term control shows the effect is real (one vague term is not enough to reach the top).
+phenotype-consistent**. **And we removed the last positive role we had attributed to the phenotype, because we tested it and
+it was false.** We had written that the phenotype is what makes Exomiser attach the recessive model to
+mosaic variegated aneuploidy rather than to somatic colorectal cancer. Re-running the clean
+unrelated-HPO control with variant-level output shows the same two mappings — recessive row →
+*Mosaic variegated aneuploidy syndrome*, dominant row → *Colorectal cancer, somatic* — under five
+clinically unrelated terms. The disease assignment comes from the gene's known inheritance modes via
+the OMIM prioritiser, not from the phenotype.
+
+What the phenotype measurably does in this case is move the combined score by 0.1684 without changing
+the top position. The least-specific-term control shows it is not nothing (short stature alone drops
+BUB1B to rank 4), but it does not select the interpretation, it does not choose the disease mapping,
+and it does not decide the answer.
 That is a narrower claim than "our pipeline found it from the symptoms", and it is the one the data
 support.
 
@@ -164,7 +191,7 @@ Two notes on this table, both of which correct looser statements we could have m
   stand as a VUS rather than upgrade it.
 
 On ClinVar: **c.3006T>G is not in ClinVar.** ClinVar contains `c.3006T>A`
-(VCV004600147, `NC_000015.10:40220611:T:A`), a *different nucleotide substitution at the same
+(VCV004600147, canonical SPDI `NC_000015.10:40220611:T:A`, 0-based, corresponding to VCF position 40220612), a *different nucleotide substitution at the same
 position* producing the same p.Asn1002Lys protein change, classified Uncertain significance —
 criteria provided, single submitter, last evaluated 2025-09-19. That classification does **not**
 transfer: the two alleles differ in splicing potential and in mutational context, and a VUS
@@ -231,8 +258,9 @@ records; the analysis configuration is the one used above, frozen.
 queried with the patient's exact eight HPO terms, produce top-gene combined scores of 0.0578, 0.0599,
 0.2048, 0.4188, 0.4194, 0.4881 and **0.5619**. Our 0.5871 is above all seven, **by 0.025**. BUB1B does
 not appear in the ranked table of any of them. We state the direction of the bias: these callsets are
-autosome-only and high-confidence-region-only, retaining 6,510–9,486 variants against this patient's
-12,431 and ranking 1,872–2,495 genes against 3,139, so the comparison is conservative *in our favour*;
+autosome-only and high-confidence-region-only, retaining **5,079–6,912 unique variants against this
+patient's 8,939** and ranking 1,872–2,495 genes against 3,139, so the comparison is conservative *in
+our favour*;
 and HG001 plus two trios is three independent units, not seven. A favourable null cleared by 0.025 is
 a narrow margin, not a separation.
 
@@ -255,18 +283,33 @@ status:
 | **with no ClinVar classification on either allele** | no CLNSIG | not in ClinVar | **0.5743** |
 
 Individual variant scores are identical in every row (1.0000 for the nonsense, 0.9229 for the
-missense). **Removing ClinVar entirely costs 0.0128 — 2.2% of the combined score — and does not
-change the top position in either background tested.** The whitelist adds `PP5_Strong` to the ACMG
-evidence; it is not what saturates the variant term, the `stop_gained` consequence is. An earlier
-draft of this report credited the ranking to the ClinVar whitelist; that attribution is corrected
-here. The finding is more robust than we had claimed: it would have been reached for a nonsense
-allele that no database had ever seen.
+missense). **The combined score falls by 0.0128 and the top position does not change in either background
+tested; Exomiser's own call moves from PATHOGENIC to LIKELY_PATHOGENIC.** We do not express 0.0128 as
+a percentage of the score, for the same reason we withdrew the phenotype percentage above: the
+combination is non-linear and a share is not defined.
+
+**What this does and does not establish.** We could not delete ClinVar's record for the child's own
+allele, so the last two rows substitute a *different* `stop_gained` at `chr15:40212550` — a ClinVar
+record carrying no classification and no whitelist flag. Gene, consequence class, partner allele and
+phenotype are held fixed; the locus is not. It therefore refutes our earlier claim that ClinVar
+whitelisting is what saturates the variant term — an unclassified nonsense reaches the same 1.0000 —
+and it shows the top position survives without any ClinVar classification in these two backgrounds. It
+does **not** show that an allele no database had ever recorded would rank identically, and it is not a
+deletion of ClinVar from this case's own variant.
+
+**The principal null experiment is still open.** The pre-registered design calls for 37 healthy
+genomes; the seven GIAB genomes above are complete and the 30 unrelated 1000 Genomes genomes are still
+running at the time of writing. The prediction is stated against the **maximum**, so a single
+exceedance falsifies it, and the sentences we will publish for each outcome were frozen before those
+runs finished (`replay/RESULTADOS.md` §8).
 
 **What the benchmark does not establish.** Every planted call is `PASS`, balanced and unambiguous, so
 this measures retrieval *given a perfect heterozygous call*, not end-to-end diagnostic sensitivity.
-Three case genes and one decoy are a replay of this case, not a general rare-disease benchmark. One
-of seven pre-registered predictions was contrary to its predicted direction and is reported as such
-in `replay/RESULTADOS.md`, together with the three conclusions of ours that the reviewers refuted.
+Three case genes and one decoy are a replay of this case, not a general rare-disease benchmark. Of
+seven pre-registered predictions, five are confirmed, one is still open and one was not evaluable in
+its locked form because of a pool defect our own ingestion check caught; in the corrected construct it
+ran contrary to the predicted direction. All of this, and the three conclusions of ours that the
+reviewers refuted, is in `replay/RESULTADOS.md`.
 
 ## Q4 — Automated output or manual review?
 
@@ -284,7 +327,12 @@ Manual review was limited to two decisions, both documented:
    (21,25 and 15,13) directly in the VCF.
 2. **Adjudicating two secondary candidates** (see Q10).
 
-No variant was added, removed or re-ranked on intuition.
+No variant was added, removed or re-scored, and no gene was moved in the ranking. There is one
+interpretive judgement, made in the open: Exomiser emitted both a dominant and a recessive row for
+BUB1B and scored the dominant one higher, and we report the recessive one as the result because the
+dominant row is attached to somatic colorectal cancer and a single truncating allele in a recessive
+gene is not that diagnosis. That is a judgement about which of the tool's own outputs to stand
+behind, not a re-ranking.
 
 ## Q6 / Q7 — Data sources
 
@@ -330,7 +378,8 @@ chance of observing the missense would need on the order of 3 × 10⁶ haplotype
 Exomiser reads phase into its ACMG evidence (trans → PM3, cis → BP2) but not into the
 compound-heterozygous model: two pathogenic nonsense alleles declared on the **same** chromosome are
 still called AR_COMP_HET, both still marked contributing, still classified PATHOGENIC, and still
-ranked first — at a combined-score penalty of **0.34%** (0.9339 → 0.9305).
+ranked first. The combined score moves by **0.0034 in absolute terms** (trans 0.9339, cis 0.9305,
+unphased 0.9325) — an absolute difference, not a share.
 
 The compound-heterozygous interpretation therefore rests on allele rarity, the known recessive
 inheritance of MVA1, the phenotype match, and the absence of homozygotes in gnomAD — not on a
@@ -398,47 +447,49 @@ positive.
   needed, not the 85 GB of raw reads.
 
 ## Q12 — Method abstract (≤500 words)
-We identified the causal variants through two independent analyses required to converge.
+We used two independent analyses and required them to converge.
 
 The primary analysis was hypothesis-free: Exomiser 15.1.0 (data 2602, hg38) on the complete proband
-VCF — 4,740,790 PASS variants — driven only by the eight HPO terms taken verbatim from the clinical
-document. No gene panel, no candidate list and no disease name entered the configuration.
-**BUB1B ranked 2nd of 3,139 genes under the recessive model, mapped by Exomiser to mosaic variegated
-aneuploidy syndrome (ORPHA:1052)**, both variants flagged as contributing. The same gene took rank 1
-under the dominant model but attached to somatic colorectal cancer; we report that as an artefact of
-a single truncating allele saturating the dominant model's variant term, not as a result.
+VCF — 4,740,790 PASS variants — driven only by the eight HPO terms taken verbatim from the clinic. No gene panel, candidate list or disease name entered the configuration. **BUB1B is
+the top-ranked gene of 3,139, and its recessive row is first among the 2,100 recessive-model rows,
+mapped by Exomiser to mosaic variegated aneuploidy syndrome (ORPHA:1052)**, both variants
+contributing. Its *dominant* row scores higher (0.5871 vs 0.5538) but is attached to somatic
+colorectal cancer; **we report the recessive row and call the dominant one an artefact.** The
+recessive interpretation comes from the disease's inheritance model and the two-allele architecture,
+not from the ranking.
 
-The confirmatory analysis was orthogonal: an 11-gene MVA panel, coordinates from the Ensembl REST API,
-annotated through VEP, filtered for HIGH/MODERATE impact below 1% gnomAD AF. Of 1,532 variants three
-survived; two were in BUB1B, the only gene with two rare damaging alleles.
+The confirmatory analysis was orthogonal: an 11-gene MVA panel from Ensembl, annotated through VEP,
+filtered for HIGH/MODERATE impact below 1% gnomAD AF. Of 1,532 variants three survived; two were in BUB1B, the only
+gene with two rare damaging alleles.
 
 Both routes converge on **NM_001211.6:c.2210T>G p.Leu737Ter** (nonsense; ClinVar 533901
 Pathogenic/Likely pathogenic; gnomAD 9.98×10⁻⁵) and **c.3006T>G p.Asn1002Lys** (missense; gnomAD
-8.99×10⁻⁷; not in ClinVar) — the truncating-plus-missense allelic pattern of viable MVA1.
+8.99×10⁻⁷; not in ClinVar) — the truncating-plus-missense pattern of viable MVA1.
 
-**Twelve robustness controls, one of which argues against us.** Leave-one-HPO-out keeps BUB1B on top
-in all eight runs, but five verified-unrelated HPO terms also return it there (0.4187 against 0.5871).
-The finding is **variant-driven and phenotype-consistent**: the loss-of-function consequence carries
-the ranking; the phenotype selects the recessive MVA interpretation over the dominant artefact.
+**Twelve robustness controls; the phenotype comes out weaker than we claimed.**
+Leave-one-HPO-out keeps BUB1B on top in all eight runs; five verified-unrelated HPO terms also return
+it there (0.4187 against 0.5871); and under those unrelated terms Exomiser still maps the
+recessive row to mosaic variegated aneuploidy, so the disease assignment comes from the OMIM
+prioritiser, not the phenotype. The finding is **variant-driven and
+phenotype-consistent**: the phenotype moves the score by 0.1684 and changes nothing else. We do not
+express that as a percentage — the combination is non-linear and a share is not defined.
 
-**We then measured what this pipeline does when the answer is absent.** A benchmark pre-registered in
-git before any case ran — 61 runs, public data only, design critiqued by two independent reviewers —
-shows three things. Seven healthy GIAB genomes queried with the same eight terms produce top-gene
-scores of 0.058–0.562 against our 0.587, a margin of 0.025 on a null biased in our favour. Planting
-the same two public ClinVar alleles into three unrelated healthy genomes reproduces 0.5871 and 0.4187
-to four decimals — the score follows the alleles and the query, not the genome. And stripping both
-ClinVar classifications costs **0.0128, 2.2% of the score**, without changing the top position: the
-database record is not what drives the result, the truncating consequence is.
-
-Mosaic aneuploidy is not visible in the bulk WGS and we computed why: at DP 44 the detection limit is
-~14% of cells while variegation leaves each chromosome at 1–2%, 7–16× below it.
+**We then measured what this pipeline does when the answer is absent**, in a benchmark pre-registered
+in git before any case ran. Seven healthy GIAB
+genomes queried with the same eight terms top out at **0.5619 against our 0.5871** — a margin of
+0.025 on a null biased in our favour; the pre-registered 30-genome tier is still running, so that
+prediction is open. Planting the same two public ClinVar alleles into three unrelated healthy genomes
+reproduces 0.5871 and 0.4187 to four decimals, none of them carrying its own retained BUB1B allele. And substituting an **unclassified** BUB1B nonsense for the whitelisted one
+leaves the variant term at 1.0000 and moves the combined score only 0.0128 without losing the top
+position (ACMG PATHOGENIC → LIKELY_PATHOGENIC): the truncating consequence, not the database record,
+saturates the variant term.
 
 **Limitations.** Phase is not observable here: no parental sample, no alignments (a VCF was
-distributed, so no read-backed phaser can run), 10,911 bp between the variants with no GATK phase tag,
-and neither they nor the only heterozygous site between them is in the 1000 Genomes 3,202-sample
-panel, so reference-panel phasing discards all three. Our pipeline is insensitive to phase in any
-case. The functional consequence of p.Asn1002Lys is unproven and its predictors disagree (REVEL 0.472,
-AlphaMissense 0.923). REMM and CADD were omitted. The genome-wide run took 53 seconds without a GPU.
+distributed, so no read-backed phaser can be run), 10,911 bp between the variants with no GATK phase
+tag, and neither they nor the only heterozygous site between them is in the 1000 Genomes panel.
+Our pipeline is insensitive to phase regardless. p.Asn1002Lys is functionally unproven and its
+predictors disagree (REVEL 0.472, AlphaMissense 0.923). The genome-wide run took 53 seconds without
+a GPU.
 
 ## Q23 — Generative AI declaration
 

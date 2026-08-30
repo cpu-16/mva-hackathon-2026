@@ -16,7 +16,7 @@ round. Experiment A tier 2 (30 × 1000 Genomes) is still running and is marked o
 
 | Claim we wrote | Status |
 |---|---|
-| "ClinVar's classification is worth 88% of our score"; "had the child's nonsense not been in ClinVar, the same two variants would have scored 0.1120" | **RETRACTED — false.** We never ran that counterfactual; 0.1120 came from two *different* VUS alleles. The counterfactual has now been run (§3.2) and the answer is **2.2%**, not 88% |
+| "ClinVar's classification is worth 88% of our score"; "had the child's nonsense not been in ClinVar, the same two variants would have scored 0.1120" | **RETRACTED — false.** We never ran that counterfactual; 0.1120 came from two *different* VUS alleles. The counterfactual has now been run (§3.2) and the answer is **0.0128 in absolute score**, not 88% — and not a share at all |
 | "The combined score is a property of the two alleles and the phenotype, not of the genome" | **RETRACTED as over-stated** — it is near-tautological for a per-gene scorer, and our own phase pilot contradicts "fully determined" (0.9339 cis vs 0.9305 trans). Restated narrowly in §2 |
 | "The phenotype contributes 28.7% of the score" | **RETRACTED as a framing error**, not just a wrong pair. See §0.2 |
 | "P-B3 falsified, and in our favour" | **Downgraded to post-amendment exploratory** (§4). The construct changed after ranks were seen, the decoy is unmatched on variant strength, and one of the three backgrounds is inert |
@@ -39,7 +39,7 @@ corrected.** Replacement sentence:
 > previously quoted compared two control runs and is withdrawn.
 
 **(b) "The ClinVar-whitelisted nonsense allele carries the ranking."** The whitelist is worth
-**0.0128 — 2.2% of the score** (§3.2). What carries the ranking is the **nonsense consequence**. The
+**0.0128 in absolute score** (§3.2). What carries the ranking is the **nonsense consequence**. The
 finding is *more* robust than we claimed — it does not depend on the database — but the attribution in
 the report is wrong.
 
@@ -136,7 +136,8 @@ Variant scores are **identical in every row** (1.0000 for the nonsense, 0.9229 f
 
 **Two results, both against what we wrote:**
 
-1. **Removing ClinVar entirely costs 0.0128 — 2.2% of the score, not 88%.** X3 is the child's exact
+1. **Removing ClinVar entirely costs 0.0128 in absolute score, not the 88% we wrote.** We do not
+   restate it as a share either: that is the same invalid operation we withdrew for the phenotype. X3 is the child's exact
    molecular architecture (a nonsense plus a rare missense in BUB1B) with **no ClinVar classification
    on either allele**, and it still scores 0.5743 and still ranks 1 in both backgrounds. The gradient
    in §3.1 is driven by **consequence type** — C-hi is two loss-of-function alleles, C-lo is two
@@ -179,6 +180,44 @@ simplest explanation consistent with every number is the boring one: **the rule-
 is a weaker variant package, so it scores 0.1841 everywhere and takes rank 1 only where the
 background is empty.** We predicted P-B3 as an argument against our submission; failing it in this
 way does not convert into an argument for it.
+
+## 4b. Two more claims of ours that these results killed (round-8 verification)
+
+Both reviewers were sent the finished results and the corrected reports and asked to find what the
+edits broke. Two of their findings were checkable, and both checked out against us.
+
+**(i) The phenotype does not select the interpretation — verified false.** Our Track 1 report said
+*"it is the phenotype that makes Exomiser attach the recessive model to mosaic variegated aneuploidy
+rather than to somatic colorectal cancer"*. We re-ran the clean unrelated-HPO control with
+variant-level output. Under five clinically unrelated terms Exomiser produces **the same two
+mappings**: the recessive row → *Mosaic variegated aneuploidy syndrome*, the dominant row →
+*Colorectal cancer, somatic*. The disease assignment comes from the gene's known inheritance modes
+via the OMIM prioritiser, not from the phenotype. That was the last positive role we attributed to
+the phenotype in this case, and it is withdrawn.
+
+**(ii) "A truncating allele saturates the dominant term" does not explain why the dominant row
+outranks the recessive one.** Our report used the first to explain the second. But in **C-lo** — two
+missense VUS, no truncating allele anywhere — the dominant row still wins (0.1120 dominant against
+0.0925 recessive). The saturation explains the *value* 0.5871; it does not explain the *ordering*.
+The report now states the ordering as an observation rather than explaining it.
+
+**(iii) We used the forbidden operation on our own correction.** Having withdrawn "the phenotype
+contributes 24% of the score" on the grounds that a share of a non-linear combination is undefined,
+we then wrote "ClinVar is worth 2.2% of the score" — the identical operation. Withdrawn. Every such
+quantity in this project is now reported as an absolute difference: the phenotype swap costs 0.1684,
+removing ClinVar costs 0.0128, and *cis* costs 0.0034.
+
+**(iv) The benchmark repeated the rows-versus-genes error while correcting it.** The first draft of
+the burden comparison said the healthy genomes retain "6,510–9,486 variants against this patient's
+12,431". Both figures are variant × inheritance-mode row counts, so the comparison was internally
+consistent but mislabelled. In unique variants it is **5,079–6,912 against 8,939**, which is the
+number now used.
+
+**(v) The rank was mis-stated in the report.** "BUB1B ranked 2nd of 3,139 genes under the recessive
+model" mixes units: 2nd is a *row* position across all inheritance modes. Among the **2,100
+recessive-model rows** BUB1B's recessive row is **first**, and among the 3,139 genes BUB1B is the
+**top-ranked gene**. It sits second in the overall row ordering only because its own dominant row
+sits first. Corrected in the report.
 
 ## 5. The inheritance-model problem, stated plainly
 

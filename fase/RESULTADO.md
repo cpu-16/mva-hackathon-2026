@@ -129,7 +129,7 @@ statement is:
 > phasing discards all three. Exomiser does read phase into its ACMG evidence (trans → PM3,
 > cis → BP2) but does not apply it to the compound-heterozygous model: in a controlled test, two
 > pathogenic nonsense alleles declared in *cis* were still called AR_COMP_HET, still classified
-> PATHOGENIC, and still ranked first, at a combined-score penalty of 0.34%. The pipeline could not
+> PATHOGENIC, and still ranked first, at an absolute combined-score difference of 0.0034. The pipeline could not
 > have flagged the difference had it existed.
 
 ## What would resolve it, in order of cost
