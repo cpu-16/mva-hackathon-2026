@@ -11,10 +11,8 @@ Full report: `track2/REPORT_track2.pdf`
 We went from variant to candidate in five steps, and the third and fifth are where most candidates die.
 
 **Step 1 — establish the lesion.** Compound heterozygosity in BUB1B: `c.2210T>G` p.Leu737Ter, a
-nonsense allele truncating 313 residues before the C-terminal kinase domain (UniProt O60566 annotates
-it at 766–1050), paired with `c.3006T>G` p.Asn1002Lys inside that domain. Loss of function, matching
-the truncating-plus-missense pattern of viable MVA1: a null allele with a hypomorphic one, biallelic
-null being lethal.
+nonsense allele that removes the C-terminal 313 residues, including the kinase domain (UniProt O60566 annotates it at 766–1050), paired with `c.3006T>G` p.Asn1002Lys inside that domain. Loss of function, matching
+the truncating-plus-missense pattern of viable MVA1: a null allele with a hypomorphic one. Reading the pair as null-plus-hypomorph is our inference from PMID 20516114; that source does not state that complete biallelic loss is lethal, and neither do we.
 
 **Step 2 — follow the mechanism downstream, not at the lesion.** No approved drug restores BubR1.
 We therefore asked what the lesion *produces* that is druggable. The chain is: weakened spindle
@@ -112,7 +110,7 @@ None.
 **Loss of function, with the druggable target displaced downstream of the lesion.**
 
 The nonsense allele removes the entire C-terminal kinase domain; the missense allele sits inside it.
-cell lines derived from MVA patients with biallelic mutations show "an impaired mitotic checkpoint,
+Cell lines derived from MVA patients with biallelic mutations show "an impaired mitotic checkpoint,
 chromosome alignment defects, and low overall BUBR1 abundance" (PMID 20516114), and allele-specific effects — not merely total BubR1 quantity — drive phenotypic
 heterogeneity (Sieben 2020, PMID 31738183).
 
@@ -180,5 +178,5 @@ antagonise rather than synergise. The five-filter framework transfers to any rar
 **Limitations.** The proteasome dependency is established in *cancer* aneuploidy, not constitutional
 mosaicism; whether it transfers is precisely what our eight-week experiment tests, and we
 have not assumed it. The EC50 is a conservative bound read from a figure panel. Phase is unproven.
-And the honest answer to "what should he take today" is nothing — the intervention that most changes
-his prognosis now is surveillance, not a molecule.
+And no disease-modifying drug can be recommended from these data today — the intervention that most
+changes his prognosis now is surveillance, not a molecule.

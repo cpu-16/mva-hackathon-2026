@@ -23,10 +23,10 @@ autosomal recessive.
 
 The point of running two is that one of them cheats and the other does not.
 
-**A — Phenotype-driven, genome-wide, hypothesis-free (primary).** Exomiser 15.1.0 on the complete
+**A — Genome-wide, phenotype-informed, hypothesis-free (primary).** Exomiser 15.1.0 on the complete
 VCF (4,740,790 PASS variants) driven only by the eight HPO terms from the clinical document. No gene
 panel, no candidate list, and the disease name never appears in any configuration file. **BUB1B
-ranked 1st and 2nd of 3,139 genes**, at ~4× the score of the third gene, and under the recessive
+ranked 1st and 2nd of 3,139 genes**, at 2.6× the score of the third gene, and under the recessive
 model Exomiser flagged both variants as contributing — reconstructing the compound heterozygous pair
 on its own. Runtime: 53 seconds.
 

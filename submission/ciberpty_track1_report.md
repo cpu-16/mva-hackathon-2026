@@ -9,7 +9,7 @@ Repository: https://github.com/cpu-16/mva-hackathon-2026
 
 We ran two independent analyses and required them to converge before accepting a result.
 
-### Analysis A — phenotype-driven, genome-wide, hypothesis-free (primary)
+### Analysis A — genome-wide, phenotype-informed, hypothesis-free (primary)
 
 Exomiser 15.1.0 with the 2602 hg38 and 2602 phenotype data releases. Input was the unmodified proband
 VCF — **5,012,204 records, of which 4,740,790 carry the PASS filter** (GRCh38, GATK 4.2.4.0) — together
@@ -56,7 +56,7 @@ dominant colorectal cancer diagnosis. **The result we stand behind is rank 2, no
 because the honest reading of our own output matters more than the better-sounding headline.
 
 The combined score gap is real but moderate: 0.5871 (rank 1, AD) and 0.5538 (rank 2, AR) against
-0.2137 for the third-ranked gene — **2.75× the third gene**, not an order of magnitude.
+0.2137 for the third-ranked gene — **2.59× the third gene for the recessive result we stand behind** (2.75× for the dominant artefact), not an order of magnitude.
 
 ### Robustness controls — including one that argues against us
 
@@ -133,8 +133,8 @@ criteria provided, single submitter, last evaluated 2025-09-19. That classificat
 transfer: the two alleles differ in splicing potential and in mutational context, and a VUS
 transferred across alleles would in any case add no evidence. We did not use it.
 
-**Diagnosis: mosaic variegated aneuploidy type 1 (MVA1, OMIM 257300), autosomal recessive, caused by
-compound heterozygosity in BUB1B.** The truncating-plus-missense configuration matches the allelic
+**Interpretation: findings consistent with mosaic variegated aneuploidy type 1 (MVA1, OMIM 257300),
+autosomal recessive, through compound heterozygosity in BUB1B (phase not demonstrated; see limitations).** The truncating-plus-missense configuration matches the allelic
 pattern described in biallelic MVA patients — "in patients with biallelic mutations, a missense
 mutation pairs with a truncating mutation" (Suijkerbuijk 2010, PMID 20516114). Reading that pair as
 null-plus-hypomorph is our inference from the same work's observation of absent transcript from
@@ -331,8 +331,7 @@ measurable endpoint in these data — a constraint that matters for evaluating a
 **Limitations.** Phase cannot be established: no parental sample, and the variants lie ~11 kb apart,
 beyond read-backed phasing (confirmed by the absence of GATK phase tags on both). The functional
 consequence of p.Asn1002Lys is unproven, and its in-silico predictors disagree (REVEL 0.472,
-AlphaMissense 0.923). REMM and CADD were omitted. Total analysis time was 53 seconds on a commodity
-workstation with no GPU.
+AlphaMissense 0.923). REMM and CADD were omitted. The genome-wide Exomiser run took 53 seconds on a commodity workstation with no GPU.
 
 ## Q23 — Generative AI declaration
 
@@ -357,13 +356,3 @@ recorded in the repository under `evidencia/`.
 on local tools (`bcftools`, Exomiser 15.1.0) and on annotation APIs — Ensembl VEP and ClinVar — that
 the hackathon policy names explicitly as acceptable. What the models saw were named variants, HPO
 terms and reasoning: exactly the category the policy classifies as a "finding" and permits retaining.
-
----
-
-The factual statement above holds regardless of tooling details:
-
-**No block of the VCF and no genotype table was ever sent to a large language model.** All genomic
-work ran on local tools (`bcftools`, Exomiser 15.1.0) and on annotation APIs — Ensembl VEP and
-ClinVar — that the hackathon policy names explicitly as acceptable. What the language models saw were
-named variants, HPO terms and reasoning: exactly the category the policy classifies as a "finding"
-and permits retaining.
