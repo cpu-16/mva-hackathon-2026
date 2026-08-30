@@ -108,20 +108,24 @@ Publicly available sources only. No proprietary data.
 None.
 
 ## Q9 — How did you characterize the variant's mechanism?
-
-**Loss of function, with the druggable target displaced downstream of the lesion.**
+Loss of function, with the druggable target displaced downstream of the lesion.
 
 The nonsense allele removes the entire C-terminal kinase domain; the missense allele sits inside it.
 Cell lines derived from MVA patients with biallelic mutations show "an impaired mitotic checkpoint,
 chromosome alignment defects, and low overall BUBR1 abundance" (PMID 20516114), and allele-specific effects — not merely total BubR1 quantity — drive phenotypic
 heterogeneity (Sieben 2020, PMID 31738183).
 
-We were explicit about what we could not determine. **Phase is not established:** no parental
-samples, and the two variants lie ~11 kb apart, beyond read-backed phasing for short reads — a limit
-visible in the data itself, since GATK emitted no phase tags for either BUB1B variant while phasing
-three variants 5 bp apart elsewhere in the same VCF. **Nonsense-mediated decay of the truncated
-transcript is unmeasured** and we do not assert it either way without patient RNA. **p.Asn1002Lys has
-no published functional assay**, and its in-silico predictors disagree (REVEL 0.472, AlphaMissense
+We were explicit about what we could not determine. Phase is not established, and we measured that it is not
+establishable from these data: there are no parental samples, the challenge distributes a VCF with no
+alignments so no read-backed phaser can be run, and the two variants lie 10,911 bp apart with no GATK
+phase tag on either — a limit visible in the data itself, since GATK did phase three variants 5 bp
+apart elsewhere in the same VCF. Reference-panel phasing fails separately: all three heterozygous
+sites inside the interval are absent from the 1000 Genomes 3,202-sample phased panel, and Beagle 5.5
+drops all three. Our retrieval pipeline is insensitive to phase in any case: two pathogenic nonsense
+alleles declared in cis are still called compound heterozygous, still PATHOGENIC and still ranked
+first, at a 0.34% score penalty. Nonsense-mediated decay of the truncated
+transcript is unmeasured and we do not assert it either way without patient RNA. p.Asn1002Lys has
+no published functional assay, and its in-silico predictors disagree (REVEL 0.472, AlphaMissense
 0.923), which is why we let it stand as a VUS.
 
 We also asked whether aneuploidy burden could serve as a trial endpoint in these data, and computed
@@ -138,47 +142,45 @@ negligible: the genome-wide prioritisation ran in 53 seconds on a commodity work
 and the eleven robustness controls in about ten minutes.
 
 ## Q11 — Method abstract (≤500 words)
-
 No approved drug restores BubR1 function, so we did not look for one. We followed the lesion
 downstream — weakened spindle assembly checkpoint, mis-segregation, constitutional aneuploidy,
 stoichiometric protein imbalance, proteotoxic stress — and asked which approved agent acts on the
 last link.
 
-We then applied **five filters instead of the usual two**. Beyond "is it approved" and "is the
+We then applied five filters instead of the usual two. Beyond "is it approved" and "is the
 mechanism plausible", we added a pharmacokinetic filter (does the achievable Cmax reach the
 concentration effective in vitro?), a patient-specific safety filter, and a direction-of-effect
 filter (does the drug increase mis-segregation among survivors?). Filters three and five are rarely
 applied and eliminate the most candidates.
 
-**Metformin, the candidate the literature points to, dies on filter three.** Therapeutic plasma
+Metformin, the candidate the literature points to, dies on filter three. Therapeutic plasma
 levels are micromolar while complex I inhibition requires millimolar (PMID 37343530) — roughly a
 thousand-fold gap. We state what kind of number that is: for metformin no aneuploidy-selective EC50
 exists, so this is a comparison between concentration ranges, not the same quantity as a measured
 Cmax/EC50 ratio. We note what cuts the other way: AICAR's selectivity does reproduce in human cells
 (PMID 22890317), but that paper does not test metformin, and AICAR is not approved.
 
-**Bortezomib survives filters one to three.** Aneuploid cells mitigate proteotoxic stress by
+Bortezomib survives filters one to three. Aneuploid cells mitigate proteotoxic stress by
 increasing protein degradation and are correspondingly sensitive to proteasome inhibition; aneuploidy
 level was significantly associated with multiple myeloma patients' response to proteasome inhibitors
 (Ippolito 2024, PMID 39247952), on cohorts small enough (8 complete responders vs 50 progressive)
-that we treat it as motivation for an experiment, not prediction. The concentration reaches: EC50
+that we treat it as motivation, not prediction. The concentration reaches: EC50
 below 40 nM in highly aneuploid lines against a label Cmax of 89–120 ng/mL (231–312 nM) at
 1.3 mg/m² IV — a margin of 5.8–7.8× on total drug. The subcutaneous route does not pass once protein binding
 is considered, and we say so.
 
-**It then fails filter four for this child**, and we say so plainly: motor neuropathy in 8% of
-paediatric patients, on top of existing skeletal muscle atrophy. But filter four is patient-specific.
+It then fails filter four for this child: motor neuropathy in 8% of paediatric patients, on top of
+existing skeletal muscle atrophy. But filter four is patient-specific.
 For an MVA patient with an active malignancy — where the comparator is cytotoxic chemotherapy rather
 than nothing — the balance inverts, and biallelic BUB1B carries a high risk of embryonal tumours. Our
 deliverable is that answer prepared in advance, with its margin and its stopping rule.
 
-**Strengths.** Every candidate is killed or kept by a stated criterion, including our own preferred
-one. We report an antagonism a combination-minded team could walk into: reducing translation protects
+Strengths. Every candidate is killed or kept by a stated criterion, including our own. We report an antagonism a combination-minded team could walk into: reducing translation protects
 CIN cells from proteasome inhibition (PMID 31530568), so mTOR inhibitors would be predicted to
-antagonise rather than synergise. The five-filter framework transfers to any rare disease.
+antagonise rather than synergise. The framework transfers to any rare disease.
 
-**Limitations.** The proteasome dependency is established in *cancer* aneuploidy, not constitutional
+Limitations. The proteasome dependency is established in cancer aneuploidy, not constitutional
 mosaicism; whether it transfers is precisely what our eight-week experiment tests, and we
-have not assumed it. The EC50 is a conservative bound read from a figure panel. Phase is unproven.
-And no disease-modifying drug can be recommended from these data today — the intervention that most
-changes his prognosis now is surveillance, not a molecule.
+have not assumed it. The EC50 is a conservative bound read from a figure panel. Phase is unproven and, we show, unobservable in these data; parental genotyping is the cheapest experiment here.
+And no disease-modifying drug can be recommended from these data today — what most changes his
+prognosis now is surveillance, not a molecule.
