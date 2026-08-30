@@ -16,8 +16,8 @@ autosomal recessive.
 
 | Variant | Consequence | gnomAD | ClinVar |
 |---|---|---|---|
-| `NM_001211.6:c.2210T>G` p.Leu737Ter (chr15:40209701 T>G) | stop_gained | 3×10⁻⁵ | Pathogenic / Likely pathogenic |
-| `NM_001211.6:c.3006T>G` p.Asn1002Lys (chr15:40220612 T>G) | missense | absent | VUS |
+| `NM_001211.6:c.2210T>G` p.Leu737Ter (chr15:40209701 T>G) | stop_gained | 9.98×10⁻⁵ (exomes NFE) | 533901, Pathogenic / Likely pathogenic, 2★ |
+| `NM_001211.6:c.3006T>G` p.Asn1002Lys (chr15:40220612 T>G) | missense | 8.99×10⁻⁷ (exomes NFE) | not present (ClinVar holds `c.3006T>A`, a different nucleotide, VUS — does not transfer) |
 
 ## Approach: two orthogonal analyses, required to converge
 
@@ -35,9 +35,13 @@ Ensembl REST API at run time (never hard-coded — see `pipeline/mva_panel.prove
 via Ensembl VEP REST, filtered for HIGH/MODERATE impact at gnomAD AF < 1%. Of 1,532 variants, three
 survived; **BUB1B was the only gene carrying two rare damaging alleles**.
 
-**Robustness control.** Repeating analysis A with the variant-effect filter removed — 219,399
-variants across 13,338 genes, 22× and 4× the primary run — left the ranking and the scores
-*identical*. The answer does not depend on that filter.
+**Robustness controls — eleven extra Exomiser runs, one of which argues against us.**
+Leave-one-HPO-out (8 runs): BUB1B stays rank 1 in all eight. Five clinically unrelated HPO terms
+(1 run): BUB1B *still* ranks 1. Short stature alone (1 run): BUB1B drops to rank 4. We therefore do
+not call this a phenotype-driven discovery: the signal comes from the ClinVar-whitelisted pathogenic
+nonsense allele, and the phenotype's real contribution is selecting the recessive/MVA interpretation
+over a dominant colorectal-cancer one. The accurate label is **variant-driven, phenotype-consistent**.
+Full table in the Track 1 report.
 
 ## The negative result that matters
 
@@ -48,7 +52,7 @@ coverage, segmental duplications (22q11, centromeres) or GC content.
 
 Rather than assert a negative, we computed the **detection limit**: simulation of mean |BAF − 0.5| at
 DP 44 against the systematic between-chromosome noise floor gives **~12–15% of cells for a clonal
-trisomy**. Variegation distributes the burden so each chromosome sits 6–14× below that — and coverage
+trisomy**. Variegation distributes the burden so each chromosome sits 6–15× below that — and coverage
 is not the constraint (Poisson error over a whole chromosome at 44× is ~0.03%; library bias sets the
 floor). Bulk averaging erases variegation by construction, at any depth.
 
@@ -63,8 +67,9 @@ the bulk shortcut falls short. Details in [`report/MOSAICISMO.md`](report/MOSAIC
 ```
 pipeline/    Gene panel with provenance, ClinVar/HPO resource fetch, bcftools triage
 analysis/    Exomiser configuration: phenopacket, analysis specs, run scripts
-report/      Findings, mosaicism analysis, Track 2 report
-submission/  Track 1 CSV and methods description
+report/      Findings, mosaicism analysis, Track 2 report (md + PDF) and figures
+submission/  Track 1 CSV, Track 1 report (md + PDF), methods forms
+video/       3-minute pitch (mp4), script and slide source
 ```
 
 ## Reproducing

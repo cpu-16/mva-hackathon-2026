@@ -1,0 +1,234 @@
+<meta charset="utf-8">
+<style>
+:root{
+  --ink:#2a2724; --muted:#6f6a63; --faint:#a39d94;
+  --surface:#fcfcfb; --accent:#1a9e8f; --alert:#b8452a;
+  --rule:#ddd8cf; --fill:#eeeae3;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#555;font-family:"Bitstream Charter","Charter",Georgia,serif}
+.slide{
+  width:1920px;height:1080px;background:var(--surface);color:var(--ink);
+  padding:110px 130px;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.slide+.slide{margin-top:40px}
+.kicker{font-size:26px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:700}
+.foot{position:absolute;left:130px;bottom:70px;font-size:24px;color:var(--faint)}
+em{font-style:italic}
+b{font-weight:700}
+.accent{color:var(--accent)}
+.alert{color:var(--alert)}
+
+/* S1 — tipográfica, peso abajo */
+.s1{justify-content:flex-end}
+.s1 h1{font-size:118px;line-height:1.02;font-weight:700;letter-spacing:-.02em;max-width:1480px}
+.s1 .sub{font-size:40px;color:var(--muted);margin-top:44px;margin-bottom:64px;max-width:1330px;line-height:1.36}
+.s1 .tag{position:absolute;top:110px;left:130px}
+
+/* S2 — dos columnas que convergen */
+.s2 .cols{display:flex;gap:120px;margin-top:70px}
+.s2 .col{flex:1;border-top:5px solid var(--rule);padding-top:34px}
+.s2 .col h3{font-size:44px;font-weight:700;line-height:1.15}
+.s2 .col p{font-size:32px;color:var(--muted);margin-top:22px;line-height:1.42}
+.s2 .conv{margin-top:76px;border-top:5px solid var(--accent);padding-top:34px}
+.s2 .conv .big{font-size:80px;font-weight:700;letter-spacing:-.015em}
+.s2 .conv .lbl{font-size:31px;color:var(--muted);margin-top:16px}
+
+/* S3 — la cita que nos quita el argumento */
+.s3{justify-content:center;align-items:center;text-align:center}
+.s3 .q{font-size:82px;line-height:1.22;font-weight:700;max-width:1500px;letter-spacing:-.015em}
+.s3 .dots{display:flex;gap:15px;margin:66px 0 44px}
+.s3 .d{width:44px;height:44px;border-radius:50%;background:var(--accent)}
+.s3 .d.bad{background:var(--alert)}
+.s3 .cap{font-size:33px;color:var(--muted);max-width:1220px;line-height:1.4}
+
+/* S4 — los cinco filtros */
+.s4 .row{display:flex;align-items:baseline;gap:38px;padding:23px 0;border-bottom:2px solid var(--rule)}
+.s4 .n{font-size:44px;font-weight:700;color:var(--faint);width:56px}
+.s4 .nm{font-size:50px;width:560px}
+.s4 .q{font-size:33px;color:var(--muted);flex:1}
+.s4 .row.key .n,.s4 .row.key .nm{color:var(--accent);font-weight:700}
+.s4 .row.key .q{color:var(--ink)}
+.s4 h2{font-size:62px;font-weight:700;margin-bottom:46px;letter-spacing:-.015em}
+
+/* S5 — la escala que mata a la metformina */
+.s5{justify-content:center}
+.s5 h2{font-size:66px;font-weight:700;letter-spacing:-.015em;margin-bottom:80px}
+.s5 .bars{display:flex;flex-direction:column;gap:56px}
+.s5 .bar{display:flex;align-items:center;gap:40px}
+.s5 .bl{font-size:36px;width:430px;text-align:right;color:var(--muted)}
+.s5 .fill{height:76px;background:var(--fill);position:relative}
+.s5 .fill.need{background:var(--alert)}
+.s5 .fill.have{background:var(--accent)}
+.s5 .v{position:absolute;left:calc(100% + 30px);top:50%;transform:translateY(-50%);font-size:38px;font-weight:700;white-space:nowrap}
+.s5 .verdict{margin-top:96px;font-size:52px;font-weight:700}
+
+/* S6 — bortezomib: la concentración alcanza */
+.s6 h2{font-size:66px;font-weight:700;letter-spacing:-.015em}
+.s6 .lead{font-size:36px;color:var(--muted);margin-top:26px;max-width:1400px;line-height:1.4}
+.s6 .scale{margin-top:96px;position:relative;height:250px}
+.s6 .axis{position:absolute;top:112px;left:0;right:0;height:5px;background:var(--rule)}
+.s6 .mk{position:absolute;top:60px;text-align:center;transform:translateX(-50%)}
+.s6 .mk .pin{width:5px;height:110px;background:var(--ink);margin:0 auto}
+.s6 .mk .lab{font-size:33px;margin-top:20px;white-space:nowrap}
+.s6 .mk .num{font-size:44px;font-weight:700;white-space:nowrap}
+.s6 .band{position:absolute;top:96px;height:36px;background:var(--accent);opacity:.22}
+.s6 .ratio{margin-top:56px;font-size:56px;font-weight:700}
+
+/* S7 — la vigilancia: línea de tiempo por edad */
+.s7t h2{font-size:62px;font-weight:700;letter-spacing:-.015em}
+.s7t .lead{font-size:34px;color:var(--muted);margin-top:24px;max-width:1480px;line-height:1.4}
+.s7t .tl{margin-top:86px;position:relative;flex:1}
+.s7t .ages{display:flex;position:relative;height:6px;background:var(--rule);margin-bottom:0}
+.s7t .tick{position:absolute;top:-16px;width:6px;height:38px;background:var(--faint)}
+.s7t .tlab{position:absolute;top:34px;font-size:30px;color:var(--muted);transform:translateX(-50%)}
+.s7t .band{position:absolute;height:78px;border-radius:3px;display:flex;align-items:center;padding-left:34px;font-size:32px;color:#fff;font-weight:700}
+.s7t .b1{background:var(--accent)}
+.s7t .b2{background:#5aa89c}
+.s7t .b3{background:#9ec4bd;color:var(--ink)}
+.s7t .no{margin-top:74px;font-size:31px;color:var(--muted);border-top:2px solid var(--rule);padding-top:26px}
+.s7t .no b{color:var(--alert)}
+
+/* S8 — el cierre en dos tiempos */
+.s8 .split{display:flex;gap:110px;margin-top:64px;flex:1}
+.s8 .half{flex:1;display:flex;flex-direction:column}
+.s8 .half .top{font-size:30px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding-bottom:26px;border-bottom:5px solid}
+.s8 .no .top{color:var(--alert);border-color:var(--alert)}
+.s8 .yes .top{color:var(--accent);border-color:var(--accent)}
+.s8 .half h3{font-size:62px;font-weight:700;margin-top:38px;line-height:1.12;letter-spacing:-.015em}
+.s8 .half p{font-size:32px;color:var(--muted);margin-top:28px;line-height:1.42}
+.s8 h2{font-size:62px;font-weight:700;letter-spacing:-.015em}
+.s8 .scale{margin-top:auto;border-top:5px solid var(--accent);padding-top:30px;font-size:36px}
+.s8 .scale b{color:var(--accent)}
+</style>
+
+<!-- S1 -->
+<section class="slide s1">
+  <div class="tag kicker">Rare Disease, Real Kid · MVA Hackathon 2026</div>
+  <h1>The honest answer<br>is no drug &mdash; and<br>the useful part is why.</h1>
+  <div class="sub">A child who survived an embryonal rhabdomyosarcoma, whose cells are prone to
+  miscounting chromosomes when they divide. Mosaic variegated aneuploidy.</div>
+  <div class="foot">Track 1 · Track 2 — variant identification and drug repurposing</div>
+</section>
+
+<!-- S2 -->
+<section class="slide s2">
+  <div class="kicker">Track 1 — two methods, required to agree</div>
+  <div class="cols">
+    <div class="col">
+      <h3>Hypothesis-free,<br>genome-wide</h3>
+      <p>4.7 million variants. Eight HPO terms. No gene panel, no candidate list,
+      no disease name in the configuration. 53 seconds.</p>
+    </div>
+    <div class="col">
+      <h3>Targeted panel,<br>eleven genes</h3>
+      <p>Every coordinate fetched from a versioned API, provenance recorded.
+      Of 1,532 variants, three survived.</p>
+    </div>
+  </div>
+  <div class="conv">
+    <div class="big"><span class="accent">BUB1B</span> — compound heterozygous</div>
+    <div class="lbl">One nonsense allele, one missense. The only gene carrying two rare damaging alleles.
+    <span class="alert">No parental samples &mdash; phase is unproven. A diagnosis pending segregation.</span></div>
+  </div>
+  <div class="foot">Mosaic variegated aneuploidy type 1 · OMIM 257300 · autosomal recessive</div>
+</section>
+
+<!-- S3 -->
+<section class="slide s3">
+  <div class="q">Swap in unrelated symptoms &mdash;<br>seizures, hearing loss, a heart defect &mdash;<br>and the pipeline
+  <span class="alert">still ranks BUB1B first.</span></div>
+  <div class="dots">
+    <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+    <div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div><div class="d"></div>
+    <div class="d bad"></div>
+  </div>
+  <div class="cap">Eleven controls. Eight leave-one-symptom-out runs keep BUB1B first — and so does the
+  run with unrelated symptoms. The signal comes from the <b>variant</b>, not the phenotype:
+  <b>variant-driven and phenotype-consistent.</b></div>
+  <div class="foot">We report the control that weakens us.</div>
+</section>
+
+<!-- S4 -->
+<section class="slide s4">
+  <h2>Five filters, not two.</h2>
+  <div class="row"><div class="n">1</div><div class="nm">Regulatory</div><div class="q">Approved for marketing?</div></div>
+  <div class="row"><div class="n">2</div><div class="nm">Mechanistic</div><div class="q">Does it address the lesion?</div></div>
+  <div class="row key"><div class="n">3</div><div class="nm">Pharmacokinetic</div><div class="q">Does the achievable plasma level reach the concentration that works in a dish?</div></div>
+  <div class="row"><div class="n">4</div><div class="nm">Safety in <em>this</em> patient</div><div class="q">Compatible with his comorbidities?</div></div>
+  <div class="row key"><div class="n">5</div><div class="nm">Direction of effect</div><div class="q">Does the drug make mis-segregation worse?</div></div>
+  <div class="foot">Filters 3 and 5 are rarely applied — they eliminate the most candidates, and the framework transfers to any rare disease.</div>
+</section>
+
+<!-- S5 -->
+<section class="slide s5">
+  <h2>Metformin dies on filter three.</h2>
+  <div class="bars">
+    <div class="bar"><div class="bl">what the plasma reaches</div>
+      <div class="fill have" style="width:70px"><span class="v">micromolar</span></div></div>
+    <div class="bar"><div class="bl">what complex&nbsp;I inhibition needs</div>
+      <div class="fill need" style="width:620px"><span class="v alert">millimolar &mdash; a thousand times higher</span></div></div>
+  </div>
+  <div class="verdict">We do not reject metformin out of caution.<br>
+  We reject it <span class="accent">with a number.</span></div>
+  <div class="foot">PMID 37343530 · the candidate most teams will name</div>
+</section>
+
+<!-- S6 -->
+<section class="slide s6">
+  <h2>Bortezomib clears it.</h2>
+  <div class="lead">Aneuploid cells carry a protein imbalance, so they lean on the proteasome.
+  In myeloma patients, higher aneuploidy tracked with response to proteasome inhibitors.
+  <span class="alert">But that is cancer aneuploidy, not constitutional — our experiment is built to
+  break that transfer.</span></div>
+  <div class="scale">
+    <div class="axis"></div>
+    <div class="band" style="left:16%;width:48%"></div>
+    <div class="mk" style="left:16%"><div class="num accent">&lt; 40 nM</div><div class="pin"></div><div class="lab">effective in aneuploid lines</div></div>
+    <div class="mk" style="left:64%"><div class="num">231 &ndash; 312 nM</div><div class="pin"></div><div class="lab">clinical peak, 1.3 mg/m² IV</div></div>
+  </div>
+  <div class="ratio">Margin of <span class="accent">5.8 &ndash; 7.8&times;</span></div>
+  <div class="foot">PMID 39247952 · Ippolito et al., Cancer Discovery 2024</div>
+</section>
+
+<!-- S7 -->
+<section class="slide s7t">
+  <h2>What changes his prognosis today is not a molecule.</h2>
+  <div class="lead">Bortezomib fails filter four for him: motor neuropathy in 8% of children, on top of
+  existing muscle atrophy. The realistic threat is a second embryonal tumour — so the intervention
+  that matters now is surveillance.</div>
+  <div class="tl">
+    <div class="ages">
+      <div class="tick" style="left:0"></div><div class="tlab" style="left:0">now</div>
+      <div class="tick" style="left:43%"></div><div class="tlab" style="left:43%">age 7</div>
+      <div class="tick" style="left:86%"></div><div class="tlab" style="left:86%">age 10</div>
+    </div>
+    <div class="band b1" style="top:96px;left:0;width:43%">Abdominal ultrasound &mdash; every 3 months</div>
+    <div class="band b2" style="top:196px;left:0;width:86%">Full clinical examination &mdash; 3-monthly, then 6-monthly</div>
+    <div class="band b3" style="top:296px;left:0;width:100%">Full blood count &mdash; 6-monthly</div>
+  </div>
+  <div class="no">We do <b>not</b> propose serial AFP, repeat CT, PET-CT or routine whole-body MRI while
+  asymptomatic — no demonstrated benefit in MVA, against sedation, false positives and radiation.</div>
+</section>
+
+<!-- S8 -->
+<section class="slide s8">
+  <h2>If that tumour comes, filter four inverts.</h2>
+  <div class="split">
+    <div class="half no">
+      <div class="top">What this is not</div>
+      <h3>Not a prescription.</h3>
+      <p>The proteasome dependency is shown in cancer aneuploidy. Whether it transfers to
+      constitutional MVA is unproven — which is exactly what the experiment tests.</p>
+    </div>
+    <div class="half yes">
+      <div class="top">What this is</div>
+      <h3>A prepared,<br>testable answer.</h3>
+      <p>A tumour-board hypothesis with a concentration margin, a stopping rule, and an eight-week
+      experiment that could kill it.</p>
+    </div>
+  </div>
+  <div class="scale">The <b>five-filter framework</b> is the part that scales — it applies to any rare
+  disease where someone is about to propose an approved drug.</div>
+</section>

@@ -1,0 +1,185 @@
+/* MVA Hackathon 2026 — hoja de estilo del informe en PDF.
+   Direccion de arte: editorial cientifico sobrio. Charter (Matthew Carter) para
+   el cuerpo, una sola tinta de acento verde-petroleo, terracota para lo critico.
+   Sin azul corporativo, sin lineas de acento bajo los titulos, sin cajas de color. */
+
+@page {
+  size: A4;
+  margin: 22mm 20mm 20mm 20mm;
+  @bottom-center {
+    content: counter(page);
+    font-family: "Bitstream Charter", serif;
+    font-size: 8.5pt;
+    color: #8a8378;
+  }
+  @top-right {
+    content: "Rare Disease, Real Kid · MVA Hackathon 2026";
+    font-family: "Bitstream Charter", serif;
+    font-size: 7.8pt;
+    color: #b3ada3;
+    letter-spacing: 0.02em;
+  }
+}
+@page :first { @top-right { content: none; } }
+
+:root {
+  --ink: #2a2724;
+  --muted: #6f6a63;
+}
+
+html { font-size: 10.5pt; }
+
+body {
+  font-family: "Bitstream Charter", "Charter", Georgia, serif;
+  color: #2a2724;
+  background: #fcfcfb;
+  line-height: 1.52;
+  hyphens: auto;
+  text-align: justify;
+}
+
+/* --- jerarquia --- */
+h1 {
+  font-size: 20pt;
+  line-height: 1.18;
+  font-weight: 700;
+  margin: 0 0 2mm 0;
+  letter-spacing: -0.012em;
+  text-align: left;
+  hyphens: none;
+}
+h1 + p em, .subtitle {
+  display: block;
+  font-size: 11pt;
+  color: #6f6a63;
+  font-style: italic;
+  margin-bottom: 9mm;
+  text-align: left;
+}
+h2 {
+  font-size: 13pt;
+  font-weight: 700;
+  margin: 9mm 0 2.5mm 0;
+  text-align: left;
+  hyphens: none;
+  break-after: avoid;
+}
+h3 {
+  font-size: 11pt;
+  font-weight: 700;
+  margin: 6mm 0 1.5mm 0;
+  text-align: left;
+  hyphens: none;
+  break-after: avoid;
+}
+h4 {
+  font-size: 10.5pt;
+  font-weight: 400;
+  font-style: italic;
+  margin: 4mm 0 1mm 0;
+  text-align: left;
+  break-after: avoid;
+}
+
+p { margin: 0 0 2.6mm 0; orphans: 2; widows: 2; }
+
+/* --- enfasis --- */
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* el acento se usa con cuentagotas: solo en cifras y terminos decisivos */
+.key { color: #16786c; font-weight: 700; }
+.warn { color: #b8452a; font-weight: 700; }
+
+/* --- tablas: solo reglas horizontales, sin relleno de color --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 3.5mm 0 4.5mm 0;
+  font-size: 9.2pt;
+  break-inside: avoid;
+}
+thead th {
+  text-align: left;
+  font-weight: 700;
+  padding: 1.4mm 2mm 1.4mm 0;
+  border-bottom: 0.8pt solid #2a2724;
+  vertical-align: bottom;
+  hyphens: none;
+}
+tbody td {
+  padding: 1.4mm 2mm 1.4mm 0;
+  border-bottom: 0.3pt solid #ddd8cf;
+  vertical-align: top;
+  text-align: left;
+  hyphens: none;
+}
+tbody tr:last-child td { border-bottom: 0.8pt solid #2a2724; }
+
+/* --- citas en bloque: sin barra vertical, con sangria y cursiva --- */
+blockquote {
+  margin: 3.5mm 0 3.5mm 7mm;
+  padding: 0;
+  font-style: italic;
+  color: #4a453f;
+  font-size: 10pt;
+  border: none;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+/* --- listas --- */
+ul, ol { margin: 0 0 3mm 0; padding-left: 5.5mm; }
+li { margin-bottom: 1.1mm; text-align: left; }
+
+/* --- codigo --- */
+code {
+  font-family: "Source Code Pro", "DejaVu Sans Mono", monospace;
+  font-size: 8.6pt;
+  background: #f2efe9;
+  padding: 0.3mm 0.9mm;
+  border-radius: 1pt;
+}
+pre {
+  font-family: "Source Code Pro", "DejaVu Sans Mono", monospace;
+  font-size: 8.4pt;
+  background: #f6f4ef;
+  padding: 2.5mm 3mm;
+  line-height: 1.42;
+  break-inside: avoid;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+pre code { background: none; padding: 0; }
+
+/* --- figuras --- */
+figure {
+  margin: 5mm 0;
+  break-inside: avoid;
+  text-align: center;
+}
+figure img { width: 100%; height: auto; }
+figcaption {
+  font-size: 8.6pt;
+  color: #6f6a63;
+  margin-top: 1.8mm;
+  text-align: left;
+  line-height: 1.4;
+}
+figcaption strong { color: #2a2724; }
+
+/* --- reglas divisorias discretas --- */
+hr {
+  border: none;
+  border-top: 0.3pt solid #ddd8cf;
+  margin: 7mm 0;
+}
+
+/* --- referencias --- */
+h2#references + ol { font-size: 9pt; line-height: 1.42; }
+h2#references + ol li { margin-bottom: 1.6mm; }
+
+a { color: #16786c; text-decoration: none; }
+
+/* control de saltos */
+h2 { break-before: auto; }
+.pagebreak { break-before: page; }
