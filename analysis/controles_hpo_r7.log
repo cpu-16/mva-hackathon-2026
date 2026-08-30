@@ -1,0 +1,8 @@
+=== CONTROL 3b: cinco HPO verificados NO anotados a MVA1 ===
+HP:0000365 hipoacusia | HP:0000509 conjuntivitis | HP:0002205 infecciones respiratorias
+HP:0002315 cefalea | HP:0000989 prurito
+hpos_ajenos_verificados        BUB1B rank=1      score=0.4187    | top: BUB1B (0.4187) | genes=4565
+
+=== Replica del control original contaminado (para comparar) ===
+hpos_original_contaminado      BUB1B rank=1      score=0.5506    | top: BUB1B (0.5506) | genes=4562
+CONTROLES-R7-LISTOS

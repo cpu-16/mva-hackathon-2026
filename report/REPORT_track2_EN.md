@@ -501,9 +501,18 @@ toxicity:
 
 Failing any of 1–3, or triggering 4, stops the programme.
 
-**Falsifying results.** If patient fibroblasts are no more sensitive than controls, the proteotoxic
-dependency does not transfer from cancer aneuploidy to constitutional MVA. If bortezomib raises
-micronucleus frequency among survivors, it fails filter 5 regardless of how well it kills.
+**Falsifying results, stated at the precision the design supports.** If patient fibroblasts are no more
+sensitive than controls, the experiment **fails to support transfer of the dependency into these cells**
+— it does not falsify a dependency in aneuploidy-high tumour material, which is the setting §4 actually
+proposes and which this design does not sample. That distinction is the difference between "we did not
+see it here" and "it is not there", and we hold ourselves to the first. If bortezomib raises micronucleus
+frequency among survivors, that **does** falsify the proposal outright: it fails filter 5 regardless of
+how well it kills.
+
+**The stage this design does not contain.** Deciding tumour selectivity requires aneuploidy-high
+tumour-derived material with a near-euploid comparator, which no eight-week window starting from a skin
+biopsy can supply. We treat the fibroblast arm as the gate that decides whether that second stage is
+worth building, not as a substitute for it.
 
 This design can fail, which is the point of proposing it.
 
@@ -560,7 +569,10 @@ treatment plan.
 
 **One implication for the parents, which the phenotype document already hints at.** The clinical
 document lists recurrent spontaneous abortion (HP:0200067) — an obstetric history, not a feature of the
-child. Both parents are obligate heterozygous carriers. A 2026 study of two unrelated families with
+child. If the two variants are in *trans* — which is the interpretation this report adopts but does not
+demonstrate (§10) — each parent would be expected to carry one of them; segregation testing is what
+would establish that, and it should precede any carrier-specific interpretation. A 2026 study of two
+unrelated families with
 unexplained recurrent pregnancy loss identified novel heterozygous *BUB1B* variants and found
 **significantly elevated premature chromatid separation rates in the carriers' lymphocytes** by G-banding
 and centromere FISH, with a trend toward reduced BUBR1 (PMID 42434306). Those variants were classified
@@ -667,7 +679,7 @@ most often skipped.*
 
 | Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not worsen the underlying defect? | Verdict |
 |---|---|---|---|---|---|---|
-| **Metformin** | Yes (paediatric label from age 10) | Proposed via complex I → AMPK | **No — µM plasma vs mM required, ~1000× short; no aneuploidy-selective EC50 exists** | Renal clearance; nephrocalcinosis unassessed | Not reached | **Fails filter 3** |
+| **Metformin** | Yes (paediatric label from age 10) | Proposed via complex I → AMPK | **Not evaluable for aneuploidy selectivity — no such EC50 exists; and ~1000× short for the complex I mechanism proposed (µM plasma vs mM required)** | Renal clearance; nephrocalcinosis unassessed | Not reached | **Rejected at filter 3 as unevaluable on the proposed mechanism** |
 | **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Yes on total drug: 231–312 nM Cmax vs EC50 <40 nM (5.8–7.8×); IV only, not subcutaneous | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | No evidence it increases mis-segregation; to be tested | **Fails filter 4 for this child; conditional for a patient with an active tumour** |
 | *(your candidate)* | | | | | | |
 | *(your candidate)* | | | | | | |

@@ -23,7 +23,7 @@ FILTERS = [
     ("2  Mechanistic", "Addresses the lesion or its consequence?",
      "agents on uninvolved pathways"),
     ("3  Pharmacokinetic", "C$_{max}$ $\\geq$ effective concentration?",
-     "METFORMIN — $\\mu$M plasma vs mM required, ~1000$\\times$ short"),
+     "METFORMIN — no aneuploidy-selective EC$_{50}$ exists;\n~1000$\\times$ short for the complex I route proposed"),
     ("4  Safety in $\\it{this}$ patient", "Compatible with his comorbidities?",
      "BORTEZOMIB — neuropathy 18% of children, on existing muscle atrophy"),
     ("5  Direction of effect", "Avoids worsening mis-segregation?",

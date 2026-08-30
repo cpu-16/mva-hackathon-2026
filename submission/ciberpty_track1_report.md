@@ -60,18 +60,35 @@ The combined score gap is real but moderate: 0.5871 (rank 1, AD) and 0.5538 (ran
 
 ### Robustness controls — including one that argues against us
 
-We ran eleven additional Exomiser analyses to test how much of the result comes from the phenotype
-and how much from the variant.
+We ran twelve additional Exomiser analyses to test how much of the result comes from the phenotype and
+how much from the variant — eleven initially, plus one re-run after we found a flaw in our own control.
 
 **Leave-one-HPO-out (8 runs).** Removing each HPO term in turn: **BUB1B remained rank 1 in all
 eight**, with scores from 0.5447 to 0.7503. Removing the rhabdomyosarcoma term — the one a human
 would consider most diagnostic — actually *raised* the score to 0.7503. No single symptom carries the
 result.
 
-**Unrelated HPO terms (1 run).** Replacing the eight clinical terms with five clinically unrelated
-ones — seizure (HP:0001250), hearing impairment (HP:0000365), atrial septal defect (HP:0001631),
-conjunctivitis (HP:0000509) and recurrent respiratory infections (HP:0002205) — **BUB1B still came
-out rank 1**, score 0.5506.
+**Unrelated HPO terms (2 runs, one of which corrects the other).** Our first version of this control
+replaced the eight clinical terms with five we described as "clinically unrelated" — seizure
+(HP:0001250), hearing impairment (HP:0000365), atrial septal defect (HP:0001631), conjunctivitis
+(HP:0000509) and recurrent respiratory infections (HP:0002205). BUB1B came out rank 1, score 0.5506.
+
+**That control was contaminated, and we caught it ourselves.** Querying the HPO annotations for
+OMIM:257300 returns 59 terms, and **two of our five are among them**: seizure (HP:0001250, Nervous
+System) and atrial septal defect (HP:0001631, Cardiovascular). Congenital heart defects including
+septal defects are an established feature of MVA, and BubR1 loss disrupts cardiac development
+(PMID 40055864). So the run was not a phenotype-free control at all — it fed the pipeline two genuine
+MVA features.
+
+**We re-ran it with five terms verified against the same annotation set as absent from MVA1:** hearing
+impairment (HP:0000365), conjunctivitis (HP:0000509), recurrent respiratory infections (HP:0002205),
+headache (HP:0002315) and pruritus (HP:0000989). **BUB1B still came out rank 1 of 4,565 genes, score
+0.4187.** The conclusion survives a clean control.
+
+The comparison is itself informative. Removing the two contaminating terms drops the score from 0.5506
+to 0.4187 — about 24% — without changing the rank. That is the size of the phenotype's contribution
+here: measurable, and not enough to decide the answer. Script and log:
+`tools/control_hpo_r7.sh`, `tools/logs/controles_hpo_r7.log`.
 
 **Least-specific term alone (1 run).** With short stature (HP:0004322) as the only input, BUB1B fell
 to **rank 4** and HK1 took the top slot.
@@ -280,7 +297,7 @@ positive.
 ## Q11 — Runtime and cost
 
 - Exomiser genome-wide run: **53 seconds** wall clock (32-core CPU, 16 GB JVM heap).
-- Eleven robustness controls: about 10 minutes total.
+- Twelve robustness controls: about 11 minutes total.
 - Targeted panel with REST annotation: under 5 minutes, dominated by API latency.
 - Mosaicism analysis: about 10 minutes of `bcftools` streaming.
 - One-off setup: ≈55 GB of Exomiser reference data downloaded and extracted.
@@ -293,7 +310,7 @@ positive.
 We identified the causal variants through two independent analyses designed to check each other, and
 required them to converge before accepting a result.
 
-The primary analysis was deliberately hypothesis-free. Exomiser 15.1.0 (data release 2602, hg38) was
+The primary analysis was hypothesis-free. Exomiser 15.1.0 (data release 2602, hg38) was
 run on the complete proband VCF — 4,740,790 PASS variants — driven only by the eight HPO terms taken
 verbatim from the clinical document. No gene panel, no candidate list and no mention of a disease
 name entered the configuration. Prioritisation combined hiPhive (human, mouse, fish and
@@ -314,19 +331,18 @@ Pathogenic/Likely pathogenic; gnomAD 9.98×10⁻⁵) and **c.3006T>G p.Asn1002Ly
 8.99×10⁻⁷; not in ClinVar), consistent with MVA1 (OMIM 257300) and with the truncating-plus-missense
 allelic pattern of viable MVA1.
 
-**Eleven robustness controls, one of which argues against us.** Leave-one-HPO-out keeps BUB1B at rank
-1 in all eight runs, so no single symptom drives the result — but substituting clinically unrelated
-HPO terms *also* returns BUB1B at rank 1. We therefore describe the finding as **variant-driven and
-phenotype-consistent**, not phenotype-driven: the ClinVar-whitelisted nonsense allele carries the
-ranking, and the phenotype's real contribution is selecting the recessive MVA interpretation over the
-dominant cancer artefact. Reporting this control costs us an argument; omitting it would have been
-the kind of thing a reviewer finds.
+**Twelve robustness controls, one of which argues against us.** Leave-one-HPO-out keeps BUB1B at rank 1
+in all eight runs — but five unrelated HPO terms *also* return it at rank 1 (score 0.4187). That control corrects an earlier one of ours whose "unrelated"
+set contained two terms annotated to MVA1; we verified replacements and re-ran it. The finding is
+therefore **variant-driven and phenotype-consistent**: the ClinVar-whitelisted nonsense allele carries the ranking, and the phenotype contributes
+about 24% of the score but no change of rank; its real work is selecting the recessive MVA
+interpretation over the dominant cancer artefact.
 
 We also asked whether mosaic aneuploidy is visible in the bulk WGS. It is not, and we computed why:
 simulating mean |BAF − 0.5| at DP 44 puts the detection limit at ~14% of cells for a clonal trisomy
 (16% under a stricter 2-SD criterion), while variegation leaves each chromosome at 1–2% of cells —
-7–16× below it. Aneuploidy burden is not a
-measurable endpoint in these data — a constraint that matters for evaluating any candidate therapy.
+7–16× below it. Aneuploidy burden is therefore not a measurable
+endpoint in these data — a constraint on evaluating any candidate therapy.
 
 **Limitations.** Phase cannot be established: no parental sample, and the variants lie ~11 kb apart,
 beyond read-backed phasing (confirmed by the absence of GATK phase tags on both). The functional
