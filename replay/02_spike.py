@@ -36,11 +36,11 @@ def pool(gene, klass):
     chrom, start, end = GENES[gene]
     reg = f"{chrom.replace('chr','')}:{start}-{end}"
     q = subprocess.run(["bcftools","query","-r",reg,
-        "-f","%POS\t%REF\t%ALT\t%ID\t%INFO/CLNSIG\t%INFO/CLNREVSTAT\t%INFO/MC\n", CLIN],
+        "-f","%POS\t%REF\t%ALT\t%ID\t%INFO/CLNSIG\t%INFO/CLNREVSTAT\t%INFO/MC\t%INFO/GENEINFO\n", CLIN],
         capture_output=True, text=True)
     rows = []
     for line in q.stdout.splitlines():
-        pos, ref, alt, vid, sig, rev, mc = line.split("\t")
+        pos, ref, alt, vid, sig, rev, mc, gi = line.split("\t")
         # ENMIENDA 1 (30-ago): la regla escrita decia "contiene criteria_provided", que
         # tambien acepta no_assertion_criteria_provided (0 estrellas). Se exige >=1 estrella.
         if not (rev.startswith("criteria_provided")
@@ -52,8 +52,13 @@ def pool(gene, klass):
         else:
             if sig != "Uncertain_significance": continue
         if not any(k in mc for k in KEEP_MC): continue
+        # ENMIENDA 3 (30-ago): "dentro del span +/-5kb" admitia registros de genes vecinos.
+        # El assert de ingestion lo detecto: ClinVar 2312080 (GENEINFO=FANCD2OS) entro al pool
+        # de FANCD2, quedo 2.827 bp fuera del gen y Exomiser nunca lo vio como FANCD2.
+        if gene not in [g.split(":")[0] for g in gi.split("|")]: continue
+        if not (start + 5000 <= int(pos) <= end - 5000): continue
         rows.append({"chrom":chrom,"pos":int(pos),"ref":ref,"alt":alt,
-                     "clinvar_id":vid,"clnsig":sig,"clnrevstat":rev,"mc":mc})
+                     "clinvar_id":vid,"clnsig":sig,"clnrevstat":rev,"mc":mc,"geneinfo":gi})
     rows.sort(key=lambda r: r["pos"])
     return rows
 

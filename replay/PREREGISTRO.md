@@ -305,3 +305,34 @@ gene that ranks poorly is a result and is not debugged.
 
 *(Recorded for context, not as an assertion: SMC5 reached rank 2 with combined score 0.4476, behind
 the background's own top gene KRT17 at 0.4881.)*
+
+### Amendment 3 — 2026-08-30, triggered by the pre-registered ingestion assertion
+
+**"Inside the gene's Ensembl span (±5 kb)" is not the same as "a variant in the gene."** The pool rule
+placed no requirement on which gene ClinVar actually annotates a record to.
+
+This was caught by the mechanism the pre-registration put in place, not by inspection: the ingestion
+check on `B_arm2_FANCD2_HG001` reported **1 of 2 planted alleles reaching Exomiser's variants TSV**.
+The missing allele was ClinVar **2312080**, whose `GENEINFO` is **`FANCD2OS:115795`** — a different
+gene on the opposite strand — sitting 2,827 bp beyond the end of FANCD2 inside the ±5 kb padding.
+Exomiser annotated it correctly to FANCD2OS, so it never appeared as a FANCD2 variant. Reviewer 1
+predicted exactly this failure mode (`evidencia/codex_replay_prereg.md`, point 1.4).
+
+**Two criteria are added to the pool rule:**
+
+8. `INFO/GENEINFO` must name the target gene (symbol match before the `:` in any `|`-separated entry);
+9. the record must lie inside the gene body **excluding** the ±5 kb padding.
+
+Effect on the pools: BUB1B **unchanged** (78 P/LP, 1430 VUS), CEP57 34→**17** / 663→**590**,
+TRIP13 5→**5** / 95→**72**, FANCD2 263→**263** / 704→**679**, SMC5 unchanged.
+
+**Which cases are affected.** The BUB1B first/last picks are identical before and after
+(C-hi `40165052`+`40218501`, C-lo `40161221`+`40220755`), so **Experiments B arm 1 and C are not
+re-run**. Only the FANCD2 decoy arm changes (second allele `10104764` → `10101244`, ClinVar 1224522)
+and its six cells are rebuilt and re-run. The affected pre-amendment cells are reported as
+`technical_failure` in the results, as the stopping rules require, and are not deleted.
+
+**Direction of the fix, stated for the record:** correcting this makes the decoy arm **stronger**, not
+weaker. In the pre-amendment run the decoy reached rank 58 and 69; in the first re-run cell it reaches
+**rank 1**. The amendment therefore works against prediction P-B3's failure and against our own
+framing — it is not a fix in our favour.
