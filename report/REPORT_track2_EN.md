@@ -697,11 +697,26 @@ phenotype, and would inform any future pregnancy. It is cheap, it can be done th
 
 ## 10. Limitations
 
-- **Phase is not established.** No parental samples, and the variants lie ~11 kb apart, beyond
-  read-backed phasing for short reads. Two heterozygous variants in a singleton are a priori 50/50 cis
-  or trans; rarity does not phase them. What supports *trans* is that the child is affected, that MVA1
-  is recessive, that truncating-plus-missense is the recurrent pattern, and that the phenotype
-  matches. It remains a diagnosis pending segregation.
+- **Phase is not established, and we measured that it is not establishable from these data.** There
+  are no parental samples, and the challenge distributes a VCF with no alignments, so no read-backed
+  phaser can be run at all; the two variants sit **10,911 bp** apart and the caller emitted no phase
+  tag for either. Reference-panel phasing fails for a separate and quantifiable reason: inside that
+  interval the child carries exactly three heterozygous sites — the two causal variants and
+  `chr15:40216470` — and **all three are absent from the 1000 Genomes 30× phased panel** (3,202
+  individuals); the nearest panel-present heterozygous markers are 16.8 kb upstream and 809 bp
+  downstream, with nothing between them to link the alleles. A Beagle 5.5 run against that panel
+  keeps 1,391 of 1,452 window variants and drops all three that matter. The absence is what the
+  frequencies predict: expected copy counts in 6,404 haplotypes are 0.64 for the nonsense and
+  **0.006** for the missense. Two heterozygous variants in a singleton are a priori 50/50 cis or
+  trans, and rarity does not phase them. What supports *trans* is that the child is affected, that
+  MVA1 is recessive, that truncating-plus-missense is the recurrent pattern, and that the phenotype
+  matches. **It remains a diagnosis pending segregation, and parental genotyping at the two loci is
+  the cheapest experiment in this report.**
+- **The retrieval pipeline is itself insensitive to phase.** In a controlled test on public data,
+  Exomiser 15.1.0 reads phase into its ACMG evidence (trans → PM3, cis → BP2) but not into the
+  compound-heterozygous model: two pathogenic nonsense alleles declared on the *same* chromosome are
+  still called AR_COMP_HET, still classified PATHOGENIC and still ranked first, at a combined-score
+  penalty of 0.34%. Nothing in the Track 1 retrieval would have flagged a *cis* configuration.
 - **p.Asn1002Lys has no functional assay**, and its apparent ClinVar entry is for a different
   nucleotide.
 - **The bortezomib EC50 is a conservative upper bound** read from a figure panel rather than a
