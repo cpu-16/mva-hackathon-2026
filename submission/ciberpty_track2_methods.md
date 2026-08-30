@@ -73,10 +73,12 @@ result rather than omit.
 Three activities, all documented in the repository:
 
 1. **Citation verification.** Every PMID was checked against PubMed or Europe PMC before use. This
-   was not ceremonial: **three fabricated or misattributed citations were caught and removed** —
-   a paper on acromegaly cited as Wilms surveillance (PMID 17652220, replaced by 16857697), a TRIP13
-   paper cited for the BUB1B tumour spectrum (PMID 28553959), and two KARD papers merged under one
-   attribution (separated into PMID 23789096 and 23345399).
+   was not ceremonial: **three citation problems were caught, of three different kinds** —
+   one wrong paper (a study of acromegaly cited as Wilms surveillance, PMID 17652220, replaced by
+   16857697); one merged attribution (two KARD papers under a single citation, separated into
+   PMID 23789096 and 23345399); and one over-extension (PMID 28553959 was being used to carry the
+   proteotoxic rationale to CEP57, which that same source contradicts — we withdrew that use and kept
+   the paper only for the BUB1B/TRIP13 embryonal-tumour sentence its abstract actually states).
 2. **Adversarial review by independent models.** Two different language models were asked to attack
    our own drafts. They found, among others, a claim of ours that contradicted **our own data file**:
    the report stated that Tang et al. used only stable trisomies, when our extraction record shows
