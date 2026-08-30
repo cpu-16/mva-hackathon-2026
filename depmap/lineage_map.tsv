@@ -1,0 +1,8 @@
+OncotreeLineage	stratum	nota
+Lymphoid	haematological	regla pre-registrada: linfoide
+Myeloid	haematological	regla pre-registrada: mieloide
+B lymphoblast	haematological	linaje de células B, hematológico
+Normal	excluded	no es tumor
+Fibroblast	excluded	no es tumor
+Hair	excluded	no es tumor
+Other	excluded	linaje sin asignar

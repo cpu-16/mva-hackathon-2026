@@ -90,6 +90,14 @@ aneuploidy, and myeloma is a plasma-cell neoplasm carrying its own immunoglobuli
 load. Whether the same dependency holds in **constitutional, variegated** aneuploidy is an
 extrapolation, and it is exactly what the experiment in §6 is designed to break (an eight-week assay window; about twelve weeks from a fresh biopsy).
 
+**We then tested that leap ourselves, and it did not survive.** Before looking at any result we
+pre-registered a test on public data (§3.5): does the aneuploidy–proteasome link extend beyond
+haematological cancers? Across 444 solid-tumour cell lines no proteasome inhibitor reached
+significance, and across 946 lines the genetic dependency on **PSMB5 — bortezomib's own target — is
+significantly weaker in solid tumours than in haematological ones** (interaction p = 0.026), with
+ploidy excluded as a confounder. This child's tumour was a solid one. We report this because it
+weakens the argument we are making, and because we would rather find it than have a judge find it.
+
 Bortezomib clears the pharmacokinetic filter with margin: EC50 in highly aneuploid lines is below
 **40 nM**, while the approved 1.3 mg/m² IV dose reaches a Cmax of **89–120 ng/mL = 231–312 nM** — a
 ratio of **5.8–7.8**. We quote the whole label interval rather than its ceiling; read it as an
@@ -358,6 +366,54 @@ concerns proteotoxic killing of aneuploid cells, the other a progeroid muscle ph
 testing the combination should know both exist, and should not read a muscle-directed mTOR rationale
 as support for pairing it with a proteasome inhibitor.
 
+### 3.5 We tested our own candidate on public data, and pre-registered it first
+
+Two reviewers made the same objection to §3.2 independently: the human signal is **multiple myeloma**,
+and this child's tumour was an **embryonal rhabdomyosarcoma**. We had no number for solid tumours, so
+we produced one.
+
+**We fixed the hypotheses before we looked.** The drug list, the direction of every predicted effect,
+the statistic, the multiplicity correction and the stopping rules were written to
+`depmap/PREREGISTRO.md` and committed to the public repository **before the analysis was run**; its git
+timestamp is the evidence. When one hypothesis turned out to be untestable mid-analysis, we recorded
+that as a dated amendment rather than editing the original.
+
+![Pre-registered test: our candidate among 6,790 compounds, and the lineage-restricted dependency on its target](fig4_depmap.png)
+
+**Method.** An arm-level aneuploidy score for 2,420 DepMap 24Q4 lines from absolute copy-number
+segments, validated against lines whose biology is independently known (chromosomally stable MSI lines
+average 5.0 altered arms; CIN lines 16.5). Then Spearman correlations against PRISM Repurposing drug
+sensitivity and DepMap CRISPR gene effect.
+
+**Result 1 — drugs.** In 444 solid-tumour lines, **no proteasome inhibitor reached FDR < 0.05.**
+Bortezomib (ρ = −0.075) and carfilzomib (ρ = −0.060) fall in the 4th and 8th percentile of all 6,790
+compounds *by direction* — suggestive and nothing more; ixazomib runs the other way. Metformin is null,
+as predicted. Paclitaxel, our pre-declared cytotoxic control, runs opposite, so this is not a "sick
+cells die more" confound. The pipeline is not blind: across all 6,790 compounds 1.1% reach p < 0.001
+against 0.1% expected by chance.
+
+**Result 2 — the target itself.** Genetic dependency on **PSMB5**, the subunit bortezomib binds, tracks
+aneuploidy strongly overall (ρ = −0.198, q = 5×10⁻⁸, n = 946) — but split by lineage it is
+**significant in haematological lines (ρ = −0.261, q = 0.042, n = 113) and not in solid lines
+(ρ = −0.077, q = 0.118, n = 833)**. The 20S core as a set is indistinguishable from a random-gene
+background in solid lines (z = −0.51), and the pre-declared negative control PSMD9 is null throughout.
+Adjusting for ploidy and lineage, aneuploidy still predicts PSMB5 dependency (p = 0.0098) while
+**ploidy contributes nothing** (p = 0.88) — this is not whole-genome doubling in disguise. The formal
+test of our question, the **aneuploidy × lineage interaction, is significant (p = 0.026)**. Solid lines
+are the *larger* stratum, so this is attenuation, not low power.
+
+**What it costs us, stated plainly.** Two independent measurements agree: the link our bortezomib
+argument rests on is detectable where myeloma sits and attenuated in solid tumours. The §4 "prepared
+answer for a second tumour" therefore rests on evidence **we could not extend to the relevant
+lineage**. We do not withdraw the proposal — the direction survives for two of three proteasome
+inhibitors, the mechanism is unchanged, and a null across heterogeneous cancer lines is not a null in
+constitutional MVA. But the claim is weaker than it was before we ran this, and the experiment in §6
+matters more, not less.
+
+**What we did not do.** PRISM primary is a single-dose viability screen, not an EC50, and not
+Ippolito's isogenic comparison. This is not a replication attempt of Ippolito and we do not present it
+as one. Full method, numbers and limitations: `depmap/RESULTADOS.md`.
+
 ---
 
 ## 4. Filter 4: safety in *this* child — where the candidate stops
@@ -373,7 +429,10 @@ Bortezomib clears the pharmacology. It does not clear this patient today.
 
 **Bortezomib is therefore not proposed as prophylaxis or as chronic therapy for this child.**
 
-**But filter 4 is patient-specific, not universal — and that is the point.** For a patient with MVA
+**But filter 4 is patient-specific, not universal — and that is the point.** Read what follows against
+§3.5: our own pre-registered test could not extend the proteasome dependency to solid-tumour lineages,
+and an embryonal rhabdomyosarcoma is a solid tumour. The argument below is weaker than the mechanism
+alone suggests, and the ex-vivo test in §6 is the gate, not a formality. For a patient with MVA
 **and an active malignancy**, where cytotoxic therapy is on the table regardless and the comparator is
 conventional chemotherapy rather than nothing, the balance inverts. In that setting a proteasome
 inhibitor is not an exotic addition: it is an approved agent that targets the best-characterised
