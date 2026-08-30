@@ -107,3 +107,58 @@ than importing a published score so that the definition cannot be chosen after s
 - Cancer cell lines are not constitutional mosaic aneuploidy. A positive result does not transfer to
   MVA by itself; it only removes the "myeloma-only" objection.
 - Embryonal rhabdomyosarcoma lines are few. If n < 20 we do not test that lineage separately.
+
+---
+
+# Amendment 1 — 2026-08-30, written after running the primary test and BEFORE running the extension
+
+The original text above is unedited, as promised. This amendment records what we found that we could
+not have anticipated, and what we are adding because of it.
+
+## What forced the amendment
+
+**H2 is not testable in this dataset.** The seven locked drugs exist only in the `REP.PRIMARY`
+PRISM screen, and that screen used the PR500A collection, which is adherent-only. Of the 98
+haematological lines that have both an aneuploidy score and a PRISM entry, **zero have a non-null
+bortezomib measurement**. The solid-versus-haematological contrast — the entire reason we ran this —
+cannot be computed from PRISM Repurposing. The "all lines" and "solid lines" strata are therefore
+the same 444 lines, and we report them as one.
+
+This is a property of the data, not a result. We did not know it before downloading.
+
+## What we are adding, with its direction fixed now
+
+We will test the same mechanism with a different measurement that *does* cover both strata:
+**CRISPR gene-effect scores for proteasome subunits** (DepMap 24Q4 `CRISPRGeneEffect.csv`, ~1,100
+lines including haematological). Genetic dependency on the proteasome is the mechanism Ippolito
+proposed and the one the 2026 paired CRISPR screens (PMID 42094535, preprint) nominate.
+
+- **Gene set, locked now:** the 14 constitutive 20S subunits `PSMA1-PSMA7`, `PSMB1-PSMB7`, plus
+  `PSMB5` singled out because it is bortezomib's binding target. We will also report the 19S
+  ATPases `PSMC1-PSMC6` as a secondary set. No gene is added after seeing results.
+- **Statistic:** Spearman ρ between aneuploidy score and CRISPR gene effect (more negative gene
+  effect = more essential), per gene, in the three strata. BH-FDR across all genes × strata.
+- **Predicted direction (H6):** more aneuploid lines are *more* dependent on proteasome subunits, so
+  **ρ negative**.
+- **Negative control, locked now:** `PSMD9` is a proteasome-assembly chaperone that is not part of
+  the 20S core, plus a random set of 200 genes to give the null distribution of ρ. If the core
+  subunits do not separate from the random background, we report no effect.
+- **H7 — the contrast we actually wanted:** the association, if present, is **not confined to
+  haematological lines**. If it holds in solid lines, the myeloma-only objection to our report is
+  answered by genetic data even though the drug data could not answer it.
+
+## What each outcome forces us to write
+
+| Outcome | Report |
+|---|---|
+| ρ negative and significant in solid lines | The proteasome dependency of aneuploid cells is present in solid-tumour lines at the genetic level. The myeloma-only objection is weakened. |
+| Significant only in haematological lines | The objection stands, and we say the drug argument is lineage-restricted. |
+| No separation from the random background | We report that neither PRISM nor CRISPR in DepMap supports the dependency at the resolution we can measure, and the report's §3.2 is softened accordingly. |
+
+## Result of the primary test, recorded here before the extension is run
+
+For the record, so that the extension cannot be presented as if it were the primary analysis:
+bortezomib ρ = −0.075 (n = 444 solid lines, p = 0.11, q = 0.40 — **not significant**); carfilzomib
+ρ = −0.060 (q = 0.51); ixazomib ρ = +0.028; metformin ρ = +0.020; paclitaxel ρ = +0.096.
+**No test passed FDR < 0.05.** Pipeline positive control: across all 6,790 compounds, 1.1% reach
+p < 0.001 against 0.1% expected by chance, so the machinery detects associations when they exist.
