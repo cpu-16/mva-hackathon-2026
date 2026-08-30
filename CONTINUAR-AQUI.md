@@ -121,26 +121,44 @@ Archivos: `replay/PREREGISTRO.md` (con 3 enmiendas fechadas) → `replay/RESULTA
 Commits: `8086dd4` (pre-registro), `ecfdb39` (enmiendas + centinela), `06859b4` (fase),
 `d95dbe7` + `15c8bf8` (resultados).
 
-### ⛔ ERROR EN EL REPORTE DEL TRACK 1 QUE YA SE ENVIÓ
+### ⛔ TRES ERRORES EN EL REPORTE DEL TRACK 1 QUE YA SE ENVIÓ
 
-`entrega/methods_track1.md` dice dos veces que el fenotipo aporta **"about 24% of the score"**,
-citando 0.5506 → 0.4187. **Esos dos son controles de HPO ajenos** (el contaminado y su corrección):
-ese delta mide lo que valían los dos términos contaminantes, no lo que vale el fenotipo del niño.
-El par correcto es **0.5871 → 0.4187 = 28,7%**. MVA-Replay reproduce los dos extremos exactos en tres
-genomas sanos ajenos, o sea la cifra corregida está *replicada*. La conclusión
-("variant-driven, phenotype-consistent") no cambia. **Decisión pendiente de Gilberto: reenviar el
-Track 1 (van 2 de 6) juntando esta corrección con los resultados de MVA-Replay.**
+Los tres los encontró el propio benchmark o la ronda adversarial sobre sus resultados
+(`evidencia/codex_replay_resultados.md`, `evidencia/cursor_replay_resultados.md`).
+
+**(a) "the phenotype contributes about 24% of the score".** Par equivocado *y* tipo de número
+equivocado. 0.5506 y 0.4187 son los **dos controles de HPO ajenos** (el contaminado y su corrección):
+ese delta mide lo que valían los dos términos contaminantes. El par correcto es 0.5871 → 0.4187, pero
+**convertirlo a porcentaje es inválido igual**: el combinador de Exomiser no es aditivo y 0.4187 no es
+una línea base sin fenotipo. ⛔ **El porcentaje se RETIRA, no se corrige a 28,7%.** Los dos revisores
+coincidieron: cambiar 24 por 28,7 es corregir un error de encuadre con un error de redondeo.
+
+**(b) "the ClinVar-whitelisted nonsense allele carries the ranking".** El whitelist vale **0.0128 =
+2,2% del score**, no el ranking. Lo que lo carga es la **consecuencia nonsense**. Ver el contrafactual
+abajo. El hallazgo es *más* robusto de lo que dijimos —no depende de la base de datos— pero la
+atribución del reporte está mal.
+
+**(c) "BUB1B ranked 1 of 4,565 genes".** 4.565 son **filas gen × modo de herencia**, no genes. Esa
+corrida tiene **3.139 genes únicos**, de los cuales solo **257 sacan score > 0** y **32** sacan ≥ 0.01;
+las otras 4.262 filas están empatadas al fondo con score 0. El denominador está inflado ~15×. El
+reporte usa 3.139 correctamente en otros tres sitios, o sea también se contradice. Es el mismo error
+de filas-vs-entidades que ya se corrigió una vez para el conteo de variantes.
+
+**Decisión pendiente de Gilberto: reenviar el Track 1 (van 2 de 6) con las tres correcciones más los
+resultados de MVA-Replay.** El CSV que da los 100/100 no cambia.
 
 ### Lo que midió MVA-Replay
 
 | Resultado | Número |
 |---|---|
 | **El score no depende del genoma.** Plantando los dos registros ClinVar del Track 1 en tres genomas sanos ajenos | **0.5871 (HPO real) y 0.4187 (HPO ajeno), idénticos a 4 decimales en los tres**. El fondo solo cambia el *rank* |
-| **Cuánto pone ClinVar.** Mismo gen, mismo fenotipo, solo cambia la clase de los alelos | dos P/LP **0.9332** · P/LP+VUS (la del niño) **0.5871** · dos VUS **0.1120**. Caída de **0.8212** (umbral pre-registrado 0.10) |
-| Sin ClinVar el resultado se cae | con dos VUS el rank 1 se pierde en 2 de 3 fondos |
-| **Escala del 0.5871** en 7 genomas GIAB sanos con nuestros 8 HPO | gen top entre 0.0578 y **0.5619**; nuestro 0.5871 les gana a los 7 pero por **0.025**. BUB1B no aparece en ninguno. ⏳ faltan 30 genomas 1000G |
+| Gradiente por arquitectura de alelos (pre-registrado, P-C **confirmada**) | dos P/LP **0.9332** · P/LP+VUS (la del niño) **0.5871** · dos VUS **0.1120**. Caída de 0.8212 (umbral 0.10) |
+| ⛔ **Pero la interpretación era falsa.** Escribí "ClinVar vale el 88%" y "sin ClinVar las mismas dos variantes darían 0.1120" — **nunca corrí ese contrafactual**; C-lo usa *otros* alelos. Los dos revisores lo exigieron y se corrió | **Quitar ClinVar entero cuesta 0.0128 = 2,2%.** La arquitectura molecular exacta del niño sin ninguna clasificación ClinVar da **0.5743** y sigue rank 1 en los dos fondos. El gradiente lo manda la **consecuencia**, no la base de datos |
+| El registro VUS del missense aporta **0.0000** | plantar el alelo REAL del niño (ausente de ClinVar) en vez del registro VUS da el mismo 0.5871 hasta el cuarto decimal |
+| **Escala del 0.5871** en 7 genomas GIAB sanos con nuestros 8 HPO | gen top entre 0.0578 y **0.5619**; nuestro 0.5871 les gana a los 7 pero por **0.025**. BUB1B no aparece en ninguno. **P-A queda ABIERTA, no "se sostiene"**: null sesgado a favor, y HG001+dos tríos son 3 unidades independientes, no 7. ⏳ faltan 30 genomas 1000G · las frases pre-comprometidas para cada desenlace están en `replay/RESULTADOS.md` §8 |
 | Los fondos GIAB rankean menos genes | mediana **2.387** vs 4.565 del paciente → el null está sesgado **a nuestro favor**; el endpoint portátil es el *score*, no el rank |
-| **Señuelo FANCD2** (P-B3, predicción **FALSIFICADA**) | rank 1 en 1 de 3, no ≥2/3. Con pheno *mayor* (0.6605 vs 0.5635) y var comparable puntúa 3,2× menos. BUB1B gana por la fila **AD**, no por la AR que corresponde al diagnóstico |
+| **Señuelo FANCD2** (P-B3) | rank 1 en 1 de 3 — y ese 1 es HG001, un **fondo inerte** (gen top 0.0578, cualquier cosa >0.06 gana ahí). ⚠️ **No es falsificación limpia**: la enmienda 3 cambió el constructo después de ver los ranks, y el señuelo no está pareado en fuerza de variante. Queda como *post-enmienda exploratorio*. **No cobrarlo como victoria** |
+| ⚠️ **El 0.5871 es la fila AD** (modelo dominante, un solo alelo); la fila AR compuesta —la del diagnóstico— da 0.5538. Sumado a que la llamada compuesta es invariante a la fase, la interpretación recesiva la pone el analista, no el pipeline |
 | El benchmark se cazó a sí mismo | el assert de ingestión detectó que el pool de FANCD2 aceptó ClinVar 2312080, que es de **FANCD2OS** (Codex lo predijo). Enmienda 3; el arreglo hace al señuelo **más fuerte** |
 
 ### 🧬 FASE: no es "no concluyente", es NO COMPUTABLE
