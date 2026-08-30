@@ -248,3 +248,60 @@ in the output. Once they pass, the builder is frozen. After the freeze:
 ## Amendments
 
 *(none yet — amendments are appended below with a date, never edited into the text above)*
+
+### Amendment 1 — 2026-08-30, before any locked case was run
+
+**The pool rule as written admits 0-star records.** Criterion 1 of the pool rule says *"`CLNREVSTAT`
+contains `criteria_provided`"*. ClinVar's 0-star review status is the string
+`no_assertion_criteria_provided`, which **contains** that substring. The rule as written therefore
+admits exactly the records it was meant to exclude.
+
+This was caught by the sentinel validation, not by reading the code: the builder selected ClinVar
+2443708 (`no_assertion_criteria_provided`) as the second sentinel allele.
+
+**Criterion 1 is tightened to:** `CLNREVSTAT` starts with `criteria_provided`, or equals
+`reviewed_by_expert_panel` or `practice_guideline`.
+
+Effect on the pools, all of which were rebuilt and re-written to `replay/pools/`:
+
+| Gene | P/LP before → after | VUS before → after |
+|---|---|---|
+| BUB1B | 82 → **78** | 1434 → **1430** |
+| CEP57 | 38 → **34** | 664 → **663** |
+| TRIP13 | 9 → **5** | 96 → **95** |
+| FANCD2 | 273 → **263** | 707 → **704** |
+| SMC5 (sentinel) | 4 → **2** | 119 → **118** |
+
+**No locked case had been run when this was found.** Nothing else in the rule changes.
+
+### Amendment 2 — 2026-08-30, same session
+
+**`GQ` must be declared in the background header.** The pre-registered spike-in FORMAT is
+`GT:DP:AD:GQ`, but the background preparation strips `FORMAT/GQ`, so `bcftools concat` refused the
+insertion ("Tag not defined in header"). A `##FORMAT=<ID=GQ,Number=1,Type=Integer>` line is added to
+each background header with `bcftools reheader`. **No record data changes.** The frozen
+`analysis_mva.yml` contains no genotype-quality or allele-balance filter, so the seven Experiment A
+runs already completed before this change remain valid and are not re-run.
+
+### Builder validation — 2026-08-30, PASSED, builder now frozen
+
+Sentinel gene **SMC5** (in the MVA panel, in no experiment above), background HG002, two ClinVar
+Likely_pathogenic alleles selected by the frozen rule:
+
+| Allele | Locus | ClinVar | Review status | Consequence |
+|---|---|---|---|---|
+| 1 | `chr9:70267944 G>T` | 4856047 | criteria_provided, single submitter | nonsense |
+| 2 | `chr9:70315463 CTTAT>C` | 4845894 | criteria_provided, single submitter | frameshift |
+
+| Assertion | Result |
+|---|---|
+| 1. both planted alleles reach Exomiser's variants TSV | **PASS** — both present, both `CONTRIBUTING_VARIANT=1` under AR, annotated `stop_gained` and `frameshift_truncation`, both LIKELY_PATHOGENIC |
+| 2. each planted REF matches the hg38 FASTA | **PASS** |
+| 3. no background record overlaps either locus | **PASS** |
+
+None of the three assertions refers to a rank or a score. **The builder is frozen as of this line.**
+From here, a planted allele that does not reach the variants TSV is a `technical_failure`; a planted
+gene that ranks poorly is a result and is not debugged.
+
+*(Recorded for context, not as an assertion: SMC5 reached rank 2 with combined score 0.4476, behind
+the background's own top gene KRT17 at 0.4881.)*

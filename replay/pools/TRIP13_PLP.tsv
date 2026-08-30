@@ -1,0 +1,6 @@
+chrom	pos	ref	alt	clinvar_id	clnsig	clnrevstat	mc
+chr5	900524	T	TA	3910602	Likely_pathogenic	criteria_provided,_single_submitter	SO:0001589|frameshift_variant
+chr5	901414	G	A	977642	Pathogenic	criteria_provided,_single_submitter	SO:0001583|missense_variant
+chr5	907194	G	A	3645934	Likely_pathogenic	criteria_provided,_single_submitter	SO:0001575|splice_donor_variant
+chr5	908029	TTTGA	T	3723852	Pathogenic	criteria_provided,_single_submitter	SO:0001589|frameshift_variant
+chr5	914464	G	C	4070948	Likely_pathogenic	criteria_provided,_single_submitter	SO:0001574|splice_acceptor_variant

@@ -1,0 +1,3 @@
+chrom	pos	ref	alt	clinvar_id	clnsig	clnrevstat	mc
+chr9	70267944	G	T	4856047	Likely_pathogenic	criteria_provided,_single_submitter	SO:0001587|nonsense
+chr9	70315463	CTTAT	C	4845894	Likely_pathogenic	criteria_provided,_single_submitter	SO:0001587|nonsense
