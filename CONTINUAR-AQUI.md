@@ -21,6 +21,7 @@ Léeme completo antes de tocar cualquier otro archivo.
 | Video | `video/GUION.md` (v3) + `video/README.md` | ⛔ `GUION_v1.md` es histórico |
 | Qué se envió y cuándo | `evidencia/registro_envios_track1.md` | — |
 | Obligación de borrar datos | `data/BORRAR-AL-TERMINAR.md` | **fecha límite 23-nov-2026** |
+| Archivos listos para subir al Space | `entrega/listo-para-enviar/` | con el nombre exacto que pide; ver su `LEEME.md` |
 
 **Carpeta `evidencia/`: es archivo histórico, no fuente de verdad.** Son las revisiones de Codex y
 Cursor de cada ronda y los abstracts verbatim. Útil para *no repetir* una verificación ya hecha o para
