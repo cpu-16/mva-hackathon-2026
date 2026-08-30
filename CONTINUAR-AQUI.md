@@ -1,6 +1,6 @@
 # 🔄 CONTINUAR AQUÍ — estado del MVA Hackathon 2026
 
-**Última actualización: 30-ago-2026 (tarde).** Documento de traspaso tras un `/clear`.
+**Última actualización: 30-ago-2026 (noche).** Documento de traspaso tras un `/clear`.
 Léeme completo antes de tocar cualquier otro archivo.
 
 ---
@@ -17,7 +17,9 @@ Léeme completo antes de tocar cualquier otro archivo.
 | Formulario de métodos | `entrega/methods_description_form_ciberpty.xlsx` | las dos hojas ya están al día |
 | Q2–Q11 del Track 2 en texto | `entrega/methods_track2.md` | espejo del xlsx, mantener sincronizados |
 | CSV de predicciones | `entrega/convergent-hpo-genomewide-and-panel.csv` | epcr 0.85, verificado = 100 pts |
-| Análisis DepMap (lo nuevo) | `depmap/PREREGISTRO.md` → `depmap/RESULTADOS.md` | leer en ese orden |
+| Análisis DepMap | `depmap/PREREGISTRO.md` → `depmap/RESULTADOS.md` | leer en ese orden |
+| Benchmark MVA-Replay (lo nuevo) | `replay/PREREGISTRO.md` → `replay/RESULTADOS.md` | el pre-registro trae 3 enmiendas fechadas al final |
+| Fase de las dos variantes (lo nuevo) | `fase/RESULTADO.md` + `replay/PILOTO_FASE.md` | cerrado, no reintentar |
 | Video | `video/GUION.md` (v3) + `video/README.md` | ⛔ `GUION_v1.md` es histórico |
 | Qué se envió y cuándo | `evidencia/registro_envios_track1.md` | — |
 | Obligación de borrar datos | `data/BORRAR-AL-TERMINAR.md` | **fecha límite 23-nov-2026** |
@@ -107,6 +109,60 @@ direcciones — las frases nuevas están y "seizure", "hearing loss", "heart def
 
 ---
 
+## 🔬 MVA-REPLAY + FASE — segunda y tercera tanda de resultados propios (30-ago, tarde-noche)
+
+**Mismo método que DepMap: pre-registro commiteado ANTES de correr, timestamp de git como activo.**
+Esta vez el pre-registro v1 se mandó **sin correr** a Codex y a Cursor, los dos lo destrozaron en los
+mismos cuatro puntos, y el v2 es el resultado. De ~150 corridas bajó a 61.
+
+Archivos: `replay/PREREGISTRO.md` (con 3 enmiendas fechadas) → `replay/RESULTADOS.md`;
+`replay/PILOTO_FASE.md`; `fase/RESULTADO.md`. Críticas verbatim en
+`evidencia/codex_replay_prereg.md` y `evidencia/cursor_replay_prereg.md`.
+Commits: `8086dd4` (pre-registro), `ecfdb39` (enmiendas + centinela), `06859b4` (fase),
+`d95dbe7` + `15c8bf8` (resultados).
+
+### ⛔ ERROR EN EL REPORTE DEL TRACK 1 QUE YA SE ENVIÓ
+
+`entrega/methods_track1.md` dice dos veces que el fenotipo aporta **"about 24% of the score"**,
+citando 0.5506 → 0.4187. **Esos dos son controles de HPO ajenos** (el contaminado y su corrección):
+ese delta mide lo que valían los dos términos contaminantes, no lo que vale el fenotipo del niño.
+El par correcto es **0.5871 → 0.4187 = 28,7%**. MVA-Replay reproduce los dos extremos exactos en tres
+genomas sanos ajenos, o sea la cifra corregida está *replicada*. La conclusión
+("variant-driven, phenotype-consistent") no cambia. **Decisión pendiente de Gilberto: reenviar el
+Track 1 (van 2 de 6) juntando esta corrección con los resultados de MVA-Replay.**
+
+### Lo que midió MVA-Replay
+
+| Resultado | Número |
+|---|---|
+| **El score no depende del genoma.** Plantando los dos registros ClinVar del Track 1 en tres genomas sanos ajenos | **0.5871 (HPO real) y 0.4187 (HPO ajeno), idénticos a 4 decimales en los tres**. El fondo solo cambia el *rank* |
+| **Cuánto pone ClinVar.** Mismo gen, mismo fenotipo, solo cambia la clase de los alelos | dos P/LP **0.9332** · P/LP+VUS (la del niño) **0.5871** · dos VUS **0.1120**. Caída de **0.8212** (umbral pre-registrado 0.10) |
+| Sin ClinVar el resultado se cae | con dos VUS el rank 1 se pierde en 2 de 3 fondos |
+| **Escala del 0.5871** en 7 genomas GIAB sanos con nuestros 8 HPO | gen top entre 0.0578 y **0.5619**; nuestro 0.5871 les gana a los 7 pero por **0.025**. BUB1B no aparece en ninguno. ⏳ faltan 30 genomas 1000G |
+| Los fondos GIAB rankean menos genes | mediana **2.387** vs 4.565 del paciente → el null está sesgado **a nuestro favor**; el endpoint portátil es el *score*, no el rank |
+| **Señuelo FANCD2** (P-B3, predicción **FALSIFICADA**) | rank 1 en 1 de 3, no ≥2/3. Con pheno *mayor* (0.6605 vs 0.5635) y var comparable puntúa 3,2× menos. BUB1B gana por la fila **AD**, no por la AR que corresponde al diagnóstico |
+| El benchmark se cazó a sí mismo | el assert de ingestión detectó que el pool de FANCD2 aceptó ClinVar 2312080, que es de **FANCD2OS** (Codex lo predijo). Enmienda 3; el arreglo hace al señuelo **más fuerte** |
+
+### 🧬 FASE: no es "no concluyente", es NO COMPUTABLE
+
+Los dos agentes dijeron que era lo más valioso del backlog. Costó 3 consultas y una corrida de 18 s:
+
+- **Por lecturas:** GATK dejó `PGT`/`PID` **vacíos** en las dos variantes; están a **10.911 bp**.
+- **Estadística:** dentro del intervalo el niño tiene 3 hets (las dos causales + 40216470) y **las
+  tres faltan** en el panel 1000G de 3.202 personas. Beagle conserva 1.391 de 1.452 variantes de la
+  ventana y **descarta justo esas tres**.
+- **Un panel mayor no arregla nada:** con AF gnomAD 1,0×10⁻⁴ y **9,0×10⁻⁷**, las copias esperadas en
+  6.404 haplotipos son 0,64 y **0,006**. Harían falta ~10⁶ haplotipos.
+- **Piloto de fase:** Exomiser lee la fase para el ACMG (trans→PM3, cis→BP2) pero **nunca** para el
+  modelo compuesto: dos nonsense en cis siguen dando AR_COMP_HET, PATOGÉNICO y rank 1; la penalización
+  es **0,34%**. O sea el pipeline es ciego a la fase.
+- **Lo que sí lo resolvería:** Sanger a los papás (lo más barato), lectura larga del niño, o
+  transcripto alelo-específico. Todo requiere laboratorio nuevo.
+
+⛔ **No reintentar el fasado.** Está cerrado con números.
+
+---
+
 ## 🎯 PLAN PARA EL PODIO — hecho con Codex y Cursor, quedan ~8 semanas (cierre 24-oct)
 
 Los dos jueces puntuaron con la rúbrica oficial. **Codex 72→78, Cursor 65→74** tras la ronda 7.
@@ -115,8 +171,8 @@ Lo que falta ya no es argumento, es *resultado*. DepMap fue el primero. Lo que s
 | Prioridad | Qué | Días | Estado |
 |---|---|---|---|
 | ~~1~~ | ~~Prueba pre-registrada DepMap/PRISM~~ | 4–6 | ✅ **HECHO 30-ago** |
-| 2 | **MVA-Replay**: 30–50 casos sintéticos sobre un VCF público (GIAB) para medir sensibilidad y tasa de falsos positivos del pipeline del Track 1 | 4–6 | pendiente |
-| 3 | **Fase estadística** de las dos variantes BUB1B (Beagle/SHAPEIT contra panel 1000G) | 2–5 | pendiente · los dos agentes avisan que probablemente salga *no concluyente*; reportarlo así si pasa |
+| ~~2~~ | ~~MVA-Replay~~ | 4–6 | ✅ **HECHO 30-ago** (rediseñado por Codex+Cursor; 61 corridas, no 150) · ⏳ falta el tier de 30 genomas 1000G |
+| ~~3~~ | ~~Fase estadística de las dos variantes BUB1B~~ | 2–5 | ✅ **CERRADO 30-ago** — no es no concluyente, es **no computable**. Ver `fase/RESULTADO.md`. NO reintentar |
 | 4 | **Potencia del experimento del §6**: ¿el ensayo en fibroblastos está siquiera en el régimen de efecto correcto? | 2–3 | pendiente |
 | 5 | **Calibración del VUS p.Asn1002Lys** (ΔΔG contra set de variantes BUB1B ya clasificadas) | 5–7 | pendiente · **abortar si el pLDDT de AlphaFold en 766–1050 < 70**; un ΔΔG sobre estructura dudosa es teatro |
 | 6 | Motor ejecutable de los cinco filtros | 7–10 | solo si algo de lo anterior produce denominadores utilizables |
