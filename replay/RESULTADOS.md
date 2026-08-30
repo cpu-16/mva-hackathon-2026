@@ -79,10 +79,40 @@ to rank 3.
 - **Rank is not a portable endpoint and score is.** Any statement of the form "rank 1 of N" has to
   carry N; the score does not.
 
-**Decoy arm (FANCD2, the gene that actually came second in our Track 1 run).** ⏳ Re-running under
-amendment 3. First cell: with the corrected allele the decoy reaches **rank 1, score 0.1841** in
-HG001 — where the background's own best gene scores only 0.0578. Pre-amendment cells, built on a
-pool defect the ingestion assertion caught, are reported as technical failures and are superseded.
+### Decoy arm (FANCD2) — **P-B3 is falsified, and in our favour**
+
+FANCD2 is the gene that actually came second in our Track 1 run, so the phenotype already rates it
+highly. We predicted that the same P/LP + VUS architecture planted there would take rank 1 in at
+least 2 of 3 backgrounds. It did not.
+
+| Phenotype | FANCD2 rank | FANCD2 combined score |
+|---|---|---|
+| the eight real terms | **1 in 1/3** (only HG001) | 0.1841 in all three |
+| five unrelated terms | 0 in 3 | 0.0580 in all three |
+
+**P-B3 falsified**: rank 1 in 1/3, not ≥ 2/3. We predicted the pipeline would fail to discriminate
+and it discriminated. Reported as a falsified prediction, not quietly rewritten.
+
+**The mechanism is worth more than the verdict.** In HG002, with the real phenotype:
+
+| Gene | winning MOI row | phenotype score | variant score | OMIM | combined |
+|---|---|---|---|---|---|
+| **FANCD2** (decoy) | AR | **0.6605** | 0.9226 | 1.0000 | **0.1841** |
+| **BUB1B** (planted) | AD | 0.5635 | 1.0000 | 1.0000 | **0.5871** |
+| BUB1B | AR | 0.7920 | 0.9615 | 1.0000 | 0.5538 |
+
+The decoy has a **higher** phenotype score than the row that wins for BUB1B, and a comparable variant
+score, yet scores 3.2× lower. Two things separate them, and neither is "the phenotype prefers BUB1B":
+
+1. **BUB1B wins on the AD row** — a single ClinVar-pathogenic nonsense under a *dominant* model, with
+   the variant term maxed at 1.0000 — not on the recessive row that matches the actual diagnosis.
+2. **The combination is steeply non-linear in the phenotype term.** At near-identical variant scores,
+   an AR phenotype score of 0.7920 yields 0.5538 while 0.6605 yields 0.1841. A 0.13 difference in
+   phenotype score becomes a 3× difference in combined score.
+
+The decoy's alleles were rule-selected and are not matched to BUB1B's for variant strength (its
+missense scores 0.8453 against 0.9229). A decoy matched on variant score as well as phenotype would
+be a stronger test, and we did not run one.
 
 ## 3. Experiment C — how much of the score is ClinVar's classification
 
@@ -118,9 +148,12 @@ is why the cis/trans stratum was withdrawn and why phase had to be attacked outs
 | P-A2 — BUB1B absent or < 0.25 in healthy genomes | **confirmed** (absent in 7/7) |
 | P-B1 — planted BUB1B rank 1 in 3/3 with real HPO | **confirmed** |
 | P-B2 — planted BUB1B rank 1 in ≥ 2/3 with unrelated HPO | **confirmed** (2/3) |
-| P-B3 — planted decoy rank 1 in ≥ 2/3 with real HPO | ⏳ re-running (1/1 so far) |
+| P-B3 — planted decoy rank 1 in ≥ 2/3 with real HPO | **FALSIFIED** — rank 1 in 1/3 |
 | P-B4 — Δ(real − unrelated) < 0.20 | **confirmed** (0.1684) |
 | P-C — monotonic gradient, C-hi − C-lo ≥ 0.10 | **confirmed** (0.8212) |
 
-Technical failures so far: 2 cells (`B_arm2_FANCD2_HG001`, both phenotypes, pre-amendment),
-superseded by the amendment-3 re-run and retained in `resultados_todos.tsv`.
+Technical failures: 2 cells (`B_arm2_FANCD2_HG001`, both phenotypes, pre-amendment), superseded by
+the amendment-3 re-run and retained in `resultados_todos.tsv`. One prediction of six resolved so far
+is falsified (P-B3), and it is falsified in the direction that favours us — which is the direction
+that needs saying out loud, because the amendment that produced it was the one that made the decoy
+*stronger*.
