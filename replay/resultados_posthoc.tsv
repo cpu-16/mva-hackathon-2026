@@ -1,0 +1,7 @@
+BUB1B_moi	BUB1B_rank	BUB1B_score	acmg	alelos_ingeridos	case	caso	clases	fondo	n_filas	n_genes	segundo_gene	segundo_score	top_gene	top_moi	top_score	vscores	white
+AD	1	0.5871	PATHOGENIC	2/2	X1_plp_msREAL_HG002_real	X1_plp_msREAL	missense_variant;stop_gained	HG002	3397	2388	KRT17	0.4881	BUB1B	AD	0.5871	0.9229;1.0000	0;1
+AD	1	0.5871	PATHOGENIC	2/2	X1_plp_msREAL_HG005_real	X1_plp_msREAL	missense_variant;stop_gained	HG005	3128	2275	RYR2	0.4194	BUB1B	AD	0.5871	0.9229;1.0000	0;1
+AD	1	0.5743	LIKELY_PATHOGENIC	2/2	X2_nsSINclin_msVUS_HG002_real	X2_nsSINclin_msVUS	missense_variant;stop_gained	HG002	3397	2388	KRT17	0.4881	BUB1B	AD	0.5743	0.9229;1.0000	0
+AD	1	0.5743	LIKELY_PATHOGENIC	2/2	X2_nsSINclin_msVUS_HG005_real	X2_nsSINclin_msVUS	missense_variant;stop_gained	HG005	3128	2275	RYR2	0.4194	BUB1B	AD	0.5743	0.9229;1.0000	0
+AD	1	0.5743	LIKELY_PATHOGENIC	2/2	X3_ambos_sin_clinvar_HG002_real	X3_ambos_sin_clinvar	missense_variant;stop_gained	HG002	3397	2388	KRT17	0.4881	BUB1B	AD	0.5743	0.9229;1.0000	0
+AD	1	0.5743	LIKELY_PATHOGENIC	2/2	X3_ambos_sin_clinvar_HG005_real	X3_ambos_sin_clinvar	missense_variant;stop_gained	HG005	3128	2275	RYR2	0.4194	BUB1B	AD	0.5743	0.9229;1.0000	0
