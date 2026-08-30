@@ -22,9 +22,10 @@ and we set out in advance the tests a candidate had to pass.
 **No drug should be started for this today.** We want to be direct about that, because the honest answer
 is more useful than an encouraging one.
 
-- **Metformin** is the medicine most often suggested for this kind of problem. The dose a person can
-  safely take does not reach anywhere near the concentration the proposed mechanism would need — roughly
-  a thousandfold short. It should not be started on this reasoning. (§3.1)
+- **Metformin** is the medicine most often suggested for this kind of problem. It should not be started
+  on this reasoning: no one has measured what dose would be needed to act on *this* problem, and the one
+  route proposed for it — an effect on the cell's energy machinery — would need roughly a thousand times
+  more drug than a person can safely take. (§3.1)
 - **Bortezomib** is a real, approved cancer medicine that acts on the specific weakness these cells
   have. It reaches the needed concentration. But it causes nerve damage in about 18 in 100 children who
   receive it, and this child already has muscle weakness. **Outside an active cancer, that trade is not
@@ -36,7 +37,8 @@ is more useful than an encouraging one.
 |---|---|---|
 | 1 | **Confirm the child's current age** with the care team | Every schedule below depends on it, and we do not have it |
 | 2 | **Renal ultrasound every 3 months, birth to age 7** | Published consensus recommendation for all forms of MVA (PMID 39264246) — not our idea, and not optional |
-| 3 | **Regular full clinical examination**, including the orbit, skin and soft tissues | Rhabdomyosarcoma is not a kidney tumour and ultrasound will not find it. A 2026 case describes an MVA child whose second tumour appeared behind the eye at age 12 (PMID 42595739) |
+| 3 | **Regular full clinical examination**, including the orbit, skin and soft tissues | Rhabdomyosarcoma is not a kidney tumour and ultrasound will not find it. A 2026 case describes a child with MVA3 — the same condition caused by a different gene —
+whose second tumour appeared behind the eye at age 12 (PMID 42595739) |
 | 4 | **Avoid unnecessary radiation**; keep HPV vaccination up to date | Consensus guidance for these disorders (PMID 39264246) |
 | 5 | **Ask about testing and counselling for both parents** | The clinical notes mention repeated miscarriages. In 2026 that pattern was linked to carriers of *BUB1B* changes, who showed measurable chromosome abnormalities in a blood test (PMID 42434306). This is a hypothesis, not a diagnosis — but it is a simple test, and it bears on any future pregnancy (§7) |
 
@@ -262,7 +264,7 @@ ubiquitin–proteasome axis. **It is a preprint (bioRxiv) and not yet peer-revie
 corroboration, not as a second pillar. UBE2H itself has no approved inhibitor and therefore fails filter 1
 today; we record it in §9 as the target to watch.
 
-The clinically important sentence in that paper is the last one: **aneuploidy level was significantly
+The clinically important sentence in **Ippolito et al.** is the last one: **aneuploidy level was significantly
 associated with the response of multiple myeloma patients to proteasome inhibitors.** That is a human
 signal linking degree of aneuploidy to response to this drug class, which is more than most
 repurposing arguments have.
@@ -579,8 +581,8 @@ and centromere FISH, with a trend toward reduced BUBR1 (PMID 42434306). Those va
 VUS and the cohort is two families, so this is a hypothesis, not a finding about this family. But it is
 cheap to act on and it is squarely in the family's interest: a PCS assay on parental lymphocytes and
 formal genetic counselling would test whether the miscarriage history is itself part of the carrier
-phenotype, and would inform any future pregnancy. **Nothing else in this report can be acted on this
-month; this can.**
+phenotype, and would inform any future pregnancy. It is cheap, it can be done this month
+**alongside** the consensus surveillance above, and it replaces no part of it.
 
 ---
 
@@ -592,7 +594,7 @@ month; this can.**
 - **DCZ0415** — experimental TRIP13 inhibitor: wrong gene, not approved.
 - **AICAR and 17-AAG** — genuine hits in the Tang screen, neither marketed. Useful as in vitro
   positive controls only.
-- **Metformin** — fails filter 3 by roughly 1000-fold, as set out in §3.1.
+- **Metformin** — rejected at filter 3 as unevaluable on the mechanism proposed for it (§3.1).
 - **Senolytics** — the BubR1 senescence evidence rests on *genetic* clearance of p16^Ink4a+ cells via
   the INK-ATTAC transgene (PMID 22048312), which is not a transferable drug; no agent is approved with
   a senolytic indication; and senescence is an anti-tumour barrier worth preserving in a
@@ -664,7 +666,9 @@ We have tried to write something useful rather than something reassuring. The ho
 drug should he take today" is none — and we show why the obvious candidate cannot work rather than
 proposing it softly. The useful answer is a mechanism that matches his disease, an approved drug that
 reaches the required concentration, an explicit statement of the condition under which it would become
-appropriate, and an experiment that could rule it out in eight weeks.
+appropriate, and an experiment — an eight-week assay window, about twelve weeks from a fresh biopsy —
+that could fail to support it in this child's own cells. That experiment would not close the
+tumour-board question on its own, and §6 says so.
 
 That is not a cure. It is a prepared answer to a question this family may unfortunately have to ask.
 
@@ -677,9 +681,9 @@ That is not a cure. It is a prepared answer to a question this family may unfort
 examples. A candidate must pass all five. Filters 3 and 5 eliminate the most candidates and are the two
 most often skipped.*
 
-| Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not worsen the underlying defect? | Verdict |
+| Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not increase mis-segregation among survivors? | Verdict |
 |---|---|---|---|---|---|---|
-| **Metformin** | Yes (paediatric label from age 10) | Proposed via complex I → AMPK | **Not evaluable for aneuploidy selectivity — no such EC50 exists; and ~1000× short for the complex I mechanism proposed (µM plasma vs mM required)** | Renal clearance; nephrocalcinosis unassessed | Not reached | **Rejected at filter 3 as unevaluable on the proposed mechanism** |
+| **Metformin** | Yes (paediatric label from age 10) | Proposed as the marketed stand-in for the AICAR/AMPK hit | **Not evaluable for aneuploidy selectivity — no such EC50 exists; and ~1000× short for the complex I mechanism proposed (µM plasma vs mM required)** | Renal clearance; nephrocalcinosis unassessed | Not reached | **Rejected at filter 3 as unevaluable on the proposed mechanism** |
 | **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Yes on total drug: 231–312 nM Cmax vs EC50 <40 nM (5.8–7.8×); IV only, not subcutaneous | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | No evidence it increases mis-segregation; to be tested | **Fails filter 4 for this child; conditional for a patient with an active tumour** |
 | *(your candidate)* | | | | | | |
 | *(your candidate)* | | | | | | |

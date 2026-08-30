@@ -12,7 +12,7 @@ We went from variant to candidate in five steps, and the third and fifth are whe
 
 **Step 1 — establish the lesion.** Compound heterozygosity in BUB1B: `c.2210T>G` p.Leu737Ter, a
 nonsense allele that removes the C-terminal 313 residues, including the kinase domain (UniProt O60566 annotates it at 766–1050), paired with `c.3006T>G` p.Asn1002Lys inside that domain. Loss of function, matching
-the truncating-plus-missense pattern of viable MVA1: a null allele with a hypomorphic one. Reading the pair as null-plus-hypomorph is our inference from PMID 20516114; that source does not state that complete biallelic loss is lethal, and neither do we.
+the truncating-plus-missense pattern of viable MVA1: a null allele with a hypomorphic one. Reading the pair as null-plus-hypomorph is our reading of the human truncating-plus-missense pattern (PMID 20516114), which does not state that complete biallelic loss is lethal, and neither do we; the separate prediction that p.Asn1002Lys retains more residual function than L1012P comes from the Sieben mouse series (PMID 31738183), not from 20516114.
 
 **Step 2 — follow the mechanism downstream, not at the lesion.** No approved drug restores BubR1.
 We therefore asked what the lesion *produces* that is druggable. The chain is: weakened spindle
@@ -43,7 +43,7 @@ insufficient.
 filter 4 *for this child*, which is a patient-specific verdict rather than a property of the drug.
 We state the condition under which it would become appropriate — an MVA patient with an active
 tumour, where the comparator is cytotoxic chemotherapy rather than nothing — and we propose an
-eight-week experiment that could falsify the whole proposal.
+experiment — an eight-week assay window, about twelve weeks from a fresh biopsy — that could fail to support the dependency in this child's own cells. It would not, on its own, close the tumour-board question, and we say so where we describe it.
 
 ## Q3 — Generative AI declaration
 
