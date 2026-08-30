@@ -188,3 +188,90 @@ Mosaicism in MVA varies by tissue and by selection.
 ## Amendments
 
 *(none yet)*
+
+### Amendment 1 — 2026-08-30, before the proband statistic was computed
+
+**The pre-registered statistic is the wrong one for this noise, and we caught it in the calibration.**
+
+The analytic calibration above treats phase switch errors as independent per site, entering only as
+the attenuation factor (1 − 2ε). **They are not independent.** A switch error from a reference-panel
+phaser inverts the haplotype assignment for an entire *run* of consecutive sites, until the next
+switch. Under a mosaic gain the true per-site deviation is +Δ throughout, so an inverted run
+contributes −Δ, and the chromosome-wide signed mean becomes
+
+  φ_c = Δ · (1 − 2q),  where q is the *fraction of sites lying in inverted runs*.
+
+If a chromosome carries S phase segments of roughly random orientation, |1 − 2q| has magnitude ≈ 1/√S.
+At a plausible S ≈ 300 segments per chromosome that is a **~17× dilution**, which would move the limit
+of detection from the 0.30–0.67% computed above to roughly 5%. This is exactly why the published
+methods in this area (MoChA, hapLOH) run a hidden Markov model over the phased B-allele frequency
+rather than averaging it: the model absorbs the unknown orientation of each segment.
+
+**The primary statistic is therefore replaced, before any proband value was computed, by an
+orientation-invariant form:**
+
+  **Ψ_c = Σ_s w_s · ( φ_s² − v_s )**,  where the sum runs over phase segments *s* of chromosome *c*,
+  φ_s is the signed mean within segment *s*, v_s is its variance under the null, and w_s = N_s / N_c.
+
+Each segment contributes Δ² under the alternative regardless of its orientation, so segmental switch
+errors no longer cancel the signal. Under the null Ψ_c is a weighted sum of centred chi-square terms
+and its distribution is obtained by the same Monte Carlo procedure already declared.
+
+**The chromosome-wide signed mean φ_c is retained as a secondary statistic**, reported alongside, both
+because it is what was originally pre-registered and because it remains the more powerful test in the
+limit of near-perfect phase.
+
+**Segments are defined by the measured switch positions, not assumed.** Before either statistic is
+applied to the proband we measure the actual switch-error rate and segment-length distribution of our
+own phasing procedure, using the GIAB Ashkenazi trio: HG002 phased by Beagle against the 1000 Genomes
+panel, compared against Mendelian phase derived from HG003 and HG004 at trio-informative sites. That
+measurement is public data only, it is the input to the calibration, and it is reported whatever it
+says. **If the measured switch rate makes even Ψ_c underpowered below 2%, the honest conclusion is a
+measured limit rather than a detection, and that is what we will report.**
+
+The three-line summary of the analytic calibration that prompted this amendment is kept for the
+record: with independent switch errors, N = 158,612 sites on chr1 and mean depth 42.5, the limit of
+detection was 0.30% (ε = 0, κ = 1) to 0.67% (ε = 0.05, κ = 4), against the 14% our submitted report
+attributes to bulk WGS. **Prediction P2 — that the limit would remain worse than 1% — is falsified in
+that idealised model.** Whether it survives realistic segmental phasing is what the measurement above
+decides.
+
+### Amendment 2 — 2026-08-30, window size chosen on public data before unblinding
+
+Amendment 1 replaced the chromosome-wide signed mean with the orientation-invariant Ψ. Computing Ψ
+needs segment boundaries, and **in the proband we do not know where the switches are** — that
+information exists only for the GIAB trio, where Mendelian phase gives ground truth. Ψ is therefore
+computed over **fixed windows of W consecutive retained sites**, and a switch falling inside a window
+attenuates that window's φ_s rather than being absorbed by a boundary.
+
+W is a tuning parameter and it is chosen **on public data, before any proband value is computed**, by
+minimising the calibrated limit of detection under the measured switch process (0.810% per site) at
+the central overdispersion κ = 2. Monte Carlo, 40,000 null replicates per cell, on GPU:
+
+| W (sites) | windows | LOD κ=1 | LOD κ=2 | LOD κ=4 |
+|---|---|---|---|---|
+| 20 | 7,402 | 1.81% | 2.57% | 3.65% |
+| 50 | 2,960 | 1.56% | 2.21% | 3.15% |
+| 100 | 1,480 | 1.49% | 2.11% | 2.99% |
+| **125** | **1,184** | **1.46%** | **2.07%** | **2.95%** |
+| 150 | 986 | 1.47% | 2.09% | 2.96% |
+| 200 | 740 | 1.51% | 2.15% | 3.05% |
+| 300 | 493 | 1.60% | 2.26% | 3.22% |
+| 500 | 296 | 1.75% | 2.48% | 3.52% |
+
+**W = 125 sites is fixed from here.** The curve is a clean minimum and it lands on the analytic
+optimum of 1/(switch rate) = 123 sites, which is an independent check that the simulation is modelling
+the attenuation correctly. That check matters: an earlier version of this sweep contained a coding
+error in which the switch attenuation cancelled itself (the assumed sign multiplied the true sign, and
+their product is identically one), which made ever-larger windows look monotonically better. It was
+caught because the answer disagreed with the analytic optimum. The corrected sweep is the one above.
+
+**The two limits of detection are reported separately and must not be conflated:**
+
+- **1.12–2.26%** — Ψ with *known* segment boundaries. This is what a method with perfect switch
+  detection would achieve, and it is an upper bound on performance, not our result.
+- **1.46–2.95%, central estimate 2.07%** — Ψ over fixed windows, which is what we can actually run on
+  the proband. **This is the number that goes in the report.**
+
+Against the 14% our submitted report attributes to bulk WGS, that is a **6.8-fold improvement**, and
+it places the achievable limit at the upper edge of the 1–2% per chromosome that variegation implies.

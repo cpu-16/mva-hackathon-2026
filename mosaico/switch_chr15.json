@@ -1,0 +1,11 @@
+{
+ "crom": "chr15",
+ "n_comparables": 46441,
+ "n_switch": 376,
+ "tasa_switch": 0.00809646856158484,
+ "n_segmentos": 377,
+ "seg_sitios_mediana": 22,
+ "seg_bp_mediana": 40130,
+ "dilucion_realizada": 0.03748842617514694,
+ "dilucion_esperada": 0.10057910048367635
+}
