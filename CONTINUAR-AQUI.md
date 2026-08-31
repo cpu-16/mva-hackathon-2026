@@ -1,6 +1,6 @@
 # 🔄 CONTINUAR AQUÍ — estado del MVA Hackathon 2026
 
-**Última actualización: 30-ago-2026 (noche).** Documento de traspaso tras un `/clear`.
+**Última actualización: 30-ago-2026 (cierre de la noche).** Documento de traspaso tras un `/clear`.
 Léeme completo antes de tocar cualquier otro archivo.
 
 ---
@@ -106,6 +106,96 @@ El guion contradecía el reporte de la ronda 7. Se regrabaron S3, S5, S7 y S8:
 **Verificación hecha:** se transcribió el audio final con Whisper local y se comprobaron las dos
 direcciones — las frases nuevas están y "seizure", "hearing loss", "heart defect", "eleven controls",
 "could kill it" dan **0 ocurrencias**. Transcripción en `evidencia/video_transcripcion_verificacion.txt`.
+
+---
+
+## 🧫 MOSAICISMO + LA PREGUNTA "¿ESTO GANA?" — sesión del 30-ago (noche)
+
+**Veredicto de los dos revisores a la pregunta directa de Gilberto: 77–82 y 78–82 sobre 100.
+Finalista, NO ganador.** Y los dos coinciden en dónde está el techo: **no en más Rigor** (ya casi
+saturado) sino en **Impacto (25%) y Escalabilidad (15%), que están en cero**.
+Análisis completos: `evidencia/codex_ganar.md`, `evidencia/cursor_ganar.md`.
+
+### ✅ P-A RESUELTA — se sostiene
+
+37 genomas sanos con los ocho HPO del niño. **Ninguno supera nuestro 0.5871.**
+
+| Tier | n | máximo | supera 0.5871 |
+|---|---|---|---|
+| GIAB v4.2.1 | 7 | 0.5619 (GJB2, HG004) | 0 |
+| 1000G 30× | 30 | **0.5207** (CDH1, HG01885) | 0 |
+
+Aplica la frase pre-comprometida de `replay/RESULTADOS.md` §8, escrita antes de tener los datos.
+⚠️ El margen que manda sigue siendo **0.0252** contra GIAB, y **ClinVar aporta 0.0128 = el 51% de
+ese margen**. Sin ClinVar el margen cae a 0.0124. Eso va al reporte tal cual.
+
+### ⛔ MOSAICISMO: resultado RETIRADO, no borrado
+
+Se hizo la calibración (LOD 14% → ~2%), se midió la tasa de switch de Beagle contra el trío GIAB
+(0,810%/sitio), se demostró numéricamente la **no identificabilidad** de la variegación balanceada
+(detección 0,1–0,2% = la tasa de falsos positivos, incluso al 40% de células) — **eso todo sigue en
+pie**. Lo que se cayó es la conclusión sobre el paciente:
+
+1. **Calibré un test y apliqué otro.** El umbral pre-registrado de Ψ lo supera el paciente en **22 de
+   22** cromosomas con cualquier κ. Lo que reporté (z robusto entre cromosomas) es otro test, elegido
+   después de ver los datos y nunca calibrado.
+2. **"El exceso es global y no puede ser mosaicismo"** convierte una varianza en un desplazamiento de
+   media. Retirado. Lo que sí queda: la media con signo llega a +0,0018 como máximo → no hay clon
+   direccional.
+3. **La calibración NO corrió sobre datos públicos**: los N y la distribución de DP salen del VCF del
+   paciente. Solo la tasa de switch es del trío.
+4. La sobredispersión estaba mal parametrizada: κ por sitio ≈ 1,21, κ por ventana ≈ 2,27 — es
+   **correlación espacial**, no ruido i.i.d.
+
+**`mosaico/PREREGISTRO.md` enmienda 3 tiene el diseño exacto del control externo** que lo revive o lo
+mata: dos estadísticos sin signo comparables en profundidad, piloto de 10 muestras en chr8 vs chr17
+antes del confirmatorio de 30, adelgazamiento binomial del paciente a la profundidad del control, y
+reglas de falsificación técnicas/biológicas fijadas de antemano.
+
+### 🔴 EL AGUJERO QUE NADIE HABÍA MIRADO
+
+`data/Challenge_Clinical_Phenotype_1.docx` tiene **407 palabras** y del tumor solo dice
+"Rhabdomyosarcoma". **Sin cariotipo, sin CMA, sin ploidía, sin histología.** La respuesta preparada
+del Track 2 (bortezomib para un futuro tumor sólido) **no tiene ni una medición del tumor que el niño
+sí tuvo** — y DepMap ya nos dijo que la dependencia no se extiende a sólidos. Hay que declararlo antes
+de que lo encuentre un juez.
+
+### 🎯 LO QUE SUBE EL TECHO — trabajo real, no prosa (ambos revisores coinciden)
+
+**Impacto:**
+- **Página de orden clínica para segregación parental**: dos amplicones Sanger en `chr15:40209701` y
+  `40220612` + tabla de interpretación (cada padre con una → trans, diagnóstico se sostiene; uno con
+  las dos → cis, el Track 1 está mal) + PCS en linfocitos parentales (PMID 42434306). Es el ÚNICO
+  experimento que confirma el diagnóstico, informa un embarazo futuro y explica HP:0200067. **1 día.**
+- **Cobrar el CHIP-negativo** que ya tenemos y enterramos: un niño post-ERMS sin lesión clonal
+  cromosómica detectable por encima de ~2% de células. **0 de cómputo.** (Pendiente del control.)
+- **Cálculo de potencia del §6** (2–3 días, sin FASTQ): si la carga proteotóxica escala con la
+  fracción aneuploide, un cultivo de fibroblastos al 1–2% por cromosoma NO son las líneas de Ippolito.
+
+**Escalabilidad:**
+- **Empaquetar MVA-Replay** como herramienta: gen candidato + dos alelos + set HPO + VCF de fondo →
+  score plantado, rank, contrafactual sin ClinVar, control de HPO ajeno. Ya se corrió 61 veces. Otro
+  equipo con otra enfermedad lo usa en una tarde. **3–5 días.**
+- **Llenar la hoja de cinco filtros para MVA2 (CEP57) y MVA3 (TRIP13)**: van a dar respuestas
+  DISTINTAS (CEP57 no tiene riesgo de tumor embrionario → bortezomib muere en el filtro 2/4). Un marco
+  que da lo mismo para tres enfermedades es un eslogan. **2 días, sin cómputo nuevo.**
+
+### ⚠️ GOTCHA NUEVO: los streams remotos mueren en silencio
+
+**Tres truncamientos hoy, ninguno dio error**: panel 1000G chr17 (417 de 862 MB), chr19 (256 de 718),
+y la extracción del control (cubrió el **4,9%** de chr21 y `bcftools` reportó éxito). Un panel
+truncado no falla: **fasa mal en silencio**. chr17 pasó de 25.829 a 57.063 sitios al reponerlo.
+⛔ **Toda extracción remota necesita verificación explícita de cobertura después**, no confiar en el
+código de salida.
+
+### Estado de procesos al cerrar
+
+| | |
+|---|---|
+| Descarga de los 85 GB FASTQ | **PAUSADA** en 2/8 (21 GB). Reanudable: `./_dl_fastq.sh` continúa donde quedó. Los dos revisores dicen que alinear **ya no es el camino principal** — solo si el control deja al paciente fuera del sobre |
+| Control sano 1000G | **DETENIDO** — salió truncado, hay que rehacerlo con verificación |
+| Benchmark tier 2 | ✅ terminado, 30/30 |
+| Disco | 119 GB libres |
 
 ---
 
