@@ -1,5 +1,11 @@
 # Can bulk WGS see the disease's defining feature? — results
 
+> ⚠️ **STATUS: the proband conclusion in §5 is WITHDRAWN pending an external control.** Two reviewers
+> found that we calibrated one test and applied another: the pre-registered rule fires on 22 of 22
+> autosomes, and the negative we reported came from an uncalibrated post-hoc statistic. See
+> Amendment 3 in `PREREGISTRO.md`. §1–§4 (the wrong-statistic diagnosis, the measured switch rate,
+> the calibration arithmetic and the identifiability result) are unaffected.
+
 **Team ciberpty · MVA Hackathon 2026 · 30-ago-2026.**
 Design, statistic, masks, confound exclusions and predictions were fixed in `PREREGISTRO.md` and
 committed (`ed0feae`) before anything below was computed. The calibration was completed and committed
@@ -101,9 +107,16 @@ the same observable distribution. No depth and no statistic can separate them fr
 global nuisance term looks like, not what a mosaic trisomy of one chromosome looks like — that would
 put a single chromosome far above a tight cluster.
 
-**The excess is global, and it cannot be mosaicism.** If the median 2.27× were signal it would
-correspond to a ~3.1% directional imbalance on *every* autosome simultaneously, which is neither
-variegated aneuploidy nor any coherent clonal event.
+**⚠️ We wrote "the excess is global, and it cannot be mosaicism". That is withdrawn.** It converts a
+variance into a mean shift: Ψ is raised both by a directional clone and by extra window-scale
+variance, and we back-solved the excess as though only the first were possible. What the *secondary*
+statistic supports, and this stands, is narrower: the chromosome-wide signed mean reaches at most
++0.0018 (chr17), so there is no evidence of a **directional** preferred-homologue clone.
+
+**And the pre-registered test fires on all 22 autosomes** at every overdispersion setting (thresholds
+5.58e-6, 1.12e-5, 2.23e-5 for κ = 1, 2, 4). That is not 22 mosaic events; it is a null model that does
+not describe these data. Until the external control says what a healthy genome does under the same
+pipeline, no detection or non-detection can be claimed.
 
 **The pre-declared confound exclusions did not have to be invoked.** None of the therapy-related
 clonal lesions is elevated: chr5 (1.92×), chr7 (3.46×), chr8 (1.78×), chr13 (2.27×), chr20 (1.89×).

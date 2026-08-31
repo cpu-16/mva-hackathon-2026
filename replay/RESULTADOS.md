@@ -136,7 +136,10 @@ Variant scores are **identical in every row** (1.0000 for the nonsense, 0.9229 f
 
 **Two results, both against what we wrote:**
 
-1. **Removing ClinVar entirely costs 0.0128 in absolute score, not the 88% we wrote.** We do not
+1. **Removing ClinVar entirely costs 0.0128 in absolute score, not the 88% we wrote — but that is not
+small where it matters.** Our margin over the highest healthy genome is 0.5871 − 0.5619 = **0.0252**,
+so the ClinVar contribution is **51% of the margin**: without it the margin falls to 0.0124. The
+database is not what carries the ranking, and it is half of what separates us from the null. We do not
    restate it as a share either: that is the same invalid operation we withdrew for the phenotype. X3 is the child's exact
    molecular architecture (a nonsense plus a rare missense in BUB1B) with **no ClinVar classification
    on either allele**, and it still scores 0.5743 and still ranks 1 in both backgrounds. The gradient
@@ -234,7 +237,8 @@ explicitly in the report:
 > The pipeline's top-ranked row for BUB1B is a dominant single-allele model, not the recessive
 > compound-heterozygous model the diagnosis rests on; and the compound-heterozygous call is invariant
 > to whether the two alleles are on the same chromosome. The recessive interpretation is supplied by
-> the inheritance model and the phenotype, not by the retrieval.
+> the inheritance model of the disease and the two-allele architecture — not by the retrieval, and
+not by the phenotype either, which §4b showed does not even select the disease mapping.
 
 ## 6. Predictions scoreboard (7 pre-registered, 6 resolved)
 

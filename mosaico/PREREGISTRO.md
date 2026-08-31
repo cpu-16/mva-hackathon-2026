@@ -275,3 +275,89 @@ caught because the answer disagreed with the analytic optimum. The corrected swe
 
 Against the 14% our submitted report attributes to bulk WGS, that is a **6.8-fold improvement**, and
 it places the achievable limit at the upper edge of the 1–2% per chromosome that variegation implies.
+
+### Amendment 3 — 2026-08-30, the result is withdrawn pending an external control
+
+Two reviewers were given the finished mosaicism result and found three errors. All three are ours, all
+three are confirmed, and together they mean **the negative conclusion is not reportable as it stands.**
+
+**(a) We calibrated one test and applied another.** The pre-registered decision rule is Ψ against a
+Monte Carlo null at a genome-wide false-positive rate of 5%. Checked against the proband:
+
+| κ | calibrated threshold | chromosomes exceeding it |
+|---|---|---|
+| 1 | 5.58 × 10⁻⁶ | **22 of 22** |
+| 2 | 1.12 × 10⁻⁵ | **22 of 22** |
+| 4 | 2.23 × 10⁻⁵ | **22 of 22** |
+
+The pre-registered test fires on every autosome at every overdispersion setting. That is not 22 mosaic
+events; it is a null model that does not describe the data. What we reported instead — a robust
+z-score of each chromosome against the other 21, threshold |z| = 3 — is **a different test, chosen
+after seeing the data, and never calibrated.** By construction it absorbs any process shared by all
+chromosomes into its centre, which is exactly the process that is present. The "no chromosome exceeds
+|z| = 3" conclusion is therefore a statement about a post-hoc statistic, not the pre-registered one.
+
+**(b) "The excess is global, and it cannot be mosaicism" converts a variance into a mean shift.**
+Ψ = mean(φ_s² − v_s) is raised both by a directional clone *and* by extra window-scale variance. We
+took the observed excess, back-solved it as though it were a squared mean shift, obtained "3.1% on
+every autosome simultaneously", and called that absurd. The absurdity belongs to the conversion, not
+to the data. Withdrawn. What the secondary statistic does say is narrower and stands: the
+chromosome-wide signed mean is at most +0.0018 (chr17), so there is no evidence of a *directional*
+preferred-homologue clone at any appreciable fraction.
+
+**(c) The calibration did not run on public data.** `01_calibracion.py`, `05_mc_gpu.py` and
+`06_ventana.py` all take the number of retained sites and the depth distribution from
+`mosaico/sitios/`, which is built from the **proband's** VCF. The only public input was the switch
+rate and segment-length distribution measured on the GIAB trio. The correct description is *a
+parametric simulation conditioned on the proband's site count and depth distribution, with a switch
+rate estimated independently in a trio* — not "calibrated on seven GIAB genomes" and not "the
+injection runs on public data". Both phrasings are withdrawn from `RESULTADOS.md`.
+
+**(d) The overdispersion was mis-parameterised.** Per-site standard deviation of the signed deviation
+is 0.082–0.086 across all autosomes against a binomial 0.075, i.e. **site-level κ ≈ 1.21**. The 2.27×
+we quoted is a *window-level* ratio: averaging 125 sites does not reduce variance as 1/W, which is a
+spatial-correlation signature. Feeding 2.27 into an i.i.d. beta-binomial Monte Carlo, as
+`06_ventana.py` does, folds a correlated term into an independent parameter. The two must be reported
+separately: **σ²_extra** (additive, comparable across depths) and **κ_window** (the ratio actually
+measured).
+
+### What replaces it, fixed now before the control is run
+
+The external control is no longer a robustness check; it is a **precondition** for any claim.
+
+**Statistics, both unsigned — phase is not needed, because under the null the sign is arbitrary, and
+phasing 1000G samples against the panel that contains them would be invalid anyway:**
+
+1. **σ²_extra = var(b − 0.5) − 0.25/DP**, per chromosome.
+2. **κ_window = var(125-site mean of (b − 0.5)) / (0.25 / DP / W)**.
+
+**Pilot, decided before the confirmatory run:** chr8 (the proband's lowest, 1.78×) and chr17 (highest,
+3.57×), 10 unrelated 1000 Genomes individuals, 2 per superpopulation, from the raw GATK callset that
+carries `AD`. *If the proband sits inside that envelope on both, the excess is the noise model of GATK
+allele depths at common SNPs and the limit stands as a second-order limit. If chr17 is outside and
+chr8 is inside, there is a chromosome-specific claim and the read-level work is justified.*
+
+**Confirmatory:** the 30 pre-registered unrelated individuals, all 22 autosomes, identical site rule,
+masks and W.
+
+**Depth is a confound and is handled explicitly.** The proband is ~44× and the controls ~30×. A fixed
+mapping bias is a *larger* multiple of binomial standard error at higher depth, so κ_window alone
+would make the proband look worse even if the physics were identical. The proband's allele depths are
+therefore binomially thinned to each control's depth and the comparison repeated. σ²_extra is reported
+because it is additive and depth-comparable.
+
+**Not matched, and stated:** caller (singleton GATK 4.2.4.0 versus the NYGC joint call), PCR chemistry,
+aligner. Restricting to common SNPs (MAF ≥ 0.01) is the mitigation for joint-calling differences, not
+a hand-wave.
+
+**Falsification rules, fixed now.** *Technical origin* is favoured if the proband lies inside the
+depth-matched envelope, if the excess collapses when the low-mappability and high-reference-bias
+tertiles are dropped, and if the chromosome rank order is reproduced in controls. It is falsified if
+the proband remains outside after thinning and after dropping those tertiles. *Biological origin* is
+favoured only if the excess is proband-specific, survives the masks, and forms a coherent event —
+and even then a third category remains open: a biologically anomalous specimen that is not MVA
+(contamination, clonal haematopoiesis, tissue admixture).
+
+**The identifiability result is unaffected** and does not depend on any of this: a balanced variegated
+mixture has mean copy number exactly 2 and mean allele fraction exactly 0.5 by symmetry, so it is
+non-identifiable in bulk at any depth and under any statistic.
