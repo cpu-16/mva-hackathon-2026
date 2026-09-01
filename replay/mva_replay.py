@@ -204,6 +204,8 @@ def main(argv=None):
     p.add_argument("--fasta", default=FASTA, help="hg38 FASTA (indexed file, or a dir of chrN.fa.bgz) for the REF check")
     p.add_argument("--xmx", default="10g")
     p.add_argument("--dry-run", action="store_true", help="resolve alleles, run the checks, print the plan; do not run Exomiser")
+    p.add_argument("--allow-contaminated-control", action="store_true",
+                   help="run even if a control HPO term is annotated to the planted gene (default: refuse)")
     p.add_argument("--self-check", action="store_true")
     a = p.parse_args(argv)
     if a.self_check: return self_check()
@@ -240,8 +242,16 @@ def main(argv=None):
         if al["ref_matches_fasta"] is False: sys.exit(f"REF of {al['input']} does not match hg38 at {al['chrom']}:{al['pos']}")
         if al["ref_matches_fasta"] is None: report["warnings"].append(f"no FASTA for {al['chrom']}: REF of {al['input']} not verified")
         if al["background_overlap"]: report["warnings"].append(f"background already has a record overlapping {al['input']}")
-    for h, dis in hpo_annotated_to_gene(a.gene, a.hpo_unrelated).items():
+    # A contaminated control term has bitten this project twice, both times because a warning was
+    # printed and read past. It now stops the run unless the caller says otherwise in writing.
+    contaminated = hpo_annotated_to_gene(a.gene, a.hpo_unrelated)
+    for h, dis in contaminated.items():
         report["warnings"].append(f"'unrelated' term {h} IS annotated to {a.gene} via {','.join(dis)} — pick another control term")
+    if contaminated and not a.allow_contaminated_control:
+        for h, dis in contaminated.items():
+            print(f"CONTAMINATED CONTROL: {h} is annotated to {a.gene} via {','.join(dis)}", file=sys.stderr)
+        sys.exit("refusing to run: the unrelated-HPO control leaks the answer. Pass different "
+                 "--hpo-unrelated terms, or --allow-contaminated-control to override deliberately.")
     for h, dis in hpo_annotated_to_gene(a.gene, a.hpo).items():
         report.setdefault("hpo_annotated_to_gene", []).append(f"{h} ({','.join(dis)})")
 

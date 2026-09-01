@@ -539,8 +539,19 @@ denominator here, because a cell is under proteotoxic load whichever chromosome 
 pre-registered power calculation (`potencia/PREREGISTRO.md`, committed before the run) gives **power
 0.897** for this design at the fraction that matters — 30% of cells carrying at least one aneuploidy,
 4× EC50 selectivity, n = 3, α = 0.05 — and **power 0.063** under the per-chromosome reading we had
-implied. The design is powered; the old hedge was an arithmetic error in our own favour, in the sense
-that it would have excused a negative result.
+implied. The old hedge rested on the wrong denominator.
+
+**The new statement needs its own qualifier, and a second pre-registered analysis the same day cut it
+down.** 0.897 holds *for a 4× effect, in a ~30% aneuploid culture, at 10% well-level CV*, and none of
+those three is measured in these cells. Worse for us: proteotoxic load is a dose, not a switch, and an
+MVA cell carries **about one** altered chromosome where the lines that gave the < 40 nM EC50 carry on
+the order of eighteen altered arms. In DepMap, in the one lineage where the aneuploidy–proteasome
+dependency is significant at all, PSMB5 dependency moves **0.09 residual SD at two arms against 0.84
+at eighteen** (`potencia/RESULTADOS_2_DOSIS.md`, pre-registered as `45c4ed7`; in solid lines the slope
+is not distinguishable from zero and we report that as uninformative). At a 2× selectivity the power
+is **0.387**. So: **the design is powered for the effect size we hoped for and underpowered for a
+plausible smaller one, and we cannot yet say which regime these cells are in.** We replaced one
+over-claim with a narrower one rather than defending the first.
 
 **It buys a protocol change, not just a corrected sentence.** Power collapses below a cell fraction of
 about 0.25 (0.589 at 0.20, 0.196 at 0.10), and **nobody has counted metaphases in these fibroblasts** —
@@ -666,16 +677,16 @@ phenotype, and would inform any future pregnancy. It is cheap, it can be done th
 **We have written the request out so that it does not have to be reconstructed.**
 `clinico/PARENTAL_SEGREGATION_ORDER.md` is a one-page laboratory request a clinician can adapt and
 sign: both loci, two Sanger amplicons with primer sequences, and an interpretation table written
-**before** the result, covering all five outcomes including the two that would refute our own Track 1
-answer. The primers were designed against GRCh38 with common 1000 Genomes SNVs and RepeatMasker
+**before** the result, covering all five outcomes — including the *cis* result, which would refute
+our own Track 1 interpretation outright. The primers were designed against GRCh38 with common 1000 Genomes SNVs and RepeatMasker
 intervals excluded from the primer regions, and each of the four was then counted across the entire
 assembly: all occur exactly once. That check was not ceremonial — the first pair the design software
 returned sat inside an *AluY* element 272 bp from the *c.2210* site and has roughly a hundred exact
 copies in the genome. A primer like that does not fail in review; it fails in the laboratory, and in
 a segregation test allele drop-out reads as *"this parent does not carry it"*.
 
-This is the only experiment in the whole project that confirms the diagnosis, informs a future
-pregnancy, and speaks to HP:0200067 — and it costs two blood draws.
+This is the only experiment in the whole project that can settle the phase, inform a future
+pregnancy and speak to HP:0200067 at once, and it needs blood rather than a new laboratory.
 
 ---
 
@@ -723,15 +734,17 @@ pregnancy, and speaks to HP:0200067 — and it costs two blood draws.
   can apply the framework without reading this report.
 - **The framework was transferred prospectively to the other two MVA genes, and it gives different
   answers.** `TRANSFER_MVA2_MVA3.md` holds the worksheet filled for MVA2 (*CEP57*) and MVA3
-  (*TRIP13*) with the same candidate and the filters held fixed. Bortezomib is **rejected at filter 2
-  for MVA2** — CEP57-related MVA is not associated with embryonal tumours and its cells show minimal
-  SAC deficiency (PMID 28553959), so neither the mechanism nor the tumour-board setting that inverts
-  filter 4 ever arises — and stays **conditional for MVA3**, which shares both the embryonal-tumour
-  risk and the severe checkpoint failure. A framework that returns the same verdict for three diseases
+  (*TRIP13*) with the same candidate and the filters held fixed. For **MVA2** bortezomib **fails
+  filter 4 and cannot be evaluated at filters 2–3**: no proteasome measurement exists in *CEP57*
+  cells, and the setting that would invert the safety filter — an active malignancy — **has not been
+  reported** in the 15 published MVA2 individuals (PMID 39264246). That is a different failure from
+  MVA1, where the same filter fails but the inverting condition demonstrably exists. It stays
+  **conditional for MVA3**, which shares both the embryonal-tumour risk and the severe checkpoint
+  failure. A framework that returns the same verdict for three diseases
   is a slogan; one that kills the candidate in MVA2 and holds it conditional in MVA3 is a demonstration.
 - **The retrieval benchmark is packaged as a tool, not described as one.** `replay/mva_replay.py` takes
   a candidate gene, two alleles, an HPO set and a background VCF, and returns the planted score, the
-  rank, the ClinVar-stripped counterfactual and an unrelated-HPO control. It is a single file with no
+  rank, the ClinVar-whitelist-off counterfactual and an unrelated-HPO control. It is a single file with no
   dependencies beyond what an Exomiser installation already needs, and a team working on a different
   rare disease can spike their own gene into a public genome in an afternoon. Its built-in check that
   a control HPO term is not annotated to the planted gene is what caught the contamination described

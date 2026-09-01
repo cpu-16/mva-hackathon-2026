@@ -18,8 +18,8 @@ The answers are different, and they are different *early*:
 
 | | MVA1 — biallelic *BUB1B* | MVA2 — biallelic *CEP57* | MVA3 — biallelic *TRIP13* |
 |---|---|---|---|
-| Bortezomib verdict | Fails filter 4 for **this** child; conditional for a patient with an active tumour | **Rejected at filter 2** | **Conditional — passes 1–3, filters 4–5 undecided** |
-| Where it stops | Patient-specific safety | Mechanism | Nothing stops it; nothing licenses it either |
+| Bortezomib verdict | Fails filter 4 for **this** child; conditional for a patient with an active tumour | **Fails filter 4; filters 2–3 not evaluable** | **Conditional — passes 1–3, filters 4–5 undecided** |
+| Where it stops | Patient-specific safety, with the inverting condition **demonstrably present** (he has already had an embryonal tumour) | Patient-specific safety, with the inverting condition **never reported** in 15 published individuals — and the mechanism unmeasurable besides | Nothing stops it; nothing licenses it either |
 
 This is a **prospective, desk-based** exercise. Neither worksheet rests on a patient, a sample or an
 experiment. No proteasome data of any kind exist for *CEP57*- or *TRIP13*-deficient cells
@@ -62,17 +62,25 @@ is no comparator against which an 18% paediatric neuropathy rate becomes accepta
 
 | Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not increase mis-segregation among survivors? | Verdict |
 |---|---|---|---|---|---|---|
-| **Bortezomib** | Yes | **No — not demonstrated.** It does not touch the lesion (centrosomal microtubule nucleation/stabilisation, PMID 21552266). The consequence route is the aneuploidy-driven proteasome dependency (PMID 39247952), and *CEP57*-MVA cells show **"minimal SAC deficiency"** (PMID 28553959), so the burden the drug exploits is expected to be smallest here. **No proteasome measurement in *CEP57* cells exists** | **Not reached.** Would be *not evaluable* in any case: no aneuploidy-stratified EC50 in *CEP57*-deficient cells exists (§4 below) | **Not reached.** Also not answerable in the abstract — filter 4 is patient-specific by construction | Not reached | **Rejected at filter 2 — not demonstrated in this genotype, and no clinical setting in which filter 4 could invert (no cancer in 15 published MVA2 individuals, PMID 39264246)** |
+| **Bortezomib** | Yes | **Not evaluable.** It does not touch the lesion (centrosomal microtubule nucleation/stabilisation, PMID 21552266). The consequence route is the aneuploidy-driven proteasome dependency (PMID 39247952) and **no proteasome measurement in *CEP57* cells exists**. *CEP57*-MVA cells show "minimal SAC deficiency" (PMID 28553959), which is a statement about the checkpoint and not about the aneuploid burden the drug exploits — so it is a reason to expect less, not a demonstration of less | **Not evaluable.** No aneuploidy-stratified EC50 in *CEP57*-deficient cells exists (§4 below) | **Fails.** The report's positive case is conditional on an active malignancy, because outside one the 18% paediatric neuropathy rate decides against it (REPORT §4). **No cancer has been reported in the 15 published MVA2 individuals** (PMID 39264246), so the setting that inverts this filter has not been observed to occur | Not reached | **Fails at filter 4, and cannot be evaluated at filters 2–3.** Different from MVA1 in kind: MVA1 also fails filter 4, but there the inverting condition demonstrably exists — this child has already had an embryonal tumour |
 
-**The objection to our own verdict, stated before a reviewer makes it.** "Minimal SAC deficiency" is a
-statement about the *checkpoint*, not directly about the **aneuploid fraction**. Biallelic
-loss-of-function *CEP57* is a documented cause of "constitutional mosaic aneuploidies" (PMID 21552266),
-so these cells are aneuploid; Ippolito's dependency is driven by the stoichiometric imbalance of the
-aneuploid **state**, not by the rate at which new errors are made (PMID 39247952). Our step from
-"minimal SAC deficiency" to "less proteotoxic burden" is therefore an **inference**, and the report
-labels it as one ("Less mis-segregation should mean less proteotoxic burden", §9). It is falsifiable:
-a per-cell aneuploidy measurement in *CEP57* patient cells could show a burden comparable to MVA1, and
-that would move this cell from "no" to "not evaluable" — it would still not make it a "yes".
+**Why filter 2 is "not evaluable" and not "no" — we corrected this after an adversarial review.**
+An earlier version of this sheet rejected the candidate *at filter 2*, reasoning from "minimal SAC
+deficiency" to "less proteotoxic burden". That step does not hold. "Minimal SAC deficiency" is a
+statement about the *checkpoint*, not about the **aneuploid fraction**: biallelic loss-of-function
+*CEP57* is a documented cause of "constitutional mosaic aneuploidies" (PMID 21552266), so these cells
+*are* aneuploid, and Ippolito's dependency is driven by the stoichiometric imbalance of the aneuploid
+**state**, not by the rate at which new errors are made (PMID 39247952). Absence of a measurement is
+"not evaluable"; it is not a negative. A per-cell aneuploidy measurement in *CEP57* patient cells
+could show a burden comparable to MVA1 — and it still would not make filter 2 a "yes", because no
+proteasome data would exist for it.
+
+**The absence of reported cancer was also in the wrong column, and we moved it.** It was being used to
+strengthen a *mechanism* verdict. Whether a clinical setting exists in which the risk becomes worth
+taking is filter 4, which is where it now sits. It is also weaker than it looks: fifteen reported
+individuals is a small denominator, and the same 2024 consensus that records no cancer among them
+still recommends surveillance for all MVA conditions (PMID 39264246). We therefore write "has not been
+reported to occur", never "does not occur".
 
 What does *not* depend on that inference is the second half of the verdict. The report's positive case
 for bortezomib is explicitly conditional on an active malignancy, because outside one the neuropathy
@@ -104,8 +112,9 @@ lines of PMID 39247952. Either one reopens the sheet. Neither exists today.
 3. **The gate is the same experiment.** REPORT §6 is written for *BUB1B* fibroblasts; run on *TRIP13*
    patient fibroblasts it answers the same question with the same advancement criteria, including the
    stop signal (patient cells markedly more sensitive than controls *without* the aneuploidy-high
-   positive control shifting further ⇒ constitutional toxicity, not selectivity). A negative result is
-   ambiguous by the same design.
+   positive control shifting further ⇒ constitutional toxicity, not selectivity). **It inherits the
+   gate too**: the aneuploid cell fraction must be measured on the culture before treatment, and the
+   replicate count follows from it (REPORT §6, `potencia/RESULTADOS.md`).
 
 ---
 
@@ -125,11 +134,16 @@ so we state both:
 **What is missing, concretely.** A dose–response in *CEP57*- and in *TRIP13*-deficient patient cells
 against matched controls and an aneuploidy-high positive control, with per-cell aneuploidy measured on
 the same population — i.e. the design of REPORT §6, run twice more. There is a reason to want the
-per-cell number specifically: §5 of the report computes that variegation leaves each chromosome
-affected in **1–2% of cells** in an illustrative 30%-aneuploid population, so a constitutional
-fibroblast culture from any of the three genotypes may simply not be aneuploid enough to express a
-dependency measured in *highly* aneuploid lines. That objection applies to MVA2 and MVA3 exactly as it
-applies to MVA1, and it is the reason a genotype-specific EC50 is not a formality.
+per-cell number specifically, and it is **not** the "1–2% of cells" argument, which is a
+per-chromosome figure and the wrong denominator for this question (`potencia/RESULTADOS.md` §2).
+The right reason is a dose one: proteotoxic load scales with how much of the genome is unbalanced,
+and an MVA cell carries **about one** altered chromosome while the lines the < 40 nM EC50 came from
+carry on the order of eighteen altered arms. In DepMap, within the lineage where the
+aneuploidy–proteasome dependency is real at all, the PSMB5 dependency changes by **0.028 gene-effect
+units per arm** — so two arms move it 0.09 residual standard deviations while eighteen move it 0.84
+(`potencia/RESULTADOS_2_DOSIS.md`). The generic denominator is therefore measured at the far end of
+the range from where these three genotypes sit. That applies to MVA2 and MVA3 exactly as it applies to
+MVA1, and it is why a genotype-specific EC50 is not a formality.
 
 **We do not manufacture the missing cells.** Substituting the generic aneuploid-line EC50 as if it
 were a *CEP57* or *TRIP13* value would produce a ratio with no meaning, which is the error the

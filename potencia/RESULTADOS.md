@@ -1,4 +1,4 @@
-# The §6 assay is powered — but only under the right denominator, and f must be measured first
+# The §6 assay can be powered, in a regime we have not measured
 
 **Team: ciberpty** · 2026-09-01 · Pre-registered in `potencia/PREREGISTRO.md`, committed as `aa3143f`
 **before** any number below existed. Nothing here was chosen after seeing the result.
@@ -14,6 +14,13 @@ write this and nothing else:
 > design"* is **withdrawn as it applies to statistical power**. The design as written — 8
 > concentrations, 3 biological replicates per arm, 72 h — detects a **4× EC50 selectivity** in a
 > culture where **30% of cells carry an aneuploidy**, with 90% power at α = 0.05.
+>
+> ⚠️ **Read that with its qualifier, which is load-bearing: *powered for a 4× effect, if the treated
+> culture is ~30% aneuploid and well-level CV is 10%.*** Neither of those two is measured in these
+> cells. At 2× selectivity power is 0.387; at CV 0.15 it is 0.593. And a second pre-registered
+> analysis the same day (`RESULTADOS_2_DOSIS.md`) gives us our own reason to doubt that 4× describes
+> a cell carrying one extra chromosome. **"The assay is powered" without the qualifier is not a
+> statement we can defend.**
 >
 > The separate caveat is **unaffected and still stands**: dermal fibroblasts are constitutional MVA
 > cells, not tumour cells, so a negative does not close the tumour-board question, and a positive is
@@ -56,10 +63,17 @@ is likely **lower** than *f* at biopsy.
 
 **Consequence, and it is a change to §6 rather than a caveat added to it:**
 
-> Add a **gating measurement** before the dose–response: metaphase counting with premature chromatid
-> separation scoring on the expanded fibroblast culture, at the passage that will be treated. This is
-> not a new assay — PCS scoring is the diagnostic criterion for MVA and the laboratory doing this work
-> already runs it. It measures *f* directly.
+> Add a **gating measurement** before the dose–response: a **metaphase count of cells carrying at
+> least one numerical chromosome abnormality**, on the expanded fibroblast culture, at the passage
+> that will be treated. This is not a new assay — the laboratory doing this work already sets up
+> metaphase spreads, because premature chromatid separation scoring is the diagnostic criterion for
+> MVA.
+>
+> ⚠️ **PCS scoring is not the same endpoint and does not substitute for it.** PCS is a
+> centromere-cohesion phenotype; *f* is the proportion of cells with an abnormal chromosome *number*.
+> The same slides give both, but they must be counted separately. An earlier version of this section
+> conflated them. Record the number of abnormal chromosomes **per abnormal cell** at the same time —
+> `RESULTADOS_2_DOSIS.md` shows the per-cell burden matters as much as the fraction.
 >
 > | Measured *f* | What to do |
 > |---|---|
@@ -97,6 +111,25 @@ is not powered to detect a weak effect — and the honest framing is that it is 
 effect size that would matter clinically, not any effect. And **assay noise matters more than
 replicate count**: going from CV 0.10 to 0.15 costs more power (0.904 → 0.593) than dropping from
 n = 4 to n = 3 (0.982 → 0.897). Tighten the plating and the readout before adding replicates.
+
+## 5b. Two places where the implementation is weaker than the pre-registration said
+
+Found by adversarial review of this document, and recorded rather than quietly fixed:
+
+- **The pre-registration says "four-parameter Hill curve"; the code fits two parameters.**
+  `01_potencia.py` fits EC50 and slope with the top fixed at 1 and the bottom at 0. That is the right
+  model for a normalised viability readout, but it is *not* what the pre-registration wrote, and a
+  four-parameter fit on 8 points with n = 3 would be noticeably less stable. The reported power is
+  therefore **optimistic relative to the declared model**, and the declared model is the one we
+  committed to. We report the discrepancy; we do not re-run and claim the new number was the plan.
+- **The noise model has no shared replicate term.** Each concentration gets independent log-normal
+  error, with no donor, plate or batch effect. Real dose–response curves are correlated within a
+  plate, which makes fitted EC50s noisier than simulated ones. This too pushes the reported power
+  **upward**. The CV sweep (0.05 / 0.10 / 0.15) is the only handle on it, and CV 0.15 already costs
+  more power than dropping a replicate.
+
+Both errors point the same way: **0.897 is an upper bound on the power of this design, not an
+estimate of it.**
 
 ## 6. What this does not establish
 

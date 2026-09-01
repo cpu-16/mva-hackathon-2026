@@ -41,12 +41,13 @@ a larger panel does not fix it: roughly 10⁶ haplotypes would be needed. Two he
 a singleton are a priori 50/50 *cis* or *trans*, and rarity does not phase them.
 
 **Testing the parents is the cheapest experiment in the entire project, and the only one that can
-confirm the diagnosis.**
+settle the phase.** It cannot, on its own, establish that the missense allele is pathogenic — that
+needs a functional assay which does not exist for this substitution (§4).
 
 ## 2. Why it matters — three consequences, not one
 
-1. **It confirms or refutes the diagnosis.** A *cis* result means the reported compound
-   heterozygosity is wrong and the search must reopen — a second hit could be a deletion, a deep
+1. **It can refute the diagnosis outright, or leave it standing on firmer evidence.** A *cis* result
+   means the reported compound heterozygosity is wrong and the search must reopen — a second hit could be a deletion, a deep
    intronic variant or uniparental disomy, none of which the current analysis would have seen.
 2. **It informs any future pregnancy.** If both parents are carriers, recurrence risk is 25% and
    prenatal or preimplantation testing becomes available to them. That is a decision they cannot
@@ -116,7 +117,7 @@ diagnosis.
 
 | Result | Phase | What it means | What follows |
 |---|---|---|---|
-| One parent carries **A**, the other carries **B** | ***trans*** | **The MVA1 diagnosis is confirmed.** Both parents are carriers | Recurrence risk 25%; offer counselling and reproductive options; the Track 2 report's premise holds |
+| One parent carries **A**, the other carries **B** | ***trans*** | **The compound-heterozygous model is supported, not proven.** Both parents are carriers. Phase in *trans* adds PM3-style evidence for the missense; it does **not** by itself establish that p.Asn1002Lys is pathogenic, and no functional assay of that substitution exists | Recurrence risk 25% **if** the missense is accepted as causal; counselling should state that it remains a VUS supported by segregation. The Track 2 report's premise holds |
 | One parent carries **both** A and B | ***cis*** | **The compound-heterozygous interpretation is wrong.** One *BUB1B* copy is intact | Reopen the search: CNV/deletion analysis, deep intronic variants, uniparental disomy of 15q. The Track 1 answer must be revised |
 | One parent carries one variant; **neither** carries the other | Not resolved | The second variant is *de novo* **or** the parent is a germline mosaic. Segregation alone cannot place a *de novo* allele on either chromosome | Long-read sequencing of the child, or allele-specific RT-PCR on patient RNA, is then the only route to phase |
 | **Neither** parent carries **either** variant | Not resolved | Both *de novo* — rare — or a parental relationship different from the one recorded | Handle per laboratory policy; this possibility must be covered in consent **before** samples are taken |
