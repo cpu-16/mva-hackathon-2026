@@ -1,0 +1,133 @@
+[
+  {
+    "target": {
+      "name": "BUB1B_c.2210T>G_p.Leu737Ter",
+      "pos": 40209701,
+      "ref": "T",
+      "alt": "G",
+      "exon": "17/23"
+    },
+    "window": "chr15:40208701-40210701",
+    "common_snps": [
+      {
+        "pos": 40208785,
+        "change": "C>T",
+        "af": 0.3988
+      },
+      {
+        "pos": 40209107,
+        "change": "C>T",
+        "af": 0.0147
+      },
+      {
+        "pos": 40209277,
+        "change": "C>T",
+        "af": 0.0971
+      },
+      {
+        "pos": 40209300,
+        "change": "A>C",
+        "af": 0.0062
+      },
+      {
+        "pos": 40209419,
+        "change": "G>A",
+        "af": 0.0056
+      },
+      {
+        "pos": 40209792,
+        "change": "T>G",
+        "af": 0.0965
+      }
+    ],
+    "chosen": {
+      "rank": 0,
+      "left": "AGTGCTGACTGTGTAATCTTGA",
+      "right": "GGACAGTTATTGCTCCAATCCG",
+      "left_tm": 57.4,
+      "right_tm": 59.4,
+      "left_gc": 40.9,
+      "right_gc": 50.0,
+      "product": 753,
+      "amplicon": "chr15:40209523-40210275",
+      "margin_fwd": 156,
+      "margin_rev": 574,
+      "left_copies": 1,
+      "right_copies": 1,
+      "left_alt": 0,
+      "right_alt": 0,
+      "left_hit": "15:40209523",
+      "right_hit": "15:40210254"
+    },
+    "rank_used": 0,
+    "worst_candidate_copies": 1
+  },
+  {
+    "target": {
+      "name": "BUB1B_c.3006T>G_p.Asn1002Lys",
+      "pos": 40220612,
+      "ref": "T",
+      "alt": "G",
+      "exon": "23/23"
+    },
+    "window": "chr15:40219612-40221612",
+    "common_snps": [
+      {
+        "pos": 40220142,
+        "change": "G>C",
+        "af": 0.0993
+      },
+      {
+        "pos": 40220430,
+        "change": "A>G",
+        "af": 0.0206
+      },
+      {
+        "pos": 40220705,
+        "change": "A>G",
+        "af": 0.0993
+      },
+      {
+        "pos": 40220870,
+        "change": "A>G",
+        "af": 0.0984
+      },
+      {
+        "pos": 40221197,
+        "change": "A>G",
+        "af": 0.0055
+      },
+      {
+        "pos": 40221383,
+        "change": "A>G",
+        "af": 0.0984
+      },
+      {
+        "pos": 40221421,
+        "change": "G>C",
+        "af": 0.0075
+      }
+    ],
+    "chosen": {
+      "rank": 0,
+      "left": "TGTAGTTCTTCCCTGGGCTTTC",
+      "right": "GCCCCAGGACTAGTTAACTTCC",
+      "left_tm": 60.0,
+      "right_tm": 60.1,
+      "left_gc": 50.0,
+      "right_gc": 54.5,
+      "product": 350,
+      "amplicon": "chr15:40220394-40220743",
+      "margin_fwd": 196,
+      "margin_rev": 131,
+      "left_copies": 1,
+      "right_copies": 1,
+      "left_alt": 0,
+      "right_alt": 0,
+      "left_hit": "15:40220394",
+      "right_hit": "15:40220722"
+    },
+    "rank_used": 0,
+    "worst_candidate_copies": 1
+  }
+]

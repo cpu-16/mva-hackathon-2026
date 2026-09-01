@@ -1,0 +1,119 @@
+{
+  "HP:0000365": {
+    "label": "Hearing impairment (control r7)",
+    "n_diseases": 2099,
+    "n_genes": 1667,
+    "mva_diseases": [
+      "OMIM:614114 Mosaic variegated aneuploidy syndrome 2",
+      "ORPHA:1052 Mosaic variegated aneuploidy syndrome"
+    ],
+    "mva_genes": [
+      "CEP57",
+      "TRIP13",
+      "BUB1B"
+    ],
+    "clean": false
+  },
+  "HP:0000509": {
+    "label": "Conjunctivitis (control r7)",
+    "n_diseases": 167,
+    "n_genes": 127,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  },
+  "HP:0002205": {
+    "label": "Recurrent respiratory infections (control r7)",
+    "n_diseases": 771,
+    "n_genes": 702,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  },
+  "HP:0002315": {
+    "label": "Headache (control r7)",
+    "n_diseases": 451,
+    "n_genes": 378,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  },
+  "HP:0000989": {
+    "label": "Pruritus (control r7)",
+    "n_diseases": 195,
+    "n_genes": 155,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  },
+  "HP:0001945": {
+    "label": "Fever",
+    "n_diseases": 533,
+    "n_genes": 456,
+    "mva_diseases": [],
+    "mva_genes": [
+      "TRIP13"
+    ],
+    "clean": false
+  },
+  "HP:0002018": {
+    "label": "Nausea",
+    "n_diseases": 136,
+    "n_genes": 100,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  },
+  "HP:0000961": {
+    "label": "Cyanosis",
+    "n_diseases": 159,
+    "n_genes": 130,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  },
+  "HP:0012378": {
+    "label": "Fatigue",
+    "n_diseases": 431,
+    "n_genes": 522,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  },
+  "HP:0002094": {
+    "label": "Dyspnea",
+    "n_diseases": 561,
+    "n_genes": 546,
+    "mva_diseases": [],
+    "mva_genes": [
+      "TRIP13"
+    ],
+    "clean": false
+  },
+  "HP:0000988": {
+    "label": "Skin rash",
+    "n_diseases": 210,
+    "n_genes": 179,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  },
+  "HP:0002027": {
+    "label": "Abdominal pain",
+    "n_diseases": 373,
+    "n_genes": 355,
+    "mva_diseases": [],
+    "mva_genes": [
+      "TRIP13"
+    ],
+    "clean": false
+  },
+  "HP:0000737": {
+    "label": "Irritability",
+    "n_diseases": 271,
+    "n_genes": 302,
+    "mva_diseases": [],
+    "mva_genes": [],
+    "clean": true
+  }
+}

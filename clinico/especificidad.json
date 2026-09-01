@@ -1,0 +1,45 @@
+{
+  "BUB1B_c.2210T>G_p.Leu737Ter|F": {
+    "seq": "CATCCTGGCTAACATGGGGAAA",
+    "fwd": 53,
+    "rev": 47,
+    "hits": [
+      "1:11688363",
+      "1:95416174",
+      "1:155350724",
+      "1:191867559",
+      "2:84003061",
+      "2:100439617",
+      "1:246813861",
+      "2:14269481",
+      "2:26957037",
+      "2:132324959",
+      "2:136864747",
+      "2:194431958"
+    ]
+  },
+  "BUB1B_c.2210T>G_p.Leu737Ter|R": {
+    "seq": "ACTGTCATGAACCAGAGGACAT",
+    "fwd": 0,
+    "rev": 1,
+    "hits": [
+      "15:40209794"
+    ]
+  },
+  "BUB1B_c.3006T>G_p.Asn1002Lys|F": {
+    "seq": "GGGGTAGGAGAAAGGAGCTGTA",
+    "fwd": 1,
+    "rev": 0,
+    "hits": [
+      "15:40220192"
+    ]
+  },
+  "BUB1B_c.3006T>G_p.Asn1002Lys|R": {
+    "seq": "GCCCCAGGACTAGTTAACTTCC",
+    "fwd": 0,
+    "rev": 1,
+    "hits": [
+      "15:40220722"
+    ]
+  }
+}
