@@ -18,7 +18,7 @@ amendment is appended and dated rather than editing the text above it. The pairs
 | `replay/PREREGISTRO.md` | `8086dd4` | 2026-08-30T14:34:01-05:00 | `replay/RESULTADOS.md` | `d95dbe7` 2026-08-30T15:07:27-05:00 |
 | `mosaico/PREREGISTRO.md` | `ed0feae` | 2026-08-30T17:29:35-05:00 | `mosaico/RESULTADOS.md` | `453d20a` 2026-08-30T19:34:16-05:00 |
 | `potencia/PREREGISTRO.md` | `aa3143f` | 2026-09-01T16:39:47-05:00 | `potencia/RESULTADOS.md` | `eec870c` 2026-09-01T17:22:44-05:00 |
-| `potencia/PREREGISTRO_2_DOSIS.md` | `45c4ed7` | 2026-09-01T17:36:04-05:00 | `potencia/RESULTADOS_2_DOSIS.md` | `(aún` no commiteado) |
+| `potencia/PREREGISTRO_2_DOSIS.md` | `45c4ed7` | 2026-09-01T17:36:04-05:00 | `potencia/RESULTADOS_2_DOSIS.md` | `8c33031` 2026-09-01T17:43:17-05:00 |
 
 Check any single pair directly:
 
