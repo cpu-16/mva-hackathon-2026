@@ -28,8 +28,14 @@ YML  = f"{ROOT}/tools/analysis_mva.yml"
 CLIN = f"{ROOT}/pipeline/resources/clinvar.vcf.gz"
 G2P  = f"{ROOT}/pipeline/resources/genes_to_phenotype.txt"
 FASTA = f"{HERE}/raw/fasta"                  # chrN.fa.bgz, only the chromosomes we downloaded
-# The five terms round 7 verified as not annotated to OMIM:257300 (PREREGISTRO.md, Experiment B).
-HPO_UNRELATED = ["HP:0000365", "HP:0000509", "HP:0002205", "HP:0002315", "HP:0000989"]
+# Default phenotype-control set. The pre-registered set (Experiment B) is kept below for the self-check.
+# HP:0000365 (hearing impairment) was in the pre-registered set and
+# is REMOVED: it is annotated to MVA2 (OMIM:614114), to ORPHA:1052 and to BUB1B/CEP57/TRIP13 directly.
+# The round-7 check queried MVA1 only. Replaced by HP:0000988. See hpo/RESULTADOS.md.
+# ponytail: a fixed list, not a term picker. It is only a sane default — for another disease, pass
+# --hpo-unrelated yourself and let the annotation warning below check your choice.
+HPO_UNRELATED = ["HP:0000509", "HP:0002205", "HP:0002315", "HP:0000989", "HP:0000988"]
+HPO_UNRELATED_PREREG = ["HP:0000365", "HP:0000509", "HP:0002205", "HP:0002315", "HP:0000989"]
 GTS = {"trans": ["0|1", "1|0"], "cis": ["0|1", "0|1"], "unph": ["0/1", "0/1"]}
 
 def sh(cmd):
@@ -205,6 +211,17 @@ def main(argv=None):
         p.error("--gene, two --allele, --hpo and --background are required")
     # ponytail: one gene, exactly two alleles per run; a panel is a shell loop over this script
 
+    # Exomiser is launched with its own installation directory as the working directory, so any
+    # relative path the user typed would be resolved against the wrong place. It fails with
+    # "Unable to parse sample from file ...", which names the YAML and not the real cause — a
+    # caller loses half an hour to it. Absolutise everything here instead of documenting the trap.
+    for opt in ("background", "out", "fasta"):
+        v = getattr(a, opt)
+        if v:
+            setattr(a, opt, os.path.abspath(os.path.expanduser(v)))
+    if not os.path.exists(a.background):
+        sys.exit(f"background VCF not found: {a.background}")
+
     os.makedirs(a.out, exist_ok=True)
     name = a.name or f"{a.gene}_{os.path.basename(a.background).split('.')[0]}"
     samples = sh(["bcftools", "query", "-l", a.background]).split()
@@ -275,7 +292,9 @@ def self_check():
     recs = spike_records([parse_allele("chr15:40220612:T:A"), a1], "trans", True)
     assert recs[0].startswith("chr15\t40209701\t.\tT\tG\t100\tPASS\t.\tGT:DP:AD:GQ\t0|1:") and "\t1|0:" in recs[1]
     assert spike_records([a1], "trans", False)[0].startswith("15\t")
-    hits = hpo_annotated_to_gene("BUB1B", HPO_UNRELATED)
+    hits = hpo_annotated_to_gene("BUB1B", HPO_UNRELATED_PREREG)
+    assert "HP:0000365" in hits, "el aviso de contaminacion NO dispara sobre el termino que sabemos contaminado"
+    assert not hpo_annotated_to_gene("BUB1B", HPO_UNRELATED), "el set por defecto quedo contaminado"
     assert "HP:0000365" in hits and "ORPHA:1052" in hits["HP:0000365"], hits   # positive control: the check must fire
     assert hpo_annotated_to_gene("BUB1B", ["HP:0000001"]) == {}                 # negative control
     out, case = f"{HERE}/out", "B_arm1_BUB1B_HG002_real"
@@ -290,9 +309,21 @@ def self_check():
         assert overlaps(f"{HERE}/cases/{case[:-5]}.vcf.gz", "chr15", 40209701, "T") is True
         assert verify_insertion(f"{HERE}/cases/{case[:-5]}.vcf.gz", arm1) is True
         assert verify_insertion(f"{HERE}/cases/{case[:-5]}.vcf.gz", [parse_allele("chr15:40209701:T:C")]) is False
-        print("self-check: 20 assertions passed (incl. 8 against replay/out and replay/cases artefacts)")
+        print(f"self-check: {_n_asserts()[0]} assertions passed "
+              f"(incl. {_n_asserts()[1]} against replay/out and replay/cases artefacts)")
     else:
-        print("self-check: 12 pure assertions passed; replay/out artefacts not present, result checks skipped")
+        print(f"self-check: {_n_asserts()[0] - _n_asserts()[1]} pure assertions passed; "
+              f"replay/out artefacts not present, result checks skipped")
+
+
+def _n_asserts():
+    """(total, those inside the artefact-dependent block). Counted from the source, so the number
+    the self-check prints cannot drift from the number of checks it actually runs."""
+    import inspect, textwrap
+    lines = textwrap.dedent(inspect.getsource(self_check)).splitlines()
+    total = sum(1 for l in lines if l.strip().startswith("assert "))
+    guarded = sum(1 for l in lines if l.startswith("        assert "))
+    return total, guarded
 
 if __name__ == "__main__":
     main()

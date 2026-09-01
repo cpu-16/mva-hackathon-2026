@@ -40,7 +40,7 @@ is more useful than an encouraging one.
 | 3 | **Regular full clinical examination**, including the orbit, skin and soft tissues | Rhabdomyosarcoma is not a kidney tumour and ultrasound will not find it. A 2026 case describes a child with MVA3 — the same condition caused by a different gene —
 whose second tumour appeared behind the eye at age 12 (PMID 42595739) |
 | 4 | **Avoid unnecessary radiation**; keep HPV vaccination up to date | Consensus guidance for these disorders (PMID 39264246) |
-| 5 | **Ask about testing and counselling for both parents** | The clinical notes mention repeated miscarriages. In 2026 that pattern was linked to carriers of *BUB1B* changes, who showed measurable chromosome abnormalities in a blood test (PMID 42434306). This is a hypothesis, not a diagnosis — but it is a simple test, and it bears on any future pregnancy (§7) |
+| 5 | **Ask about testing and counselling for both parents** — a ready-to-adapt laboratory request is included as `clinico/PARENTAL_SEGREGATION_ORDER.md`, with the exact loci, verified primers and an interpretation table | The clinical notes mention repeated miscarriages. In 2026 that pattern was linked to carriers of *BUB1B* changes, who showed measurable chromosome abnormalities in a blood test (PMID 42434306). This is a hypothesis, not a diagnosis — but it is a simple test, and it bears on any future pregnancy (§7) |
 
 ### What would change the answer
 
@@ -525,17 +525,37 @@ survivors?
 controls therefore measures whether the proteotoxic dependency transfers from cancer aneuploidy to
 constitutional aneuploidy at all — it does **not** measure tumour selectivity, and on its own it is as
 compatible with systemic toxicity as with therapeutic promise. That is why the go criterion below is
-*not* "patient cells are more sensitive". It is also why §5 matters here: variegation leaves each
-chromosome affected in 1–2% of cells, so a fibroblast population may simply not be aneuploid enough to
-express a dependency that Ippolito measured in *highly* aneuploid lines. **A negative result is therefore
-ambiguous by design** — it fails to support transfer, but it does not close the tumour-board question,
-which would need aneuploidy-high tumour-derived material. We say this now rather than after the data.
+*not* "patient cells are more sensitive". A negative therefore **fails to support transfer without
+closing the tumour-board question**, which would need aneuploidy-high tumour-derived material. We say
+this now rather than after the data.
+
+**We previously hedged this experiment on statistical grounds as well, and that hedge was wrong. We
+computed it rather than keeping it.** An earlier version of this section argued that "variegation
+leaves each chromosome affected in 1–2% of cells, so a fibroblast population may simply not be
+aneuploid enough", and concluded that a negative was ambiguous by design. **The 1–2% is a
+per-chromosome figure** — 30% of cells divided across 22 autosomes — and it is the right denominator
+for §5, which asks whether bulk sequencing can see one specific chromosome. It is the wrong
+denominator here, because a cell is under proteotoxic load whichever chromosome it gained. A
+pre-registered power calculation (`potencia/PREREGISTRO.md`, committed before the run) gives **power
+0.897** for this design at the fraction that matters — 30% of cells carrying at least one aneuploidy,
+4× EC50 selectivity, n = 3, α = 0.05 — and **power 0.063** under the per-chromosome reading we had
+implied. The design is powered; the old hedge was an arithmetic error in our own favour, in the sense
+that it would have excused a negative result.
+
+**It buys a protocol change, not just a corrected sentence.** Power collapses below a cell fraction of
+about 0.25 (0.589 at 0.20, 0.196 at 0.10), and **nobody has counted metaphases in these fibroblasts** —
+culture selection makes the true fraction likely lower than at biopsy. So the fraction is now a
+**gating measurement** rather than an assumption: metaphase counting with premature chromatid
+separation scoring on the culture that will actually be treated, at the passage that will be treated.
+That is not a new assay; it is the diagnostic criterion for MVA. Proceed at n = 3 if it is ≥ 0.25;
+n = 14 at 0.10; and **below 0.10 do not run the bulk viability assay at all** — go to a per-cell
+endpoint, because no feasible n rescues it. Details and every sweep in `potencia/RESULTADOS.md`.
 
 | Week | Step | Readout |
 |---|---|---|
-| 1–3 | Patient dermal fibroblasts from skin biopsy, plus two matched controls. **Patient cells are required:** RPE1 with reversine-induced aneuploidy reproduces Ippolito's own system and cannot test whether the dependency transfers to BUB1B-deficient constitutional MVA — we list it as a positive control, not a substitute. Without patient cells the go/no-go question is not answerable | Growth; baseline karyotype |
+| 1–3 | Patient dermal fibroblasts from skin biopsy, plus two matched controls. **Gate:** metaphase count with PCS scoring on the culture to be treated, to measure the aneuploid cell fraction — the assay's power depends on it and it is unmeasured (`potencia/RESULTADOS.md` §3). **Patient cells are required:** RPE1 with reversine-induced aneuploidy reproduces Ippolito's own system and cannot test whether the dependency transfers to BUB1B-deficient constitutional MVA — we list it as a positive control, not a substitute. Without patient cells the go/no-go question is not answerable | Growth; baseline karyotype |
 | 2–4 | Allele fate: allele-specific RT-PCR ± NMD inhibitor; quantitative western blot with N- and C-terminal antibodies | N+/C− band implies truncation; loss of both implies NMD |
-| 4–6 | Bortezomib dose–response, **0–400 nM** with dense sampling below 100 nM, 72 h, patient versus control versus an aneuploidy-high positive control (reversine-treated RPE1) | EC50 and the ratio between them. The range spans the 312 nM clinical Cmax so the advancement threshold falls inside the data |
+| 4–6 | Bortezomib dose–response, **0–1,000 nM** with dense sampling below 100 nM, 72 h, patient versus control versus an aneuploidy-high positive control (reversine-treated RPE1) | EC50 and the ratio between them. The range spans the 312 nM clinical Cmax so the advancement threshold falls inside the data. **Extended from 0–400 nM after the power calculation:** at a selectivity of 10× the control's EC50 sits at the old ceiling and is estimated at the edge of the data, doubling the spread of the estimate (`potencia/RESULTADOS.md` §4) |
 | 4–6 | **Combination arm: bortezomib + everolimus** | Tests the predicted antagonism |
 | 6–8 | **Micronucleus assay (OECD TG 487)** on survivors of every condition, plus FISH for 3–5 chromosomes | Mis-segregation rate — filter 5 |
 
@@ -643,6 +663,20 @@ formal genetic counselling would test whether the miscarriage history is itself 
 phenotype, and would inform any future pregnancy. It is cheap, it can be done this month
 **alongside** the consensus surveillance above, and it replaces no part of it.
 
+**We have written the request out so that it does not have to be reconstructed.**
+`clinico/PARENTAL_SEGREGATION_ORDER.md` is a one-page laboratory request a clinician can adapt and
+sign: both loci, two Sanger amplicons with primer sequences, and an interpretation table written
+**before** the result, covering all five outcomes including the two that would refute our own Track 1
+answer. The primers were designed against GRCh38 with common 1000 Genomes SNVs and RepeatMasker
+intervals excluded from the primer regions, and each of the four was then counted across the entire
+assembly: all occur exactly once. That check was not ceremonial — the first pair the design software
+returned sat inside an *AluY* element 272 bp from the *c.2210* site and has roughly a hundred exact
+copies in the genome. A primer like that does not fail in review; it fails in the laboratory, and in
+a segregation test allele drop-out reads as *"this parent does not carry it"*.
+
+This is the only experiment in the whole project that confirms the diagnosis, informs a future
+pregnancy, and speaks to HP:0200067 — and it costs two blood draws.
+
 ---
 
 ## 8. What we do not propose
@@ -687,6 +721,21 @@ phenotype, and would inform any future pregnancy. It is cheap, it can be done th
 - **A reusable worksheet** is included as the Appendix: the five filters as blank rows, with the
   metformin and bortezomib verdicts as the worked example, so a team working on a different rare disease
   can apply the framework without reading this report.
+- **The framework was transferred prospectively to the other two MVA genes, and it gives different
+  answers.** `TRANSFER_MVA2_MVA3.md` holds the worksheet filled for MVA2 (*CEP57*) and MVA3
+  (*TRIP13*) with the same candidate and the filters held fixed. Bortezomib is **rejected at filter 2
+  for MVA2** — CEP57-related MVA is not associated with embryonal tumours and its cells show minimal
+  SAC deficiency (PMID 28553959), so neither the mechanism nor the tumour-board setting that inverts
+  filter 4 ever arises — and stays **conditional for MVA3**, which shares both the embryonal-tumour
+  risk and the severe checkpoint failure. A framework that returns the same verdict for three diseases
+  is a slogan; one that kills the candidate in MVA2 and holds it conditional in MVA3 is a demonstration.
+- **The retrieval benchmark is packaged as a tool, not described as one.** `replay/mva_replay.py` takes
+  a candidate gene, two alleles, an HPO set and a background VCF, and returns the planted score, the
+  rank, the ClinVar-stripped counterfactual and an unrelated-HPO control. It is a single file with no
+  dependencies beyond what an Exomiser installation already needs, and a team working on a different
+  rare disease can spike their own gene into a public genome in an afternoon. Its built-in check that
+  a control HPO term is not annotated to the planted gene is what caught the contamination described
+  in `hpo/RESULTADOS.md` — in our own control set.
 - The **gene panel** (BUB1B, CEP57, TRIP13, CENATAC, MAD1L1, MAD2L1BP, CEP192, BUB1, SMC5, TRIM37,
   CENPE) and the artefact controls used in the mosaicism analysis transfer to any MVA or PCS workup.
 - The **micronucleus → scDNA-seq endpoint** applies to mitotic CIN disorders. It does **not** transfer

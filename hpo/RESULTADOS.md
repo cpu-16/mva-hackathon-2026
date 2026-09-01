@@ -35,10 +35,15 @@ Exomiser 15.1.0, identical analysis (`tools/analysis_mva.yml`), same VCF, only t
 | Control r7 (**as submitted**) | 5 terms, one annotated to MVA2/ORPHA | 1 | 0.4187 |
 | **Control r9 (clean)** | **5 verified terms** | **1** | **0.3965** |
 
-**The conclusion is unchanged and slightly strengthened: the finding is variant-driven.** BUB1B is
-ranked first even with a phenotype that has nothing to do with the disease, on the cleanest control
-we have been able to construct. What changes is the number: the submitted report's 0.4187 was
-inflated by 0.0222 by the contaminating term.
+**In the proband's genome the conclusion holds: the finding is variant-driven.** BUB1B is still
+ranked first with a phenotype that has nothing to do with the disease, on the cleanest control we
+have been able to construct. What changes is the number: the submitted report's 0.4187 was inflated
+by 0.0222 by the contaminating term.
+
+⚠️ **But the same clean set, run on unrelated healthy backgrounds, weakens a second claim in the
+report — see §6.** BUB1B's score is unchanged across genomes, and its *rank* is not: with the clean
+control it is displaced in two of three GIAB backgrounds. Read §2 and §6 together; §2 alone
+overstates what the control shows.
 
 ## 3. What has to change in the submitted report
 
@@ -72,3 +77,48 @@ independent of MVA"*, which we cannot demonstrate with this method.
     hpo/01_verificar.py          checks each term against all MVA diseases and genes
     hpo/verificacion.json        the result, per term
     tools/control_hpo_r9.sh      the two Exomiser runs above
+
+---
+
+## 6. Re-running the benchmark with the clean set gives a *less* favourable result, and we report it
+
+The clean term set was also run through the packaged tool on the three GIAB backgrounds used in
+`replay/RESULTADOS.md`, spiking the child's two alleles into each. The score behaves exactly as
+before; **the rank does not.**
+
+| Background | Planted score, real HPO | Unrelated-HPO score | Unrelated-HPO **rank** | Top gene under unrelated HPO |
+|---|---|---|---|---|
+| HG001 | 0.5871 | 0.3965 | **1** | BUB1B 0.3965 |
+| HG002 | 0.5871 | 0.3965 | **2** | KRT17 0.5766 |
+| HG005 | 0.5871 | 0.3965 | **3** | TNF 0.7436 |
+
+**The invariance result stands and is if anything cleaner.** BUB1B's score is **0.3965 to four
+decimal places in all three genomes**, as 0.5871 is under the real phenotype. The score does not
+depend on the background; only the rank does, which is what `replay/RESULTADOS.md` already concluded
+and the reason it named the score, not the rank, as the portable endpoint.
+
+**But one claim has to be softened.** With the contaminated r7 set, BUB1B came first under unrelated
+phenotypes in every background, and the report used that to argue the finding is variant-driven. With
+the clean set it comes **first only in the proband's own genome and in HG001**, and is displaced in
+HG002 and HG005 by genes that happen to score well against the control terms. The defensible sentence
+is therefore narrower:
+
+> Under a phenotype unrelated to the disease, BUB1B's combined score is unchanged by the genomic
+> background and it remains top-ranked **in the proband's genome** — but in two of three unrelated
+> healthy backgrounds another gene outranks it. The retrieval is variant-driven in the sense that the
+> score is carried by the variant; it is **not** background-independent in rank.
+
+**Why the rank moved, checked rather than assumed.** Neither KRT17 nor TNF is annotated to any of the
+five control terms — we checked `genes_to_phenotype.txt` directly and found no direct annotation. The
+displacement is consistent with Exomiser's graph-based semantic similarity: KRT17 disease terms are
+cutaneous (palmoplantar blistering, cutaneous cyst) and the replacement control term HP:0000988 is
+"skin rash". This is the limitation stated in §4 showing up in practice — removing directly annotated
+terms does not remove terms that sit *near* a gene's phenotypes in the ontology. It is a property of
+control-term selection in general, not a defect of this control set.
+
+**Deltas.** With the clean set the phenotype delta is **0.1906** (0.5871 → 0.3965), not the 0.1684
+computed with the contaminated set. As already established, **that delta is not convertible to a
+percentage**: Exomiser's combiner is not additive and 0.3965 is not a phenotype-free baseline. The
+retired "about 24%" stays retired, and 0.1906 is reported as an absolute score difference only.
+
+Runs: `replay/_r9_hpolimpio.sh` → `replay/out_r9/`.
