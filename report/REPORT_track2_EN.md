@@ -580,9 +580,31 @@ nowhere as a promise of a twelve-week answer.
 toxicity:
 
 1. **A dependency signal, not merely a sensitivity difference:** an EC50 shift between patient and
-   control fibroblasts whose 95% confidence interval excludes 1, of a magnitude at least equal to the
-   near-euploid-versus-highly-aneuploid contrast in Ippolito Fig. 6o. A shift smaller than that is not
-   the effect we predicted.
+   control fibroblasts whose 95% confidence interval excludes 1, **of at least the magnitude that a
+   culture of the measured aneuploid fraction can produce.**
+
+   ⚠️ **We had this criterion wrong and an adversarial review caught it.** It previously demanded a
+   shift "at least equal to the near-euploid-versus-highly-aneuploid contrast in Ippolito Fig. 6o".
+   That contrast is between two **homogeneous** populations. A patient fibroblast culture is a
+   **mixture**, and under our own model a mixture cannot produce it: with 30% of cells aneuploid and
+   a 4× selectivity *within* those cells, the **bulk** EC50 ratio is **1.50×**, not 4×. The old
+   criterion was unreachable by construction — the experiment would have failed it even if the
+   biology worked exactly as predicted.
+
+   The threshold must therefore be derived from the gating measurement, not imported from a
+   homogeneous-population figure. At a 4× within-cell selectivity, the bulk ratio our model predicts is:
+
+   | Measured aneuploid fraction *f* | Bulk EC50 ratio to expect | Max viability gap |
+   |---|---|---|
+   | 0.10 | 1.14× | 0.03 |
+   | 0.20 | 1.30× | 0.07 |
+   | 0.30 | 1.50× | 0.10 |
+   | 0.50 | 2.00× | 0.16 |
+
+   **Read the criterion off this table once *f* is measured**, and treat a shift materially below the
+   corresponding row as a negative. A shift materially *above* it is not a better result — it is a
+   reason to suspect the mixture model or systemic toxicity, which is what stop signal 4 below
+   exists for.
 2. **Effect at ≤312 nM**, the upper end of the clinical Cmax interval.
 3. **No increase in micronuclei among survivors** — filter 5.
 4. **A stop signal, not a go signal:** if patient fibroblasts are markedly more sensitive than controls

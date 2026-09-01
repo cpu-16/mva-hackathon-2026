@@ -69,19 +69,6 @@
     "excluded_bp": 959,
     "primers": [
       {
-        "rank": 0,
-        "left": "AGTGCTGACTGTGTAATCTTGA",
-        "right": "GGACAGTTATTGCTCCAATCCG",
-        "left_tm": 57.4,
-        "right_tm": 59.4,
-        "left_gc": 40.9,
-        "right_gc": 50.0,
-        "product": 753,
-        "amplicon": "chr15:40209523-40210275",
-        "margin_fwd": 156,
-        "margin_rev": 574
-      },
-      {
         "rank": 1,
         "left": "AGTGCTGACTGTGTAATCTTGA",
         "right": "CCTGGTTTAAGGGATAGAGGCA",
@@ -93,19 +80,6 @@
         "amplicon": "chr15:40209523-40210043",
         "margin_fwd": 156,
         "margin_rev": 342
-      },
-      {
-        "rank": 2,
-        "left": "AGTGCTGACTGTGTAATCTTGAT",
-        "right": "AATTCTGCAGAGTTTCTTGGCG",
-        "left_tm": 57.8,
-        "right_tm": 59.8,
-        "left_gc": 39.1,
-        "right_gc": 45.5,
-        "product": 675,
-        "amplicon": "chr15:40209523-40210197",
-        "margin_fwd": 155,
-        "margin_rev": 496
       },
       {
         "rank": 3,
@@ -134,45 +108,6 @@
         "margin_rev": 343
       },
       {
-        "rank": 5,
-        "left": "AGTGCTGACTGTGTAATCTTGAT",
-        "right": "GGACAGTTATTGCTCCAATCCG",
-        "left_tm": 57.8,
-        "right_tm": 59.4,
-        "left_gc": 39.1,
-        "right_gc": 50.0,
-        "product": 753,
-        "amplicon": "chr15:40209523-40210275",
-        "margin_fwd": 155,
-        "margin_rev": 574
-      },
-      {
-        "rank": 6,
-        "left": "AGTGCTGACTGTGTAATCTTGATT",
-        "right": "AATTCTGCAGAGTTTCTTGGCG",
-        "left_tm": 58.4,
-        "right_tm": 59.8,
-        "left_gc": 37.5,
-        "right_gc": 45.5,
-        "product": 675,
-        "amplicon": "chr15:40209523-40210197",
-        "margin_fwd": 154,
-        "margin_rev": 496
-      },
-      {
-        "rank": 7,
-        "left": "AGTGCTGACTGTGTAATCTTGA",
-        "right": "GACAGTTATTGCTCCAATCCGT",
-        "left_tm": 57.4,
-        "right_tm": 58.7,
-        "left_gc": 40.9,
-        "right_gc": 45.5,
-        "product": 752,
-        "amplicon": "chr15:40209523-40210274",
-        "margin_fwd": 156,
-        "margin_rev": 573
-      },
-      {
         "rank": 8,
         "left": "AGTGCTGACTGTGTAATCTTGAT",
         "right": "CCTGGTTTAAGGGATAGAGGCA",
@@ -184,19 +119,6 @@
         "amplicon": "chr15:40209523-40210043",
         "margin_fwd": 155,
         "margin_rev": 342
-      },
-      {
-        "rank": 9,
-        "left": "AGTGCTGACTGTGTAATCTTGA",
-        "right": "CGCCACCCAGAATAACTTGTAA",
-        "left_tm": 57.4,
-        "right_tm": 58.7,
-        "left_gc": 40.9,
-        "right_gc": 45.5,
-        "product": 655,
-        "amplicon": "chr15:40209523-40210177",
-        "margin_fwd": 156,
-        "margin_rev": 476
       },
       {
         "rank": 10,
@@ -212,19 +134,6 @@
         "margin_rev": 359
       },
       {
-        "rank": 11,
-        "left": "AGTGCTGACTGTGTAATCTTGATT",
-        "right": "GGACAGTTATTGCTCCAATCCG",
-        "left_tm": 58.4,
-        "right_tm": 59.4,
-        "left_gc": 37.5,
-        "right_gc": 50.0,
-        "product": 753,
-        "amplicon": "chr15:40209523-40210275",
-        "margin_fwd": 154,
-        "margin_rev": 574
-      },
-      {
         "rank": 12,
         "left": "AGTGCTGACTGTGTAATCTTGAT",
         "right": "TCCTGGTTTAAGGGATAGAGGC",
@@ -236,19 +145,6 @@
         "amplicon": "chr15:40209523-40210044",
         "margin_fwd": 155,
         "margin_rev": 343
-      },
-      {
-        "rank": 13,
-        "left": "AGTGCTGACTGTGTAATCTTGATTT",
-        "right": "AATTCTGCAGAGTTTCTTGGCG",
-        "left_tm": 59.0,
-        "right_tm": 59.8,
-        "left_gc": 36.0,
-        "right_gc": 45.5,
-        "product": 675,
-        "amplicon": "chr15:40209523-40210197",
-        "margin_fwd": 153,
-        "margin_rev": 496
       },
       {
         "rank": 14,
@@ -264,19 +160,6 @@
         "margin_rev": 345
       },
       {
-        "rank": 15,
-        "left": "CTGAGACAGGTGAGTGTAGTTAAA",
-        "right": "AATTCTGCAGAGTTTCTTGGCG",
-        "left_tm": 57.9,
-        "right_tm": 59.8,
-        "left_gc": 41.7,
-        "right_gc": 45.5,
-        "product": 704,
-        "amplicon": "chr15:40209494-40210197",
-        "margin_fwd": 183,
-        "margin_rev": 496
-      },
-      {
         "rank": 16,
         "left": "AGTGCTGACTGTGTAATCTTGATT",
         "right": "CCTGGTTTAAGGGATAGAGGCA",
@@ -290,19 +173,6 @@
         "margin_rev": 342
       },
       {
-        "rank": 17,
-        "left": "AGTGCTGACTGTGTAATCTTGA",
-        "right": "ATTCTGCAGAGTTTCTTGGCG",
-        "left_tm": 57.4,
-        "right_tm": 59.2,
-        "left_gc": 40.9,
-        "right_gc": 47.6,
-        "product": 674,
-        "amplicon": "chr15:40209523-40210196",
-        "margin_fwd": 156,
-        "margin_rev": 495
-      },
-      {
         "rank": 18,
         "left": "AGTGCTGACTGTGTAATCTTGA",
         "right": "CTGGTTTAAGGGATAGAGGCAC",
@@ -314,19 +184,6 @@
         "amplicon": "chr15:40209523-40210042",
         "margin_fwd": 156,
         "margin_rev": 341
-      },
-      {
-        "rank": 19,
-        "left": "AGTGCTGACTGTGTAATCTTGAT",
-        "right": "ACATGAGGACAGTTATTGCTCCA",
-        "left_tm": 57.8,
-        "right_tm": 59.7,
-        "left_gc": 39.1,
-        "right_gc": 43.5,
-        "product": 759,
-        "amplicon": "chr15:40209523-40210281",
-        "margin_fwd": 155,
-        "margin_rev": 580
       }
     ]
   },
@@ -394,6 +251,32 @@
     "primers": [
       {
         "rank": 0,
+        "left": "CCCTGGGCTTTCAAAGGACTAT",
+        "right": "GCCCCAGGACTAGTTAACTTCC",
+        "left_tm": 60.0,
+        "right_tm": 60.1,
+        "left_gc": 50.0,
+        "right_gc": 54.5,
+        "product": 340,
+        "amplicon": "chr15:40220404-40220743",
+        "margin_fwd": 186,
+        "margin_rev": 131
+      },
+      {
+        "rank": 1,
+        "left": "GTAGTTCTTCCCTGGGCTTTCA",
+        "right": "GCCCCAGGACTAGTTAACTTCC",
+        "left_tm": 60.0,
+        "right_tm": 60.1,
+        "left_gc": 50.0,
+        "right_gc": 54.5,
+        "product": 349,
+        "amplicon": "chr15:40220395-40220743",
+        "margin_fwd": 195,
+        "margin_rev": 131
+      },
+      {
+        "rank": 2,
         "left": "TGTAGTTCTTCCCTGGGCTTTC",
         "right": "GCCCCAGGACTAGTTAACTTCC",
         "left_tm": 60.0,
@@ -406,33 +289,33 @@
         "margin_rev": 131
       },
       {
-        "rank": 1,
-        "left": "AACACAAGCAGAAACAAGTGGG",
+        "rank": 3,
+        "left": "AGTTCTTCCCTGGGCTTTCAAA",
         "right": "GCCCCAGGACTAGTTAACTTCC",
-        "left_tm": 59.8,
+        "left_tm": 60.1,
         "right_tm": 60.1,
         "left_gc": 45.5,
         "right_gc": 54.5,
-        "product": 730,
-        "amplicon": "chr15:40220014-40220743",
-        "margin_fwd": 576,
+        "product": 347,
+        "amplicon": "chr15:40220397-40220743",
+        "margin_fwd": 193,
         "margin_rev": 131
       },
       {
-        "rank": 2,
-        "left": "TTCCTAACAGCCCTGCCTTATC",
-        "right": "GCCCCAGGACTAGTTAACTTCC",
-        "left_tm": 59.8,
-        "right_tm": 60.1,
+        "rank": 7,
+        "left": "CCCTGGGCTTTCAAAGGACTAT",
+        "right": "GCAAAGCCCCAGGACTAGTTAA",
+        "left_tm": 60.0,
+        "right_tm": 60.3,
         "left_gc": 50.0,
-        "right_gc": 54.5,
-        "product": 696,
-        "amplicon": "chr15:40220048-40220743",
-        "margin_fwd": 542,
-        "margin_rev": 131
+        "right_gc": 50.0,
+        "product": 345,
+        "amplicon": "chr15:40220404-40220748",
+        "margin_fwd": 186,
+        "margin_rev": 136
       },
       {
-        "rank": 3,
+        "rank": 8,
         "left": "GTAGTTCTTCCCTGGGCTTTCA",
         "right": "GCAAAGCCCCAGGACTAGTTAA",
         "left_tm": 60.0,
@@ -445,7 +328,7 @@
         "margin_rev": 136
       },
       {
-        "rank": 4,
+        "rank": 9,
         "left": "TGTAGTTCTTCCCTGGGCTTTC",
         "right": "GCAAAGCCCCAGGACTAGTTAA",
         "left_tm": 60.0,
@@ -458,7 +341,7 @@
         "margin_rev": 136
       },
       {
-        "rank": 5,
+        "rank": 11,
         "left": "AGTTCTTCCCTGGGCTTTCAAA",
         "right": "GCAAAGCCCCAGGACTAGTTAA",
         "left_tm": 60.1,
@@ -471,20 +354,20 @@
         "margin_rev": 136
       },
       {
-        "rank": 6,
-        "left": "GTTTCCTAACAGCCCTGCCTTA",
+        "rank": 13,
+        "left": "GTTCTTCCCTGGGCTTTCAAAG",
         "right": "GCCCCAGGACTAGTTAACTTCC",
-        "left_tm": 60.3,
+        "left_tm": 59.7,
         "right_tm": 60.1,
         "left_gc": 50.0,
         "right_gc": 54.5,
-        "product": 698,
-        "amplicon": "chr15:40220046-40220743",
-        "margin_fwd": 544,
+        "product": 346,
+        "amplicon": "chr15:40220398-40220743",
+        "margin_fwd": 192,
         "margin_rev": 131
       },
       {
-        "rank": 7,
+        "rank": 14,
         "left": "TGGCTTTTCCCACTATGGTAGC",
         "right": "GCCCCAGGACTAGTTAACTTCC",
         "left_tm": 60.4,
@@ -495,162 +378,6 @@
         "amplicon": "chr15:40220365-40220743",
         "margin_fwd": 225,
         "margin_rev": 131
-      },
-      {
-        "rank": 8,
-        "left": "AACACAAGCAGAAACAAGTGGG",
-        "right": "GCAAAGCCCCAGGACTAGTTAA",
-        "left_tm": 59.8,
-        "right_tm": 60.3,
-        "left_gc": 45.5,
-        "right_gc": 50.0,
-        "product": 735,
-        "amplicon": "chr15:40220014-40220748",
-        "margin_fwd": 576,
-        "margin_rev": 136
-      },
-      {
-        "rank": 9,
-        "left": "TTCCTAACAGCCCTGCCTTATC",
-        "right": "GCAAAGCCCCAGGACTAGTTAA",
-        "left_tm": 59.8,
-        "right_tm": 60.3,
-        "left_gc": 50.0,
-        "right_gc": 50.0,
-        "product": 701,
-        "amplicon": "chr15:40220048-40220748",
-        "margin_fwd": 542,
-        "margin_rev": 136
-      },
-      {
-        "rank": 10,
-        "left": "TCTTGGCTTTTCCCACTATGGT",
-        "right": "GCCCCAGGACTAGTTAACTTCC",
-        "left_tm": 59.6,
-        "right_tm": 60.1,
-        "left_gc": 45.5,
-        "right_gc": 54.5,
-        "product": 382,
-        "amplicon": "chr15:40220362-40220743",
-        "margin_fwd": 228,
-        "margin_rev": 131
-      },
-      {
-        "rank": 11,
-        "left": "TTGTAGTTCTTCCCTGGGCTTT",
-        "right": "GCCCCAGGACTAGTTAACTTCC",
-        "left_tm": 59.6,
-        "right_tm": 60.1,
-        "left_gc": 45.5,
-        "right_gc": 54.5,
-        "product": 351,
-        "amplicon": "chr15:40220393-40220743",
-        "margin_fwd": 197,
-        "margin_rev": 131
-      },
-      {
-        "rank": 12,
-        "left": "TTTGTAGTTCTTCCCTGGGCTT",
-        "right": "GCCCCAGGACTAGTTAACTTCC",
-        "left_tm": 59.6,
-        "right_tm": 60.1,
-        "left_gc": 45.5,
-        "right_gc": 54.5,
-        "product": 352,
-        "amplicon": "chr15:40220392-40220743",
-        "margin_fwd": 198,
-        "margin_rev": 131
-      },
-      {
-        "rank": 13,
-        "left": "TTTTGTAGTTCTTCCCTGGGCT",
-        "right": "GCCCCAGGACTAGTTAACTTCC",
-        "left_tm": 59.6,
-        "right_tm": 60.1,
-        "left_gc": 45.5,
-        "right_gc": 54.5,
-        "product": 353,
-        "amplicon": "chr15:40220391-40220743",
-        "margin_fwd": 199,
-        "margin_rev": 131
-      },
-      {
-        "rank": 14,
-        "left": "GTTTCCTAACAGCCCTGCCTTA",
-        "right": "GCAAAGCCCCAGGACTAGTTAA",
-        "left_tm": 60.3,
-        "right_tm": 60.3,
-        "left_gc": 50.0,
-        "right_gc": 50.0,
-        "product": 703,
-        "amplicon": "chr15:40220046-40220748",
-        "margin_fwd": 544,
-        "margin_rev": 136
-      },
-      {
-        "rank": 15,
-        "left": "GTTCTTCCCTGGGCTTTCAAAG",
-        "right": "GCAAAGCCCCAGGACTAGTTAA",
-        "left_tm": 59.7,
-        "right_tm": 60.3,
-        "left_gc": 50.0,
-        "right_gc": 50.0,
-        "product": 351,
-        "amplicon": "chr15:40220398-40220748",
-        "margin_fwd": 192,
-        "margin_rev": 136
-      },
-      {
-        "rank": 16,
-        "left": "CCCTGGGCTTTCAAAGGACTAT",
-        "right": "ACTTGATTGCCTAGCTCACTGA",
-        "left_tm": 60.0,
-        "right_tm": 59.4,
-        "left_gc": 50.0,
-        "right_gc": 45.5,
-        "product": 371,
-        "amplicon": "chr15:40220404-40220774",
-        "margin_fwd": 186,
-        "margin_rev": 162
-      },
-      {
-        "rank": 17,
-        "left": "CCCTGGGCTTTCAAAGGACTAT",
-        "right": "TGTGAGACTTGATTGCCTAGCT",
-        "left_tm": 60.0,
-        "right_tm": 59.4,
-        "left_gc": 50.0,
-        "right_gc": 45.5,
-        "product": 377,
-        "amplicon": "chr15:40220404-40220780",
-        "margin_fwd": 186,
-        "margin_rev": 168
-      },
-      {
-        "rank": 18,
-        "left": "CTTTTCCCACTATGGTAGCCCT",
-        "right": "GCCCCAGGACTAGTTAACTTCC",
-        "left_tm": 59.5,
-        "right_tm": 60.1,
-        "left_gc": 50.0,
-        "right_gc": 54.5,
-        "product": 376,
-        "amplicon": "chr15:40220368-40220743",
-        "margin_fwd": 222,
-        "margin_rev": 131
-      },
-      {
-        "rank": 19,
-        "left": "GTAGTTCTTCCCTGGGCTTTCA",
-        "right": "ACTTGATTGCCTAGCTCACTGA",
-        "left_tm": 60.0,
-        "right_tm": 59.4,
-        "left_gc": 50.0,
-        "right_gc": 45.5,
-        "product": 380,
-        "amplicon": "chr15:40220395-40220774",
-        "margin_fwd": 195,
-        "margin_rev": 162
       }
     ]
   }

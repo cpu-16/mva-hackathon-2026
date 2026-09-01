@@ -21,6 +21,9 @@ PANEL = "replay/raw/1kgp/chr15.vcf.gz"
 FLANK = 1000         # ventana de diseño a cada lado
 AF_MIN = 0.005       # umbral de "SNP común" para excluir de las zonas de primer
 MARGIN = 80          # nt mínimos entre el fin de cada primer y el sitio causal (lectura Sanger limpia)
+MARGIN_MAX = 450     # nt MÁXIMOS: más allá de esto la lectura Sanger ya se degrada y esa dirección
+                     # no cubre la variante. Con 80 <= margen <= 450 en ambos lados, las DOS lecturas
+                     # la cubren y la secuenciación bidireccional es real, no nominal.
 
 TARGETS = [
     dict(name="BUB1B_c.2210T>G_p.Leu737Ter", pos=40209701, ref="T", alt="G", exon="17/23"),
@@ -106,7 +109,7 @@ def main():
              "PRIMER_MIN_GC": 35.0, "PRIMER_MAX_GC": 65.0,
              "PRIMER_MAX_POLY_X": 4, "PRIMER_MAX_SELF_ANY_TH": 45.0,
              "PRIMER_MAX_HAIRPIN_TH": 40.0, "PRIMER_PAIR_MAX_COMPL_ANY_TH": 45.0,
-             "PRIMER_PRODUCT_SIZE_RANGE": [[350, 800]]})
+             "PRIMER_PRODUCT_SIZE_RANGE": [[300, 2 * MARGIN_MAX]]})
 
         n = design["PRIMER_PAIR_NUM_RETURNED"]
         assert n > 0, (f"primer3 no devolvió pares para {t['name']} — la ventana libre de "
@@ -127,6 +130,10 @@ def main():
                 amplicon=f"chr15:{amp_start}-{amp_end}",
                 margin_fwd=t["pos"] - (amp_start + llen),
                 margin_rev=amp_end - t["pos"]))
+        # descartar los pares en que alguna dirección no alcanza la variante con lectura limpia
+        picks = [q for q in picks if q["margin_fwd"] <= MARGIN_MAX and q["margin_rev"] <= MARGIN_MAX]
+        assert picks, (f"{t['name']}: ningún par deja la variante dentro de {MARGIN_MAX} nt de AMBOS "
+                       f"primers — la ventana libre de repeticiones no lo permite")
         results.append(dict(
             target=t, window=f"chr15:{start}-{end}",
             common_snps=[dict(pos=p, change=f"{r}>{a}", af=round(af, 4)) for p, r, a, af in snps],

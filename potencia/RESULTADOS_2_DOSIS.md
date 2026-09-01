@@ -63,17 +63,24 @@ evidence of curvature — which is not the same as evidence of linearity, as the
 Ippolito's < 40 nM in **highly aneuploid** cancer lines. This analysis says that number is measured at
 the far end of a dose relationship from where MVA cells sit.
 
-**The correction to our own correction:**
+**And we must apply the magnitude rule, not shelter behind the falsification clause.** An
+adversarial reviewer pointed out that we took the softer of two rules our own pre-registration
+contains. The falsification clause fires in solid lines and is correctly applied — a confidence
+interval covering zero cannot be read as evidence of a small effect. But the pre-registration also
+set **|Δ₂| / σ < 0.10 → "the central scenario is then not defensible"**, and in the haematological
+stratum, where the slope *is* significant, **|Δ₂| / σ = 0.093**. That is below the line we drew in
+advance. The rule therefore fires where the estimate is admissible, and we apply its consequence
+rather than reporting a range of possibilities:
 
-> This morning we said the §6 assay is powered at 0.897. That statement is conditional on a 4×
-> selectivity, and **we now have our own reason to doubt that 4× describes a cell carrying one extra
-> chromosome.** In the only lineage where the aneuploidy–proteasome dependency is significant, two
-> arms move the dependency 0.09 residual SD against 0.84 for eighteen. At a 2× selectivity the same
-> simulation gives power **0.387**.
+> **The 4× central scenario is not defensible for these cells.** In the only lineage where the
+> aneuploidy–proteasome dependency exists at all, one whole chromosome moves the dependency less than
+> a tenth of a residual standard deviation — below the threshold we pre-registered as fatal to that
+> scenario. `potencia/RESULTADOS.md` and Track 2 §6 must say so, and both now do.
 >
-> The defensible statement is therefore: **the design is powered for a 4× effect and underpowered for
-> a 2× one, and we cannot say which regime these cells are in.** "The assay is powered" without that
-> qualifier is not supportable.
+> What replaces it is not a smaller number, because we cannot convert gene effect to an EC50 ratio.
+> It is a **conditional design**: the selectivity is unknown, the assay is powered at 4× (0.897) and
+> underpowered at 2× (0.387), and the advancement threshold is now read off the measured aneuploid
+> fraction rather than assumed.
 
 **We are not converting this into an EC50 ratio, and the pre-registration said we would not.** CRISPR
 gene effect is complete permanent loss; a drug is partial reversible inhibition. There is no

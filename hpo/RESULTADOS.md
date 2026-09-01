@@ -40,10 +40,10 @@ ranked first with a phenotype that has nothing to do with the disease, on the cl
 have been able to construct. What changes is the number: the submitted report's 0.4187 was inflated
 by 0.0222 by the contaminating term.
 
-⚠️ **But the same clean set, run on unrelated healthy backgrounds, weakens a second claim in the
-report — see §6.** BUB1B's score is unchanged across genomes, and its *rank* is not: with the clean
-control it is displaced in two of three GIAB backgrounds. Read §2 and §6 together; §2 alone
-overstates what the control shows.
+⚠️ **The same clean set, run on unrelated healthy backgrounds, slightly weakens a second claim — see
+§6.** BUB1B's score is unchanged across genomes; its *rank* is displaced in two of three GIAB
+backgrounds under the clean control, against one of three under the contaminated one. Read §2 and §6
+together; §2 alone overstates what the control shows.
 
 ## 3. What has to change in the submitted report
 
@@ -88,25 +88,33 @@ before; **the rank does not.**
 
 | Background | Planted score, real HPO | Unrelated-HPO score | Unrelated-HPO **rank** | Top gene under unrelated HPO |
 |---|---|---|---|---|
-| HG001 | 0.5871 | 0.3965 | **1** | BUB1B 0.3965 |
-| HG002 | 0.5871 | 0.3965 | **2** | KRT17 0.5766 |
-| HG005 | 0.5871 | 0.3965 | **3** | TNF 0.7436 |
+| HG001 | 0.5871 | 0.3965 | **1** (r7: 1) | BUB1B 0.3965 |
+| HG002 | 0.5871 | 0.3965 | **2** (r7: **1**) | KRT17 0.5766 |
+| HG005 | 0.5871 | 0.3965 | **3** (r7: 3) | TNF 0.7436 |
 
 **The invariance result stands and is if anything cleaner.** BUB1B's score is **0.3965 to four
 decimal places in all three genomes**, as 0.5871 is under the real phenotype. The score does not
 depend on the background; only the rank does, which is what `replay/RESULTADOS.md` already concluded
 and the reason it named the score, not the rank, as the portable endpoint.
 
-**But one claim has to be softened.** With the contaminated r7 set, BUB1B came first under unrelated
-phenotypes in every background, and the report used that to argue the finding is variant-driven. With
-the clean set it comes **first only in the proband's own genome and in HG001**, and is displaced in
-HG002 and HG005 by genes that happen to score well against the control terms. The defensible sentence
-is therefore narrower:
+**One claim has to be softened — and our first draft of this section overstated by how much.**
+
+⚠️ We wrote that with the contaminated r7 set BUB1B "came first in every background". **That is false
+and it contradicts our own benchmark**, which reported r7 ranks of **1 / 1 / 3** — HG005 already
+displaced it, because a background gene there reaches 0.8108 (`replay/RESULTADOS.md` §P-B2, and the
+submitted Track 1 report says "2/3" in as many words). Caught by an adversarial reviewer. Inflating
+the old baseline made the new wound look bigger than it is, which is the same class of error this
+project has made in every round, this time in the direction of dramatising our own honesty.
+
+**The actual change is one background.** r7 gave 1 / 1 / 3; r9 gives 1 / 2 / 3. The clean control
+moves HG002 from first to second. HG005 was never first. The defensible sentence is therefore
+narrower than the report's, but only by that one step:
 
 > Under a phenotype unrelated to the disease, BUB1B's combined score is unchanged by the genomic
 > background and it remains top-ranked **in the proband's genome** — but in two of three unrelated
-> healthy backgrounds another gene outranks it. The retrieval is variant-driven in the sense that the
-> score is carried by the variant; it is **not** background-independent in rank.
+> healthy backgrounds another gene outranks it, against one of three under the contaminated set. The
+> retrieval is variant-driven in the sense that the score is carried by the variant; it is **not**
+> background-independent in rank, and it was already not, before this correction.
 
 **Why the rank moved, checked rather than assumed.** Neither KRT17 nor TNF is annotated to any of the
 five control terms — we checked `genes_to_phenotype.txt` directly and found no direct annotation. The

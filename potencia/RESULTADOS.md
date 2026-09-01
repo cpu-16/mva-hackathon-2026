@@ -19,8 +19,11 @@ write this and nothing else:
 > culture is ~30% aneuploid and well-level CV is 10%.*** Neither of those two is measured in these
 > cells. At 2× selectivity power is 0.387; at CV 0.15 it is 0.593. And a second pre-registered
 > analysis the same day (`RESULTADOS_2_DOSIS.md`) gives us our own reason to doubt that 4× describes
-> a cell carrying one extra chromosome. **"The assay is powered" without the qualifier is not a
-> statement we can defend.**
+> a cell carrying one extra chromosome — and that analysis's own pre-registered magnitude rule
+> **fires against the 4× scenario**: in the lineage where the dependency exists, one chromosome moves
+> it 0.093 residual SD, below the 0.10 we declared fatal in advance. **The 4× central scenario is
+> therefore not defensible for these cells**, and "the assay is powered" without its qualifier is not
+> a statement we can defend.
 >
 > The separate caveat is **unaffected and still stands**: dermal fibroblasts are constitutional MVA
 > cells, not tumour cells, so a negative does not close the tumour-board question, and a positive is

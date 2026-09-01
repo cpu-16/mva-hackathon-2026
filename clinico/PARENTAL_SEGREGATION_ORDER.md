@@ -72,17 +72,25 @@ can report clinically.
 | | Amplicon 1 — variant A | Amplicon 2 — variant B |
 |---|---|---|
 | Target | `c.2210T>G` p.(Leu737Ter), exon 17 | `c.3006T>G` p.(Asn1002Lys), exon 23 |
-| Amplicon (GRCh38) | chr15:40,209,523–40,210,275 | chr15:40,220,394–40,220,743 |
-| Product size | 753 bp | 350 bp |
-| Forward primer | `AGTGCTGACTGTGTAATCTTGA` | `TGTAGTTCTTCCCTGGGCTTTC` |
+| Amplicon (GRCh38) | chr15:40,209,523–40,210,043 | chr15:40,220,404–40,220,743 |
+| Product size | 521 bp | 340 bp |
+| Forward primer | `AGTGCTGACTGTGTAATCTTGA` | `CCCTGGGCTTTCAAAGGACTAT` |
 | Tm / GC | 57.4 °C / 40.9% | 60.0 °C / 50.0% |
-| Reverse primer | `GGACAGTTATTGCTCCAATCCG` | `GCCCCAGGACTAGTTAACTTCC` |
-| Tm / GC | 59.4 °C / 50.0% | 60.1 °C / 54.5% |
-| Read margin to the variant | 156 nt from F, 574 nt from R | 196 nt from F, 131 nt from R |
+| Reverse primer | `CCTGGTTTAAGGGATAGAGGCA` | `GCCCCAGGACTAGTTAACTTCC` |
+| Tm / GC | 59.2 °C / 50.0% | 60.1 °C / 54.5% |
+| Read margin to the variant | 156 nt from F, 342 nt from R | 186 nt from F, 131 nt from R |
 
 **Suggested conditions.** Annealing 57 °C, standard hot-start polymerase, both amplicons compatible
-in the same run. Sequence in both directions; the margins above put the variant inside the clean
-window of at least one read in either direction.
+in the same run. **Amplicon 1's forward primer has the lowest Tm of the four (57.4 °C); if the
+laboratory prefers a uniform 60 °C protocol, it should re-pick that primer rather than run the pair
+at a suboptimal annealing temperature.**
+
+**Both reads must reach the variant, and this constrained the design.** Sanger sequence degrades
+after roughly 500–600 nt, so a variant sitting 574 nt from a primer is not covered by that read even
+though the amplicon contains it. An earlier version of this page had exactly that defect: a 753 bp
+amplicon 1 whose reverse read would not have covered the site cleanly, making "bidirectional" nominal
+rather than real. The design now requires the variant to sit **between 80 and 450 nt from both
+primers**, which every margin in the table satisfies.
 
 **How these primers were constrained, because two of the constraints are the failure modes of this
 particular test:**
@@ -92,9 +100,11 @@ particular test:**
   allele drop-out, and in a segregation test allele drop-out reads as *"this parent does not carry
   it"* — a false negative that would be reported as a result.
 - **No primer falls in a repeat.** The *c.2210* locus is flanked by an **AluY 272 bp upstream and a
-  HAL1 LINE 600 bp downstream**. The first primer pair the design software returned sat inside that
-  AluY and has ~100 exact copies in GRCh38. RepeatMasker intervals were excluded and every candidate
-  re-checked.
+  HAL1 LINE 600 bp downstream**. Run without that constraint, the first pair the design software
+  returned sat inside the AluY and has ~100 exact copies in GRCh38 — which is how we learned the
+  constraint was needed. With RepeatMasker intervals excluded, **every** candidate the software
+  returns is already single-copy, so the copy count is now a confirmation rather than a filter. We
+  state it that way rather than claiming we sifted a bad pair out at the counting step.
 - **Single-copy verified, not assumed.** All four primers were counted against the **entire GRCh38
   assembly** including alt and random contigs: each occurs **exactly once**, at the expected chr15
   position, with zero copies elsewhere.
