@@ -145,7 +145,29 @@ PDF del Track 2: **36 páginas**, en `entrega/listo-para-enviar/`.
 
 ---
 
-## 🗺️ MAPA DE ARCHIVOS — hay 44 `.md` en este proyecto, esto es lo que manda
+## ⚠️ REGLAS DE ENVÍO — verificadas contra el reglamento, no las asumas
+
+Esto se recomendó mal una vez (1-sep): dos agentes dijeron "envía ya, te da ventaja" y resultó falso.
+**Los hechos salen de `evidencia/space_tabs_faq.py` y `evidencia/space_tabs_rules.py`:**
+
+| | Track 1 | Track 2 |
+|---|---|---|
+| Envíos | 6 por participante | 3 por equipo |
+| Cuál cuenta | **el de MAYOR puntaje** | **solo el ÚLTIMO** |
+| Evaluación | automática, sobre el CSV | **panel de jueces humanos** |
+| Cuándo | inmediata | **2–3 meses DESPUÉS del cierre** |
+
+- ⛔ **Enviar el Track 2 temprano NO da ventaja competitiva.** La FAQ dice literalmente *"The
+  independent expert panel will only review your latest entry, so save your best for last"*. No hay
+  puntuación intermedia ni retroalimentación. **No volver a recomendar "envía ya para ganar ventaja".**
+- Lo único que gana un envío temprano es **seguro contra fallo de ejecución** — y es barato, porque se
+  sobrescribe. El riesgo es real: el leaderboard lleva congelado desde el 26-ago.
+- **Reenviar el Track 1 no puede bajar el puntaje**: cuenta el mayor, y sale del CSV, que no cambia.
+- No hay ronda de preguntas en vivo.
+
+---
+
+## 🗺️ MAPA DE ARCHIVOS — hay ~50 `.md` en este proyecto, esto es lo que manda
 
 **Regla: si dos archivos se contradicen, gana el de esta tabla.**
 
@@ -438,7 +460,7 @@ aneuploidía desde BAF (el límite de detección ya está calculado y es demasia
 ## ⛔ LO ÚNICO QUE BLOQUEA EL ENVÍO DEL TRACK 2
 
 **La URL del video en YouTube o Vimeo.** `submit_track2.py:92-94` la exige y rechaza el envío sin
-ella. Gilberto la sube. **Que suba el video v3, no el viejo.** Cuota Track 2: 3 envíos.
+ella. Gilberto la sube. **Que suba el video v3, no el viejo.** Cuota Track 2: 3 envíos, y **solo cuenta el último** (ver las reglas de envío arriba).
 Renombrar el PDF a `ciberpty_track2_report.pdf` (ya está en el scratchpad de envío).
 
 Flujo de envío probado y funcionando: `brave-cdp` → pestaña Submit → `tools/fill_form_space.py`
@@ -484,7 +506,7 @@ Añadido: página **"Read this first"** en lenguaje llano al inicio del document
 cinco filtros (`fig3_funnel.png`), apéndice con hoja de trabajo reutilizable. PDF: 29 páginas.
 
 ⛔ **Para enviar el Track 2 falta la URL del video en YouTube/Vimeo** — el formulario la exige y
-rechaza el envío sin ella (`submit_track2.py:92-94`). Gilberto lo está subiendo. Cuota Track 2: 3.
+rechaza el envío sin ella (`submit_track2.py:92-94`). Gilberto lo está subiendo. Cuota Track 2: 3, **solo cuenta el último**.
 Archivo listo: `track2/REPORT_track2.pdf` → renombrar a `ciberpty_track2_report.pdf`.
 
 ---
