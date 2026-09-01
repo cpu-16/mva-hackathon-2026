@@ -361,3 +361,38 @@ and even then a third category remains open: a biologically anomalous specimen t
 **The identifiability result is unaffected** and does not depend on any of this: a balanced variegated
 mixture has mean copy number exactly 2 and mean allele fraction exactly 0.5 by symmetry, so it is
 non-identifiable in bulk at any depth and under any statistic.
+
+### Amendment 4 — 2026-09-01, the pilot is restricted to fixed windows, declared before running
+
+Amendment 3 specified the pilot as **chr8 and chr17 in full** for 10 individuals. Measured against
+the actual source that carries `AD` — the 1000 Genomes 3,202-sample raw GATK call set — that is not
+affordable: the two chromosome files are **89 GB and 51 GB**, they are served without per-sample
+slicing, and a measured extraction rate of ~100 s per Mb puts a full-chromosome pilot at roughly
+four hours of streaming per chromosome before the confirmatory run has started.
+
+**The pilot is therefore restricted to a fixed window on each chromosome, and the window rule is
+written here before any control data has been fetched or looked at:**
+
+> **chr8:5,000,000–25,000,000 and chr17:5,000,000–25,000,000.** The rule is mechanical: the first
+> 20 Mb of each chromosome after discarding the first 5 Mb, which excludes the subtelomeric region.
+> On both chromosomes this window lies entirely within the p arm and does not touch the centromere.
+> It was **not** chosen by inspecting the proband's per-window statistics, and it is the same
+> interval on both chromosomes.
+
+Everything else from amendment 3 is unchanged: the same 10 pre-registered individuals (2 per
+superpopulation, the first 10 of `replay/raw/muestras_1kgp.txt`), the same site rule, the same
+W = 125, the same two unsigned statistics (σ²_extra and κ_window), the same binomial thinning of the
+proband to each control's depth, and the same falsification rules.
+
+**What the restriction costs, stated now.** The window yields roughly 15,000 and 13,000 retained
+sites per individual against 107,371 and 57,061 for the whole chromosomes, so ~120 and ~100 windows
+of 125 sites each. That is enough to place the proband inside or outside an envelope of 10
+individuals; it is **not** enough to make a chromosome-specific claim, and the confirmatory run
+remains full-chromosome. If the pilot is ambiguous we report it as ambiguous — we do not extend the
+window and re-look.
+
+**Verification of completeness is mandatory and is the reason this paragraph exists.** Three remote
+extractions in this project truncated silently and returned exit code 0, one of them covering 4.9%
+of the requested region while `bcftools` reported success. Every extraction below is checked against
+the requested interval: first and last position retrieved, site count, and no gap larger than 2 Mb.
+An extraction that fails the check is discarded and repeated, never patched.
