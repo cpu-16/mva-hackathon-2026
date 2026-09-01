@@ -126,6 +126,40 @@ PDF del Track 2: **36 páginas**, en `entrega/listo-para-enviar/`.
 
 ---
 
+### 🧬 EL VUS — cerrado con un censo (1-sep, noche). Punto 5 del backlog, ya no pendiente
+
+`vus/RESULTADOS.md`. Era "calibrar p.Asn1002Lys contra variantes BUB1B ya clasificadas".
+**Fuimos a construir el set de calibración y no existe. Esa ausencia es el resultado.**
+
+| ClinVar 2026-08-28, gen BUB1B | |
+|---|---:|
+| missense | **1.497** |
+| — patogénicas o probablemente patogénicas | **1** (una estrella, un solo submitter) |
+| — benignas / probablemente benignas | 35 |
+| — **VUS** | **1.426 (95,3%)** |
+| pérdida de función | 94, de las cuales **82 son P/LP** |
+
+La evidencia clínica de este gen está construida sobre pérdida de función **82 a 1**. La tasa base
+de una missense que llega a P/LP aquí es **1 de 1.497 = 0,07%**. Con un solo positivo no se calibra
+ningún predictor, así que la salida honesta es la ausencia con su número, no un score sin calibrar
+—que era justo lo que los dos revisores habían prohibido.
+
+**La estructura sí dice algo, y pasa el criterio de aborto fijado de antemano** (era abortar si el
+pLDDT medio en 766–1050 < 70; da **81,9**, y **91,5** en 992–1012 contra 63,6 de la proteína entera):
+**Asn1002 está enterrado** (RSA 0,162) en un bolsillo hidrofóbico con Trp978, Phe977, Val998, Ile1000,
+Leu1001 y Ala1003 a menos de 5 Å. La sustitución mete una cadena más larga y **con carga positiva**
+ahí dentro. Se reporta como evidencia sobre la sustitución, **no como clasificación**: sin ΔΔG, sin
+predictor y sin reclamar PP3.
+
+⚠️ **El límite que importa:** un censo mide la base de datos, no la biología. Sieben modeló
+BUBR1^L1012P, una missense causal suficiente para construir un modelo de ratón, y este snapshot no la
+clasifica. Las missense de este gen pueden estar simplemente poco testeadas.
+
+**Para qué sirve:** le da a la orden de segregación parental un número en vez de un adjetivo. La
+segregación no es solo la vía más barata para este alelo — es **la única practicable**.
+
+---
+
 ### 🔴 DECISIONES QUE LE TOCAN A GILBERTO, NO AL AGENTE
 
 1. **¿Reenviar el Track 1? Los dos jueces se contradicen, y hay que elegir.** Van 2 de 6 envíos.
