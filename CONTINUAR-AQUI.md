@@ -1,7 +1,91 @@
 # 🔄 CONTINUAR AQUÍ — estado del MVA Hackathon 2026
 
-**Última actualización: 30-ago-2026 (cierre de la noche).** Documento de traspaso tras un `/clear`.
+**Última actualización: 01-sep-2026.** Documento de traspaso tras un `/clear`.
 Léeme completo antes de tocar cualquier otro archivo.
+
+---
+
+## 🆕 SESIÓN DEL 1-SEP-2026 — se atacó el techo: Impacto y Escalabilidad
+
+Los dos revisores dijeron lo mismo: **Rigor saturado (77-82/100), el techo está en Impacto (25%) y
+Escalabilidad (15%), que estaban en cero.** Esta sesión construyó los cuatro artefactos que ellos
+nombraron, y dos de ellos produjeron hallazgos que van EN CONTRA nuestra.
+
+### Lo que se construyó
+
+| Artefacto | Archivo | Qué es |
+|---|---|---|
+| **Impacto** — orden clínica de segregación parental | `clinico/PARENTAL_SEGREGATION_ORDER.md` | Una página que un clínico adapta y firma: dos amplicones Sanger con primers **verificados de copia única en todo GRCh38**, y tabla de interpretación escrita ANTES del resultado, con los cinco desenlaces incluidos los dos que refutarían nuestro Track 1 |
+| **Impacto** — potencia del §6 | `potencia/PREREGISTRO.md` → `potencia/RESULTADOS.md` | Pre-registrado y commiteado (`aa3143f`) antes de correr |
+| **Escalabilidad** — el marco en las otras dos MVA | `track2/TRANSFER_MVA2_MVA3.md` | La hoja de cinco filtros LLENA para MVA2 (CEP57) y MVA3 (TRIP13). Da respuestas **distintas**: bortezomib muere en el filtro 2 para CEP57, queda condicional para TRIP13 |
+| **Escalabilidad** — MVA-Replay empaquetado | `replay/mva_replay.py` + `README_TOOL.md` | Un archivo, sin dependencias nuevas, `--self-check` con controles que sí disparan. Otro equipo planta su gen en un genoma público en una tarde |
+
+Todo integrado en `track2/REPORT_track2_EN.md` (§6, §7, §9 y la página "Read this first") y el PDF
+regenerado: **34 páginas**, copiado a `entrega/listo-para-enviar/ciberpty_track2_report.pdf`.
+
+### ⛔ CUARTO ERROR EN EL TRACK 1 YA ENVIADO — y lo encontró nuestra propia herramienta
+
+`hpo/RESULTADOS.md`. **HP:0000365 (hipoacusia), uno de los cinco términos "no relacionados" del
+control del reporte ENVIADO, está anotado a MVA2 (OMIM:614114), a ORPHA:1052 (MVA genérico) y
+directamente a BUB1B, CEP57 y TRIP13.** La corrección de la ronda 7 verificó sólo contra
+OMIM:257300. Es el mismo error de la ronda anterior, con una verificación incompleta.
+
+Re-corrido con cinco términos verificados contra TODAS las MVA (`tools/control_hpo_r9.sh`):
+
+| Control | BUB1B rank | score |
+|---|---|---|
+| r7 (el enviado, contaminado) | 1 | 0.4187 |
+| **r9 (limpio)** | **1** | **0.3965** |
+
+⚠️ **Y hay una segunda consecuencia que va en contra nuestra.** Con el set limpio en los tres fondos
+GIAB: el **score es 0.3965 en los tres** (la invariancia al genoma se sostiene) pero el **rank es 1,
+2 y 3** — BUB1B es desplazado en HG002 y HG005. Con el set contaminado ganaba en los tres. La frase
+"incluso con fenotipo ajeno el pipeline pone BUB1B primero" sólo se sostiene **en el genoma del
+paciente**. Verificado que no es anotación directa de KRT17/TNF sino similitud de grafo.
+
+**De 13 términos candidatos, 4 salieron contaminados** — fiebre, disnea y dolor abdominal están
+anotados a TRIP13. Elegir términos de control a ojo no funciona: es la tercera ronda que falla.
+
+### 🔬 POTENCIA DEL §6 — la regla pre-comprometida se disparó a favor
+
+**El hedge del reporte era un error aritmético NUESTRO.** El §6 decía que el ensayo podía ser ciego
+porque "la variegación deja cada cromosoma en 1–2% de las células". Ese 1–2% es **por cromosoma**
+(30% repartido entre 22 autosomas); lo que importa para carga proteotóxica es la fracción de células
+con **alguna** aneuploidía, que es el 30%.
+
+| Fracción de células aneuploides | Potencia con n=3 |
+|---|---|
+| 0.02 (la lectura del reporte) | **0.063** — ciego |
+| 0.30 (la lectura correcta) | **0.897** |
+
+Se retira "a negative result is ambiguous by design" en lo que respecta a potencia. **Y compra un
+cambio de protocolo, no una frase:** la potencia se desploma bajo f≈0.25 y **nadie ha contado
+metafases en esos fibroblastos**. Ahora hay una medición de compuerta (conteo de metafases con PCS)
+con tres ramas: n=3 si f≥0.25, n=14 si f=0.10, y **no correr el ensayo bulk si f<0.10**.
+También: extender el rango de concentraciones a 1.000 nM (a selectividad 10× la EC50 del control
+caía justo en el techo de 400 nM).
+
+### ⏳ CORRIENDO EN BACKGROUND AL CERRAR
+
+**El piloto del control externo de mosaicismo** (`mosaico/_piloto.sh` → `mosaico/piloto/`).
+Enmienda 4 pre-registrada y commiteada (`6405d9e`) ANTES de bajar un solo byte: ventanas **fijas**
+chr8:5-25 Mb y chr17:5-25 Mb, regla mecánica, idéntica en ambos. Va por el 11% de chr8 y el ritmo da
+**~4 h por cromosoma**, o sea ~8 h en total. Es I/O puro, corre solo.
+Al terminar hay que calcular σ²_extra y κ_window y compararlos con el probando adelgazado
+binomialmente — todo el diseño está en la enmienda 3 del pre-registro. **Verificar cobertura
+explícitamente** (primera y última posición, sin huecos >2 Mb): tres extracciones remotas ya
+truncaron en silencio en este proyecto.
+
+### 🔴 DECISIONES QUE LE TOCAN A GILBERTO, NO AL AGENTE
+
+1. **¿Reenviar el Track 1?** Van 2 de 6 envíos. Hay **cuatro** errores conocidos en el reporte
+   enviado: el "24%" retirado, la atribución a ClinVar, el denominador de 4.565 filas-vs-genes, y
+   ahora el 0.4187→0.3965 más el matiz del rank. El CSV que da 100/100 **no cambia**.
+2. **Subir el video v3 a YouTube.** Sigue siendo el ÚNICO bloqueador del envío del Track 2
+   (`submit_track2.py:92-94` exige la URL). ⚠️ El que está subido es el VIEJO.
+3. Chequeo de un minuto: compartir datos para entrenamiento en OFF en Anthropic y OpenAI.
+
+---
 
 ---
 
