@@ -76,11 +76,67 @@ binomialmente — todo el diseño está en la enmienda 3 del pre-registro. **Ver
 explícitamente** (primera y última posición, sin huecos >2 Mb): tres extracciones remotas ya
 truncaron en silencio en este proyecto.
 
+### ⚖️ RONDA 10 — los dos jueces volvieron a evaluar (1-sep, tarde)
+
+Se les pasó el brief `evidencia/brief_juez_r10.md` con los cuatro artefactos nuevos.
+
+| Juez | Antes | Ahora | Movimiento |
+|---|---|---|---|
+| Codex | 78 | **82** | +4 (Impacto +2, Escalabilidad +3, **Rigor −1**) |
+| Cursor | 74 | **76** | +2 (Impacto +1.5, Escalabilidad +1.1, Rigor −0.3) |
+
+**Los dos dicen lo mismo: finalista, no ganador — y los dos recomiendan ENVIAR, no analizar más.**
+Cursor: *"sentarse en 0 de 3 con ocho semanas es como un 76 pierde contra un 70 que sí se envió"*.
+
+**Ocho errores reales encontrados y TODOS corregidos** (ver los dos archivos `evidencia/*_juez_r10.md`):
+
+1. La orden clínica decía que un resultado en *trans* "confirma el diagnóstico". No: apoya el modelo
+   compuesto y añade evidencia tipo PM3, pero no vuelve patogénica una missense VUS.
+2. Decía "dos desenlaces refutan el Track 1". Solo el *cis* refuta; los de novo dejan la fase abierta.
+3. **El amplicón 1 tenía un defecto de laboratorio real:** 753 pb con la variante a 574 nt del primer
+   reverso, más allá de donde la lectura Sanger se mantiene limpia. La secuenciación bidireccional
+   era nominal. Rediseñado a 521 pb con la variante a 80–450 nt de ambos primers.
+4. **El criterio de avance del §6 era inalcanzable por construcción.** Exigía el contraste de Ippolito,
+   que es entre poblaciones homogéneas. Un cultivo mosaico al 30% con selectividad 4× dentro de las
+   células aneuploides da un ratio bulk de **1.50×**, no 4×. El experimento habría fallado su propio
+   criterio aunque la biología funcionara. Ahora el umbral se lee de una tabla según la *f* medida.
+5. MVA2: el filtro 2 decía "rechazado" razonando de "SAC mínimo" a "menos carga proteotóxica". Eso es
+   una inferencia; ausencia de medición es **"no evaluable"**. Y la ausencia de cáncer en 15 individuos
+   pertenece al filtro 4, no al 2. Corregido — y la demostración queda **más** precisa: los tres
+   genotipos fallan por razones distintas.
+6. El pre-registro de potencia prometía un Hill de 4 parámetros; el código ajusta 2. Y el ruido no
+   tiene término de réplica biológica. Ambos inflan la potencia: **0.897 es una cota superior**.
+7. PCS no es lo mismo que contar células aneuploides. La compuerta pedía el endpoint equivocado.
+8. **Yo mismo inflé la línea base:** escribí que con el control contaminado BUB1B "ganaba en todos los
+   fondos". Nuestro propio benchmark dice 1/1/3. El control limpio mueve **un** fondo, no dos.
+   Dramatizar el tamaño del propio error es el mismo fallo que cualquier otra contradicción.
+
+**Y un quinto artefacto propio que salió en contra nuestra** (`potencia/RESULTADOS_2_DOSIS.md`,
+pre-registrado en `45c4ed7` antes de correr): la carga proteotóxica es una **dosis**, no un
+interruptor. Una célula MVA lleva ~1 cromosoma alterado; las líneas de las que sale la EC50 <40 nM
+llevan ~18 brazos. En DepMap, donde la dependencia existe, 2 brazos mueven 0.09 SD residual contra
+0.84 de 18 brazos. **La selectividad 4× sobre la que se centró el cálculo de potencia no es
+defendible para estas células.**
+
+**`VERIFY.md` (nuevo, en el repo):** un juez no podía verificar los hashes de los pre-registros. Ahora
+hay una tabla que empareja cada diseño con su resultado y el comando de un renglón para comprobar el
+orden. Un pre-registro vale exactamente el timestamp que lo respalda.
+
+PDF del Track 2: **36 páginas**, en `entrega/listo-para-enviar/`.
+
+---
+
 ### 🔴 DECISIONES QUE LE TOCAN A GILBERTO, NO AL AGENTE
 
-1. **¿Reenviar el Track 1?** Van 2 de 6 envíos. Hay **cuatro** errores conocidos en el reporte
-   enviado: el "24%" retirado, la atribución a ClinVar, el denominador de 4.565 filas-vs-genes, y
-   ahora el 0.4187→0.3965 más el matiz del rank. El CSV que da 100/100 **no cambia**.
+1. **¿Reenviar el Track 1? Los dos jueces se contradicen, y hay que elegir.** Van 2 de 6 envíos.
+   Hay cuatro errores conocidos: el "24%" retirado, la atribución a ClinVar, el denominador de 4.565
+   filas-vs-genes, y el 0.4187→0.3965 con el matiz del rank. El CSV que da 100/100 **no cambia**.
+   - **Codex: reenviar.** Dejar un control que sabemos falso en el paquete que se juzga es un fallo
+     de integridad evitable, y los jueces quizá nunca lo descubran.
+   - **Cursor: NO reenviar hasta que el Track 2 haya usado un envío.** El Track 1 no diferencia (52 de
+     53 equipos tenían la respuesta), y editar el documento que no decide el podio mientras el que sí
+     lo decide sigue en 0 de 3 es gastar el esfuerzo donde no cuenta.
+   - **Los dos coinciden en el orden: primero el Track 2.**
 2. **Subir el video v3 a YouTube.** Sigue siendo el ÚNICO bloqueador del envío del Track 2
    (`submit_track2.py:92-94` exige la URL). ⚠️ El que está subido es el VIEJO.
 3. Chequeo de un minuto: compartir datos para entrenamiento en OFF en Anthropic y OpenAI.
