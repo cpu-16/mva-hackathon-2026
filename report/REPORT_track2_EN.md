@@ -154,8 +154,32 @@ the kinase domain because that is the current UniProt annotation, and our argume
 truncation, not on catalysis.) It lands 16 residues upstream of **BUBR1^X753**, a characterised
 truncating MVA allele (PMID 31738183) — very nearly the same truncation, not merely a related model.
 
-**p.Asn1002Lys** falls inside that same domain, in its C-lobe, outside KEN, TPR and GLEBS, and
-introduces a positive charge. **No published functional assay of this substitution exists.**
+**p.Asn1002Lys** falls inside that same domain, in its C-lobe, outside KEN, TPR and GLEBS. **No
+published functional assay of this substitution exists**, and we measured what can be said without
+one (`vus/RESULTADOS.md`).
+
+On the AlphaFold model, which is high-confidence exactly here — mean pLDDT **91.5** across 992–1012
+and **91.1** at the residue itself, against 63.6 for the whole protein — **Asn1002 is buried**:
+relative solvent accessibility **0.162**, below the conventional 0.25 cutoff, with ten residues
+within 5 Å and the nearest being Leu1001, Ala1003, Trp978, Val998, Ile1000 and Phe977. The
+substitution puts a **longer, positively charged side chain into a buried hydrophobic pocket**, which
+is a recognised destabilising substitution class. We state that as evidence about the substitution
+and **not** as a classification: no ΔΔG was computed, no predictor was run, and we do not claim PP3.
+
+**And we can now say why no database will settle it.** The obvious move is to calibrate a predictor
+against BUB1B variants that are already classified. That calibration set does not exist. In the
+ClinVar 2026-08-28 release this gene carries **1,497 missense records, of which exactly one is
+Likely pathogenic** — at one star, from a single submitter — against **1,426 (95.3%) of uncertain
+significance**. Meanwhile **82 of its 94 truncating records are Pathogenic or Likely pathogenic**.
+The clinical evidence base of *BUB1B* is built on loss of function at a ratio of 82 to 1, so the
+base rate for a missense reaching P/LP here is **1 in 1,497**. A predictor cannot be calibrated on
+one positive, and waiting for the database is waiting for an event that has happened once in this
+gene's history. That is the quantitative reason the parental segregation test in §7 is not merely the
+cheapest route to this variant — it is the only practical one.
+
+⚠️ A census measures the database, not the biology: missense alleles in this gene may simply be
+under-tested and under-submitted. Sieben's characterised **BUBR1^L1012P** is a missense causal enough
+to build a mouse model on, and we did not find it in this snapshot.
 
 **The closest characterised missense sits ten residues away, and the mouse work on it carries a
 warning for us.** Sieben et al. modelled the human MVA missense **BUBR1^L1012P** in mice and paired it

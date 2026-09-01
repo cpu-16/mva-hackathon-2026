@@ -44,6 +44,13 @@ a singleton are a priori 50/50 *cis* or *trans*, and rarity does not phase them.
 settle the phase.** It cannot, on its own, establish that the missense allele is pathogenic — that
 needs a functional assay which does not exist for this substitution (§4).
 
+**Nor will a database settle it, and we measured that.** In the ClinVar 2026-08-28 release *BUB1B*
+carries **1,497 missense records of which exactly one is Likely pathogenic** — one star, one
+submitter — against 1,426 (95.3%) of uncertain significance, while **82 of its 94 truncating records
+are Pathogenic or Likely pathogenic**. The base rate for a *BUB1B* missense reaching P/LP is **1 in
+1,497**. There is no calibration set to build a computational answer on either. Segregation is not
+just the cheapest route here; it is the only practical one (`vus/RESULTADOS.md`).
+
 ## 2. Why it matters — three consequences, not one
 
 1. **It can refute the diagnosis outright, or leave it standing on firmer evidence.** A *cis* result
