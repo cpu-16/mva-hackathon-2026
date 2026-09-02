@@ -1,0 +1,418 @@
+{
+  "W": 125,
+  "window": [
+    5000000,
+    25000000
+  ],
+  "seed": 20260901,
+  "chroms": {
+    "8": {
+      "n_controls": 10,
+      "panel_sites_in_window": 138771,
+      "proband_raw": {
+        "n_sites": 19651,
+        "mean_dp": 44.77334486794565,
+        "sigma2_extra": 0.0008786585480854104,
+        "kappa_window": 2.3213267961019253,
+        "n_windows": 157
+      },
+      "proband_used": {
+        "sigma2_extra_raw": 0.0008786585480854107,
+        "kappa_window_thinned": 2.7398107403393026
+      },
+      "erroneous_first_pass": {
+        "sigma2_extra_thinned": 0.006496093919384246,
+        "note": "amendment 5: thinning carries the original binomial noise"
+      },
+      "control_sigma2": {
+        "min": 0.0014708141608640642,
+        "max": 0.004292964305112671,
+        "mean": 0.002348534907934941
+      },
+      "control_kappa": {
+        "min": 9.524100616089399,
+        "max": 46.0385640480658,
+        "mean": 21.04748990790493
+      },
+      "inside_sigma2": false,
+      "inside_kappa": false,
+      "per_sample": [
+        {
+          "sample": 0,
+          "control": {
+            "n_sites": 28010,
+            "mean_dp": 32.37750803284541,
+            "sigma2_extra": 0.0022273397352887917,
+            "kappa_window": 20.184464599324794,
+            "n_windows": 224
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 31.73741794310722,
+            "sigma2_extra": 0.00638456791215085,
+            "kappa_window": 2.6079921819080165,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 1,
+          "control": {
+            "n_sites": 25502,
+            "mean_dp": 30.25762685279586,
+            "sigma2_extra": 0.0014708141608640642,
+            "kappa_window": 11.17722858642459,
+            "n_windows": 204
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 29.846063813546383,
+            "sigma2_extra": 0.006415640585267439,
+            "kappa_window": 2.740765907941921,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 2,
+          "control": {
+            "n_sites": 26043,
+            "mean_dp": 32.51196098759743,
+            "sigma2_extra": 0.0015111433322043451,
+            "kappa_window": 10.686676540621571,
+            "n_windows": 208
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 32.66230726171696,
+            "sigma2_extra": 0.006456390827671123,
+            "kappa_window": 2.4188234065451715,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 3,
+          "control": {
+            "n_sites": 27496,
+            "mean_dp": 33.20664823974396,
+            "sigma2_extra": 0.004292964305112671,
+            "kappa_window": 46.0385640480658,
+            "n_windows": 219
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 32.66230726171696,
+            "sigma2_extra": 0.006421300482828963,
+            "kappa_window": 2.738571857136301,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 4,
+          "control": {
+            "n_sites": 24674,
+            "mean_dp": 32.48731458215125,
+            "sigma2_extra": 0.0021560347561787613,
+            "kappa_window": 13.982585594297605,
+            "n_windows": 197
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 31.73741794310722,
+            "sigma2_extra": 0.006678559659405265,
+            "kappa_window": 2.7322498448073875,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 5,
+          "control": {
+            "n_sites": 25555,
+            "mean_dp": 32.744707493641165,
+            "sigma2_extra": 0.001689530995595722,
+            "kappa_window": 11.829046762940909,
+            "n_windows": 204
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 32.66230726171696,
+            "sigma2_extra": 0.006581639764155235,
+            "kappa_window": 2.4996054833034917,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 6,
+          "control": {
+            "n_sites": 21323,
+            "mean_dp": 43.99882755709797,
+            "sigma2_extra": 0.0022449071051581036,
+            "kappa_window": 21.130043863258603,
+            "n_windows": 170
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 40.904635896392044,
+            "sigma2_extra": 0.006664209612906732,
+            "kappa_window": 3.5817379437522994,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 7,
+          "control": {
+            "n_sites": 25594,
+            "mean_dp": 35.372079393607876,
+            "sigma2_extra": 0.0034547898800402193,
+            "kappa_window": 40.49300961529259,
+            "n_windows": 204
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 34.45183451223856,
+            "sigma2_extra": 0.0064482591883500496,
+            "kappa_window": 2.733042778570988,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 8,
+          "control": {
+            "n_sites": 24330,
+            "mean_dp": 33.280641183723795,
+            "sigma2_extra": 0.002791054887082565,
+            "kappa_window": 25.429178852733397,
+            "n_windows": 194
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 32.66230726171696,
+            "sigma2_extra": 0.006470246951176179,
+            "kappa_window": 2.270313856789512,
+            "n_windows": 157
+          }
+        },
+        {
+          "sample": 9,
+          "control": {
+            "n_sites": 20765,
+            "mean_dp": 32.99176498916446,
+            "sigma2_extra": 0.001646769921824165,
+            "kappa_window": 9.524100616089399,
+            "n_windows": 166
+          },
+          "proband_thinned": {
+            "n_sites": 19651,
+            "mean_dp": 32.66230726171696,
+            "sigma2_extra": 0.006440124209930638,
+            "kappa_window": 3.075004142637935,
+            "n_windows": 157
+          }
+        }
+      ]
+    },
+    "17": {
+      "n_controls": 10,
+      "panel_sites_in_window": 84519,
+      "proband_raw": {
+        "n_sites": 13481,
+        "mean_dp": 45.734737779096506,
+        "sigma2_extra": 0.0015284050631111275,
+        "kappa_window": 4.92271117190766,
+        "n_windows": 107
+      },
+      "proband_used": {
+        "sigma2_extra_raw": 0.0015284050631111275,
+        "kappa_window_thinned": 4.600103319558614
+      },
+      "erroneous_first_pass": {
+        "sigma2_extra_thinned": 0.00706387775818001,
+        "note": "amendment 5: thinning carries the original binomial noise"
+      },
+      "control_sigma2": {
+        "min": 0.002114966166668485,
+        "max": 0.0030154942142463868,
+        "mean": 0.0025753679196560313
+      },
+      "control_kappa": {
+        "min": 6.046892456194456,
+        "max": 14.966102503189086,
+        "mean": 9.402565674859503
+      },
+      "inside_sigma2": false,
+      "inside_kappa": false,
+      "per_sample": [
+        {
+          "sample": 0,
+          "control": {
+            "n_sites": 15944,
+            "mean_dp": 33.235260913196186,
+            "sigma2_extra": 0.0025127518457948063,
+            "kappa_window": 8.845909550962206,
+            "n_windows": 127
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 32.613233439655815,
+            "sigma2_extra": 0.007080163571177533,
+            "kappa_window": 4.914796637407465,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 1,
+          "control": {
+            "n_sites": 16423,
+            "mean_dp": 31.08171466845278,
+            "sigma2_extra": 0.0022715182306341144,
+            "kappa_window": 6.155119038398096,
+            "n_windows": 131
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 30.75929085379423,
+            "sigma2_extra": 0.006985532593188156,
+            "kappa_window": 3.835888463305696,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 2,
+          "control": {
+            "n_sites": 15830,
+            "mean_dp": 33.53834491471889,
+            "sigma2_extra": 0.0025922873181323343,
+            "kappa_window": 8.326395161489417,
+            "n_windows": 126
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 33.517617387434164,
+            "sigma2_extra": 0.007123659372775347,
+            "kappa_window": 4.589389569988679,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 3,
+          "control": {
+            "n_sites": 16205,
+            "mean_dp": 33.61326751002777,
+            "sigma2_extra": 0.0022850724853891256,
+            "kappa_window": 6.046892456194456,
+            "n_windows": 129
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 33.517617387434164,
+            "sigma2_extra": 0.007129285523993982,
+            "kappa_window": 3.781576897993741,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 4,
+          "control": {
+            "n_sites": 15751,
+            "mean_dp": 33.517871881150405,
+            "sigma2_extra": 0.0028383463527347818,
+            "kappa_window": 12.846699374581528,
+            "n_windows": 126
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 33.517617387434164,
+            "sigma2_extra": 0.006915971404517216,
+            "kappa_window": 4.349503553502701,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 5,
+          "control": {
+            "n_sites": 16788,
+            "mean_dp": 33.56349773647844,
+            "sigma2_extra": 0.002693707452722363,
+            "kappa_window": 9.981667442170641,
+            "n_windows": 134
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 33.517617387434164,
+            "sigma2_extra": 0.007274642324803641,
+            "kappa_window": 4.32775994259921,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 6,
+          "control": {
+            "n_sites": 14136,
+            "mean_dp": 45.65074985851726,
+            "sigma2_extra": 0.002449031722162571,
+            "kappa_window": 8.958807867733851,
+            "n_windows": 113
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 42.13174096877086,
+            "sigma2_extra": 0.007053912089038451,
+            "kappa_window": 5.870313611868122,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 7,
+          "control": {
+            "n_sites": 13591,
+            "mean_dp": 36.06327716871459,
+            "sigma2_extra": 0.0030154942142463868,
+            "kappa_window": 14.966102503189086,
+            "n_windows": 108
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 35.270158000148356,
+            "sigma2_extra": 0.006919380774034433,
+            "kappa_window": 5.058970649010226,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 8,
+          "control": {
+            "n_sites": 11639,
+            "mean_dp": 34.23833662685798,
+            "sigma2_extra": 0.0029805034080753467,
+            "kappa_window": 9.741858276959215,
+            "n_windows": 93
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 33.517617387434164,
+            "sigma2_extra": 0.006915366603014491,
+            "kappa_window": 4.576550219948188,
+            "n_windows": 107
+          }
+        },
+        {
+          "sample": 9,
+          "control": {
+            "n_sites": 16078,
+            "mean_dp": 33.97468590620724,
+            "sigma2_extra": 0.002114966166668485,
+            "kappa_window": 8.156205076916526,
+            "n_windows": 128
+          },
+          "proband_thinned": {
+            "n_sites": 13481,
+            "mean_dp": 33.517617387434164,
+            "sigma2_extra": 0.007240863325256847,
+            "kappa_window": 4.696283649962102,
+            "n_windows": 107
+          }
+        }
+      ]
+    }
+  },
+  "verdict": "NO CONCLUYENTE bajo las reglas pre-registradas. Se reporta como tal; no se ampl\u00eda la ventana ni se vuelve a mirar.",
+  "not_matched": "GQ >= 30 forma parte de la regla de sitios del probando pero NO se pudo aplicar a los controles: la extracci\u00f3n del piloto pidi\u00f3 GT,DP,AD y no GQ, y re-extraer cuesta otras cuatro horas por cromosoma. Direcci\u00f3n del sesgo: sin filtro de GQ los controles retienen sitios de menor calidad, lo que INFLA su dispersi\u00f3n y por tanto ENSANCHA el sobre \u2014 es decir, hace m\u00e1s f\u00e1cil que el probando caiga dentro. El resultado 'dentro del sobre' es por tanto el desenlace favorecido por este desajuste y debe leerse con esa reserva; un resultado 'fuera del sobre' no queda debilitado por \u00e9l. Tampoco est\u00e1n pareados el caller (GATK singleton 4.2.4.0 contra el joint call de NYGC), la qu\u00edmica de PCR ni el alineador."
+}

@@ -396,3 +396,39 @@ extractions in this project truncated silently and returned exit code 0, one of 
 of the requested region while `bcftools` reported success. Every extraction below is checked against
 the requested interval: first and last position retrieved, site count, and no gap larger than 2 Mb.
 An extraction that fails the check is discarded and repeated, never patched.
+
+### Amendment 5 — 2026-09-01, an implementation error found by reading our own output
+
+The control ran, and the first pass compared the **thinned** proband against the controls on
+**both** statistics. That is wrong for σ²_extra, and the error is ours.
+
+**What went wrong.** Binomial thinning does not remove the original sampling noise; it carries it
+and adds more:
+
+    var(b_thin) = var_true + E[p(1−p)]/DP_original + E[p(1−p)]/DP_thinned
+
+Subtracting only `0.25/DP_thinned` therefore leaves `var_true + 0.25/DP_original` behind. The
+arithmetic is visible in the output: σ²_extra rose from **+0.001118** raw to **+0.006525** thinned on
+chr8, a difference of **+0.005407**, against `0.25/44.8 = 0.005580`. On chr17 the difference is
+**+0.005311** against `0.25/45.7 = 0.005470`. The gap *is* the un-subtracted original noise, to three
+significant figures on both chromosomes.
+
+**Amendment 3 already said the right thing and the code did not follow it:** *"σ²_extra is reported
+because it is additive and depth-comparable."* Being depth-comparable is exactly why it does not need
+thinning. **Thinning applies to κ_window only**, which is a ratio against a depth-dependent
+denominator and therefore does need it.
+
+**The fix, and it changes the reading.** σ²_extra is compared on the **raw** proband; κ_window on the
+**thinned** proband. Under the erroneous version the two statistics pointed in opposite directions —
+proband above the envelope on σ²_extra, below it on κ_window — which is what made the first verdict
+read "not conclusive". Corrected, they agree.
+
+**A second, much smaller error, corrected at the same time.** The binomial correction used
+`0.25/mean(DP)` where the expectation is `mean(0.25/DP_i)`. By Jensen's inequality the former is the
+smaller, so σ²_extra was over-estimated. The size is **+0.000239** on the raw proband, about 4% of
+the reported value, and **+0.000017** after thinning. It does not change any conclusion and is fixed
+for correctness rather than for effect.
+
+**Both results are reported**, the erroneous first pass and the corrected one, in
+`mosaico/CONTROL_RESULTADO.md`. We do not delete the first pass and present the second as though it
+had been the plan.

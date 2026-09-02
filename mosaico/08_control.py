@@ -46,7 +46,9 @@ def stats_from(dp, ad_alt, rng=None, thin_to=None):
     dev = b - 0.5
     mean_dp = float(np.mean(dp))
 
-    sigma2_extra = float(np.var(dev, ddof=1) - 0.25 / mean_dp)
+    # Amendment 5: the expectation is mean(0.25/DP_i), not 0.25/mean(DP). Jensen makes the
+    # latter smaller, which over-estimates the excess.
+    sigma2_extra = float(np.var(dev, ddof=1) - float(np.mean(0.25 / dp)))
 
     n_win = len(dev) // W
     if n_win < 2:
@@ -157,14 +159,19 @@ def main():
 
         cs = np.array([r["control"]["sigma2_extra"] for r in rows])
         ck = np.array([r["control"]["kappa_window"] for r in rows])
-        ts = np.array([r["proband_thinned"]["sigma2_extra"] for r in rows])
+        # Amendment 5: sigma2_extra is depth-comparable by construction and must NOT be thinned;
+        # thinning carries the original binomial noise through. Only kappa_window is thinned.
+        ts = np.array([prob_raw["sigma2_extra"]] * len(rows))
+        ts_wrong = np.array([r["proband_thinned"]["sigma2_extra"] for r in rows])
         tk = np.array([r["proband_thinned"]["kappa_window"] for r in rows])
 
         d = dict(
             n_controls=len(rows),
             panel_sites_in_window=len(keep),
             proband_raw=prob_raw,
-            proband_thinned_mean=dict(sigma2_extra=float(ts.mean()), kappa_window=float(tk.mean())),
+            proband_used=dict(sigma2_extra_raw=float(ts.mean()), kappa_window_thinned=float(tk.mean())),
+            erroneous_first_pass=dict(sigma2_extra_thinned=float(ts_wrong.mean()),
+                                      note="amendment 5: thinning carries the original binomial noise"),
             control_sigma2=dict(min=float(cs.min()), max=float(cs.max()), mean=float(cs.mean())),
             control_kappa=dict(min=float(ck.min()), max=float(ck.max()), mean=float(ck.mean())),
             inside_sigma2=bool(cs.min() <= ts.mean() <= cs.max()),
@@ -176,7 +183,9 @@ def main():
         print(f"\n=== chr{c} ===  ({len(rows)} controles, ventana {WINDOW[0]:,}-{WINDOW[1]:,})")
         print(f"  probando crudo      DP {prob_raw['mean_dp']:.1f}  "
               f"sigma2_extra {prob_raw['sigma2_extra']:+.6f}  kappa_window {prob_raw['kappa_window']:.2f}")
-        print(f"  probando adelgazado sigma2_extra {ts.mean():+.6f}  kappa_window {tk.mean():.2f}")
+        print(f"  probando (enm.5)    sigma2_extra {ts.mean():+.6f} [crudo]  "
+              f"kappa_window {tk.mean():.2f} [adelgazado]")
+        print(f"    (1a pasada erronea: sigma2 adelgazado {ts_wrong.mean():+.6f})")
         print(f"  sobre de controles  sigma2_extra [{cs.min():+.6f}, {cs.max():+.6f}]  "
               f"kappa_window [{ck.min():.2f}, {ck.max():.2f}]")
         print(f"  DENTRO del sobre?   sigma2: {'SÍ' if d['inside_sigma2'] else 'NO'}   "
