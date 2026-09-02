@@ -1,7 +1,276 @@
 # 🔄 CONTINUAR AQUÍ — estado del MVA Hackathon 2026
 
-**Última actualización: 01-sep-2026.** Documento de traspaso tras un `/clear`.
+**Última actualización: 02-sep-2026.** Documento de traspaso tras un `/clear`.
 Léeme completo antes de tocar cualquier otro archivo.
+
+---
+
+## 🆕 SESIÓN DEL 2-SEP-2026 — auditoría de estado. **No se corrigió nada todavía**
+
+Gilberto preguntó si el proyecto va bien o le falta. Se auditó el **estado real contra los archivos**,
+no contra lo declarado. Se acordó **atacar cinco frentes más tarde**; esta sesión solo actualizó este
+documento y el `LEEME.md` del paquete de envío. **Ningún reporte fue modificado.**
+
+**El patrón que explica casi todo lo que sigue: el reporte del Track 2 va por detrás de los archivos
+de resultados.** Tres de los hallazgos graves son correcciones que el propio equipo escribió en
+`potencia/` y `mosaico/` y **nunca propagó al reporte**. Dos de ellas figuran arriba, en la ronda 10,
+dentro de "Ocho errores reales encontrados y TODOS corregidos". No lo están.
+
+### ✅ EL PILOTO DE MOSAICISMO TERMINÓ — veredicto: NO CONCLUYENTE
+
+Ya no está corriendo (la sección "⏳ CORRIENDO EN BACKGROUND AL CERRAR" de más abajo está resuelta).
+Terminó el 1-sep 19:50; el análisis y su MD son de las 21:42, **posteriores a la última edición del
+reporte (18:29) y de este archivo (18:30)**, por eso no aparecían.
+Fuente que manda: `mosaico/CONTROL_RESULTADO.md`. Commit `ce94b89`.
+
+Cobertura verificada explícitamente antes de calcular nada (chr8: 995.160 sitios; chr17: 668.916;
+hueco mayor ~50 kb en ambos): **PASA**. El gotcha de los truncamientos silenciosos no se repitió.
+
+| | probando | sobre de 10 controles | ¿dentro? |
+|---|---:|---|---|
+| chr8 σ²_extra | +0,000879 | +0,001471 … +0,004293 | **no — por debajo** |
+| chr8 κ_window | 2,74 | 9,52 … 46,04 | **no — por debajo** |
+| chr17 σ²_extra | +0,001528 | +0,002115 … +0,003015 | **no — por debajo** |
+| chr17 κ_window | 4,60 | 6,05 … 14,97 | **no — por debajo** |
+
+La enmienda 3 preveía dos desenlaces: dentro del sobre (técnico) o fuera **hacia arriba**. *Por
+debajo* no estaba entre ellos, así que el veredicto pre-registrado es **no concluyente**, y se
+reporta así en vez de inventar después una regla que lo lea como buena noticia.
+
+**El control no falló al correr: falló al ser control.** La causa se declaró ANTES con su dirección
+(los controles no llevan filtro GQ, lo que infla su dispersión) y es exactamente la dirección
+observada; además el caller no está pareado (GATK singleton del probando contra el joint call de
+3.202 muestras del NYGC). Un κ de 46 en un individuo sano no es biología, es cómo se llamaron
+esas variantes.
+
+**Lo único que sí queda, y quita una objeción concreta:** contra diez genomas sanos, κ va de 6 a 46,
+y el del probando (≈2,3) es **el más bajo de la comparación**. Un κ elevado no es anómalo por sí
+mismo. No prueba que el exceso sea técnico —el desajuste ya predecía esa dirección— solo que no es
+llamativo en tamaño.
+
+**Lo que lo resolvería:** un control procesado **idénticamente** (genoma público llamado como
+singleton con GATK 4.2.4.0, mismos filtros, desde lecturas). Es la única versión que vale la pena
+correr. Ampliar la ventana o añadir muestras no sirve, y la enmienda 4 lo prohíbe.
+
+**Enmienda 5, encontrada leyendo la propia salida:** el adelgazamiento binomial no elimina el ruido
+original, lo arrastra, así que σ²_extra va sobre el probando **crudo**. Bajo la versión errónea los
+dos estadísticos apuntaban en **direcciones opuestas**; corregidos, coinciden.
+
+### ⛔ LOS CINCO FRENTES ACORDADOS — en este orden
+
+| # | Frente | Costo | Por qué primero |
+|---|---|---|---|
+| 1 | Los tres arreglos graves del Track 2 (§5 y §6) | media jornada, 0 cómputo | Cierra el flanco por donde entra un juez adversarial |
+| 2 | Reescribir el `README.md` del repo | ~30 min | Es lo primero que ve un juez y está en la ronda 6 |
+| 3 | Verificar contra PubMed los 5 PMID sin abstract guardado | 1–2 h | Es lo único que puede costar credibilidad entera |
+| 4 | Reenviar el Track 1 corregido | 1 h | El reenvío no puede bajar el puntaje y la versión corregida es **mejor** para nosotros |
+| 5 | Actualizar `data/BORRAR-AL-TERMINAR.md` | 10 min | Única obligación con consecuencia legal |
+
+### 🔴 TRES ERRORES GRAVES EN `track2/REPORT_track2_EN.md` — declarados corregidos y NO lo están
+
+**(1) El §6 sigue anclado a la selectividad 4× que nuestra propia regla pre-registrada mató.**
+Reporte L563-564 y L576-578 presentan la potencia 0,897 «at 4× EC50 selectivity» y cierran con *"we
+cannot yet say which regime these cells are in"*. Pero `potencia/RESULTADOS_2_DOSIS.md` L70-78 dice
+que el pre-registro fijó **|Δ₂|/σ < 0,10 → escenario central no defendible**, que el valor medido es
+**0,093**, y que **"Track 2 §6 must say so, and both now do"**. El reporte da los insumos (0,09 vs
+0,84 SD residual) y **nunca el veredicto**: convierte una regla que disparó en una incertidumbre
+abierta. Agravante: **todo el criterio de avance L613-631 cuelga de ese 4×** (tabla 1,14× / 1,30× /
+1,50× / 2,00×, cuyos números sí verifican contra `potencia/resultados.json`).
+
+**(2) El §5 publica el límite de 14 % como "el número que aportamos" y omite el propio 2,1 %.**
+Reporte L501, L511, L525. Pero `mosaico/RESULTADOS.md` L74-78 mide **2,07 %** (mejora de 6,8× sobre
+lo publicado) y dice que eso **sustituye** al ~14 %. Consecuencia que importa: la frase **"that sits
+7–16× below the limit" se invierte** con el número correcto, porque 1–2 % queda **al borde** del
+límite alcanzable, no muy por debajo. La conclusión (el bulk no resuelve esto) **sobrevive**, pero
+por la **no identificabilidad** de la variegación balanceada (detección 0,1–0,2 % = la tasa de falsos
+positivos, incluso al 40 % de células), y ese argumento —el fuerte, el que no depende de ningún
+límite— **no aparece en el reporte** (`2.1%`, `Ψ` y `non-identifiab` dan 0 ocurrencias).
+
+**(3) La compuerta del §6 pide el endpoint equivocado.** Reporte L583-585 y L591 piden conteo de
+metafases **con scoring de PCS** «to measure the aneuploid cell fraction».
+`potencia/RESULTADOS_2_DOSIS.md` L100-104 lo retractó: **PCS y aneuploidía son endpoints distintos**;
+hay que contar **células con ≥1 anomalía numérica de cromosoma**, con PCS como acompañante, y
+registrar además cuántos cromosomas anormales por célula anormal. Es el punto que decide n=3 / n=14 /
+no correr. Figura arriba como error #7 «corregido».
+
+### 🟠 Medios del Track 2
+
+- **L598-600 (y L91, L850): "about twelve weeks" escoge el extremo bajo.** `DATOS_CANDIDATO.md` §7 da
+  **4–8 semanas** para establecer los fibroblastos, así que 8+4=12 pero 8+8=**16**. El rango honesto
+  es **12–16**, y la misma fila advierte que en MVA1 el crecimiento puede ser más lento. Es el mismo
+  error del Cmax de bortezomib, que **sí está bien corregido** ahora (L102 y L868 citan el intervalo
+  completo 89–120 ng/mL = 231–312 nM → 5,8–7,8×).
+- **L727-732: nos atribuimos un hallazgo que `clinico/` se prohíbe explícitamente.** El reporte dice
+  que el conteo de copia única *"was not ceremonial"* porque atrapó un primer par dentro de un *AluY*.
+  `clinico/PARENTAL_SEGREGATION_ORDER.md` L109-114 dice que quien lo atrapó fue la exclusión
+  RepeatMasker, que el conteo es **confirmación y no filtro**, y que **"we state it that way rather
+  than claiming we sifted a bad pair out at the counting step"**.
+- **L904: título alterado en la referencia 22 (PMID 22890317).** El reporte pone *"through AMPK"*; el
+  título real es *"through **EGFR degradation**"* (`evidencia/fuentes_verbatim.md` L70), y el abstract
+  atribuye el efecto a degradación proteasomal de EGFR. La afirmación del cuerpo (4× más sensible a
+  AICAR, L266) **sí es exacta**; el error está solo en la referencia.
+- **L563: el 0,897 va sin la advertencia de que es cota superior.** `potencia/RESULTADOS.md` §5b:
+  el Hill ajusta 2 parámetros donde el pre-registro prometía 4, y el ruido no tiene término de réplica
+  biológica. *"0.897 is an upper bound on the power of this design, not an estimate of it."* Error #6
+  de la ronda 10, también sin propagar.
+- **§3.3 afirma exhaustividad y omite trametinib.** L17 dice *"every candidate the literature points
+  to"*; trametinib **no aparece ni una vez** en 909 líneas, pese a estar en
+  `CANDIDATOS_FARMACOCINETICA.md` §8 (aprobado, etiqueta pediátrica desde 1 año, PMID 39251587) y a
+  ser uno de los 7 fármacos pre-bloqueados en `depmap/PREREGISTRO.md` L60. O entra al embudo, o se
+  quita el "every candidate".
+- **L503: "no BAM, hence no GC-LOESS".** `mosaico/RESULTADOS.md` L139-141 dice que esa frase está
+  **mal dos veces**: el reto sí distribuye las lecturas (84,7 GB de FASTQ) y el análisis que importaba
+  no las necesitaba. Ojo: la frase equivalente del §10 (L809, sobre fasado por lecturas) **sí es
+  correcta**; el problema es solo el §5.
+
+### 🔴 TRACK 1 — el cuarto error sigue vivo, y corregirlo NOS FAVORECE
+
+Los errores 1, 2 y 3 (el «24 %», la atribución a ClinVar y el denominador 4.565) están **verificados
+como corregidos** en `entrega/methods_track1.md`. El cuarto **no**.
+
+**(4) El control de HPO ajenos sigue en su versión contaminada** en md, PDF y xlsx.
+Líneas L104-107, L123-124, L149, L270-271 y L471/474/482. El PDF tiene **7 ocurrencias de 0.4187 y
+0 de 0.3965**. El set descrito todavía incluye la hipoacusia.
+
+| Dato | El reporte dice | Verificado en crudo |
+|---|---|---|
+| Set limpio | incluye HP:0000365 | conjuntivitis, infecciones resp., cefalea, prurito, **rash HP:0000988** |
+| Score | 0,4187 | **0,3965** (`tools/results/controles/hpos_ajenos_r9_limpios.genes.tsv`) |
+| Δ del fenotipo | 0,1684 | **0,1906** |
+| Rank en los 3 fondos | "2/3" | **1 / 2 / 3**, o sea rank 1 en **1 de 3** (`replay/out_r9/`) |
+
+**(5) El tier de 30 genomas ya cerró y el reporte dice que sigue corriendo.** L300-304 y L480-481
+dicen *"still running at the time of writing"*. `replay/out/` tiene los 30: máximo **0,5207** (CDH1,
+HG01885), **0 de 30 superan 0,5871**. Aplica la frase pre-comprometida de `replay/RESULTADOS.md` §8.
+Matiz para redactarlo: BUB1B **sí aparece** en HG00101 (rank 138, score 0,0002), así que *"does not
+appear in any of them"* vale solo para los 7 GIAB; P-A2 («ausente o < 0,25») sigue confirmada.
+
+**(6) ⚠️ La consecuencia que nadie había visto: corregir el (4) cambia el resultado de una predicción
+pre-registrada, y lo cambia A NUESTRO FAVOR.** P-B2 decía *"con fenotipo ajeno, BUB1B plantado sigue
+rank 1 en ≥ 2 de 3"*, y el pre-registro añadía: *"**esperamos que nuestro propio pipeline falle
+esto**; confirmarlo es una concesión que nos pre-comprometemos a publicar, no una victoria"*
+(`replay/PREREGISTRO.md` L147-149). Con el set contaminado salía 3/3 → confirmada. **Con el set
+limpio sale 1/3 → falsificada, que es el desenlace que queríamos.** Por tanto L309 («of seven
+pre-registered predictions, five are confirmed») pasa a **cuatro confirmadas**, y hay una
+falsificación que juega a favor. **El documento enviado se vende por debajo de lo que la evidencia
+sostiene, en este punto y en el (5).** Ese es un argumento para reenviar que ninguno de los dos
+revisores planteó — distinto del argumento de integridad de Codex.
+
+**(7) La celda B16 del xlsx (Q9, heterocigosis compuesta) está desfasada:** 1.131 caracteres contra
+2.909 en el md. Le faltan los tres párrafos de la ronda 8 y cierra con *"Parental testing would
+settle it"*. ⛔ La línea de este archivo que dice «las dos hojas ya están al día» es **falsa** para
+esa celda. Las 8 celdas del Track 2 sí son idénticas al md.
+
+**(8) Cosmético:** `methods_track1.md` dice «twelve» controles y `entrega/methods_track2.md` L142 dice
+«eleven». `entrega/NOTAS_ENVIO.md` L10 y L59 siguen diciendo epcr 0.95 (histórico).
+
+### 🔴 EL README DEL REPO ESTÁ EN LA RONDA 6 — y es lo primero que ve un juez
+
+`~/datos/mva-hackathon-2026/README.md`, último commit `6f18f70` del **30-ago 10:17**, anterior a
+DepMap, MVA-Replay, fase, potencia, VUS y el control externo. La URL de GitHub es parte del envío.
+
+- Dice *"the signal comes from the **ClinVar-whitelisted** pathogenic nonsense allele"* — **refutado
+  por nuestro propio benchmark**: el whitelist vale 0,0128 en score absoluto y lo que carga es la
+  consecuencia nonsense.
+- Dice *"Five clinically unrelated HPO terms (1 run): BUB1B **still ranks 1**"* — es el control
+  **contaminado**.
+- Dice «eleven extra Exomiser runs»; el video v3 ya dice doce.
+- **No menciona ninguno de los cinco análisis pre-registrados**, que son justo lo que sube Impacto y
+  Escalabilidad. El bloque «Layout» tampoco lista `depmap/`, `replay/`, `fase/`, `hpo/`, `potencia/`,
+  `vus/`, `mosaico/` ni `clinico/`, que sí están en el repo.
+- La limitación «Phase is not established» quedó blanda: `fase/RESULTADO.md` la cerró con números
+  (no es no concluyente, es **no computable**).
+
+### ⚠️ REGLAS: la FAQ dice que el write-up del Track 1 TAMBIÉN lo juzga un panel
+
+`evidencia/space_tabs_faq.py`, respuesta a *"How is Track 1 scored?"*, cierra con:
+
+> *"Your methods write-up is also reviewed by a judging panel for scientific rigor and depth of
+> understanding."*
+
+**La tabla de reglas de este archivo y la del `CLAUDE.md` dicen solo «automática, sobre el CSV».
+Está incompleta.** `space_tabs_rules.py` L69 solo menciona panel para el Track 2, así que las dos
+fuentes oficiales no dicen lo mismo — pero la FAQ es explícita. Esto **desarma el argumento de Cursor**
+de no reenviar el Track 1 porque «no diferencia»: los cuatro errores viven en un documento que sí se lee.
+(De hecho `evidencia/cursor_revision_track1.md` L1 ya asumía panel: *"no sobreviviría un panel que
+busque un motivo para descalificar"*.)
+
+**Segunda ambigüedad, resolver ANTES del primer envío del Track 2.** La FAQ se contradice: en
+*"Can I participate as a team?"* dice **"only one Track 2 submission per team is accepted, and
+additional submissions from other team members will be ignored"**, y en *"How many submissions"* dice
+**"up to 3 submissions per team… only review your latest entry"**. La lectura razonable es que solo
+una persona envía en nombre del equipo y esa persona tiene 3 intentos; como el equipo es de una
+persona el riesgo práctico es bajo, pero **si la lectura estricta fuera «un envío», reenviar sería
+fatal**. Preguntar en el foro antes de gastar el primero.
+
+### ⚖️ CUMPLIMIENTO: el inventario de borrado se quedó corto por ~718 MB
+
+`data/BORRAR-AL-TERMINAR.md` se generó el **29-ago 02:25** y dice «mantener al día». No se mantuvo.
+Derivados a escala genómica del paciente creados después y **no listados**:
+
+| Ruta | Qué es | Tamaño |
+|---|---|---:|
+| `mosaico/fase/probando_chr*.vcf.gz` | 22 VCF del paciente por cromosoma | **653 MB** |
+| `mosaico/sitios/chr*.tsv.gz` | sitios del paciente por cromosoma | 15 MB |
+| `tools/results/controles/*.genes.tsv` | rankings con variantes del paciente | 50 MB |
+| `fase/paciente_chr15_win.vcf.gz`, `fase/prueba.vcf.gz` | ventana del paciente | ~0,3 MB |
+
+Es **más que los 438 MB de `data/`**, que sí está inventariado. Fecha límite **23-nov-2026** + correo
+a Synapse. ✅ Comprobado que `replay/` (41 GB) **no** usa datos del paciente: son genomas públicos con
+alelos plantados, declarado en `replay/01_run.py` L3 y consistente con el código.
+
+### ⚠️ CITAS: cinco PMID nuevos SIN abstract verbatim guardado
+
+Ninguno de estos cinco tiene copia en `evidencia/fuentes_verbatim.md`; su única procedencia es este
+mismo archivo. **Con tres citas falsas en el historial, hay que bajarles el abstract y emparejarlo con
+la afirmación** (el método que sí funciona) antes de enviar.
+
+| PMID | Qué sostiene | Usos en el reporte |
+|---|---|---:|
+| **39264246** | El consenso de vigilancia: ecografía renal cada 3 meses hasta los 7, en todas las MVA; y «ninguno de los 15 MVA2 desarrolló cáncer» | **8 — es el pilar del §7 y del veredicto MVA2** |
+| **42595739** | Niña MVA3 con Wilms a los 3 y ERMS orbitario a los 12 | **6 — es "el hueco que aportamos"** |
+| 42434306 | Portadores heterocigotos de BUB1B con PCS elevada y abortos recurrentes | §7 + toda la orden clínica |
+| 42094535 | Cribados CRISPR pareados; proteasoma como dependencia aneuploide-específica; UBE2H | §3.4 |
+| 41248159 | Carga traduccional → envejecimiento prematuro | §4 |
+
+Además: los números de las **cohortes de mieloma** que el reporte atribuye a Ippolito (L304-310:
+n=8/50 p=0,014; n=13/14 p=0,038) **no tienen fuente rastreable en el repositorio**. El «EC50 <40 nM» y
+el «2,4 nM» sí están respaldados en `CANDIDATOS_FARMACOCINETICA.md`.
+✅ Los 20 PMID del grupo con abstract guardado se cruzaron uno a uno y **coinciden**, salvo el título
+de la ref. 22 ya señalado.
+
+### ✅ VERIFICADO BIEN — no repetir estas comprobaciones
+
+- **`replay/mva_replay.py --self-check`: 21 asserts, y tiene control positivo real.** Se mutó un valor
+  esperado en una copia y el self-check **falló como debe** (exit 1). Los asserts L306-309 incluyen
+  control positivo y negativo declarados. (`README_TOOL.md` L29 dice «20 asserts»; son 21. Cosmético.)
+- **Paquete de envío íntegro:** los tres archivos de `entrega/listo-para-enviar/` son **byte a byte
+  idénticos** a su fuente (sha256 verificados).
+- **El CSV está intacto:** una fila, PROBAND01, las dos variantes, **epcr 0.85**. Los 100/100 no
+  corren riesgo con un reenvío.
+- **Video: 179,000 s exactos** por ffprobe (límite 180). Es la **v3**: contiene las cuatro frases
+  nuevas y 0 ocurrencias de las viejas.
+- **Repo:** limpio, sincronizado con `origin/main`, **privado** (hacerlo público al cierre). Ningún
+  genotipo se coló: `mosaico/probando*.json` son agregados por cromosoma, que las reglas permiten
+  publicar explícitamente (*"free to publicly share their code, models, and derived outputs"*).
+- **Cadena de pre-registros completa:** los 5 pre-registros tienen su resultado; ninguno quedó huérfano.
+- Todos los números de DepMap, potencia, VUS, fase y farmacocinética del reporte **verifican** contra
+  sus archivos fuente. Los errores históricos 1, 2 y 3 (filas vs entidades, porcentajes de score,
+  atribución a ClinVar) **no reaparecen** en el Track 2.
+
+### 📐 Números mal declarados — corregidos en este archivo
+
+| | Se decía | Real |
+|---|---|---|
+| PDF Track 2 | 34 y 36 páginas | **37** |
+| PDF Track 1 | 12 y 17 páginas | **18** |
+
+`VERIFY.md` lista **5 pares** y le falta el sexto, que es el del control externo (`6405d9e` enmienda 4
+→ `138a40f` código → `ce94b89` resultado) — justo el que un juez adversarial querría comprobar,
+porque el resultado va en contra nuestra. **Matiz a declarar si se añade:** `138a40f` se commiteó a
+las 18:53:39 y `mosaico/piloto/chr8.tsv.gz` ya existía desde las 18:39. `CONTROL_RESULTADO.md` lo dice
+con precisión (*"before the **chr17** data existed"*), pero el **mensaje del commit** dice «before the
+control data exists», impreciso para chr8. El mensaje no se puede editar; el MD ya lo corrige.
 
 ---
 
@@ -65,7 +334,7 @@ con tres ramas: n=3 si f≥0.25, n=14 si f=0.10, y **no correr el ensayo bulk si
 También: extender el rango de concentraciones a 1.000 nM (a selectividad 10× la EC50 del control
 caía justo en el techo de 400 nM).
 
-### ⏳ CORRIENDO EN BACKGROUND AL CERRAR
+### ⏳ CORRIENDO EN BACKGROUND AL CERRAR — ✅ **YA TERMINÓ (1-sep 19:50), ver la sesión del 2-sep arriba**
 
 **El piloto del control externo de mosaicismo** (`mosaico/_piloto.sh` → `mosaico/piloto/`).
 Enmienda 4 pre-registrada y commiteada (`6405d9e`) ANTES de bajar un solo byte: ventanas **fijas**
@@ -122,7 +391,7 @@ defendible para estas células.**
 hay una tabla que empareja cada diseño con su resultado y el comando de un renglón para comprobar el
 orden. Un pre-registro vale exactamente el timestamp que lo respalda.
 
-PDF del Track 2: **36 páginas**, en `entrega/listo-para-enviar/`.
+PDF del Track 2: ~~36 páginas~~ **37 páginas** (verificado 2-sep), en `entrega/listo-para-enviar/`.
 
 ---
 
@@ -188,7 +457,7 @@ Esto se recomendó mal una vez (1-sep): dos agentes dijeron "envía ya, te da ve
 |---|---|---|
 | Envíos | 6 por participante | 3 por equipo |
 | Cuál cuenta | **el de MAYOR puntaje** | **solo el ÚLTIMO** |
-| Evaluación | automática, sobre el CSV | **panel de jueces humanos** |
+| Evaluación | automática sobre el CSV **+ el write-up lo revisa un panel** (FAQ, ver 2-sep) | **panel de jueces humanos** |
 | Cuándo | inmediata | **2–3 meses DESPUÉS del cierre** |
 
 - ⛔ **Enviar el Track 2 temprano NO da ventaja competitiva.** La FAQ dice literalmente *"The
@@ -210,7 +479,7 @@ Esto se recomendó mal una vez (1-sep): dos agentes dijeron "envía ya, te da ve
 | Estado general y qué sigue | **este archivo** | — |
 | Reporte Track 1 (enviado) | `entrega/methods_track1.md` + `.pdf` | ⛔ `methods_track1_DRAFT.md` es histórico, NO usar |
 | Reporte Track 2 (sin enviar) | `track2/REPORT_track2_EN.md` + `REPORT_track2.pdf` | ⛔ `REPORT_track2_EN_v1_ARCHIVO.md` es viejo, NO usar |
-| Formulario de métodos | `entrega/methods_description_form_ciberpty.xlsx` | las dos hojas ya están al día |
+| Formulario de métodos | `entrega/methods_description_form_ciberpty.xlsx` | ⛔ la hoja del Track 2 sí; **la celda B16 del Track 1 (Q9) está desfasada** (2-sep) |
 | Q2–Q11 del Track 2 en texto | `entrega/methods_track2.md` | espejo del xlsx, mantener sincronizados |
 | CSV de predicciones | `entrega/convergent-hpo-genomewide-and-panel.csv` | epcr 0.85, verificado = 100 pts |
 | Análisis DepMap | `depmap/PREREGISTRO.md` → `depmap/RESULTADOS.md` | leer en ese orden |
@@ -218,7 +487,8 @@ Esto se recomendó mal una vez (1-sep): dos agentes dijeron "envía ya, te da ve
 | Fase de las dos variantes (lo nuevo) | `fase/RESULTADO.md` + `replay/PILOTO_FASE.md` | cerrado, no reintentar |
 | Video | `video/GUION.md` (v3) + `video/README.md` | ⛔ `GUION_v1.md` es histórico |
 | Qué se envió y cuándo | `evidencia/registro_envios_track1.md` | — |
-| Obligación de borrar datos | `data/BORRAR-AL-TERMINAR.md` | **fecha límite 23-nov-2026** |
+| Control externo de mosaicismo | `mosaico/CONTROL_RESULTADO.md` | lo nuevo (1-sep 21:42); veredicto **no concluyente** |
+| Obligación de borrar datos | `data/BORRAR-AL-TERMINAR.md` | ⛔ **desactualizado**, faltan ~718 MB (ver 2-sep) · **fecha límite 23-nov-2026** |
 | Archivos listos para subir al Space | `entrega/listo-para-enviar/` | con el nombre exacto que pide; ver su `LEEME.md` |
 
 **Carpeta `evidencia/`: es archivo histórico, no fuente de verdad.** Son las revisiones de Codex y
