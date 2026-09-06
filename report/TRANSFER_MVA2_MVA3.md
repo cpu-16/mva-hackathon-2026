@@ -153,15 +153,18 @@ worksheet's instructions name.
 
 ## 5. Why this matters
 
-A framework that returns the same answer for three diseases is a slogan. One that **kills the
-candidate at filter 2 in MVA2 and leaves it conditional in MVA3** is a demonstration — because the
+A framework that returns the same answer for three diseases is a slogan. One that **stops the
+candidate at filter 4 in MVA2, with filters 2–3 not evaluable, and leaves it conditional in MVA3** is a
+demonstration — because the
 two verdicts were produced by the same five questions, in the same order, from published evidence,
 without adjusting the questions to reach them.
 
 Three properties are visible only because the answers diverged:
 
-- **The filters bind at different points.** MVA1 stops at filter 4 (a fact about one child), MVA2 at
-  filter 2 (a fact about a gene), MVA3 at nothing — it stops only for want of data. A framework in
+- **The filters bind at different points.** MVA1 stops at filter 4 for a reason that is a fact about
+  one child; MVA2 also stops at filter 4, but for a reason that is a fact about the gene — the setting
+  that would invert that filter, an active malignancy, has not been reported in MVA2 — with filters 2–3
+  not evaluable there for want of any proteasome measurement in *CEP57* cells; MVA3 stops at nothing — it stops only for want of data. A framework in
   which every candidate fails at the same place is not discriminating; it is expressing a prior.
 - **"Same syndrome" is not a licence to transfer a drug.** All three are mosaic variegated aneuploidy,
   and biallelic *BUBR1*, *CEP57* and *TRIP13* are the three recognised causes (PMID 31738183). A
@@ -210,9 +213,11 @@ The drug verdict is the part that changes. Most of the report does not:
 ## 7. Limitations of this transfer
 
 - **Neither sheet has a patient.** Filter 4 is patient-specific by construction, so both worksheets
-  leave it undecided (MVA2 does not reach it; MVA3 cannot answer it in the abstract). A completed sheet
+  leave it undecided for want of a patient (in MVA2 it is the filter the candidate stops at, but on a
+  published-cohort argument rather than one child's comorbidities; MVA3 cannot answer it in the
+  abstract). A completed sheet
   requires a named child, their comorbidities and their current age.
-- **The MVA2 filter-2 verdict rests partly on an inference**, flagged in §2 above: "minimal SAC
+- **The MVA2 "not evaluable at filter 2" reading rests partly on an inference**, flagged in §2 above: "minimal SAC
   deficiency" (PMID 28553959) is a checkpoint measurement, and the step to "smaller proteotoxic burden"
   is ours, not the source's. We record it as the weakest joint in this document.
 - **Absence of reported cancer is not absence of risk.** Fifteen published individuals (PMID 39264246)

@@ -67,8 +67,12 @@ in advance for abandoning structural work — *mean pLDDT below 70 across 766–
 Measured on that model with Shrake–Rupley solvent accessibility (Tien 2013 maxima):
 
 - **Asn1002 is buried.** Relative solvent accessibility **0.162**, below the conventional 0.25 cutoff.
-- **Its environment is hydrophobic.** Ten residues lie within 5 Å; the closest are **Leu1001,
-  Ala1003, Trp978, Val998, Ile1000, Phe977**.
+- **Its environment is mostly hydrophobic.** Ten residues lie within 5 Å (`censo.json`,
+  `structure.contacts_within_5A`), in order of distance: **Leu1001** and **Ala1003** (1.34 Å),
+  **Trp978** and **Val998** (2.83), **Asn1004** (3.14), **Ile1000** (3.33), **Phe977** (3.46),
+  **Arg999** (3.62), **Trp973** (4.36), **Phe997** (4.51). Eight are hydrophobic; **Asn1004 and Arg999
+  are not**. An earlier version of this list quoted six apolar residues as "the closest", which skipped
+  the polar Asn1004 at 3.14 Å — corrected 2026-09-06, no number changed.
 - The substitution is **Asn → Lys**: a longer side chain carrying a **positive charge**, placed in a
   buried hydrophobic pocket.
 - For comparison, **Leu737** — where the nonsense truncates — has RSA 0.084 and the truncation

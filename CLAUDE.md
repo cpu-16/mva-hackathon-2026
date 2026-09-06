@@ -72,7 +72,7 @@ Esto se equivocó una vez y costó una recomendación mala. **Los hechos, sacado
 |---|---|---|
 | Envíos permitidos | **6 por participante** | **3 por equipo** |
 | Cuál cuenta | **el de mayor puntaje** | **solo el ÚLTIMO** |
-| Cómo se evalúa | automático, sobre el CSV | **panel de jueces humanos** |
+| Cómo se evalúa | automático sobre el CSV **y el write-up lo lee un panel** (FAQ + anuncio #18 del Space: *"Your methods write-up counts just as much"*) | **panel de jueces humanos** |
 | Cuándo | inmediato | **2–3 meses después del cierre** |
 
 **Consecuencias que hay que tener presentes:**
@@ -87,6 +87,12 @@ Esto se equivocó una vez y costó una recomendación mala. **Los hechos, sacado
 - **Reenviar el Track 1 no puede bajar el puntaje**, porque cuenta el envío de mayor puntaje y ese
   puntaje sale del CSV, que no cambia.
 - No hay ronda de preguntas en vivo. El video pregrabado y el reporte son todo.
+- **La ambigüedad "un envío por equipo" está resuelta:** el anuncio #10 del Space (vpchung) dice que el
+  límite del Track 2 **subió de 1 a 3** y que el panel revisa solo el ÚLTIMO. La frase "only one
+  Track 2 submission per team" de la FAQ es la regla vieja. Verificado el 6-sep-2026.
+- Anuncio #10 también: el repo puede seguir privado durante el hackathon pero **debe hacerse público
+  cuando empiece la evaluación final**, y hay que usar la **plantilla de métodos actualizada** (con la
+  pregunta obligatoria sobre uso de LLM).
 
 Rúbrica del Track 2: **Rigor 35% · Impacto 25% · Innovación 25% · Escalabilidad 15%.**
 Premios: 1º $12k+$12k, 2º $7k+$7k, 3º $4k+$4k, Innovación/Comunidad $2k+$2k. **Podio único**, no uno

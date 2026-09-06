@@ -84,8 +84,12 @@ let the leaderboard number imply otherwise.
 We ran additional Exomiser analyses to test how much of the result comes from the phenotype and how
 much from the variant. We list them by family rather than by a single total, because the total has
 been miscounted in earlier drafts: **eight leave-one-HPO-out runs**, **one least-specific-term-alone
-run**, **one shuffled-phenotype run**, and the **unrelated-HPO control, which we had to rebuild twice**
+run**, **one no-phenotype run**, and the **unrelated-HPO control, which we had to rebuild twice**
 (original → r7 → r9). Output files for each are under `tools/results/controles/`.
+⚠️ One of those files is misleadingly named and we say so rather than let a reader count it twice:
+`hpos_barajados.genes.tsv` ("shuffled") is **not** a shuffled phenotype. `tools/control_hpo.sh` runs it
+with the same five unrelated terms as the first version of the unrelated-HPO control, so it is that
+control, not a separate family. We ran no shuffled-phenotype control.
 
 ⚠️ **Read this section together with the note at the end of it.** The version of this control that
 travelled with our submitted entry is r7, and r7 was contaminated. The numbers below are the corrected
@@ -238,11 +242,14 @@ biallelic loss is lethal, and neither do we.
 ### Additional analysis — mosaicism (negative result, with a computed detection limit)
 
 Because MVA is defined by mosaic aneuploidy, we tested whether that signature is visible in the bulk
-WGS: per-chromosome B-allele frequency across 2.27 M heterozygous SNVs; the same restricted to a
+WGS: per-chromosome B-allele frequency across 2.27 M heterozygous SNVs (biallelic, PASS, autosomes — the
+2.93 M in `mosaico/RESULTADOS.md` counts every heterozygous call, not only biallelic SNVs); the same restricted to a
 fixed depth window (DP 40–48) to remove the coverage confounder; a spatial profile in 5 Mb windows;
 and chromosomal dosage from 10%-trimmed mean depth. Three of these are refinements of the same BAF
-statistic and only the dosage test is orthogonal — they are not four independent tests. Only the VCF
-was available, with no BAM, so no GC-LOESS normalisation was possible.
+statistic and only the dosage test is orthogonal — they are not four independent tests. We worked from
+the VCF and did no GC-LOESS normalisation. **That was our choice of input, not a limit of the
+challenge:** the organisers do distribute the raw reads (84.7 GB of FASTQ), and the analysis that
+decided the question did not need them (`mosaico/RESULTADOS.md`).
 
 **We computed the detection limit instead of asserting a negative, and we state where the threshold
 comes from.** Across the 22 autosomes at fixed depth (DP 40–48, 857,435 sites), the measured standard
@@ -266,11 +273,31 @@ r = 0.43 from a sparse sample, and chr21, the largest deviation, is GC-poor. Whe
 disagreed we favoured BAF, which is an internal per-site ratio and cancels coverage bias, and we
 report the dosage result as an open question.
 
+**A later analysis replaced that first-order limit, and it does not help us.** Calibrating the null —
+Ψ over 125-site windows, the measured switch process, the empirical segment-size distribution and
+40,000 Monte Carlo replicates per cell — gives **2.07% of cells at an overdispersion κ = 2** (1.46% at
+κ = 1, 2.95% at κ = 4; `mosaico/ventana.json` at the chosen window W = 125). That is a *simulated*
+limit under a fitted null, conditional on κ, not a measured sensitivity.
+
 **We therefore do not claim the child lacks mosaic aneuploidy — he has it by diagnostic definition.**
 We claim this assay cannot resolve it. Variegation spreads the burden across chromosomes: an
-aneuploid fraction of ~30% distributed over the autosomes leaves each individual chromosome altered
-in roughly **1–2% of cells, which is 7–16× below the 14–16% detection limit**. Bulk averaging erases
-variegation by construction, at any depth. Premature chromatid separation, the cytogenetic hallmark of MVA, leaves no trace in DNA
+aneuploid fraction of ~30% — the order of magnitude of the diagnostic criterion, not a figure from
+this patient — distributed over the autosomes leaves each chromosome altered in roughly **1–2% of
+cells**. Against the first-order 14–16% floor that is 7–16× below it; **against the calibrated 2.07%
+limit it sits at the boundary**, which is a worse position for the assay, not a better one. The
+conclusion survives either way, but not *because of* any limit. The argument that depends on no limit
+is this: **a perfectly balanced variegated mixture is not identifiable from bulk allele fractions** —
+equal gains of either homologue and matched losses give mean copy number exactly 2 and mean allele
+fraction exactly 0.5 by symmetry, and simulated detection stays at the **0.1–0.2% false-positive rate
+from 2% up to 40% aneuploid cells** (`mosaico/RESULTADOS.md` §4). That proof is about the balanced
+mixture we modelled, not about every MVA genome.
+
+**What we do not claim about this child.** The patient-level mosaicism result is **withdrawn**. The
+pre-registered external control (10 healthy 1000 Genomes individuals) came back **not conclusive**:
+the proband sits *below* the control envelope on both statistics and both chromosomes, an outcome the
+amendment did not foresee, and the controls carry no GQ filter and a different caller, a mismatch
+declared in advance with that same direction (`mosaico/CONTROL_RESULTADO.md`). **We report no clinical
+negative at any percentage.** Bulk averaging erases variegation by construction, at any depth. Premature chromatid separation, the cytogenetic hallmark of MVA, leaves no trace in DNA
 sequence at all. The practical consequence is that **aneuploidy burden is not a measurable endpoint
 in these data**, which constrains any Track 2 proposal whose outcome depends on it.
 
@@ -294,9 +321,10 @@ our favour*;
 and HG001 plus two trios is three independent units, not seven. A favourable null cleared by 0.025 is
 a narrow margin, not a separation.
 
-**Is the score a property of the patient's genome?** Planting the two public ClinVar records that
-reproduce this case's architecture (533901 `chr15:40209701 T>G` nonsense, 4600147 `chr15:40220612 T>A`
-VUS missense) into three unrelated healthy genomes returns **0.5871 with the real phenotype and
+**Is the score a property of the patient's genome?** Planting this case's own two alleles — the public
+ClinVar nonsense (533901, `chr15:40209701 T>G`) and the child's missense (`chr15:40220612 T>G`, absent
+from ClinVar; the ClinVar record at that position, 4600147, is a different substitution, `T>A`) — into
+three unrelated healthy genomes returns **0.5871 with the real phenotype and
 0.3965 with the five clean r9 unrelated terms, identical to four decimal places in all three**. The narrow
 statement is the one `replay/RESULTADOS.md` §2 makes: under this frozen pipeline, and given that none
 of the three backgrounds carries a retained BUB1B variant of its own, the planted gene's combined score
@@ -522,7 +550,7 @@ positive.
 - One-off setup: ≈55 GB of Exomiser reference data downloaded and extracted.
 - **Marginal compute cost is effectively zero** — a commodity workstation, no GPU, no cloud instance.
   Reproducing this on a laptop is realistic: only the 315 MB VCF and the phenotype document are
-  needed, not the 85 GB of raw reads.
+  needed, not the 84.7 GB of raw reads.
 
 ## Q12 — Method abstract (≤500 words)
 We used two independent analyses and required them to converge.

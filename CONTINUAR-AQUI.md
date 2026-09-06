@@ -1,7 +1,144 @@
 # 🔄 CONTINUAR AQUÍ — estado del MVA Hackathon 2026
 
-**Última actualización: 02-sep-2026.** Documento de traspaso tras un `/clear`.
+**Última actualización: 06-sep-2026.** Documento de traspaso tras un `/clear`.
 Léeme completo antes de tocar cualquier otro archivo.
+
+---
+
+## 🆕 6-SEP-2026 (tarde) — GILBERTO DIJO "ENCÁRGATE DE TODO": LO QUE QUEDÓ HECHO Y LO QUE ES SUYO
+
+**Commits pusheados a `origin/main`: `770c975` (revisión del 6-sep) y `727bef6` (video v4, xlsx, abstracts).**
+Sin ningún envío al Space ni subida a YouTube: esas dos acciones son de Gilberto (ver abajo).
+
+Hecho en esta ronda:
+
+1. **Video v4 renderizado y medido**: `video/pitch_MVA2026.mp4`, **177,87 s** por ffprobe, 8 slides desde
+   `slides.html`, Piper a `--length-scale 1.40`. La slide 3 dice ahora "Score held; rank did not."
+   Los WAV de la v3 quedaron en `video/audio_v3_backup/`.
+2. **`.xlsx` sincronizado** desde el markdown, las dos hojas, celda por celda (sin `**`). Hallazgo que nadie
+   había visto: **los dos abstracts violaban el límite de 500 palabras** (547 y 646). Recortados a
+   **486 y 489** sin cambiar ningún número; el Track 1 PDF se regeneró (21 pp.). La plantilla es la vigente
+   del Space (mismo blob git `c7b0d295…` que `static/templates/methods_description_form.xlsx`).
+3. **Reglas, verificadas en los anuncios del Space** (no en la FAQ vieja): el límite del Track 2 subió de
+   1 a 3 y cuenta el último (#10); el write-up del Track 1 lo lee el panel (#18: *"counts just as much"*);
+   el repo debe hacerse público al empezar la evaluación final. **La ambigüedad "un envío por equipo"
+   está resuelta.** Hilo #19 (otro participante, sin respuesta de Sage): reenviar el Track 1 con el mismo
+   CSV crea una segunda fila "model2" en el leaderboard y no está claro cuál write-up se revisa.
+4. **`data/BORRAR-AL-TERMINAR.md` completado** con los ~718 MB que faltaban (fase, sitios, controles) y
+   las líneas de `rm` correspondientes. `mosaico/piloto/*.tsv.gz` y `fase/panel_chr15.vcf.gz` se
+   comprobaron: son 1000G, no del paciente.
+5. `replay/mva_replay.py` falla temprano nombrando el recurso que falta (lo que Codex pidió tras el clon
+   limpio); self-check 21/21 y pruebas 2/2 siguen pasando.
+6. Revisión adversarial con **Cursor (Grok 4.6)** sobre los dos reportes contra los archivos de
+   resultados: ver la sección siguiente cuando exista, o `evidencia/cursor_revision_2026-09-06.md`.
+
+⛔ **Lo que solo Gilberto puede hacer, en este orden:**
+
+1. **Subir el video v4 a YouTube** (no listado sirve) y anotar la URL. Es el único bloqueador del Track 2.
+2. **Enviar el Track 2** (`entrega/listo-para-enviar/`: PDF de 43 pp. + xlsx + URL del video + URL del
+   repo). Cuenta el último de 3, así que este primer envío es el seguro; se puede mejorar hasta el 24-oct.
+3. **Decidir el reenvío del Track 1** con el write-up corregido (PDF 21 pp. + mismo CSV + xlsx). A favor:
+   el panel lo lee y la versión enviada tiene el control contaminado y "still running". En contra: el
+   hilo #19 muestra que crea una fila duplicada y Sage no ha dicho cuál revisa. Recomendación: reenviar,
+   y en el campo de descripción decir que sustituye al anterior por corrección del write-up.
+4. **Hacer público el repo** cuando Sage lo pida (anuncio #10), no antes.
+
+---
+
+## 🆕 6-SEP-2026 (mediodía, Claude tras Codex) — PDF REGENERADOS, VERIFICADORES EJECUTADOS
+
+Registro: `evidencia/CLAUDE_APLICACION_2026-09-06.md` §8. Codex se quedó sin cuota a mitad de su
+revisión; esta sesión terminó lo que dejó abierto. **Sigue sin haber envío, commit ni push**: el repo
+hermano tiene 19 archivos modificados/nuevos sin commitear, listos para revisión y commit.
+
+Lo que se cerró:
+
+1. **Los dos PDF están regenerados** desde el markdown corregido (Track 1: 22 páginas; Track 2: 43),
+   comprobados con `pdftotext` y copiados al paquete y al repo. `entrega/listo-para-enviar/LEEME.md`
+   ya no dice "desactualizado".
+2. **Los verificadores corrieron**: `verificar_afirmaciones.py` da "todo cuadra" en `analisis`, `repo`
+   y `--paquete`, y su `--control-negativo` falla como debe. `replay/test_output_reuse.py` 2/2;
+   `mva_replay.py --self-check` 21/21. Dos bugs del verificador corregidos (regex `[\d.]+` atrapaba el
+   punto final; un ancla que la tabla del PDF parte en dos columnas).
+3. **PMID 39264246 verificado contra el texto completo** (PMC11705613, `evidencia/consenso_fulltext_2026-09-06.xml`,
+   bajado por Codex). Los tres pasajes del §7/§9 son exactos. La nota de procedencia del reporte ya no
+   dice "pendiente"; el "not optional" de la tabla de vigilancia se quitó y la ecografía trimestral se
+   atribuye a SIOP-Europe con respaldo del AACR, que es lo que dice la fuente.
+4. **El sobrealcance que Codex estaba cazando, corregido**: `methods_track1.md` decía *"the score is a
+   property of the alleles; the rank is not"*, una frase que `replay/RESULTADOS.md` §1 ya había
+   **retractado como exagerada**. Ahora dice lo estrecho: el score es estable en los tres fondos
+   probados (una computación determinista tres veces), no independiente del genoma en general. Mismo
+   ajuste en el `README.md` del repo.
+5. `replay/RESULTADOS.md` tenía el marcador con el control r7 contaminado (0.4187, 1/1/3) y el tier 2
+   "pendiente". Se añadió **§9 (enmienda fechada, sin editar lo anterior)**: r9 → P-B2 falsificada 1/3,
+   tier 2 → P-A confirmada (0/30, máx 0.5207 CDH1 HG01885), P-A2 confirmada (HG00101 rank 138, 0.0002).
+6. Matices de Ippolito que Codex verificó en el texto completo, ya en el reporte: la Fig. 6r llama
+   "minimal response" en la leyenda y "progressive disease" en el cuerpo (se reporta la leyenda sin
+   resolverlo); y la atenuación en sólidos es sobre líneas DepMap, no ausencia de evidencia externa
+   (Ippolito reporta PDX pancreáticos y pediátricos, Suppl. Fig. 8o–r).
+
+⛔ **Lo que sigue pendiente:** el video (mp4 = v3; guion v4 sin grabar), el `.xlsx` (celda B16 del
+Track 1 desfasada), la decisión de commit/push, y la ambigüedad de la FAQ sobre "un envío por equipo"
+antes del primer envío del Track 2.
+
+---
+
+## 🆕 6-SEP-2026 (tarde) — LA REVISIÓN YA SE APLICÓ A LOS DOCUMENTOS
+
+Registro completo: **`evidencia/CLAUDE_APLICACION_2026-09-06.md`**. Léelo antes que la sección de más
+abajo, que describe el diagnóstico y no el estado actual.
+
+**Sigue sin haber ningún envío, ningún push y ninguna publicación.** Los diffs están sin commitear en
+`~/datos/mva-hackathon-2026` (13 archivos) para que Codex los revise.
+
+Lo que **ya está corregido en el markdown**: `track2/REPORT_track2_EN.md`, `entrega/methods_track1.md`,
+`entrega/methods_track2.md`, `potencia/RESULTADOS.md`, `potencia/RESULTADOS_2_DOSIS.md`,
+`mosaico/RESULTADOS.md`, el `README.md` y `VERIFY.md` del repo, `video/GUION.md` (v4) y `slides.html`,
+y el `LEEME.md` del paquete de envío. Los pre-registros **no se tocaron**.
+
+⛔ **Lo que sigue pendiente, y por qué** (el entorno tenía denegada la ejecución de intérpretes):
+
+1. **Los dos PDF están desactualizados.** Hay que regenerarlos con pandoc/WeasyPrint desde el markdown
+   corregido y volver a copiarlos. Hasta entonces el paquete de `entrega/listo-para-enviar/` **no**
+   representa el trabajo actual, y su `LEEME.md` lo dice en la primera línea.
+2. **El video sigue siendo la v3.** El guion v4 y las slides están escritos; los PNG y los WAV no se
+   regeneraron. **No marcar el video como listo.**
+3. **`analysis/verificar_afirmaciones.py` está escrito pero sin ejecutar**, igual que
+   `replay/test_output_reuse.py` y el `--self-check` en esta sesión.
+4. **PMID 39264246**: sin acceso al texto completo; los tres pasajes que dependen de él quedan marcados
+   como pendientes de re-verificación dentro del propio §7 del reporte.
+5. **El `.xlsx` no se tocó**, a la espera de la autorización de `openpyxl` que pidió Codex.
+
+**Corrección de puntero encontrada al verificar:** el LOD calibrado (1,46 / 2,07 / 2,95%) sale de
+`mosaico/ventana.json` en W = 125, **no** de `lod_montecarlo.json`. Las cifras eran correctas; la
+fuente citada no. Anotado y corregido, sin cambiar ningún resultado.
+
+---
+
+## SESIÓN DEL 6-SEP-2026 (mañana) — revisión y corrección de reutilización de resultados
+
+Diagnóstico actualizado: `REVISION-2026-09-06.md`. Resumen alternativo para integrar después:
+`entrega/RESUMEN_JURADO_PROPUESTA_2026-09-06.md`. **Los reportes científicos, PDF, formulario y
+video siguen pendientes de actualización; no hubo envío ni publicación.**
+
+- **Corrección a la auditoría del 2-sep:** el umbral de `PREREGISTRO_2_DOSIS.md` §4 está fijado para
+  **sólidos**. Aplicar el 0.093 de hematológicas como si disparara esa regla pre-registrada cambia
+  el estrato después del resultado. Sólidos es no informativo según la cláusula explícita y el JSON;
+  hematológicas es evidencia secundaria. El 4× no está validado, pero no puede llamarse refutado como
+  EC50 por una regresión CRISPR sin calibración. Tampoco sustituir 14% por 2.1% como negativo del
+  paciente: el control externo dejó el resultado retirado; 2.1% es un LOD de simulación condicionado.
+- **Fallo nuevo corregido en MVA-Replay:** mismo gen/fondo con HPO/alelos/fase nuevos podía reutilizar
+  TSV anteriores. Reproducido con stubs y archivos sintéticos. Ahora aborta ante archivos del mismo
+  caso; usar otro `--name` o `--out`, también después de dry-run. Pruebas en
+  `replay/test_output_reuse.py`: pasan ambas, incluida matriz de ocho colisiones; self-check: 21/21.
+  Código, README de la herramienta y pruebas copiados al repo hermano, sin commit ni push.
+- Confirmados en las salidas: HPO r9 0.3965 y ranks 1/2/3; 30 controles 1000G terminados,
+  máximo 0.5207 y cero por encima de 0.5871.
+- Cinco PMID pendientes y ref. 22 recuperados de NCBI; XML público guardado en
+  `evidencia/pubmed_auditoria_2026-09-06.xml`. Ver tabla de alcance en la revisión: el abstract del
+  consenso no basta para verificar calendario exacto ni los 15 casos MVA2; falta texto completo.
+- Segunda opinión íntegra: `evidencia/claude_revision_2026-09-06.md`. Su comentario sobre el default
+  HPO contaminado viene de un README antiguo, no del código vigente. Ese README ya se corrigió.
 
 ---
 

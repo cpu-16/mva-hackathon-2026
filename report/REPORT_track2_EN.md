@@ -173,7 +173,9 @@ one (`vus/RESULTADOS.md`).
 On the AlphaFold model, which is high-confidence exactly here — mean pLDDT **91.5** across 992–1012
 and **91.1** at the residue itself, against 63.6 for the whole protein — **Asn1002 is buried**:
 relative solvent accessibility **0.162**, below the conventional 0.25 cutoff, with ten residues
-within 5 Å and the nearest being Leu1001, Ala1003, Trp978, Val998, Ile1000 and Phe977. The
+within 5 Å: by distance, Leu1001 and Ala1003 (1.34 Å), Trp978 and Val998 (2.83), Asn1004 (3.14),
+Ile1000 (3.33), Phe977 (3.46), Arg999 (3.62), Trp973 (4.36) and Phe997 (4.51). Eight of the ten are
+hydrophobic; Asn1004 and Arg999 are not, and we list them rather than quote only the apolar ones. The
 substitution puts a **longer, positively charged side chain into a buried hydrophobic pocket**, which
 is a recognised destabilising substitution class. We state that as evidence about the substitution
 and **not** as a classification: no ΔΔG was computed, no predictor was run, and we do not claim PP3.
@@ -440,7 +442,7 @@ cells die more" confound. The pipeline is not blind: across all 6,790 compounds 
 against 0.1% expected by chance.
 
 **Result 2 — the target itself.** Genetic dependency on **PSMB5**, the subunit bortezomib binds, tracks
-aneuploidy strongly overall (ρ = −0.198, q = 5×10⁻⁸, n = 946) — but split by lineage it is
+aneuploidy strongly overall (ρ = −0.198, q = 5.2×10⁻⁸, n = 946) — but split by lineage it is
 **significant in haematological lines (ρ = −0.261, q = 0.042, n = 113) and not in solid lines
 (ρ = −0.077, q = 0.118, n = 833)**. The 20S core as a set is indistinguishable from a random-gene
 background in solid lines (z = −0.51), and the pre-declared negative control PSMD9 is null throughout.
@@ -486,8 +488,10 @@ alone suggests, and the ex-vivo test in §6 is the gate, not a formality. For a 
 **and an active malignancy**, where cytotoxic therapy is on the table regardless and the comparator is
 conventional chemotherapy rather than nothing, the balance inverts. In that setting a proteasome
 inhibitor is not an exotic addition: it is an approved agent that targets the best-characterised
-downstream consequence of the underlying lesion — proteotoxic dependency — supported by a human
-clinical signal tying response to aneuploidy burden. It does not correct the checkpoint defect, and
+downstream consequence of aneuploidy **as established in cancer cells** — proteotoxic dependency —
+supported by a human clinical signal tying response to aneuploidy burden. Whether that dependency
+transfers to constitutional MVA is exactly what §6 proposes to measure, and our own DepMap analysis
+found the link attenuated in the solid lineage this child's tumour came from. It does not correct the checkpoint defect, and
 we do not claim it does.
 
 This child survived an embryonal rhabdomyosarcoma, and the risk is gene-specific: "individuals with
@@ -618,8 +622,10 @@ our own files:
   **The control did not fail to run; it failed to be a control** (`mosaico/CONTROL_RESULTADO.md`).
 
 One narrow statement survives, and we make only it: against those ten genomes, window-scale
-overdispersion ranges from κ ≈ 6 to 46, and the proband's ≈2.3 is the **lowest in the comparison**, so
-his value is not anomalous in size. **That is not a clinical negative.** We are not reporting that this
+overdispersion ranges from κ ≈ 6 to 46, and the proband's is the **lowest in the comparison** — 2.74 on
+chr8 against a control range of 9.5–46.0, and 4.60 on chr17 against 6.1–15.0 (`mosaico/control_resultado.json`;
+these are the thinned window statistics the comparison used, not the 2.27× chromosome-wide excess
+reported in `mosaico/RESULTADOS.md`) — so his value is not anomalous in size. **That is not a clinical negative.** We are not reporting that this
 child has no clonal lesion above 2% of cells; we are reporting that our attempt to measure it did not
 produce an interpretable answer. Resolving it needs a control processed identically from reads, which
 we did not have.
@@ -665,8 +671,11 @@ model** — it is neither a validated power estimate for patient cells nor a mat
 what a better-specified version of the experiment could achieve (`potencia/RESULTADOS.md` §5b).
 
 **A second pre-registered analysis the same day gives us our own reason to doubt the 4×.** Proteotoxic
-load is a dose, not a switch: an MVA cell carries **about one** altered chromosome where the lines that
-gave the < 40 nM EC50 carry on the order of eighteen altered arms. In DepMap, in the one lineage where
+load is a dose, not a switch: an MVA cell carries **about one** altered chromosome, two arms, where a
+highly aneuploid cancer line sits at the top of the DepMap range (mean 18.6 altered arms in the solid
+stratum, `potencia/dosis.json`). We have not counted arms in the specific lines that gave the < 40 nM
+EC50; the eighteen is the high end of the range over which we measured the dose response, not a
+measurement of those lines. In DepMap, in the one lineage where
 the aneuploidy–proteasome dependency is significant at all, PSMB5 dependency moves **0.09 residual SD
 at two arms against 0.84 at eighteen** (`potencia/RESULTADOS_2_DOSIS.md`, pre-registered as `45c4ed7`).
 
