@@ -56,6 +56,52 @@ Informe íntegro + verificación uno a uno: `evidencia/cursor_revision_2026-09-0
   (2.274.451 bialélicos autosómicos PASS). Los 2.927.826 de `mosaico/` cuentan todas las llamadas
   heterocigotas. Se añadió la aclaración para que nadie lo lea como choque.
 
+### 🔴 AUDITORÍA PRE-ENVÍO (6-sep, tarde) — 183 agentes, 51 hallazgos, **7 blockers reales**
+
+Workflow de 8 dimensiones con verificación adversarial de tres lentes por hallazgo. Brief e informe:
+`evidencia/` + commit `5701eac`. **Los siete blockers se verificaron uno a uno contra los datos antes
+de tocar nada**, y todos eran ciertos:
+
+| # | Qué estaba mal | Verificado en |
+|---|---|---|
+| B1 | La frecuencia del hallazgo secundario GNRHR decía **3,3%**; Exomiser emite porcentajes, así que es **0,033%** | `mva-genome-hpo.variants.tsv`: el mismo campo da 0.00998 para el nonsense de BUB1B que el doc cita bien como 9,98×10⁻⁵ |
+| B2 | «el modelo dominante gana en TODOS los constructos» | `replay/out/C_hi_*`: con dos alelos truncantes gana el **recesivo**, 0,9332 vs 0,5818, en los tres fondos |
+| B3 | Etiquetas ***cis*/*trans* invertidas** — la introduje yo esta misma mañana | `replay/smoke/out/`: trans 0,9339, cis 0,9305 |
+| B4 | El haplotipo co-fasado de FANCD2 tiene **cuatro** variantes en **18 bp**, no tres en 5 | VCF, `PID=10046720_C_T`: 10046720, 10046723, 10046725 y **10046738** |
+| B5 | El denominador «corregido» seguía mal: **4.570 filas**, no 4.565 | `mva-genome-hpo.genes.tsv`: 4.570 filas, 3.139 genes, 4.262 con score 0 |
+| B6 | La slide 3 decía que los dos alelos se sembraron en 37 genomas; solo se sembraron **3** | `replay/PREREGISTRO.md` y `RESULTADOS.md` |
+| B7 | «phase is not computable», retractado en `fase/RESULTADO.md`, seguía **tres veces** en el README | `fase/RESULTADO.md`: *"that was too absolute and it is withdrawn"* |
+
+**El ataque más fuerte que un juez podía hacer, ahora respondido en el reporte:** Ippolito corrió su
+**propio** cribado de bortezomib (su Fig. 6p, 387 líneas, reversina, p < 0,0001) y salió **positivo**,
+mientras nuestro PRISM en sólidos es nulo. El reporte nunca lo mencionaba. Ahora lo reconcilia: mismo
+signo (ρ = −0,075, p = 0,11), diseños distintos (ellos **inducen** aneuploidía, nosotros
+**correlacionamos**), y lo que nosotros sí añadimos es la división por linaje. **No dice «dirección
+opuesta»**, porque eso contradiría nuestra propia tabla.
+
+Otros arreglos de esta ronda: consentimiento, asentimiento y comité de ética **antes** del protocolo
+de biopsia, más la ruta regulatoria off-label; agradecimiento y disponibilidad de datos en los tres
+entregables (las reglas los exigen); «no GPU» corregido (la calibración de mosaicismo corrió en CUDA);
+el reclamo retractado de los 18 brazos que seguía vivo en `TRANSFER_MVA2_MVA3.md`; el calificador
+**monoalélico** de la correlación sarcopenia–mTORC1; el inventario de borrado con los **20 GB de FASTQ
+crudos** y 4,6 GB de caché que le faltaban; y `entrega/build_pdfs.sh`, que reconstruye los dos PDF y
+**aborta si sobrevive alguna frase retractada** (probado con control positivo).
+
+**El video se rehízo dos veces** y quedó en **177,90 s**. Slides 3 y 7 corregidas, narración de la S3
+reescrita para no implicar 37 genomas sembrados.
+
+**Paquete final:** Track 1 PDF 23 pp. · Track 2 PDF **53 pp. con la descripción de métodos como
+Apéndice B** (el formulario solo acepta un archivo) · xlsx sincronizado · abstracts 486 y 490 palabras.
+
+⚠️ **Un hallazgo que se dejó a propósito:** el conteo de controles de robustez («doce») no se tocó.
+Los verificadores dieron tres totales distintos y meter un número nuevo la noche del envío repite
+exactamente el error que ese párrafo confiesa.
+
+**Instrucciones de envío con los valores exactos de cada campo: `entrega/ENVIAR-PASO-A-PASO.md`.**
+**Título, descripción y capítulos del video: `video/YOUTUBE.md`.**
+
+---
+
 ⛔ **Lo que solo Gilberto puede hacer, en este orden:**
 
 1. **Subir el video v4 a YouTube** (no listado sirve) y anotar la URL. Es el único bloqueador del Track 2.

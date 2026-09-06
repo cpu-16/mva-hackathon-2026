@@ -16,8 +16,8 @@ archivos de resultados.
 | Archivo | Original (fuente corregida) | Estado |
 |---|---|---|
 | `ciberpty_convergent-hpo-genomewide-and-panel.csv` | `entrega/convergent-hpo-genomewide-and-panel.csv` | ✅ al día — **no se ha tocado**. Track 1 ya enviado (2 de 6 envíos usados) |
-| `ciberpty_track1_report.pdf` | `entrega/methods_track1.md` | ✅ regenerado 6-sep (abstract recortado a ≤500 palabras) |
-| `ciberpty_track2_report.pdf` | `track2/REPORT_track2_EN.md` | ✅ regenerado 6-sep, 43 páginas A4 |
+| `ciberpty_track1_report.pdf` | `entrega/methods_track1.md` | ✅ regenerado 6-sep tras la auditoría, 23 páginas A4 |
+| `ciberpty_track2_report.pdf` | `track2/REPORT_track2_EN.md` | ✅ regenerado 6-sep tras la auditoría, 53 páginas A4, con la descripción de métodos como **Apéndice B** |
 
 Video: `video/pitch_MVA2026.mp4` es la **v4** (177.87 s por ffprobe). `.xlsx`: las celdas de ambas hojas
 se regeneraron desde el markdown el 6-sep; los dos abstracts quedan por debajo de 500 palabras.
