@@ -1,78 +1,70 @@
 # Video de pitch — 3 minutos
 
-## ✅ ESTADO AL 6-SEP-2026 (mediodía): el mp4 ES la v4
+**`pitch_MVA2026.mp4`** · **2:56.1** · 1920×1080 · 30 fps · 6,6 MB · audio AAC.
+Límite del hackathon 3:00, así que quedan **3,9 s de margen**. Regenerado el 6-sep-2026 (guion v4,
+deck animado, voz Qwen3-TTS).
 
-Renderizado en esta sesión: `render.py` → 8 PNG desde `slides.html` (v4); Piper `en_US-ryan-high` a
-`--length-scale 1.40` (todas las secciones son nuevas, así que no hay mezcla de ritmos que calibrar);
-ensamblado con la receta `-t $A` de abajo. **Medido con ffprobe: 177.87 s** (límite 180). 408 palabras.
-Los WAV de la v3 quedan en `audio_v3_backup/`.
+## Cómo se construye ahora
 
----
+```bash
+# 1. narración  (venv aparte: transformers de qwen-tts choca con el del sistema)
+~/qween/.venv-tts/bin/python video/tts_qwen.py          # o  ... tts_qwen.py S7   para una sola
+# 2. control: ¿dice el guion?  Falla si algún clip se desvía
+python3 video/tts_verify.py
+# 3. concatenar y renderizar el deck animado + mux
+cd video && ffmpeg -y -f concat -safe 0 -i audio/list.txt -c copy narracion.wav
+python3 render_video.py                                  # --probe 3  para muestras sin video
+```
 
-**`pitch_MVA2026.mp4`** · **2:57.9** · 1920×1080 · 30 fps · 5.1 MB · audio AAC.
-El límite del hackathon es 3:00, así que quedan **2.1 s de margen**. Generado el 6-sep-2026 (guion v4).
+`render_video.py` mide las duraciones **de los propios WAV**, así que los tiempos de cada escena se
+recalculan solos cuando cambia la narración. Aborta si el resultado pasa de 180 s.
+
+## Por qué así
+
+- **`deck.html` es la fuente de las 8 escenas.** Un fotograma es una función pura del tiempo
+  (`seek(t)`), sin animaciones CSS ni `requestAnimationFrame`, así que el render es determinista y
+  se puede muestrear solo donde algo se mueve: **888 fotogramas en vez de 5.300** para el mismo 30 fps.
+- **Tres escenas llevan figuras reales del análisis** (`track2/fig2_domains.png`, `fig3_funnel.png`,
+  `fig4_depmap.png`), recortadas por CSS para quitarles su propio título y no mezclar tipografías.
+  Los PNG no se tocan: son los mismos que van en el reporte.
+- **La voz es Qwen3-TTS 1.7B VoiceDesign en CPU** (~50-110 s de cómputo por clip). Sin GPU, por la
+  regla del proyecto. La instrucción de voz está en `tts_qwen.py`.
+- ⚠️ **`tts_verify.py` no es opcional.** Un TTS basado en LLM se salta palabras sin avisar: en la
+  primera pasada se comió el "to" de *"every three months, to age seven"*, y de ahí salió la
+  reformulación a *"until he is seven"*. Se detectó con reconocimiento de voz, no de oído.
+
+## Historial
+
+`slides.html` + `render.py` + `slide0*.png` eran el deck **estático** de la v3/v4 y ya **no** se usan;
+se eliminaron el 6-sep. `GUION_v3.md` conserva el guion que narraba el mp4 anterior.
 
 ## Qué hay aquí
 
 | Archivo | Qué es |
 |---|---|
-| `pitch_MVA2026.mp4` | el entregable — narra la **v4** |
-| `GUION.md` | el guion **v4**, por secciones, con los cambios y lo que falta |
-| `GUION_v3.md` | el guion anterior, archivado el 6-sep; **ya no** es lo que narra el mp4 |
-| `GUION_v1.md` | la versión anterior, antes de la crítica de Codex y Cursor |
+| `pitch_MVA2026.mp4` | el entregable |
+| `deck.html` | las 8 escenas y el motor de animación (`seek(t)`) |
+| `render_video.py` | muestrea `deck.html`, encodea y hace el mux |
+| `tts_qwen.py` | sintetiza `audio/S1..S8.wav` con Qwen3-TTS |
+| `tts_verify.py` | transcribe cada clip y lo diffea contra el guion |
+| `GUION.md` | el guion **v4** por secciones |
 | `narracion.json` | el guion extraído, lo que consume el TTS |
-| `slides.html` | las 8 slides (un solo archivo, una `<section>` por slide) |
-| `slide01..08.png` | las slides renderizadas |
-| `render.py` | renderiza el HTML a PNG con Playwright |
-| `audio/S1..S8.wav` | la narración, un archivo por slide |
 | `narracion.wav` | la narración completa concatenada |
-
-## Cómo está hecho
-
-Voz: **Piper TTS local** (`en_US-ryan-high`), sin servicio en la nube y sin API key.
-Modelo en `/tmp/.../scratchpad/voices/` — si se borró, se vuelve a bajar de
-`huggingface.co/rhasspy/piper-voices` (`en/en_US/ryan/high/`).
-
-⚠️ **`--length-scale`: 1.415 reproduce el ritmo de la primera grabación; la v4 completa se hizo a 1.40 para dejar 2 s de margen.** El Piper instalado habla más rápido que el de la primera
-grabación; sin ese factor las secciones nuevas salen 15% más veloces que las viejas y se nota al
-cambiar de slide. Calibración: regenerar una sección intacta (p. ej. S1, 15.94 s) y ajustar hasta
-reproducir su duración.
-
-⚠️ **Al ensamblar, fijar `-t <duración del narracion.wav>`.** El truco de repetir la última slide en
-`slides_list.txt` la duplica (el video salía 23 s más largo), y `-shortest` deja 3 s de padding del
-codificador AAC. Con `-t` la duración sale exacta.
-
-Cada slide dura exactamente lo que dura su narración, más 0.75 s de aire. La voz entra 0.35 s después
-del cambio de slide para que no pise el corte.
+| `GUION_v3.md`, `GUION_v1.md` | guiones anteriores, archivados |
+| `audio_piper_backup/`, `audio_v3_backup/` | narraciones anteriores, por si hay que volver |
 
 ## Cambiar la voz sintética por la tuya
 
-Es lo más fácil de todo, y probablemente valga la pena: un panel con defensores de pacientes
-responde distinto a una voz humana.
+Sigue siendo lo más fácil y probablemente valga la pena: un panel con defensores de pacientes responde
+distinto a una voz humana. Grábate leyendo `GUION.md` sección por sección, guarda cada una como
+`audio/S1.wav` … `audio/S8.wav` (cualquier frecuencia de muestreo, pero **la misma en las ocho**, que
+`ffmpeg -c copy` no convierte), y corre los pasos 2 y 3 de arriba. Los tiempos de cada escena se
+recalculan solos. Vigila el total: si tu lectura pasa de 180 s hay que recortar guion, no acelerar la voz.
 
-1. Grábate leyendo `GUION.md` sección por sección, y guarda cada una como `audio/S1.wav` … `audio/S8.wav`.
-2. Vuelve a correr el ensamblado:
+## Si editas una escena
 
-```bash
-cd ~/datos/HACKATHON-MVA-2026/video
-ffmpeg -y -f concat -safe 0 -i audio/list.txt -c copy narracion.wav
-python3 - <<'EOF'
-import subprocess
-ds=[float(subprocess.run(["ffprobe","-v","error","-show_entries","format=duration","-of","csv=p=0",f"audio/S{i}.wav"],capture_output=True,text=True).stdout) for i in range(1,9)]
-open('slides_list.txt','w').write("".join(f"file 'slide{i+1:02d}.png'\nduration {d:.3f}\n" for i,d in enumerate(ds))+"file 'slide08.png'\n")
-print(f"total {sum(ds):.1f}s")
-EOF
-A=$(ffprobe -v error -show_entries format=duration -of csv=p=0 narracion.wav)
-ffmpeg -y -f concat -safe 0 -i slides_list.txt -i narracion.wav -vf "fps=30,format=yuv420p" \
-  -c:v libx264 -preset slow -crf 20 -c:a aac -b:a 192k -t $A -movflags +faststart pitch_MVA2026.mp4
-```
-
-**Vigila el total:** si tu lectura pasa de 180 s hay que recortar guion, no acelerar la voz.
-
-## Si editas una slide
-
-Edita `slides.html`, corre `python3 render.py`, y vuelve a ensamblar con el bloque de arriba.
-Los tiempos no cambian mientras no toques la narración.
+Edita `deck.html` y corre `python3 render_video.py --probe 3` para ver tres muestras por escena sin
+generar video. Cuando cuadre, `python3 render_video.py`.
 
 ## Dirección de arte
 

@@ -19,3 +19,5 @@ tools/data/
 tools/downloads/
 evidencia/codex_juez_r10.md
 __pycache__/
+video/_frames/
+video/audio_*backup/

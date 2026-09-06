@@ -1,0 +1,307 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>MVA Hackathon 2026 — animated pitch deck</title>
+<style>
+  :root{
+    --bg:#fcfcfb; --ink:#2a2724; --muted:#6b6560; --rule:#ded9d2;
+    --teal:#1a9e8f; --terra:#b8452a; --sand:#eae5dd;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1920px;height:1080px;overflow:hidden;background:var(--bg)}
+  body{font-family:"Bitstream Charter",Charter,Georgia,serif;color:var(--ink);
+       -webkit-font-smoothing:antialiased}
+  .scene{position:absolute;inset:0;padding:96px 128px;opacity:0;will-change:opacity,transform}
+  .a{opacity:0;will-change:opacity,transform}      /* animated element */
+  .kicker{font-size:26px;letter-spacing:.22em;text-transform:uppercase;color:#9c948b}
+  h1{font-size:104px;line-height:1.06;font-weight:700;letter-spacing:-.015em}
+  h2{font-size:62px;line-height:1.12;font-weight:700;letter-spacing:-.01em}
+  .lede{font-size:38px;line-height:1.5;color:#4a453f;max-width:1500px}
+  .small{font-size:30px;line-height:1.5;color:var(--muted)}
+  .tiny{font-size:24px;line-height:1.5;color:#9c948b}
+  .teal{color:var(--teal)} .terra{color:var(--terra)} b{font-weight:700}
+  .rule{height:3px;background:var(--ink);transform-origin:left center}
+  .foot{position:absolute;left:128px;right:128px;bottom:72px}
+
+  /* --- S3 dots --- */
+  .dots{display:flex;gap:18px;flex-wrap:wrap;max-width:1200px}
+  .d{width:34px;height:34px;border-radius:50%;background:var(--teal);opacity:0}
+  .d.hi{background:var(--terra)}
+
+  /* --- figures --- */
+  .figwrap{position:relative;overflow:hidden}
+  .figwrap img{display:block;width:100%}
+  .crop{position:relative;overflow:hidden}
+  .crop img{position:absolute;top:0;left:0}
+
+  /* --- S5 log scale --- */
+  .scale{position:relative;height:8px;background:var(--rule);border-radius:4px}
+  .mark{position:absolute;top:-16px;width:6px;height:40px;border-radius:3px}
+  .gapbar{position:absolute;top:0;height:8px;background:var(--terra);opacity:.28;transform-origin:left}
+
+  /* --- S7 timeline --- */
+  .tl{position:relative;height:400px;margin-top:78px}
+  .axis{position:absolute;top:0;left:0;right:0;height:3px;background:var(--rule);transform-origin:left}
+  .tick{position:absolute;top:-9px;width:3px;height:21px;background:#b3aca3}
+  .tlab{position:absolute;top:26px;font-size:26px;color:var(--muted);transform:translateX(-50%)}
+  .band{position:absolute;height:92px;border-radius:8px;display:flex;align-items:center;
+        padding:0 30px;font-size:29px;font-weight:700;color:#fff;transform-origin:left center}
+  .b1{background:var(--teal)} .b2{background:#4fb3a6} .b3{background:#a8cfc9;color:var(--ink)}
+
+  /* --- S8 columns --- */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:110px;margin-top:20px}
+  .lbl{font-size:24px;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+  .colrule{height:3px;margin:16px 0 34px;transform-origin:left}
+</style>
+
+<!-- ============================ S1 ============================ -->
+<section class="scene" id="s1">
+  <div class="a" data-in="0.10"><div class="kicker">Rare Disease, Real Kid &middot; MVA Hackathon 2026</div></div>
+  <div class="a" data-in="0.45" style="margin-top:150px"><h1>The honest answer</h1></div>
+  <div class="a" data-in="0.75"><h1>is no drug &mdash; and</h1></div>
+  <div class="a" data-in="1.05"><h1>the useful part is why.</h1></div>
+  <div class="a" data-in="1.60" style="margin-top:64px"><div class="rule" style="width:420px"></div></div>
+  <div class="a" data-in="1.85" style="margin-top:44px"><div class="lede">A child who survived an embryonal rhabdomyosarcoma, whose cells miscount<br>chromosomes when they divide. Mosaic variegated aneuploidy.</div></div>
+  <div class="foot a" data-in="2.30"><div class="tiny">Track 1 &middot; Track 2 &mdash; variant identification and drug repurposing &nbsp;·&nbsp; team ciberpty</div></div>
+</section>
+
+<!-- ============================ S2 ============================ -->
+<section class="scene" id="s2">
+  <div class="a" data-in="0.10"><h2>Two independent analyses, required to agree.</h2></div>
+  <div class="a" data-in="0.45" style="margin-top:28px"><div class="small" style="max-width:1560px">
+    A hypothesis-free genome-wide run driven only by his eight clinical terms, and an eleven-gene panel
+    with coordinates fetched from a versioned database. Both land on <b>BUB1B</b>.</div></div>
+  <div class="a" data-in="0.90" style="margin-top:34px">
+    <div class="crop" id="s2fig" style="width:1520px;height:446px">
+      <img src="../track2/fig2_domains.png" style="width:1520px;top:-137px" alt="">
+    </div>
+    <div class="tiny" style="margin-top:6px">Domain intervals from UniProt O60566 (kinase domain, residues 766&ndash;1050) &mdash; annotation coordinates, not clinical ones.</div>
+  </div>
+  <div class="foot a" data-in="2.10"><div class="tiny">We cannot prove the two sit on opposite chromosomes: there are no parental samples, so this is <b>a diagnosis pending segregation</b>.</div></div>
+</section>
+
+<!-- ============================ S3 ============================ -->
+<section class="scene" id="s3">
+  <div class="a" data-in="0.10"><h2>Ask 37 healthy genomes the same eight symptoms &mdash;</h2></div>
+  <div class="a" data-in="0.35"><h2 class="terra">none of their own top genes scores higher.</h2></div>
+  <div style="margin-top:66px;display:flex;align-items:flex-start;gap:96px">
+    <div>
+      <div class="a" data-in="0.65"><div class="tiny" style="margin-bottom:16px">37 UNSPIKED HEALTHY PUBLIC GENOMES &mdash; 7 GIAB + 30 FROM 1000 GENOMES</div></div>
+      <div id="s3dots" class="dots" style="max-width:1090px"></div>
+    </div>
+    <div class="a" data-in="1.95" style="border-left:3px solid var(--rule);padding-left:56px">
+      <div class="tiny" style="margin-bottom:16px">THIS CASE</div>
+      <div style="width:60px;height:60px;border-radius:50%;background:var(--terra)"></div>
+      <div style="font-size:38px;font-weight:700;margin-top:18px">0.5871</div>
+    </div>
+  </div>
+  <div class="a" data-in="2.25" style="margin-top:64px"><div class="small">
+    Their best top-gene scores: <b>0.5619</b> across the 7 GIAB genomes and <b>0.5207</b> across the 30 from 1000 Genomes. <b>0 of 37</b> reach this case.<br>
+    Under a phenotype unrelated to the disease the score is <b>0.3965 in every background</b> &mdash; but the rank is <b>1, 2 and 3</b>. Score held; rank did not.</div></div>
+  <div class="foot a" data-in="2.45"><div class="tiny">Our unrelated-symptom control was contaminated twice, by us. Prediction P&#8209;B2 is falsified &mdash; we pre-committed to publishing that.</div></div>
+</section>
+
+<!-- ============================ S4 ============================ -->
+<section class="scene" id="s4">
+  <div class="a" data-in="0.10"><h2>Five filters, not two.</h2></div>
+  <div class="a" data-in="0.40" style="margin-top:18px"><div class="small">Filters three and five are the ones usually skipped, and they eliminate the most candidates.</div></div>
+  <div style="margin-top:26px;display:flex;justify-content:center">
+    <div class="crop" id="s4fig" style="width:1150px;height:657px">
+      <img src="../track2/fig3_funnel.png" style="width:1150px;top:-89px" alt="">
+    </div>
+  </div>
+</section>
+
+<!-- ============================ S5 ============================ -->
+<section class="scene" id="s5">
+  <div class="a" data-in="0.10"><h2>Metformin dies on the concentration filter.</h2></div>
+  <div class="a" data-in="0.40" style="margin-top:26px"><div class="small" style="max-width:1600px">
+    Nobody has measured what concentration it needs against aneuploid cells, so it cannot be evaluated on
+    the mechanism proposed. And that mechanism, inhibiting complex&nbsp;I, needs about a thousand times more
+    drug than is safe.</div></div>
+
+  <div style="margin-top:120px;position:relative;height:300px">
+    <div class="scale" id="s5axis" style="height:10px"></div>
+    <div class="gapbar" id="s5gap" style="left:14%;width:56%;height:10px"></div>
+    <div class="a" data-in="1.00" style="position:absolute;left:14%;top:-38px">
+      <div class="mark" style="background:var(--teal);height:64px;top:0"></div>
+      <div style="position:absolute;top:74px;left:-24px;white-space:nowrap">
+        <div style="font-size:38px;font-weight:700" class="teal">µM</div>
+        <div class="tiny">therapeutic plasma level</div></div>
+    </div>
+    <div class="a" data-in="1.60" style="position:absolute;left:70%;top:-38px">
+      <div class="mark" style="background:var(--terra);height:64px;top:0"></div>
+      <div style="position:absolute;top:74px;left:-24px;white-space:nowrap">
+        <div style="font-size:38px;font-weight:700" class="terra">mM</div>
+        <div class="tiny">needed to inhibit complex I</div></div>
+    </div>
+    <div class="a" data-in="1.25" style="position:absolute;left:32.7%;top:-6px"><div style="width:3px;height:22px;background:#c9c2b8"></div><div class="tiny" style="position:absolute;top:26px;left:-16px">10&times;</div></div>
+    <div class="a" data-in="1.35" style="position:absolute;left:51.3%;top:-6px"><div style="width:3px;height:22px;background:#c9c2b8"></div><div class="tiny" style="position:absolute;top:26px;left:-20px">100&times;</div></div>
+    <div class="a" data-in="2.00" style="position:absolute;left:26%;top:186px;white-space:nowrap;text-align:center">
+      <div style="font-size:56px;font-weight:700">~1000&times; short</div>
+      <div class="tiny">three orders of magnitude between what is safe and what the mechanism needs</div></div>
+  </div>
+  <div class="a" data-in="2.35" style="position:absolute;left:128px;right:128px;bottom:170px">
+    <div class="small" style="border-left:4px solid var(--rule);padding-left:26px;max-width:1500px">
+      <b>What cuts the other way, and we report it:</b> AICAR's aneuploidy selectivity does reproduce in
+      human cells &mdash; but that paper never tests metformin, and AICAR is not approved.</div></div>
+  <div class="foot a" data-in="2.20"><div class="tiny">PMID 37343530 &nbsp;·&nbsp; a comparison between concentration ranges: no aneuploidy-selective EC<sub>50</sub> exists for metformin.</div></div>
+</section>
+
+<!-- ============================ S6 ============================ -->
+<section class="scene" id="s6">
+  <div class="a" data-in="0.10"><h2>Bortezomib clears it &mdash; then we tested it against ourselves.</h2></div>
+  <div class="a" data-in="0.40" style="margin-top:22px"><div class="small" style="max-width:1620px">
+    We pre-registered the question on public cancer data: does the aneuploidy&ndash;proteasome link extend to
+    <b>solid</b> tumours? <span class="terra">It does not &mdash; interaction p&nbsp;=&nbsp;0.026, across 946 lines. This child's tumour was solid.</span></div></div>
+  <div style="margin-top:40px;display:flex;gap:70px;align-items:flex-start">
+    <div class="a" data-in="0.85" style="flex:0 0 760px">
+      <div class="crop" id="s6fig" style="width:740px;height:553px">
+        <img src="../track2/fig4_depmap.png" style="width:1570px;left:-41px;top:-109px" alt="">
+      </div>
+      <div class="tiny" style="margin-top:14px">Our pre-registered DepMap analysis &mdash; <code>depmap/RESULTADOS.md</code></div>
+    </div>
+    <div style="flex:1;padding-top:26px">
+      <div class="a" data-in="1.25"><div style="font-size:30px;color:var(--muted)">Concentration margin, total plasma drug</div></div>
+      <div style="position:relative;height:150px;margin-top:52px">
+        <div class="scale" id="s6axis" style="height:10px"></div>
+        <div class="gapbar" id="s6gap" style="left:8%;width:70%;height:10px;background:var(--teal);opacity:.3"></div>
+        <div class="a" data-in="1.55" style="position:absolute;left:8%;top:-18px">
+          <div class="mark" style="background:var(--teal);height:46px"></div>
+          <div style="position:absolute;top:48px;left:-26px;white-space:nowrap"><div style="font-size:32px;font-weight:700" class="teal">&lt; 40 nM</div><div class="tiny">effective in aneuploid lines</div></div>
+        </div>
+        <div class="a" data-in="1.85" style="position:absolute;left:78%;top:-18px">
+          <div class="mark" style="background:var(--ink);height:46px"></div>
+          <div style="position:absolute;top:48px;left:-120px;white-space:nowrap"><div style="font-size:32px;font-weight:700">231&ndash;312 nM</div><div class="tiny">clinical peak, 1.3 mg/m² IV</div></div>
+        </div>
+      </div>
+      <div class="a" data-in="2.20" style="margin-top:120px"><div style="font-size:40px;font-weight:700">Margin of <span class="teal">5.8&ndash;7.8&times;</span></div>
+      <div class="tiny" style="margin-top:10px">Total plasma drug at a peak &mdash; not free, not intratumoral.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ S7 ============================ -->
+<section class="scene" id="s7">
+  <div class="a" data-in="0.10"><h2>What changes his prognosis today is not a molecule.</h2></div>
+  <div class="a" data-in="0.40" style="margin-top:22px"><div class="small" style="max-width:1640px">
+    Bortezomib fails filter four for him: motor neuropathy in 8% of children, on top of existing muscle
+    atrophy. The realistic threat is a second embryonal tumour &mdash; so the intervention that matters now is
+    surveillance.</div></div>
+  <div class="tl">
+    <div class="axis" id="s7axis"></div>
+    <div class="a" data-in="0.95"><div class="tick" style="left:0"></div><div class="tlab" style="left:0">birth</div></div>
+    <div class="a" data-in="0.95"><div class="tick" style="left:43%"></div><div class="tlab" style="left:43%">age 7</div></div>
+    <div class="a" data-in="0.95"><div class="tick" style="left:86%"></div><div class="tlab" style="left:86%">age 10</div></div>
+    <div class="band b1" id="s7b1" style="top:118px;left:0;width:43%">Renal ultrasound &mdash; every 3 months</div>
+    <div class="band b2" id="s7b2" style="top:232px;left:0;width:86%">Full clinical examination &mdash; 3-monthly, then 6-monthly</div>
+    <div class="band b3" id="s7b3" style="top:346px;left:0;width:100%">Full blood count &mdash; 6-monthly</div>
+  </div>
+  <div class="foot a" data-in="2.40"><div class="tiny">Renal ultrasound to age 7 is <b>published consensus</b> for all MVA (PMID 39264246); widening the field to liver, retroperitoneum and pelvis is <b>our addition</b>.<br>We do <b>not</b> propose serial AFP, repeat CT, PET-CT or routine whole-body MRI while asymptomatic.</div></div>
+</section>
+
+<!-- ============================ S8 ============================ -->
+<section class="scene" id="s8">
+  <div class="a" data-in="0.10"><h2>If that tumour comes, filter four inverts.</h2></div>
+  <div class="cols">
+    <div>
+      <div class="a" data-in="0.45"><div class="lbl terra">What this is not</div>
+        <div class="colrule" style="background:var(--terra)"></div>
+        <div style="font-size:52px;font-weight:700">Not a prescription.</div>
+        <div class="small" style="margin-top:20px">The proteasome dependency is shown in cancer aneuploidy. Whether it transfers to constitutional MVA is unproven &mdash; which is exactly what the experiment tests.</div>
+      </div>
+    </div>
+    <div>
+      <div class="a" data-in="0.80"><div class="lbl teal">What this is</div>
+        <div class="colrule" style="background:var(--teal)"></div>
+        <div style="font-size:52px;font-weight:700;line-height:1.1">A prepared,<br>testable answer.</div>
+        <div class="small" style="margin-top:20px">A tumour-board hypothesis with a concentration margin, a stopping rule, and an eight-week assay &mdash; 12&ndash;16 weeks from a fresh biopsy &mdash; that could fail to support it.</div>
+      </div>
+    </div>
+  </div>
+  <div class="a" data-in="1.45" style="margin-top:70px"><div class="rule" style="height:3px;background:var(--teal)"></div></div>
+  <div class="a" data-in="1.70" style="margin-top:34px"><div class="lede">
+    Two things scale: the <b class="teal">five-filter worksheet</b>, for any rare disease where someone is about to propose an approved drug &mdash; and <b class="teal">MVA-Replay</b>, one file, no new dependencies, <code style="font-size:.9em">--self-check</code>, which another team runs on their own gene in an afternoon.</div></div>
+  <div class="foot a" data-in="2.25"><div class="small" style="color:#4a453f">
+    Five analyses were <b>pre-registered in git</b> before the data was touched. <b class="terra">Four of the five came back against our own argument</b>, and all four are in the report.</div></div>
+</section>
+
+<script>
+// ---------- tiny deterministic timeline engine -------------------------------
+// seek(t) positions every element for absolute time t. No CSS animation, no rAF:
+// the renderer steps time itself, so a frame is a pure function of t.
+const CUES = window.CUES || null;         // injected by the renderer: [{id, start, dur}, ...]
+const XF = 0.55;                          // cross-dissolve length, seconds
+const clamp = (x,a,b)=>Math.max(a,Math.min(b,x));
+const ease  = x=>1-Math.pow(1-clamp(x,0,1),3);           // easeOutCubic
+const easeIO= x=>{x=clamp(x,0,1);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+
+function build(scene){
+  // one-off DOM the engine needs
+  if(scene.id==='s3' && !scene.dataset.built){
+    const box=scene.querySelector('#s3dots');
+    for(let i=0;i<37;i++){const d=document.createElement('div');d.className='d';box.appendChild(d);}
+    scene.dataset.built='1';
+  }
+}
+document.querySelectorAll('.scene').forEach(build);
+
+function seek(t){
+  const cues = window.CUES;
+  cues.forEach((c,i)=>{
+    const el = document.getElementById(c.id);
+    const local = t - c.start;
+    const inA  = ease(local / XF);                       // scene fade-in
+    const outA = 1 - ease((local - (c.dur - XF)) / XF);  // scene fade-out
+    let vis = clamp(Math.min(inA, i===cues.length-1?1:outA), 0, 1);
+    if(local < -XF || local > c.dur + XF) vis = 0;
+    el.style.opacity = vis;
+    el.style.transform = `translateY(${(1-inA)*26}px)`;
+    el.style.pointerEvents='none';
+    if(vis<=0) return;
+
+    // staggered element build-ins
+    el.querySelectorAll('.a').forEach(a=>{
+      const s = parseFloat(a.dataset.in||'0');
+      const p = ease((local - s) / 0.75);
+      a.style.opacity = p;
+      a.style.transform = `translateY(${(1-p)*22}px)`;
+    });
+    // rules draw left-to-right
+    el.querySelectorAll('.rule,.colrule').forEach(r=>{
+      const host=r.closest('.a'); const s=host?parseFloat(host.dataset.in||'0'):0.5;
+      r.style.transform=`scaleX(${easeIO((local-s-0.1)/0.7)})`;
+    });
+
+    if(c.id==='s2'){
+      const w = easeIO((local-0.90)/1.25)*100;
+      el.querySelector('#s2fig').style.clipPath=`inset(0 ${100-w}% 0 0)`;
+    }
+    if(c.id==='s3'){
+      const ds = el.querySelectorAll('.d');
+      ds.forEach((d,k)=>{ d.style.opacity = clamp((local-0.75-k*0.030)/0.22,0,1); });
+    }
+    if(c.id==='s4'){
+      const h = easeIO((local-0.75)/2.10)*100;
+      el.querySelector('#s4fig').style.clipPath=`inset(0 0 ${100-h}% 0)`;
+    }
+    if(c.id==='s5'){
+      el.querySelector('#s5axis').style.transform=`scaleX(${easeIO((local-0.85)/0.8)})`;
+      el.querySelector('#s5gap').style.transform=`scaleX(${easeIO((local-1.70)/0.9)})`;
+    }
+    if(c.id==='s6'){
+      const w = easeIO((local-0.85)/1.1)*100;
+      el.querySelector('#s6fig').style.clipPath=`inset(0 ${100-w}% 0 0)`;
+      el.querySelector('#s6axis').style.transform=`scaleX(${easeIO((local-1.35)/0.8)})`;
+      el.querySelector('#s6gap').style.transform=`scaleX(${easeIO((local-2.00)/0.9)})`;
+    }
+    if(c.id==='s7'){
+      el.querySelector('#s7axis').style.transform=`scaleX(${easeIO((local-0.70)/0.8)})`;
+      [['#s7b1',1.15],['#s7b2',1.40],['#s7b3',1.65]].forEach(([sel,s])=>{
+        const b=el.querySelector(sel); const p=easeIO((local-s)/0.85);
+        b.style.transform=`scaleX(${p})`; b.style.opacity=clamp(p*3,0,1);
+      });
+    }
+  });
+}
+window.seek = seek;
+</script>

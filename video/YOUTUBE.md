@@ -1,7 +1,7 @@
 # Subida a YouTube — título, descripción y ajustes
 
 Archivo a subir: `~/datos/HACKATHON-MVA-2026/video/pitch_MVA2026.mp4`
-2:57.9 (177,90 s por ffprobe, límite 180) · 1920×1080 · 30 fps · 4,9 MB · sha256 `7e41057a2d03bf…`
+2:56.1 (176,08 s por ffprobe, límite 180) · 1920×1080 · 30 fps · 6,6 MB · sha256 `439b534b181571…`
 
 ## Ajustes de YouTube
 
@@ -35,15 +35,15 @@ recommended today, and the useful part is the evidence behind that no.
 What the three minutes cover:
 
 00:00  The case, and why the honest answer is no
-00:17  The variant: two independent analyses required to converge on BUB1B
-00:47  A pre-registered benchmark: 37 healthy public genomes asked the same eight symptoms,
+00:22  The variant: two independent analyses required to converge on BUB1B
+00:50  A pre-registered benchmark: 37 healthy public genomes asked the same eight symptoms,
        and the phenotype control of our own that came out against us
-01:13  Five filters instead of the usual two, including pharmacokinetics and direction of effect
-01:36  Metformin fails on concentration, by about three orders of magnitude
-01:55  Bortezomib clears that filter — then our own pre-registered test on public cancer data
+01:18  Five filters instead of the usual two, including pharmacokinetics and direction of effect
+01:39  Metformin fails on concentration, by about three orders of magnitude
+01:56  Bortezomib clears that filter — then our own pre-registered test on public cancer data
        weakened our case, and we report it
-02:19  What changes this child's prognosis today: published surveillance, not a molecule
-02:38  What scales: a reusable five-filter worksheet, and a tool another team can run on their gene
+02:20  What changes this child's prognosis today: published surveillance, not a molecule
+02:37  What scales: a reusable five-filter worksheet, and a tool another team can run on their gene
 
 Five analyses in this work were pre-registered in git — hypothesis, statistic and stopping rules
 committed before the data was touched, with the commit timestamp as the evidence. Four of the five
@@ -54,8 +54,9 @@ https://github.com/cpu-16/mva-hackathon-2026
 (private during the hackathon, made public for the final evaluation as the challenge rules require)
 
 This is a research submission, not medical advice, and no drug is recommended for any patient. No
-patient data appears in this video or in that repository. The narration is synthetic speech generated
-locally (Piper TTS, en_US-ryan-high); nothing was sent to a speech service.
+patient data appears in this video or in that repository. The narration is synthetic speech generated locally
+(Qwen3-TTS 1.7B VoiceDesign, on CPU); nothing was sent to a speech service. Every clip was checked
+against the script with automatic speech recognition before the video was assembled.
 ```
 
 ## Etiquetas (opcional)

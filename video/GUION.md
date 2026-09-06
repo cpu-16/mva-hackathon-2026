@@ -1,7 +1,7 @@
 # 3-minute pitch — script v4
 
 ✅ **Rendered 2026-09-06.** `pitch_MVA2026.mp4` narrates this script: 177.87 s by ffprobe, 8 slides
-re-rendered from `slides.html`. Slide 3's caption reads "Score held; rank did not."
+rendered from `deck.html`. 176.08 s by ffprobe.
 
 Target ≤ 180 s. Judging: Rigor 35% · Impact 25% · Innovation 25% · Scalability 15%.
 
@@ -44,9 +44,9 @@ Metformin is the candidate the literature points to. Nobody has measured what co
 
 Bortezomib clears filter three, and then we tested it against ourselves. We pre-registered a question on public cancer data: does the aneuploidy–proteasome link extend to solid tumours? It does not. This child's tumour was solid. So the dependency is established in cancer aneuploidy, not in his cells. We have not shown it transfers.
 
-## S7 — 42 w
+## S7 — 43 w
 
-Bortezomib also fails filter four for him: motor neuropathy in eight percent of children, on existing muscle atrophy. What changes his prognosis today is not a molecule, it is surveillance, and published consensus says renal ultrasound every three months, to age seven.
+Bortezomib also fails filter four for him: motor neuropathy in eight percent of children, on existing muscle atrophy. What changes his prognosis today is not a molecule, it is surveillance, and published consensus says renal ultrasound every three months until he is seven.
 
 ## S8 — 55 w
 
@@ -56,5 +56,9 @@ Two things scale. The five-filter worksheet, for any rare disease where someone 
 
 ## Build record
 
-Rendered 2026-09-06: `python3 render.py`; Piper `en_US-ryan-high`, `--length-scale 1.40`; assembled with
-the `-t $A` recipe in `README.md`. Measured total **177.87 s** (ffprobe), not extrapolated.
+Rendered 2026-09-06 from `deck.html` with `render_video.py`; narration by Qwen3-TTS 1.7B VoiceDesign
+on CPU, every clip checked against this script by speech recognition (`tts_verify.py`). Measured total
+**176.08 s** (ffprobe), not extrapolated.
+
+S7 was re-synthesised once: the first take dropped the word "to" from *"every three months, to age
+seven"*. The line now reads *"until he is seven"*, which the recogniser confirms is spoken in full.
