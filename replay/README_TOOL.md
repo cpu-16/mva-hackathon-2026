@@ -17,7 +17,7 @@ cases in `PREREGISTRO.md`; the functions are copied from there, not rewritten.
 
 ## Requirements
 
-Already present in this repository: `tools/exomiser-cli-15.1.0` with the 2602 hg38 + phenotype data,
+Required locally (not bundled in a fresh code checkout): `tools/exomiser-cli-15.1.0` with the 2602 hg38 + phenotype data,
 `pipeline/resources/clinvar.vcf.gz` (GRCh38) and `genes_to_phenotype.txt`. On the PATH: `java`,
 `bcftools`, `samtools`, `bgzip`, `tabix`, Python 3 (standard library only). About 10 GB RAM per run.
 No GPU. No patient data is read or written.
@@ -26,15 +26,24 @@ No GPU. No patient data is read or written.
 
 ```bash
 cd replay
-./mva_replay.py --self-check          # 20 asserts against the artefacts of the 61-run benchmark, ~3 s
+./mva_replay.py --self-check          # 21 assertions when the local benchmark artefacts are present
 
 ./mva_replay.py --gene BUB1B \
-    --allele 533901 \                        # ClinVar variation id …
-    --allele chr15:40220612:T:A \            # … or chr:pos:ref:alt, or NC_000015.10:g.40220612T>A
+    --allele 533901 \
+    --allele chr15:40220612:T:A \
     --hpo HP:0002859 HP:0000121 HP:0004322 HP:0001508 HP:0003202 HP:0001622 HP:0001518 HP:0200067 \
-    --background bg/HG002.vcf.gz \
-    [--hpo-unrelated HP:... ] [--phase trans|cis|unph] [--sex MALE|FEMALE] [--out DIR] [--dry-run]
+    --background bg/HG002.vcf.gz
 ```
+
+Optional flags include `--hpo-unrelated`, `--phase trans|cis|unph`, `--sex MALE|FEMALE`,
+`--out DIR`, `--name NAME` and `--dry-run`. Alleles may be ClinVar variation IDs,
+`chr:pos:ref:alt`, or supported genomic HGVS strings.
+
+**Use a fresh case name or output directory for every invocation.** Existing files for the same
+case cause an error before analysis starts. A gene/background name alone cannot establish that
+alleles, phenotypes, phase and resources match a previous run. Automatic reuse is therefore disabled.
+This also applies after `--dry-run`, which writes sample YAML files: choose a different `--name`
+for the actual run. No old result is deleted or overwritten by this check.
 
 `--dry-run` resolves the alleles, runs every pre-flight check and prints the spike records and the
 four exact Exomiser command lines as JSON, without running Java. A full run on a GIAB background
@@ -53,10 +62,10 @@ one sample; the script declares `GT/DP/AD/GQ` in the header if they are missing 
 - **Overlap with the background** (`bcftools view -r`, ±60 bp): a warning. The planted record still
   goes in, but the reported score is then a property of both alleles together.
 - **Unrelated HPO terms annotated to the gene**: each `--hpo-unrelated` term is looked up in HPOA's
-  `genes_to_phenotype.txt` against *every* disease of the gene (OMIM and Orphanet). A hit is a
-  warning telling you to pick another term. On BUB1B this fires for `HP:0000365` (hearing
-  impairment, ORPHA:1052) — the pre-registration checked only OMIM:257300, so the shipped default
-  control set is slightly contaminated for BUB1B and that warning is expected.
+  `genes_to_phenotype.txt` against *every* disease of the gene (OMIM and Orphanet). A hit stops
+  the run unless `--allow-contaminated-control` is explicitly supplied. On BUB1B this fires for
+  `HP:0000365` (hearing impairment, ORPHA:1052). The current default replaces that term with
+  `HP:0000988`; the historical pre-registered set is retained for the positive self-check.
 - **Ingestion** (pre-registration assertion 1): after the run, both planted alleles must appear in
   Exomiser's variants table annotated to `--gene`. If not, `technical_failure: true` is set and the
   score is reported anyway — never silently dropped, never called a miss.

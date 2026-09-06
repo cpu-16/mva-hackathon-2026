@@ -226,6 +226,16 @@ def main(argv=None):
 
     os.makedirs(a.out, exist_ok=True)
     name = a.name or f"{a.gene}_{os.path.basename(a.background).split('.')[0]}"
+    # A gene/background name does not identify alleles, HPOs, phase or resource versions.
+    # Reusing its files can silently label an old score with new inputs. Until reuse is
+    # validated by a complete input manifest, require a fresh case prefix, even for a
+    # dry run (which writes sample YAML files).
+    existing = sorted(n for n in os.listdir(a.out)
+                      if n.startswith(name + ".") or n.startswith(name + "_"))
+    if existing:
+        sys.exit(f"refusing to reuse existing case files for {name!r} in {a.out}: "
+                 f"{existing[0]}. Choose a new --name or an empty --out directory; "
+                 "cached results are not validated against the current inputs.")
     samples = sh(["bcftools", "query", "-l", a.background]).split()
     if len(samples) != 1:
         sys.exit(f"background must have exactly one sample (has {len(samples)}); bcftools view -s SAMPLE first")
