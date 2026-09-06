@@ -24,6 +24,10 @@ The honest answer is no drug — MVA Hackathon 2026, Track 2 (team ciberpty)
 
 ## Descripción
 
+La herramienta de voz **no hace falta nombrarla aquí**. El reglamento la pide en la descripción de
+métodos (Q23 del Track 1 y Q3 del Track 2), y ahí ya está declarada con el modelo exacto. En YouTube
+basta decir que la voz es sintética, que es lo que un espectador necesita saber.
+
 ```
 Three-minute pitch for "Rare Disease, Real Kid" (Sage Bionetworks, MVA Society, Hugging Face and
 BEACON). Team: ciberpty. Track 2, drug repurposing.
@@ -54,9 +58,8 @@ https://github.com/cpu-16/mva-hackathon-2026
 (private during the hackathon, made public for the final evaluation as the challenge rules require)
 
 This is a research submission, not medical advice, and no drug is recommended for any patient. No
-patient data appears in this video or in that repository. The narration is synthetic speech generated locally
-(Qwen3-TTS 1.7B VoiceDesign, on CPU); nothing was sent to a speech service. Every clip was checked
-against the script with automatic speech recognition before the video was assembled.
+patient data appears in this video or in that repository. The narration is synthetic speech, generated
+locally.
 ```
 
 ## Etiquetas (opcional)
