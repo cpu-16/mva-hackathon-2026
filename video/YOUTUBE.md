@@ -1,5 +1,9 @@
 # Subida a YouTube — título, descripción y ajustes
 
+✅ **SUBIDO el 6-sep-2026: https://youtu.be/QGYHK0Ihs1c**
+Comprobado sin sesión iniciada (oembed HTTP 200, título correcto, canal «Gilberto Ramos»), así que el
+jurado puede abrirlo. Es el campo *Pitch video URL* del formulario del Track 2.
+
 Archivo a subir: `~/datos/HACKATHON-MVA-2026/video/pitch_MVA2026.mp4`
 2:56.1 (176,08 s por ffprobe, límite 180) · 1920×1080 · 30 fps · 6,6 MB · sha256 `439b534b181571…`
 

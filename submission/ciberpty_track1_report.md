@@ -2,6 +2,17 @@
 
 **Team: ciberpty** · MVA Hackathon 2026 · Proband PROBAND01
 Repository: https://github.com/cpu-16/mva-hackathon-2026
+Pitch video: https://youtu.be/QGYHK0Ihs1c
+
+> **This write-up supersedes our earlier Track 1 submissions. The predictions CSV is byte-for-byte
+> unchanged** — same two BUB1B variants, same score — so this is a correction to the methods
+> description, not to the answer. Four errors in the version we submitted on 30 August are corrected
+> here and each is named where it occurred: the unrelated-phenotype control was contaminated and read
+> 0.4187 where the clean control reads **0.3965**; a "the phenotype contributes ~24%" figure that is
+> **withdrawn** as an invalid conversion; the ranking attributed to the ClinVar whitelist when our own
+> counterfactual shows it is worth **0.0128**; and a 30-genome benchmark described as still running
+> that has since **finished, 0 of 30**. If more than one of our entries appears on the leaderboard,
+> this is the one we ask the panel to read.
 
 ---
 

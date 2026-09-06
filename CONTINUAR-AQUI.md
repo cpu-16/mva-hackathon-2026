@@ -132,16 +132,30 @@ Gilberto pidió más profesional, con animación, contenido real y su voz Qwen3.
 
 ---
 
-⛔ **Lo que solo Gilberto puede hacer, en este orden:**
+## ✅ 6-SEP-2026, NOCHE — **LOS DOS TRACKS ESTÁN ENVIADOS**
 
-1. **Subir el video v4 a YouTube** (no listado sirve) y anotar la URL. Es el único bloqueador del Track 2.
-2. **Enviar el Track 2** (`entrega/listo-para-enviar/`: PDF de 43 pp. + xlsx + URL del video + URL del
-   repo). Cuenta el último de 3, así que este primer envío es el seguro; se puede mejorar hasta el 24-oct.
-3. **Decidir el reenvío del Track 1** con el write-up corregido (PDF 21 pp. + mismo CSV + xlsx). A favor:
-   el panel lo lee y la versión enviada tiene el control contaminado y "still running". En contra: el
-   hilo #19 muestra que crea una fila duplicada y Sage no ha dicho cuál revisa. Recomendación: reenviar,
-   y en el campo de descripción decir que sustituye al anterior por corrección del write-up.
-4. **Hacer público el repo** cuando Sage lo pida (anuncio #10), no antes.
+Video subido por Gilberto a **https://youtu.be/QGYHK0Ihs1c** (verificado accesible sin sesión). Los
+dos formularios se llenaron y enviaron desde `cpu-16`. Detalle campo por campo y capturas de las
+confirmaciones: **`entrega/NOTAS_ENVIO.md`** + `evidencia/envio_track{1,2}_2026-09-06.png`.
+
+| | Envío | Respuesta del Space |
+|---|---|---|
+| **Track 2** | **1 de 3** | «Track 2 submission received ✓ — ciberpty (cpu-16)». Panel humano, ~2-3 meses. **Cuenta el último**, así que se puede mejorar hasta el 24-oct |
+| **Track 1** | **3 de 6** | «Submission received ✓» · **Rank points 100.0/100 · F-max 1.000 · Full match at rank 1**. El CSV no cambió; lo que cambió es el write-up |
+
+El PDF del Track 1 lleva en la portada el aviso de que **sustituye a los envíos anteriores** y nombra
+los cuatro errores corregidos, porque ese formulario no tiene campo de notas y el hilo #19 avisa que
+un reenvío puede dejar dos filas en el leaderboard.
+
+⛔ **Lo único que queda, y tiene fecha:**
+
+1. **Hacer público el repo** cuando Sage anuncie el inicio de la evaluación final (anuncio #10 del
+   Space). No antes, y no después.
+2. **Borrar los datos del paciente antes del 23-nov-2026** y enviar el correo a
+   `RarediseaserealkidMVAhackathon2026@synapse.org`. Inventario y comandos listos en
+   `data/BORRAR-AL-TERMINAR.md` (incluye los 20 GB de FASTQ y los 4,6 GB de caché que faltaban).
+3. **Opcional, hasta el 24-oct:** mejorar el reporte del Track 2 y reenviarlo. Quedan 2 envíos y solo
+   cuenta el último, así que reenviar no arriesga nada.
 
 ---
 
