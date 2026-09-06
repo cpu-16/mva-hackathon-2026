@@ -5,10 +5,39 @@ Léeme completo antes de tocar cualquier otro archivo.
 
 ---
 
+## ✅ 6-SEP-2026, NOCHE — **LOS DOS TRACKS ESTÁN ENVIADOS**
+
+Video subido por Gilberto a **https://youtu.be/QGYHK0Ihs1c** (verificado accesible sin sesión). Los
+dos formularios se llenaron y enviaron desde `cpu-16`. Detalle campo por campo y capturas de las
+confirmaciones: **`entrega/NOTAS_ENVIO.md`** + `evidencia/envio_track{1,2}_2026-09-06.png`.
+
+| | Envío | Respuesta del Space |
+|---|---|---|
+| **Track 2** | **1 de 3** | «Track 2 submission received ✓ — ciberpty (cpu-16)». Panel humano, ~2-3 meses. **Cuenta el último**, así que se puede mejorar hasta el 24-oct |
+| **Track 1** | **3 de 6** | «Submission received ✓» · **Rank points 100.0/100 · F-max 1.000 · Full match at rank 1**. El CSV no cambió; lo que cambió es el write-up |
+
+El PDF del Track 1 lleva en la portada el aviso de que **sustituye a los envíos anteriores** y nombra
+los cuatro errores corregidos, porque ese formulario no tiene campo de notas y el hilo #19 avisa que
+un reenvío puede dejar dos filas en el leaderboard.
+
+⛔ **Lo único que queda, y tiene fecha:**
+
+1. **Hacer público el repo** cuando Sage anuncie el inicio de la evaluación final (anuncio #10 del
+   Space). No antes, y no después.
+2. **Borrar los datos del paciente antes del 23-nov-2026** y enviar el correo a
+   `RarediseaserealkidMVAhackathon2026@synapse.org`. Inventario y comandos listos en
+   `data/BORRAR-AL-TERMINAR.md` (incluye los 20 GB de FASTQ y los 4,6 GB de caché que faltaban).
+3. **Opcional, hasta el 24-oct:** mejorar el reporte del Track 2 y reenviarlo. Quedan 2 envíos y solo
+   cuenta el último, así que reenviar no arriesga nada.
+
+---
+
+
 ## 🆕 6-SEP-2026 (tarde) — GILBERTO DIJO "ENCÁRGATE DE TODO": LO QUE QUEDÓ HECHO Y LO QUE ES SUYO
 
-**Commits pusheados a `origin/main`: `770c975` (revisión del 6-sep) y `727bef6` (video v4, xlsx, abstracts).**
-Sin ningún envío al Space ni subida a YouTube: esas dos acciones son de Gilberto (ver abajo).
+
+**Commits pusheados:** `770c975` (revisión del 6-sep) y `727bef6` (video v4, xlsx, abstracts).
+⚠️ Cuando se escribió esta sección todavía no había envíos. **Ya los hay** — ver la sección de arriba.
 
 Hecho en esta ronda:
 
@@ -129,33 +158,6 @@ Gilberto pidió más profesional, con animación, contenido real y su voz Qwen3.
   contradiciendo la documentación.
 
 `video/YOUTUBE.md` ya trae los capítulos y la huella nuevos.
-
----
-
-## ✅ 6-SEP-2026, NOCHE — **LOS DOS TRACKS ESTÁN ENVIADOS**
-
-Video subido por Gilberto a **https://youtu.be/QGYHK0Ihs1c** (verificado accesible sin sesión). Los
-dos formularios se llenaron y enviaron desde `cpu-16`. Detalle campo por campo y capturas de las
-confirmaciones: **`entrega/NOTAS_ENVIO.md`** + `evidencia/envio_track{1,2}_2026-09-06.png`.
-
-| | Envío | Respuesta del Space |
-|---|---|---|
-| **Track 2** | **1 de 3** | «Track 2 submission received ✓ — ciberpty (cpu-16)». Panel humano, ~2-3 meses. **Cuenta el último**, así que se puede mejorar hasta el 24-oct |
-| **Track 1** | **3 de 6** | «Submission received ✓» · **Rank points 100.0/100 · F-max 1.000 · Full match at rank 1**. El CSV no cambió; lo que cambió es el write-up |
-
-El PDF del Track 1 lleva en la portada el aviso de que **sustituye a los envíos anteriores** y nombra
-los cuatro errores corregidos, porque ese formulario no tiene campo de notas y el hilo #19 avisa que
-un reenvío puede dejar dos filas en el leaderboard.
-
-⛔ **Lo único que queda, y tiene fecha:**
-
-1. **Hacer público el repo** cuando Sage anuncie el inicio de la evaluación final (anuncio #10 del
-   Space). No antes, y no después.
-2. **Borrar los datos del paciente antes del 23-nov-2026** y enviar el correo a
-   `RarediseaserealkidMVAhackathon2026@synapse.org`. Inventario y comandos listos en
-   `data/BORRAR-AL-TERMINAR.md` (incluye los 20 GB de FASTQ y los 4,6 GB de caché que faltaban).
-3. **Opcional, hasta el 24-oct:** mejorar el reporte del Track 2 y reenviarlo. Quedan 2 envíos y solo
-   cuenta el último, así que reenviar no arriesga nada.
 
 ---
 
@@ -691,8 +693,8 @@ segregación no es solo la vía más barata para este alelo — es **la única p
      53 equipos tenían la respuesta), y editar el documento que no decide el podio mientras el que sí
      lo decide sigue en 0 de 3 es gastar el esfuerzo donde no cuenta.
    - **Los dos coinciden en el orden: primero el Track 2.**
-2. **Subir el video v3 a YouTube.** Sigue siendo el ÚNICO bloqueador del envío del Track 2
-   (`submit_track2.py:92-94` exige la URL). ⚠️ El que está subido es el VIEJO.
+2. ~~**Subir el video a YouTube**, único bloqueador del Track 2.~~ ✅ **Hecho el 6-sep:**
+   https://youtu.be/QGYHK0Ihs1c (deck animado v5, voz Qwen3-TTS, 176,08 s).
 3. Chequeo de un minuto: compartir datos para entrenamiento en OFF en Anthropic y OpenAI.
 
 ---
@@ -728,15 +730,15 @@ Esto se recomendó mal una vez (1-sep): dos agentes dijeron "envía ya, te da ve
 | Necesitas… | El archivo que MANDA | Ojo |
 |---|---|---|
 | Estado general y qué sigue | **este archivo** | — |
-| Reporte Track 1 (enviado) | `entrega/methods_track1.md` + `.pdf` | ⛔ `methods_track1_DRAFT.md` es histórico, NO usar |
-| Reporte Track 2 (sin enviar) | `track2/REPORT_track2_EN.md` + `REPORT_track2.pdf` | ⛔ `REPORT_track2_EN_v1_ARCHIVO.md` es viejo, NO usar |
-| Formulario de métodos | `entrega/methods_description_form_ciberpty.xlsx` | ⛔ la hoja del Track 2 sí; **la celda B16 del Track 1 (Q9) está desfasada** (2-sep) |
+| Reporte Track 1 (**reenviado 6-sep, 3 de 6**) | `entrega/methods_track1.md` + `.pdf` | ⛔ `methods_track1_DRAFT.md` es histórico, NO usar |
+| Reporte Track 2 (**enviado 6-sep, 1 de 3**) | `track2/REPORT_track2_EN.md` + `REPORT_track2.pdf` | ⛔ `REPORT_track2_EN_v1_ARCHIVO.md` es viejo, NO usar. El PDF se construye con `entrega/build_pdfs.sh` y lleva la descripción de métodos como Apéndice B |
+| Formulario de métodos | `entrega/methods_description_form_ciberpty.xlsx` | ✅ resincronizado celda por celda desde los `.md` el 6-sep; los dos abstracts caben en las 500 palabras |
 | Q2–Q11 del Track 2 en texto | `entrega/methods_track2.md` | espejo del xlsx, mantener sincronizados |
 | CSV de predicciones | `entrega/convergent-hpo-genomewide-and-panel.csv` | epcr 0.85, verificado = 100 pts |
 | Análisis DepMap | `depmap/PREREGISTRO.md` → `depmap/RESULTADOS.md` | leer en ese orden |
 | Benchmark MVA-Replay (lo nuevo) | `replay/PREREGISTRO.md` → `replay/RESULTADOS.md` | el pre-registro trae 3 enmiendas fechadas al final |
 | Fase de las dos variantes (lo nuevo) | `fase/RESULTADO.md` + `replay/PILOTO_FASE.md` | cerrado, no reintentar |
-| Video | `video/GUION.md` (v3) + `video/README.md` | ⛔ `GUION_v1.md` es histórico |
+| Video (**v5 animado, subido**) | `video/deck.html` (las 8 escenas) + `video/GUION.md` (v4 del guion) + `video/README.md` | Construir con `render_video.py`; voz con `tts_qwen.py` y **verificarla con `tts_verify.py`**. ⛔ `GUION_v1.md` y `GUION_v3.md` son históricos |
 | Qué se envió y cuándo | `evidencia/registro_envios_track1.md` | — |
 | Control externo de mosaicismo | `mosaico/CONTROL_RESULTADO.md` | lo nuevo (1-sep 21:42); veredicto **no concluyente** |
 | Obligación de borrar datos | `data/BORRAR-AL-TERMINAR.md` | ⛔ **desactualizado**, faltan ~718 MB (ver 2-sep) · **fecha límite 23-nov-2026** |

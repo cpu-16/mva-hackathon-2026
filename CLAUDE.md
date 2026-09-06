@@ -63,6 +63,18 @@ archivo de datos del que salió. Ha pasado con el conteo de variantes, con el fa
 detección, con la atribución a ClinVar, con el denominador de genes, y —el 1-sep— con una línea base
 que se infló para que un hallazgo propio pareciera mayor.
 
+## ✅ Estado al cierre del 6-sep-2026: **ENVIADO, los dos tracks**
+
+- **Track 1** — envío **3 de 6**, `100.0/100`, F-max 1.000. El CSV nunca cambió; lo que se reenvió es
+  el write-up corregido.
+- **Track 2** — envío **1 de 3**, recibido. Panel humano, ~2-3 meses. **Cuenta el último**, así que
+  todavía se puede mejorar y reenviar hasta el **24-oct-2026** sin arriesgar nada.
+- Video: https://youtu.be/QGYHK0Ihs1c
+
+**Lo único que queda, y tiene fecha:** hacer público el repo cuando Sage anuncie la evaluación final,
+y **borrar los datos del paciente antes del 23-nov-2026** con correo a Synapse
+(`data/BORRAR-AL-TERMINAR.md`).
+
 ## ⚠️ Reglas de envío: verifícalas antes de recomendar nada
 
 Esto se equivocó una vez y costó una recomendación mala. **Los hechos, sacados de
