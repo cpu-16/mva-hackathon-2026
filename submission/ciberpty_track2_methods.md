@@ -54,8 +54,10 @@ Commercially-available generative AI was used. Provider, plan and relevant setti
 - **OpenAI**, Codex (gpt-5.6), **Plus** plan, "Improve the model for everyone" disabled.
 - **xAI Grok 4.6 via Cursor**, **Pro** plan, **Privacy Mode enabled** (zero data retention at Cursor
   and at the underlying model providers).
-- **Piper TTS** (`en_US-ryan-high`) — open-source, run locally with no cloud service and no API key.
-  Used only to narrate the pitch video; not a commercial service, listed for completeness.
+- **Qwen3-TTS 1.7B VoiceDesign** — open-weights, run locally on CPU with no cloud service and no API
+  key. Used only to narrate the pitch video; not a commercial service, listed for completeness. Each
+  clip was transcribed by a local recogniser and diffed against the written script before assembly,
+  because this class of model can alter a word silently.
 
 **No block of the VCF and no genotype table was ever sent to a language model.** Genomic work ran on
 local tools (`bcftools`, Exomiser) and on annotation APIs — Ensembl VEP and ClinVar — which return

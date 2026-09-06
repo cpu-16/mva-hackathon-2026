@@ -615,9 +615,12 @@ Commercially-available generative AI was used. Provider, plan and relevant setti
 - **OpenAI**, Codex (gpt-5.6), **Plus** plan, "Improve the model for everyone" disabled.
 - **xAI Grok 4.6 via Cursor**, **Pro** plan, **Privacy Mode enabled** (zero data retention at Cursor
   and at the underlying model providers).
-- **Piper TTS** (`en_US-ryan-high`) — open-source, run entirely on local hardware with no cloud
+- **Qwen3-TTS 1.7B VoiceDesign** — open-weights, run entirely on local hardware (CPU) with no cloud
   service and no API key. Used only to narrate the pitch video. Listed for completeness; it is not a
-  commercial service.
+  commercial service. Every generated clip was transcribed by a local speech recogniser and diffed
+  against the written script before the video was assembled (`video/tts_verify.py`), because a
+  speech model of this kind can drop or alter a word silently — it did so once, and the affected
+  line was rewritten and re-generated.
 
 **How these tools were used, and how they were not.** The language models were used for literature
 retrieval and citation checking, for adversarial review of our own drafts, and for writing. They were
