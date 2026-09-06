@@ -159,51 +159,41 @@ downstream — weakened spindle assembly checkpoint, mis-segregation, constituti
 stoichiometric protein imbalance, proteotoxic stress — and asked which approved agent acts on the
 last link.
 
-We then applied five filters instead of the usual two. Beyond "is it approved" and "is the
-mechanism plausible", we added a pharmacokinetic filter (does the achievable Cmax reach the
-concentration effective in vitro?), a patient-specific safety filter, and a direction-of-effect
-filter (does the drug increase mis-segregation among survivors?). Filters three and five are rarely
-applied and eliminate the most candidates.
+We applied five filters instead of the usual two. Beyond "is it approved" and "is the mechanism
+plausible", we added a pharmacokinetic filter (does the achievable Cmax reach the concentration
+effective in vitro?), a patient-specific safety filter, and a direction-of-effect filter (does the drug
+increase mis-segregation among survivors?).
 
-Metformin, the candidate the literature points to, dies on filter three. Therapeutic plasma
-levels are micromolar while complex I inhibition requires millimolar (PMID 37343530) — roughly a
-thousand-fold gap. We state what kind of number that is: for metformin no aneuploidy-selective EC50
-exists, so this is a comparison between concentration ranges, not the same quantity as a measured
-Cmax/EC50 ratio. We note what cuts the other way: AICAR's selectivity does reproduce in human cells
-(PMID 22890317), but that paper does not test metformin, and AICAR is not approved.
+Metformin, the candidate the literature points to, dies on filter three: therapeutic plasma levels are
+micromolar while complex I inhibition requires millimolar (PMID 37343530). AICAR's selectivity does
+reproduce in human cells (PMID 22890317), but that paper does not test metformin, and AICAR is not
+approved.
 
-Bortezomib survives filters one to three. Aneuploid cells mitigate proteotoxic stress by
-increasing protein degradation and are correspondingly sensitive to proteasome inhibition; aneuploidy
-level was significantly associated with multiple myeloma patients' response to proteasome inhibitors
-(Ippolito 2024, PMID 39247952), on cohorts small enough (8 complete responders vs 50 progressive)
-that we treat it as motivation, not prediction. The concentration reaches: EC50
-below 40 nM in highly aneuploid lines against a label Cmax of 89–120 ng/mL (231–312 nM) at
-1.3 mg/m² IV — a margin of 5.8–7.8× on **total plasma** drug at a peak. That is not free drug, not
-intratumoral drug and says nothing about duration of exposure; 312 nM is the top of a label interval,
-not a validated clinical threshold. Filter 3 asks whether the drug is disqualified on order of
-magnitude, and it is not. The subcutaneous route does not pass once protein binding is considered, and
-we say so.
+Bortezomib survives filters one to three. Aneuploid cells depend on increased protein degradation, and
+aneuploidy level was associated with multiple myeloma patients' response to proteasome inhibitors
+(Ippolito 2024, PMID 39247952), on cohorts small enough (8 complete responders vs 50 progressive) that
+we treat it as motivation, not prediction. An EC50 below 40 nM in highly aneuploid lines against a
+label Cmax of 89–120 ng/mL (231–312 nM) at 1.3 mg/m² IV gives a margin of 5.8–7.8× on **total plasma**
+drug at a peak — not free or intratumoral drug, and 312 nM is the top of a label interval, not a
+validated clinical threshold.
 
 It then fails filter four for this child: motor neuropathy in 8% of paediatric patients, on top of
-existing skeletal muscle atrophy. But filter four is patient-specific.
-For an MVA patient with an active malignancy — where the comparator is cytotoxic chemotherapy rather
-than nothing — the balance inverts, and biallelic BUB1B carries a high risk of embryonal tumours. Our
-deliverable is that answer prepared in advance, with its margin and its stopping rule.
+existing skeletal muscle atrophy. But filter four is patient-specific. For an MVA patient with an
+active malignancy — where the comparator is cytotoxic chemotherapy — the balance
+inverts, and biallelic BUB1B carries a high risk of embryonal tumours. Our deliverable is that answer
+prepared in advance, with its margin and its stopping rule.
 
-Strengths. Each candidate we assessed is killed or kept by a stated criterion, including our own — this
-is not an exhaustive screen of every agent proposed for aneuploidy, and §8 of the report lists what we
-excluded. We report an antagonism a combination-minded team could walk into: reducing translation protects
-CIN cells from proteasome inhibition (PMID 31530568), so mTOR inhibitors would be predicted to
-antagonise rather than synergise. The framework transfers to any rare disease.
+Strengths. Every candidate is killed or kept by a stated criterion, including our own; this is not an
+exhaustive screen, and §8 of the report lists what we excluded. We report an antagonism a
+combination-minded team could walk into: reducing translation protects CIN cells from proteasome
+inhibition (PMID 31530568), so mTOR inhibitors would be predicted to antagonise, not synergise. The
+framework transfers to any rare disease; applied to MVA2 and MVA3 it returns different verdicts.
 
 Limitations. The proteasome dependency is established in cancer aneuploidy, not constitutional
-mosaicism; whether it transfers is precisely what our experiment tests, and we have not assumed it. Our
-own pre-registered DepMap analysis found the association attenuated in solid lineages, which is the
-lineage of this child's tumour. The power figure of 0.897 belongs to an idealised simulation with an
-*assumed* fourfold selectivity, a 30% aneuploid culture and 10% well CV — none of them measured in
-these cells — so it is not a validated power estimate. The EC50 is a conservative bound read from a
-figure panel. Phase is unproven and, we show, unobservable in these data; parental genotyping is the
-cheapest informative experiment here, and a *trans* result would support the compound-heterozygous
-model without reclassifying the missense.
-And no disease-modifying drug can be recommended from these data today — what most changes his
-prognosis now is surveillance, not a molecule.
+mosaicism; whether it transfers is what our proposed experiment tests. Our
+own pre-registered DepMap analysis found the association attenuated in solid lineages, the lineage of
+this child's tumour. The 0.897 power figure belongs to an idealised simulation with an *assumed*
+fourfold selectivity, not a validated estimate. The EC50 is a conservative bound read from a figure
+panel. Phase is unproven and unobservable in these data; parental genotyping is the cheapest
+informative experiment. No disease-modifying drug can be recommended from these data today — what most
+changes his prognosis now is surveillance, not a molecule.

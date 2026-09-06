@@ -528,48 +528,43 @@ positive.
 We used two independent analyses and required them to converge.
 
 The primary analysis was hypothesis-free: Exomiser 15.1.0 (data 2602, hg38) on the complete proband
-VCF — 4,740,790 PASS variants — driven only by the eight HPO terms taken verbatim from the clinic. No gene panel, candidate list or disease name entered the configuration. **BUB1B is
-the top-ranked gene of 3,139, and its recessive row is first among the 2,100 recessive-model rows,
-mapped by Exomiser to mosaic variegated aneuploidy syndrome (ORPHA:1052)**, both variants
-contributing. Its *dominant* row scores higher (0.5871 vs 0.5538) but is attached to somatic
-colorectal cancer; **we report the recessive row and call the dominant one an artefact.** The
-recessive interpretation comes from the disease's inheritance model and the two-allele architecture,
-not from the ranking.
+VCF — 4,740,790 PASS variants — driven only by the eight HPO terms taken verbatim from the clinic. No
+gene panel, candidate list or disease name entered the configuration. **BUB1B is the top-ranked gene
+of 3,139, and its recessive row is first among the 2,100 recessive-model rows, mapped by Exomiser to
+mosaic variegated aneuploidy syndrome (ORPHA:1052)**, both variants contributing. Its *dominant* row
+scores higher (0.5871 vs 0.5538) but is attached to somatic colorectal cancer; **we report the
+recessive row and call the dominant one an artefact.**
 
 The confirmatory analysis was orthogonal: an 11-gene MVA panel from Ensembl, annotated through VEP,
-filtered for HIGH/MODERATE impact below 1% gnomAD AF. Of 1,532 variants three survived; two were in BUB1B, the only
-gene with two rare damaging alleles.
+filtered for HIGH/MODERATE impact below 1% gnomAD AF. Of 1,532 variants three survived, two of them in
+BUB1B, the only gene with two rare damaging alleles.
 
 Both routes converge on **NM_001211.6:c.2210T>G p.Leu737Ter** (nonsense; ClinVar 533901
 Pathogenic/Likely pathogenic; gnomAD 9.98×10⁻⁵) and **c.3006T>G p.Asn1002Lys** (missense; gnomAD
 8.99×10⁻⁷; not in ClinVar) — the truncating-plus-missense pattern of viable MVA1.
 
-**Robustness controls; the phenotype comes out weaker than we claimed.**
-Leave-one-HPO-out keeps BUB1B on top in all eight runs; five verified-unrelated HPO terms also return
-it there in the proband's genome (**0.3965 against 0.5871**); and under those unrelated terms Exomiser
-still maps the recessive row to mosaic variegated aneuploidy, so the disease assignment comes from the
-OMIM prioritiser, not the phenotype. The finding is **variant-driven and phenotype-consistent**: the
-phenotype moves the score by **0.1906** and changes nothing else. We do not express that as a
-percentage — the combination is non-linear and a share is not defined. The unrelated-HPO control had to
-be rebuilt twice; the version quoted in our submitted entry (0.4187) was contaminated by a term
-annotated to MVA2.
+**Robustness controls; the phenotype comes out weaker than we claimed.** Leave-one-HPO-out keeps
+BUB1B on top in all eight runs; five verified-unrelated HPO terms also return it there in the proband's
+genome (**0.3965 against 0.5871**). The finding is **variant-driven and phenotype-consistent**: the phenotype moves the score by
+**0.1906** and changes nothing else. The unrelated-HPO control had to be rebuilt twice; the version quoted in our submitted
+entry (0.4187) was contaminated by a term annotated to MVA2.
 
 **We then measured what this pipeline does when the answer is absent**, in a benchmark pre-registered
 in git before any case ran. Seven healthy GIAB genomes queried with the same eight terms top out at
 **0.5619 against our 0.5871** — a margin of 0.025 on a null biased in our favour. The pre-registered
 30-genome 1000 Genomes tier has since finished: maximum **0.5207 (CDH1, HG01885)**, **0 of 30** above
-0.5871. Planting the same two public ClinVar alleles into three unrelated healthy genomes
-reproduces 0.5871 and 0.3965 to four decimals, none of them carrying its own retained BUB1B allele — though the *rank* under the unrelated phenotype holds in only one of the three. And substituting an **unclassified** BUB1B nonsense for the whitelisted one
-leaves the variant term at 1.0000 and moves the combined score only 0.0128 without losing the top
-position (ACMG PATHOGENIC → LIKELY_PATHOGENIC): the truncating consequence, not the database record,
-saturates the variant term.
+0.5871. Planting the same two public ClinVar alleles into three unrelated healthy genomes reproduces
+0.5871 and 0.3965 to four decimals — stability across the backgrounds tested, not independence from
+the genome — while the *rank* under the unrelated phenotype holds in only one of the three, which
+falsifies a pre-registered prediction we said we expected to fail. Substituting an **unclassified**
+BUB1B nonsense for the whitelisted one moves the combined score only 0.0128 without losing the top
+position: the truncating consequence, not the database record, saturates the variant term.
 
-**Limitations.** Phase is not observable here: no parental sample, no alignments (a VCF was
-distributed, so no read-backed phaser can be run), 10,911 bp between the variants with no GATK phase
-tag, and neither they nor the only heterozygous site between them is in the 1000 Genomes panel.
-Our pipeline is insensitive to phase regardless. p.Asn1002Lys is functionally unproven and its
-predictors disagree (REVEL 0.472, AlphaMissense 0.923). The genome-wide run took 53 seconds without
-a GPU.
+**Limitations.** Phase is not observable here: no parental sample, no alignments (the challenge
+distributed a VCF and raw reads, not a BAM, and we did not realign), 10,911 bp between the variants
+with no phase tag, and none of the relevant sites is in the 1000 Genomes panel. Our pipeline is
+insensitive to phase regardless. p.Asn1002Lys is functionally unproven and its predictors disagree
+(REVEL 0.472, AlphaMissense 0.923). The genome-wide run took 53 seconds without a GPU.
 
 ## Q23 — Generative AI declaration
 

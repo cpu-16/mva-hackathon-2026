@@ -1,9 +1,7 @@
 # 3-minute pitch — script v4
 
-⛔ **NOT RENDERED.** `pitch_MVA2026.mp4` still narrates **v3** (archived in `GUION_v3.md`). The v4
-narration has not been synthesised, the slides listed below have been edited in `slides.html` but
-**not re-rendered to PNG**, and the video has not been reassembled. Nothing here is ready to upload.
-See "What is blocking this" at the bottom.
+✅ **Rendered 2026-09-06.** `pitch_MVA2026.mp4` narrates this script: 177.87 s by ffprobe, 8 slides
+re-rendered from `slides.html`. Slide 3's caption reads "Score held; rank did not."
 
 Target ≤ 180 s. Judging: Rigor 35% · Impact 25% · Innovation 25% · Scalability 15%.
 
@@ -56,24 +54,7 @@ Two things scale. The five-filter worksheet, for any rare disease where someone 
 
 ---
 
-## What is blocking this
+## Build record
 
-Nothing scientific. The session that wrote v4 could not execute Piper, ffmpeg or the slide renderer,
-so:
-
-1. `audio/S1..S8.wav` still hold the **v3** narration.
-2. `slide01..08.png` still hold the **pre-v4** slides, even though `slides.html` has been updated.
-3. `pitch_MVA2026.mp4` is therefore **the v3 video**, unchanged, 2:59.0.
-
-To finish, in order: `python3 render.py` (slides → PNG), re-synthesise S1–S8 with Piper at
-**`--length-scale 1.415`**, then reassemble with the `-t $A` recipe in `README.md`. **Measure the
-total; the word counts above are estimates, not timings.** v3 was **411 narration words for 179.0 s**;
-v4 is **408**, which extrapolates to about **177.7 s** at the same speaking rate. That is an
-extrapolation, not a measurement, and it has to be confirmed with `ffprobe` before anyone calls this a
-three-minute video. If it exceeds 180 s, cut script — do not speed up the voice.
-
-Recount the narration at any time with:
-
-```bash
-grep -h "^A child survived\|^First the variant\|^To test the retrieval\|^For the drug\|^Metformin is the\|^Bortezomib clears\|^Bortezomib also\|^Two things scale" GUION.md | wc -w
-```
+Rendered 2026-09-06: `python3 render.py`; Piper `en_US-ryan-high`, `--length-scale 1.40`; assembled with
+the `-t $A` recipe in `README.md`. Measured total **177.87 s** (ffprobe), not extrapolated.

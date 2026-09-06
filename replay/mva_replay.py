@@ -38,6 +38,17 @@ HPO_UNRELATED = ["HP:0000509", "HP:0002205", "HP:0002315", "HP:0000989", "HP:000
 HPO_UNRELATED_PREREG = ["HP:0000365", "HP:0000509", "HP:0002205", "HP:0002315", "HP:0000989"]
 GTS = {"trans": ["0|1", "1|0"], "cis": ["0|1", "0|1"], "unph": ["0/1", "0/1"]}
 
+def check_resources():
+    """Fail early with a message that names the missing resource — a fresh checkout does not bundle
+    Exomiser, its data release or the ClinVar/HPO files (README_TOOL.md, Requirements)."""
+    missing = [x for x in (EXO, YML, CLIN, G2P) if not os.path.exists(x)]
+    if missing:
+        sys.exit("missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:\n  "
+                 + "\n  ".join(missing))
+    for exe in ("java", "bcftools", "tabix", "bgzip"):
+        if subprocess.run(["which", exe], capture_output=True).returncode:
+            sys.exit(f"{exe} not on PATH — see replay/README_TOOL.md § Requirements")
+
 def sh(cmd):
     return subprocess.run(cmd, capture_output=True, text=True).stdout
 
@@ -208,6 +219,7 @@ def main(argv=None):
                    help="run even if a control HPO term is annotated to the planted gene (default: refuse)")
     p.add_argument("--self-check", action="store_true")
     a = p.parse_args(argv)
+    check_resources()
     if a.self_check: return self_check()
     if not (a.gene and len(a.allele) == 2 and a.hpo and a.background):
         p.error("--gene, two --allele, --hpo and --background are required")
