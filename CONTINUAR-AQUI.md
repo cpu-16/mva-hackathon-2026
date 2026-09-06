@@ -32,6 +32,30 @@ Hecho en esta ronda:
 6. Revisión adversarial con **Cursor (Grok 4.6)** sobre los dos reportes contra los archivos de
    resultados: ver la sección siguiente cuando exista, o `evidencia/cursor_revision_2026-09-06.md`.
 
+### Ronda adversarial con Cursor (Grok 4.6) — 11 hallazgos, 10 reales, commit `6be35f8`
+
+Informe íntegro + verificación uno a uno: `evidencia/cursor_revision_2026-09-06.md`. Los que importan:
+
+- **La sección de mosaicismo del Track 1 seguía anclada al 14%** — el mismo error que ya se había
+  corregido en el Track 2 y nunca se propagó. Ahora lleva el 2,07% calibrado, la no identificabilidad
+  y la retirada del resultado del paciente. **Es el patrón de siempre: el reporte por detrás de
+  `mosaico/RESULTADOS.md`.**
+- **No existe ningún control de fenotipo barajado.** `tools/control_hpo.sh` corre `hpos_barajados` con
+  los cinco términos ajenos, o sea es la primera versión del control ajeno con otro nombre. El write-up
+  lo contaba como una familia de control aparte. Retirado y declarado.
+- El replay r9 plantó la **missense propia del niño** (`chr15:40220612 T>G`, ausente de ClinVar), no
+  ClinVar 4600147 (`T>A`). El Track 1 decía lo segundo.
+- La lista de contactos a 5 Å saltaba **Asn1004 (3,14 Å)** citando como «los más cercanos» a dos que
+  están más lejos. Ahora van los diez por distancia.
+- κ del probando en la comparación de controles es **2,74 (chr8) / 4,60 (chr17)**, no el 2,27× que es
+  el exceso a escala cromosómica. La conclusión (el más bajo) se sostiene.
+- Los «dieciocho brazos» son el extremo alto del rango DepMap, no una medida de las líneas de Ippolito.
+- `TRANSFER_MVA2_MVA3.md` §5 y §7 conservaban dos frases de la versión anterior de la hoja («MVA2 muere
+  en el filtro 2»). El reporte seguía la versión corregida; los restos estaban en TRANSFER.
+- **Un falso positivo, rechazado tras recontar del VCF:** «2,27 M SNV heterocigotos» es exacto
+  (2.274.451 bialélicos autosómicos PASS). Los 2.927.826 de `mosaico/` cuentan todas las llamadas
+  heterocigotas. Se añadió la aclaración para que nadie lo lea como choque.
+
 ⛔ **Lo que solo Gilberto puede hacer, en este orden:**
 
 1. **Subir el video v4 a YouTube** (no listado sirve) y anotar la URL. Es el único bloqueador del Track 2.
