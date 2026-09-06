@@ -102,6 +102,36 @@ exactamente el error que ese párrafo confiesa.
 
 ---
 
+### 🎬 VIDEO REHECHO (6-sep, noche) — deck animado, figuras reales, voz Qwen3 — commit `85291f9`
+
+Gilberto pidió más profesional, con animación, contenido real y su voz Qwen3. Las tres cosas están.
+
+- **`video/deck.html`** es ahora la fuente: 8 escenas con entradas escalonadas y disolvencias. Un
+  fotograma es **función pura del tiempo** (`seek(t)`, sin animación CSS ni rAF), así que
+  `render_video.py` muestrea **solo donde algo se mueve**: 888 fotogramas en vez de 5.300 a 30 fps.
+  Render completo en **1 minuto**.
+- **Tres escenas muestran resultados reales en vez de describirlos:** el mapa de dominios de BubR1
+  (`fig2`), el embudo de cinco filtros (`fig3`) y el nulo de PRISM de nuestro propio DepMap
+  pre-registrado (`fig4`). Recortadas por CSS para quitarles su título propio y no mezclar
+  tipografías. **Los PNG no se tocaron**, son los mismos del reporte.
+- **La escena 3 ya no esconde el caso como el punto 37.** Ahora los 37 genomas sin sembrar y el caso
+  van separados y etiquetados, que es lo que el benchmark hizo de verdad.
+- **Voz: Qwen3-TTS 1.7B VoiceDesign en CPU** (los modelos ya estaban en `~/.cache/huggingface`;
+  `transformers` del sistema no trae la clase, así que hay un venv aparte en `~/qween/.venv-tts` con
+  el paquete `qwen-tts`). Sin GPU, por la regla del proyecto. ~50-110 s de cómputo por clip.
+- ⚠️ **`video/tts_verify.py` se ganó el sitio en la primera pasada.** Transcribe cada clip con
+  reconocimiento de voz y lo diffea contra el guion: detectó que la S7 **se había comido el "to"** de
+  *"every three months, to age seven"*. Es una frase clínica, así que se reformuló a *"until he is
+  seven"* y se resintetizó. **Un TTS basado en LLM se salta palabras sin avisar; no lo confíes al
+  oído.**
+- Duración **176,08 s** medidos (límite 180). `render_video.py` aborta solo si se pasa.
+- El deck estático (`slides.html`, `render.py`, `slide0*.png`) **se eliminó** en vez de dejarlo
+  contradiciendo la documentación.
+
+`video/YOUTUBE.md` ya trae los capítulos y la huella nuevos.
+
+---
+
 ⛔ **Lo que solo Gilberto puede hacer, en este orden:**
 
 1. **Subir el video v4 a YouTube** (no listado sirve) y anotar la URL. Es el único bloqueador del Track 2.
