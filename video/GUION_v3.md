@@ -1,5 +1,8 @@
 # 3-minute pitch — script v3 (ARCHIVED 2026-09-06, superseded by GUION.md v4)
 
+⛔ **Historical.** Superseded by `GUION.md` (v4). The rendered `pitch_MVA2026.mp4` narrates **v4**,
+not this text. Kept so the earlier video can be matched to its script.
+
 ⛔ **Historical.** This is the script the currently rendered `pitch_MVA2026.mp4` narrates. It was
 archived unchanged on 6-Sep-2026 when v4 was written; the audio has **not** been re-rendered, so the
 mp4 still speaks the text below, not v4.

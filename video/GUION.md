@@ -28,9 +28,9 @@ A child survived an embryonal rhabdomyosarcoma. His cells miscount chromosomes w
 
 First the variant. Two independent analyses, required to agree: a hypothesis-free genome-wide run driven only by his eight clinical terms, and an eleven-gene panel with coordinates fetched from a versioned database. Both land on BUB1B — one nonsense allele, one missense. We cannot prove the two sit on opposite chromosomes. There are no parental samples, so this is a diagnosis pending segregation.
 
-## S3 — 60 w
+## S3 — 59 w
 
-To test the retrieval we built a tool that plants known alleles into public healthy genomes. Across thirty-seven of them, none scores higher than this case. Then we caught our own contaminated control, twice. Cleaned up, the score is identical in every background — but the rank is not, and one pre-registered prediction is falsified. We said in advance we would publish that.
+Our replay tool plants known alleles into public healthy genomes. We also asked thirty-seven unspiked ones the same symptoms: none scores higher than this case. Then we caught our own contaminated control, twice. Cleaned up, the score is identical in every background — but the rank is not, and one pre-registered prediction is falsified. We said in advance we would publish that.
 
 ## S4 — 45 w
 

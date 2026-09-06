@@ -137,12 +137,15 @@ the same population — i.e. the design of REPORT §6, run twice more. There is 
 per-cell number specifically, and it is **not** the "1–2% of cells" argument, which is a
 per-chromosome figure and the wrong denominator for this question (`potencia/RESULTADOS.md` §2).
 The right reason is a dose one: proteotoxic load scales with how much of the genome is unbalanced,
-and an MVA cell carries **about one** altered chromosome while the lines the < 40 nM EC50 came from
-carry on the order of eighteen altered arms. In DepMap, within the lineage where the
+and an MVA cell carries **about one** altered chromosome, two arms, while eighteen arms is the point
+at which we evaluated the dose response (`potencia/dosis.json`, `arms_high`). **We have not counted
+arms in the specific lines that gave the < 40 nM EC50**, and no such count exists in any of our files.
+In DepMap, within the lineage where the
 aneuploidy–proteasome dependency is real at all, the PSMB5 dependency changes by **0.028 gene-effect
 units per arm** — so two arms move it 0.09 residual standard deviations while eighteen move it 0.84
-(`potencia/RESULTADOS_2_DOSIS.md`). The generic denominator is therefore measured at the far end of
-the range from where these three genotypes sit. That applies to MVA2 and MVA3 exactly as it applies to
+(`potencia/RESULTADOS_2_DOSIS.md`). The generic denominator is therefore *evaluated* at the far end of
+the range from where these three genotypes sit — a statement about our dose-response contrast, not a
+measurement of the lines the EC50 came from. That applies to MVA2 and MVA3 exactly as it applies to
 MVA1, and it is why a genotype-specific EC50 is not a formality.
 
 **We do not manufacture the missing cells.** Substituting the generic aneuploid-line EC50 as if it

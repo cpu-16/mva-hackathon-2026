@@ -18,7 +18,7 @@ El límite del hackathon es 3:00, así que quedan **2.1 s de margen**. Generado 
 |---|---|
 | `pitch_MVA2026.mp4` | el entregable — narra la **v4** |
 | `GUION.md` | el guion **v4**, por secciones, con los cambios y lo que falta |
-| `GUION_v3.md` | el guion que el mp4 actual narra |
+| `GUION_v3.md` | el guion anterior, archivado el 6-sep; **ya no** es lo que narra el mp4 |
 | `GUION_v1.md` | la versión anterior, antes de la crítica de Codex y Cursor |
 | `narracion.json` | el guion extraído, lo que consume el TTS |
 | `slides.html` | las 8 slides (un solo archivo, una `<section>` por slide) |

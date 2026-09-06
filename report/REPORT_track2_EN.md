@@ -74,7 +74,7 @@ answer.
 The candidate the literature points to is **metformin**. It descends from the AICAR hit in the
 aneuploidy-selective screen of Tang et al. (PMID 21315436), it is approved, and its mechanism is
 plausible. It fails on pharmacokinetics: plasma concentrations at therapeutic doses are
-**micromolar**, while complex I inhibition requires **millimolar** (PMID 37343530) — an
+**micromolar**, while complex I inhibition requires **millimolar** (PMID 37343530) — a
 gap of roughly **three orders of magnitude (~1000-fold)**. We expect metformin to be widely proposed in this
 track. **It cannot inhibit complex I at therapeutic plasma concentrations.** Whether it could still
 stress aneuploid cells through AMPK activation at those concentrations is a *different* claim, and an
@@ -409,7 +409,9 @@ explicitly and expect a negative interaction.
 
 **A tension we flag rather than hide.** The same BubR1 mouse work reports that predisposition to
 sarcopenia correlates with **mTORC1 hyperactivity** (PMID 31738183) — and this child has skeletal
-muscle atrophy. So an independent, muscle-directed rationale for mTOR inhibition in MVA exists, and
+muscle atrophy. Read the qualifier with it: that correlation is reported in mice carrying
+**monoallelic** *BubR1* mutations, and this child is biallelic, so carrying the link across is our
+inference and not the paper's. So an independent, muscle-directed rationale for mTOR inhibition in MVA exists, and
 it points the opposite way from our antagonism prediction. The two are not strictly in conflict: one
 concerns proteotoxic killing of aneuploid cells, the other a progeroid muscle phenotype. But anyone
 testing the combination should know both exist, and should not read a muscle-directed mTOR rationale
@@ -462,6 +464,23 @@ inhibitors, the mechanism is unchanged, and a null across heterogeneous cancer l
 constitutional MVA. But the claim is weaker than it was before we ran this, and the experiment in §6
 matters more, not less.
 
+**The obvious objection, raised and answered here rather than left for a reviewer: Ippolito ran their
+own bortezomib screen and it was positive.** In their Fig. 6p, 387 cancer lines were treated with
+bortezomib with or without a low dose (250 nM) of reversine; reversine had only a mild effect on
+proliferation but significantly sensitised the lines to proteasome inhibition (p < 0.0001). That is a
+positive result on the same drug, and our PRISM analysis is null in solid lines. **The two do not
+point in opposite directions, and we say so precisely because the tempting summary — "we contradicted
+them" — would contradict our own results table.** Our bortezomib correlation carries the *same* sign
+as theirs (ρ = −0.075, sensitivity increasing with aneuploidy) and simply fails significance
+(p = 0.11, `depmap/RESULTADOS.md`). The designs differ in what they manipulate: Ippolito **induce**
+aneuploidy in each line and read the change in dose response within that line, which removes
+between-line confounding by construction; we **correlate** pre-existing aneuploidy across
+heterogeneous lines against single-dose viability, which does not. An induced-aneuploidy design is the
+more sensitive of the two, and our null is therefore weaker evidence against the link than their
+result is for it. What our analysis does add, and theirs does not address, is the **lineage split**:
+the association is carried by haematological lines and attenuated in solid ones (interaction
+p = 0.026), and this child's tumour was solid.
+
 **What we did not do.** PRISM primary is a single-dose viability screen, not an EC50, and not
 Ippolito's isogenic comparison. This is not a replication attempt of Ippolito and we do not present it
 as one. Full method, numbers and limitations: `depmap/RESULTADOS.md`.
@@ -486,7 +505,10 @@ Bortezomib clears the pharmacology. It does not clear this patient today.
 and an embryonal rhabdomyosarcoma is a solid tumour. The argument below is weaker than the mechanism
 alone suggests, and the ex-vivo test in §6 is the gate, not a formality. For a patient with MVA
 **and an active malignancy**, where cytotoxic therapy is on the table regardless and the comparator is
-conventional chemotherapy rather than nothing, the balance inverts. In that setting a proteasome
+conventional chemotherapy rather than nothing, the balance inverts. Even then the route matters and we
+name it: this would be off-label use decided by a molecular tumour board, or a formal n-of-1 protocol
+with its own ethics approval and its own stopping rules — not a recommendation that follows from this
+report. In that setting a proteasome
 inhibitor is not an exotic addition: it is an approved agent that targets the best-characterised
 downstream consequence of aneuploidy **as established in cancer cells** — proteotoxic dependency —
 supported by a human clinical signal tying response to aneuploidy burden. Whether that dependency
@@ -671,9 +693,9 @@ model** — it is neither a validated power estimate for patient cells nor a mat
 what a better-specified version of the experiment could achieve (`potencia/RESULTADOS.md` §5b).
 
 **A second pre-registered analysis the same day gives us our own reason to doubt the 4×.** Proteotoxic
-load is a dose, not a switch: an MVA cell carries **about one** altered chromosome, two arms, where a
-highly aneuploid cancer line sits at the top of the DepMap range (mean 18.6 altered arms in the solid
-stratum, `potencia/dosis.json`). We have not counted arms in the specific lines that gave the < 40 nM
+load is a dose, not a switch: an MVA cell carries **about one** altered chromosome, two arms, against the
+eighteen-arm point at which we evaluated the dose response — close to the mean of the solid DepMap
+stratum (`potencia/dosis.json`, `arms_mean` = 18.6), which is its middle and not its top. We have not counted arms in the specific lines that gave the < 40 nM
 EC50; the eighteen is the high end of the range over which we measured the dose response, not a
 measurement of those lines. In DepMap, in the one lineage where
 the aneuploidy–proteasome dependency is significant at all, PSMB5 dependency moves **0.09 residual SD
@@ -709,6 +731,15 @@ bulk viability assay** — go to a per-cell endpoint, because no feasible n resc
 computed at the same assumed 4× selectivity, so **measuring the fraction does not validate the branch
 it selects**: it removes one unmeasured input of three. Treat the table as planning, not as a validated
 operating rule. Details and every sweep in `potencia/RESULTADOS.md`.
+
+⚠️ **Consent, assent and ethics approval come before week 1, and they are not ours to give.** Taking a
+skin biopsy from a child, establishing a fibroblast line from it and retaining that line require
+informed parental consent, the child's assent at an age-appropriate level, and approval by the
+research ethics committee or institutional review board of whichever centre runs this. We are an
+analysis team with no access to the patient, no relationship with the family and no institutional
+sponsor for this work; nothing below is authorised by us, and neither the approval nor how long it
+takes is within our control. The same applies to the parental sampling in
+`clinico/PARENTAL_SEGREGATION_ORDER.md`, which sets out its own consent requirements.
 
 | Week | Step | Readout |
 |---|---|---|
@@ -1054,3 +1085,25 @@ underlying defect made worse?
 25. Vempuluru VS, et al. Sequential presentation of Wilms' tumor and orbital rhabdomyosarcoma in a child with mosaic variegated aneuploidy syndrome 3. *Orbit* 2026. PMID 42595739
 26. Wei TY, et al. Functional and clinical evidence for two novel heterozygous *BUB1B* variants and their value in precision genetic counseling for recurrent pregnancy loss. *Front Endocrinol* 2026. PMID 42434306
 27. Escalante LE, Hose J, et al. Chromosome duplication causes premature aging via defects in ribosome quality control. *PLoS Biol* 2025. PMID 41248159
+
+---
+
+## Acknowledgement
+
+This work was made possible through the Hackathon, organized by Sage Bionetworks in partnership with
+the MVA Society, Hugging Face, and BEACON (The Benchmarking, Evaluation, and Assessment Consortium for
+Science), with prize sponsorship from AWS and Anthropic. We are deeply grateful to the child and their
+family who generously contributed their data and their story to advance research into this rare
+disease. We acknowledge their trust in making this Hackathon possible.
+
+## Data availability
+
+The individual-level data analysed here is the Hackathon dataset (`SageBio/mva-hackathon-2026-data`),
+accessed under the challenge data transfer agreement accepted by Hugging Face account `cpu-16` on
+2026-08-28, and cited as directed on the Hackathon Synapse page. **No patient sequence data or
+genotype-scale derivative is included in this document or in our public repository**, and every copy
+we hold will be deleted by 2026-11-23 with written confirmation to the organisers. The two diagnostic
+variants are named, as findings, which the challenge rules permit. All other inputs are public:
+Exomiser 15.1.0 with data release 2602, ClinVar, gnomAD v4, the Human Phenotype Ontology, Ensembl and
+VEP, the 1000 Genomes and GIAB genomes, DepMap 24Q4, AlphaFold and the literature cited by PMID.
+Analysis code, pre-registrations and results: https://github.com/cpu-16/mva-hackathon-2026

@@ -1,0 +1,71 @@
+# Subida a YouTube — título, descripción y ajustes
+
+Archivo a subir: `~/datos/HACKATHON-MVA-2026/video/pitch_MVA2026.mp4`
+2:57.9 (177,90 s por ffprobe, límite 180) · 1920×1080 · 30 fps · 4,9 MB · sha256 `7e41057a2d03bf…`
+
+## Ajustes de YouTube
+
+| Campo | Valor | Por qué |
+|---|---|---|
+| Visibilidad | **No listado** | El formulario solo necesita una URL que el jurado pueda abrir. No listado la abre sin exponerla en búsquedas |
+| Audiencia | **No, no es contenido para niños** | Si marcas "para niños", YouTube desactiva funciones y puede complicar la revisión |
+| Idioma del video | Inglés | La narración es en inglés |
+| Categoría | Ciencia y tecnología | |
+| Comentarios | Desactivados | Es un envío a concurso, no un canal |
+
+⚠️ **No pongas el nombre del niño, su ciudad, ni nada de la familia en el título, la descripción, las
+etiquetas ni la miniatura.** El reto lo prohíbe expresamente y no aparece en el video.
+
+## Título
+
+```
+The honest answer is no drug — MVA Hackathon 2026, Track 2 (team ciberpty)
+```
+
+## Descripción
+
+```
+Three-minute pitch for "Rare Disease, Real Kid" (Sage Bionetworks, MVA Society, Hugging Face and
+BEACON). Team: ciberpty. Track 2, drug repurposing.
+
+The case is a child with mosaic variegated aneuploidy type 1, from compound heterozygous BUB1B
+variants. We were asked which already-approved drug could help him. Our answer is that none can be
+recommended today, and the useful part is the evidence behind that no.
+
+What the three minutes cover:
+
+00:00  The case, and why the honest answer is no
+00:17  The variant: two independent analyses required to converge on BUB1B
+00:47  A pre-registered benchmark: 37 healthy public genomes asked the same eight symptoms,
+       and the phenotype control of our own that came out against us
+01:13  Five filters instead of the usual two, including pharmacokinetics and direction of effect
+01:36  Metformin fails on concentration, by about three orders of magnitude
+01:55  Bortezomib clears that filter — then our own pre-registered test on public cancer data
+       weakened our case, and we report it
+02:19  What changes this child's prognosis today: published surveillance, not a molecule
+02:38  What scales: a reusable five-filter worksheet, and a tool another team can run on their gene
+
+Five analyses in this work were pre-registered in git — hypothesis, statistic and stopping rules
+committed before the data was touched, with the commit timestamp as the evidence. Four of the five
+came back against our own argument, and all four are reported.
+
+Code, pre-registrations, results and the full report:
+https://github.com/cpu-16/mva-hackathon-2026
+(private during the hackathon, made public for the final evaluation as the challenge rules require)
+
+This is a research submission, not medical advice, and no drug is recommended for any patient. No
+patient data appears in this video or in that repository. The narration is synthetic speech generated
+locally (Piper TTS, en_US-ryan-high); nothing was sent to a speech service.
+```
+
+## Etiquetas (opcional)
+
+```
+rare disease, mosaic variegated aneuploidy, BUB1B, drug repurposing, bioinformatics,
+Sage Bionetworks, hackathon, aneuploidy, precision medicine
+```
+
+## Después de subir
+
+Copia la URL corta (`https://youtu.be/…`) — es el campo **Pitch video URL** del formulario del Track 2,
+y es obligatorio.

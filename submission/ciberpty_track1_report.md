@@ -52,9 +52,12 @@ The same gene also took rank 1 under the autosomal dominant model, but that entr
 report rather than claim: Exomiser attached it to **OMIM:114500, colorectal cancer (somatic)**, and
 a single truncating allele saturates the variant term of the dominant model, which is why that row's
 score is 0.5871. **It is not why the dominant row outranks the recessive one**: in our benchmark the
-dominant row wins for BUB1B in every construct tested, including one with two missense VUS and no
-truncating allele at all (0.1120 dominant against 0.0925 recessive). Exomiser's ordering prefers the
-dominant model here regardless of the allele architecture, and we report that rather than explain it.
+dominant row wins whenever exactly one planted allele is truncating — this case (0.5871 dominant
+against 0.5538 recessive) and the two-missense construct with no truncating allele at all (0.1120
+against 0.0925). Where **both** planted alleles are truncating the recessive row wins instead, in all
+three backgrounds (C-hi: 0.9332 recessive against 0.5818 dominant, `replay/out/C_hi_*_real.genes.tsv`).
+The ordering tracks whether the recessive row's own variant term also saturates, not the ClinVar
+label, and we report that rather than explain it.
 We also originally wrote that the ClinVar whitelist was what short-circuited variant scoring to 1.0;
 **we tested that and it is wrong.** Planting an unclassified ClinVar nonsense record in the same gene
 (`chr15:40212550 G>T`, no CLNSIG, not whitelisted) gives the identical variant score of 1.0000 — the
@@ -71,8 +74,9 @@ recessive result we stand behind** (2.75× for the dominant artefact), not an or
 
 **Stated plainly, because it is the honest reading of our own output.** The pipeline's top-ranked row
 for BUB1B is a *dominant* single-allele model, not the recessive compound-heterozygous model the
-diagnosis rests on — and our benchmark shows the dominant row wins for BUB1B in every construct we
-tested, including one with no truncating allele. The compound-heterozygous call is also invariant to
+diagnosis rests on — and our benchmark shows the dominant row wins for BUB1B in every
+construct with a single truncating allele, including one with no truncating allele at all — while in
+the construct where both planted alleles truncate, the recessive row wins. The compound-heterozygous call is also invariant to
 phase: declaring both alleles on the same chromosome changes neither the call, nor the
 classification, nor the rank. **The recessive interpretation is supplied by the inheritance model of
 the disease and by the two-allele architecture, not by the ranking.** What the retrieval delivers is
@@ -141,10 +145,11 @@ is graph-based. The defensible statement is *"no term in the control set is anno
 disease or MVA gene"*, not *"no term is related to MVA"*.
 
 *A note on the denominator, because we had this wrong.* An earlier version of this sentence said
-"rank 1 of 4,565 genes". 4,565 is the number of gene × inheritance-mode **rows** in that output file,
-not genes. The run covers **3,139 unique genes**; **257 of them have at least one row scoring above
-zero** and 32 have a row ≥ 0.01. Separately, and in the other unit, **4,262 of the 4,565 rows carry a
-score of zero** and are tied at the bottom rank. The honest denominator is 3,139 genes, of which 257
+"rank 1 of 4,565 genes". That figure was a row count taken from a control run, and it was wrong in
+both the unit and the value. The primary run's output (`tools/results/mva-genome-hpo.genes.tsv`) holds
+**4,570 gene × inheritance-mode rows** covering **3,139 unique genes**; **257 genes have at least one
+row scoring above zero** and 32 have a row ≥ 0.01. Separately, and in the other unit, **4,262 of the
+4,570 rows carry a score of zero** and are tied at the bottom rank. The honest denominator is 3,139 genes, of which 257
 were scored at all.
 
 The comparison is informative, but we previously drew the wrong number from it. We wrote that
@@ -332,7 +337,7 @@ does not move with the background while its rank does. That is stability of the 
 backgrounds we tested — one deterministic computation run three times — not a demonstration that the
 score is independent of the genome in general. A background carrying its own BUB1B variant (the
 1000 Genomes tier shows one, HG00101) was not tested with planted alleles, and our phase pilot already
-shows the score is not fully determined by the two alleles (0.9339 *cis* vs 0.9305 *trans*, § Phase).
+shows the score is not fully determined by the two alleles (0.9339 *trans* vs 0.9305 *cis*, § Phase).
 
 | Background | Real HPO, rank | Clean unrelated HPO, rank | Top gene under unrelated HPO |
 |---|---|---|---|
@@ -459,7 +464,7 @@ selected any gene carrying two rare damaging alleles, which returned BUB1B alone
 *Read-backed phasing is closed by what the challenge distributes.* There is no parental sample, and
 the dataset is a VCF with no BAM or CRAM, so no read-backed phaser (WhatsHap, HapCUT2) can be run at
 all. What the VCF shows is consistent: GATK emitted no `PGT`/`PID` tags for either BUB1B variant,
-which sit **10,911 bp** apart, while it *did* phase three FANCD2 variants spanning 5 bp into a single
+which sit **10,911 bp** apart, while it *did* phase four FANCD2 variants spanning 18 bp into a single
 haplotype (`PID=10046720_C_T`) elsewhere in the same file. Physical phasing worked where the distance
 allowed it and was silent where it did not.
 
@@ -504,12 +509,13 @@ Two of the three lie outside BUB1B, and both were adjudicated as non-reportable:
 **FANCD2 chr3:10046723 `AG>A` — `ENST00000675286.1:c.1278+1del`, Exomiser ACMG PATHOGENIC.** Three
 independent reasons not to report it, in order of weight:
 
-1. **The variant is not isolated: three co-phased changes in one splice region.** GATK phased it
-   onto a single haplotype (`PID=10046720_C_T`) with two neighbours within 6 bp — chr3:10046720
-   `C>T`, chr3:10046723 `AG>A` and chr3:10046725 `TAAG>T` (`c.1278+3_1278+5del`). All three sit at an
-   allelic fraction of ≈0.31 (AD 65,31 / 61,28 / 66,28) rather than the ≈0.5 expected of a germline
-   heterozygote. Three clustered, co-phased changes at a consistent sub-heterozygous fraction is the
-   signature of a divergent or mismapped haplotype, not of three independent events. (An earlier
+1. **The variant is not isolated: four co-phased changes in one splice region.** GATK phased it
+   onto a single haplotype (`PID=10046720_C_T`) with three neighbours within 18 bp — chr3:10046720
+   `C>T`, chr3:10046723 `AG>A`, chr3:10046725 `TAAG>T` (`c.1278+3_1278+5del`) and chr3:10046738
+   `C>T`. All four sit at an allelic fraction of 0.30–0.32 (AD 65,31 / 61,28 / 66,28 / 58,27) rather
+   than the ≈0.5 expected of a germline heterozygote. Four clustered, co-phased changes at a
+   consistent sub-heterozygous fraction is the
+   signature of a divergent or mismapped haplotype, not of four independent events. (An earlier
    draft described the second variant as an SNV 2 bp away; it is in fact a 3 bp deletion, which
    strengthens the mismapping reading rather than weakening it.)
 2. **FANCD2 is a known short-read mapping pitfall.** The gene has high-identity pseudogenes, and
@@ -531,9 +537,10 @@ Sanger sequencing or long reads would be needed before any clinical report.
 **GNRHR chr4:67753920 `C>T` — `c.416G>A` p.Arg139His, Exomiser ACMG LIKELY_PATHOGENIC.** A clean
 heterozygote (AD 28,32, DP 60) and ClinVar Pathogenic (VariationID 16030, multiple submitters, no
 conflicts) for hypogonadotropic hypogonadism 7 with or without anosmia (OMIM 146110) — an
-**autosomal recessive** condition, so a single allele is carrier status. The allele reaches 3.3% in
-gnomAD Latino/Admixed American, consistent with a recessive carrier allele rather than a dominant
-finding, and GNRHR does not appear on the ACMG SF v3.2 secondary findings gene list (statement:
+**autosomal recessive** condition, so a single allele is carrier status regardless of frequency. Its
+maximum population frequency is **0.033%** (gnomAD genomes, Latino/Admixed American — Exomiser reports
+`MAX_FREQ` as a percentage, 0.0327, the same convention under which the BUB1B nonsense reads 0.00998),
+and GNRHR does not appear on the ACMG SF v3.2 secondary findings gene list (statement:
 PMID 37347242; gene table as reproduced by NCBI ClinVar, checked directly). Carrier status is not a reportable secondary finding, and the condition is unrelated
 to this child's phenotype.
 
@@ -546,9 +553,14 @@ positive.
 - Exomiser genome-wide run: **53 seconds** wall clock (32-core CPU, 16 GB JVM heap).
 - Twelve robustness controls: about 11 minutes total.
 - Targeted panel with REST annotation: under 5 minutes, dominated by API latency.
-- Mosaicism analysis: about 10 minutes of `bcftools` streaming.
+- Mosaicism first-order BAF scan: about 10 minutes of `bcftools` streaming.
+- Mosaicism null calibration (40,000 Monte Carlo replicates per cell, eight window sizes): run with
+  PyTorch on one consumer GPU (`mosaico/05_mc_gpu.py`; `lod_montecarlo.json` records `"dispositivo":
+  "cuda"`). The script falls back to CPU when no CUDA device is present, and this is the **only** GPU
+  use anywhere in the work — the genome-wide Exomiser run above needs none.
 - One-off setup: ≈55 GB of Exomiser reference data downloaded and extracted.
-- **Marginal compute cost is effectively zero** — a commodity workstation, no GPU, no cloud instance.
+- **Marginal compute cost is effectively zero** — a commodity workstation, no cloud instance and no
+  specialised hardware.
   Reproducing this on a laptop is realistic: only the 315 MB VCF and the phenotype document are
   needed, not the 84.7 GB of raw reads.
 
@@ -614,6 +626,30 @@ corrections they produced — including a claim of ours that contradicted our ow
 recorded in the repository under `evidencia/`.
 
 **No block of the VCF and no genotype table was ever sent to a language model.** All genomic work ran
-on local tools (`bcftools`, Exomiser 15.1.0) and on annotation APIs — Ensembl VEP and ClinVar — that
-the hackathon policy names explicitly as acceptable. What the models saw were named variants, HPO
+on local tools (`bcftools`, Exomiser 15.1.0) and on annotation APIs — Ensembl VEP and ClinVar — which
+return public annotation for submitted coordinates and acquire no rights over the input. The policy
+does not name these services; we read them as satisfying the two conditions it does set, namely no
+training on inputs or outputs and limited retention. What the models saw were named variants, HPO
 terms and reasoning: exactly the category the policy classifies as a "finding" and permits retaining.
+
+---
+
+## Acknowledgement
+
+This work was made possible through the Hackathon, organized by Sage Bionetworks in partnership with
+the MVA Society, Hugging Face, and BEACON (The Benchmarking, Evaluation, and Assessment Consortium for
+Science), with prize sponsorship from AWS and Anthropic. We are deeply grateful to the child and their
+family who generously contributed their data and their story to advance research into this rare
+disease. We acknowledge their trust in making this Hackathon possible.
+
+## Data availability
+
+The individual-level data analysed here is the Hackathon dataset (`SageBio/mva-hackathon-2026-data`),
+accessed under the challenge data transfer agreement accepted by Hugging Face account `cpu-16` on
+2026-08-28, and cited as directed on the Hackathon Synapse page. **No patient sequence data or
+genotype-scale derivative is included in this document or in our public repository**, and every copy
+we hold will be deleted by 2026-11-23 with written confirmation to the organisers. The two diagnostic
+variants are named, as findings, which the challenge rules permit. All other inputs are public:
+Exomiser 15.1.0 with data release 2602, ClinVar, gnomAD v4, the Human Phenotype Ontology, Ensembl and
+VEP, the 1000 Genomes and GIAB genomes, DepMap 24Q4, AlphaFold and the literature cited by PMID.
+Analysis code, pre-registrations and results: https://github.com/cpu-16/mva-hackathon-2026

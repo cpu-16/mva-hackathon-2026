@@ -58,8 +58,10 @@ Commercially-available generative AI was used. Provider, plan and relevant setti
   Used only to narrate the pitch video; not a commercial service, listed for completeness.
 
 **No block of the VCF and no genotype table was ever sent to a language model.** Genomic work ran on
-local tools (`bcftools`, Exomiser) and on annotation APIs — Ensembl VEP and ClinVar — that the
-hackathon policy names as acceptable.
+local tools (`bcftools`, Exomiser) and on annotation APIs — Ensembl VEP and ClinVar — which return
+public annotation for submitted coordinates and acquire no rights over the input. The policy does not
+name these services; we read them as satisfying the two conditions it does set, namely no training on
+inputs or outputs and limited retention.
 
 ## Q4 — Automated or manual candidate identification?
 
@@ -151,7 +153,10 @@ Approximately 30 hours of analyst time over two days (28–29 August 2026), of w
 went to literature verification and adversarial review rather than to computation. Compute was
 negligible: the genome-wide prioritisation ran in 53 seconds on a commodity workstation with no GPU,
 and the robustness controls in about ten minutes. Later rounds added the pre-registered DepMap,
-benchmark, phase, power and mosaicism-control analyses, all CPU-only and on public data.
+benchmark, power and mosaicism-control analyses, all on public data. The phase pilot is **not** one of
+the pre-registered five — it ran before that pre-registration and we do not count it as one
+(`VERIFY.md` lists the five pairs). All of this is CPU-only except the mosaicism null calibration,
+which used one consumer GPU.
 
 ## Q11 — Method abstract (≤500 words)
 No approved drug restores BubR1 function, so we did not look for one. We followed the lesion
@@ -197,3 +202,25 @@ fourfold selectivity, not a validated estimate. The EC50 is a conservative bound
 panel. Phase is unproven and unobservable in these data; parental genotyping is the cheapest
 informative experiment. No disease-modifying drug can be recommended from these data today — what most
 changes his prognosis now is surveillance, not a molecule.
+
+---
+
+## Acknowledgement
+
+This work was made possible through the Hackathon, organized by Sage Bionetworks in partnership with
+the MVA Society, Hugging Face, and BEACON (The Benchmarking, Evaluation, and Assessment Consortium for
+Science), with prize sponsorship from AWS and Anthropic. We are deeply grateful to the child and their
+family who generously contributed their data and their story to advance research into this rare
+disease. We acknowledge their trust in making this Hackathon possible.
+
+## Data availability
+
+The individual-level data analysed here is the Hackathon dataset (`SageBio/mva-hackathon-2026-data`),
+accessed under the challenge data transfer agreement accepted by Hugging Face account `cpu-16` on
+2026-08-28, and cited as directed on the Hackathon Synapse page. **No patient sequence data or
+genotype-scale derivative is included in this document or in our public repository**, and every copy
+we hold will be deleted by 2026-11-23 with written confirmation to the organisers. The two diagnostic
+variants are named, as findings, which the challenge rules permit. All other inputs are public:
+Exomiser 15.1.0 with data release 2602, ClinVar, gnomAD v4, the Human Phenotype Ontology, Ensembl and
+VEP, the 1000 Genomes and GIAB genomes, DepMap 24Q4, AlphaFold and the literature cited by PMID.
+Analysis code, pre-registrations and results: https://github.com/cpu-16/mva-hackathon-2026

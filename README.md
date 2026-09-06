@@ -3,7 +3,9 @@
 Code, pre-registrations and reports for the [MVA Hackathon 2026](https://huggingface.co/spaces/SageBio/rare-disease-real-kid-mva-hackathon-2026),
 organised by Sage Bionetworks with the MVA Society, Hugging Face and BEACON. Team **ciberpty**.
 
-> **No patient data is present in this repository, and none ever will be.** Under the hackathon data
+> **No patient sequence data or genotype-scale derivative is present in this repository, and none ever
+> will be.** The two diagnostic variants are named with their read depths, as findings, which the
+> challenge rules permit; nothing else about this child's genome appears here. Under the hackathon data
 > transfer agreement, the proband's VCF, phenotype document and every genotype-scale derivative stay
 > on the analysis machine and are deleted within 30 days of the hackathon close. What is published
 > here is code, configuration and derived findings, which the terms explicitly permit.
@@ -38,7 +40,7 @@ claim — including four that came back against us. See [`VERIFY.md`](VERIFY.md)
 | [`hpo/`](hpo/RESULTADOS.md) | The unrelated-phenotype control, rebuilt twice. With a term set verified against **all** MVA diseases and genes, BUB1B still ranks 1 in the proband's genome at **0.3965** (Δ = 0.1906 from the real phenotype) — but in planted healthy backgrounds its rank is **1, 2 and 3**. | That the ranking is background-independent. It is not, and the version quoted in our submitted Track 1 write-up (0.4187) was contaminated. |
 | [`mosaico/`](mosaico/RESULTADOS.md) | Bulk WGS cannot serve as an aneuploidy-burden endpoint. A calibrated simulation reaches a **2.07% detection limit at κ = 2**; more importantly, a perfectly balanced variegated mixture is **non-identifiable** — detection stays at the 0.1–0.2% false-positive rate even at 40% aneuploid cells. | Anything about this child. The patient-level result is **withdrawn**, and the pre-registered external control came back **not conclusive** ([`CONTROL_RESULTADO.md`](mosaico/CONTROL_RESULTADO.md)). We report no clinical negative. |
 | [`potencia/`](potencia/RESULTADOS.md) | Power for the proposed fibroblast assay is **0.897** under an assumed 4× selectivity, a 30% aneuploid culture and 10% well CV — and **0.063** under the per-chromosome reading our report had implied. A gating measurement is now part of the protocol. | A validated power estimate. None of the three inputs is measured in these cells, the Hill fit uses two parameters where the design promised four, and the noise model has no biological-replicate term. [`RESULTADOS_2_DOSIS.md`](potencia/RESULTADOS_2_DOSIS.md) removes the empirical support for the 4× without refuting it. |
-| [`fase/`](fase/RESULTADO.md) | Phase is not merely unresolved, it is **not computable** from this dataset: all three relevant variants are absent from the 1000 Genomes phased panel, and no read-backed phaser can run on a VCF. | — |
+| [`fase/`](fase/RESULTADO.md) | Phase is not merely unresolved, it is **not resolvable from the evidence this challenge provides**: all three relevant variants are absent from the 1000 Genomes phased panel, and the challenge distributed a VCF and raw reads rather than alignments, so no read-backed phaser was run. | — |
 | [`vus/`](vus/RESULTADOS.md) | The calibration set for a BUB1B missense predictor **does not exist**: of 1,497 submitted missense records, one is P/LP and 1,426 are VUS, while 82 of 94 truncating records are P/LP. | A prior probability that this child's missense is causal. That number describes the database, not the biology. |
 | [`clinico/`](clinico/PARENTAL_SEGREGATION_ORDER.md) | A one-page laboratory request a clinician can adapt and sign: both loci, two Sanger amplicons with primers verified as single-copy across GRCh38, and an interpretation table written **before** the result covering all five outcomes — including the one that would refute our own Track 1 call. | That segregation classifies the missense. A *trans* result supports the compound-heterozygous model and contributes PM3-type evidence; it does not make a VUS pathogenic. |
 
@@ -55,7 +57,7 @@ replay/      MVA-Replay: the packaged tool, its pre-registration, benchmark resu
 hpo/         Automated verification of control HPO terms against all MVA diseases and genes
 mosaico/     Mosaicism detection limit, non-identifiability proof, external control
 potencia/    Pre-registered power and dose-response analyses for the proposed assay
-fase/        Phasing attempt and why it is not computable here
+fase/        Phasing attempt and why phase is not resolvable here
 vus/         ClinVar census and AlphaFold structural context for p.Asn1002Lys
 clinico/     Parental segregation laboratory request and primer design
 evidencia/   Adversarial review rounds, verbatim source abstracts, challenge rules snapshots
@@ -73,11 +75,13 @@ Two things are reproducible without any access to the patient data, and one is n
 backgrounds. It is a single file with no new dependencies.
 
 ```bash
-replay/mva_replay.py --self-check          # 21 assertions, includes a positive and a negative control
-python3 replay/test_output_reuse.py        # regression tests for output-collision handling
+python3 replay/test_output_reuse.py        # regression tests for output-collision handling; runs from a bare checkout
+replay/mva_replay.py --self-check          # 21 assertions, with a positive and a negative control
 ```
 
-Running a real replay additionally needs Exomiser 15.1.0 with its hg38 2602 data bundles (~55 GB,
+**`--self-check` needs the local analysis resources and will stop with their names if they are
+absent** — it verifies real ClinVar records and real benchmark outputs, so a bare checkout cannot run
+it. Those resources, and a real replay, need Exomiser 15.1.0 with its hg38 2602 data bundles (~55 GB,
 public), a GRCh38 FASTA and a background VCF. See [`replay/README_TOOL.md`](replay/README_TOOL.md) for
 the arguments and for the two failure modes it deliberately refuses to work around.
 
@@ -97,7 +101,7 @@ analysis/run_now.sh                          # genome-wide Exomiser run; edit th
 
 ## Declared limitations
 
-- **Phase is not established, and is not computable from these data.** No parental samples; the two
+- **Phase is not established, and is not resolvable from these data.** No parental samples; the two
   variants lie ~11 kb apart with nothing phaseable between them; all three relevant variants are absent
   from the 1000 Genomes panel. The compound-heterozygous call rests on allele rarity, the recessive
   inheritance of MVA1 and the phenotype match — not on a demonstrated *trans* configuration.
