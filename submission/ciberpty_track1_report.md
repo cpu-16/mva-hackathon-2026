@@ -81,15 +81,23 @@ let the leaderboard number imply otherwise.
 
 ### Robustness controls — including one that argues against us
 
-We ran twelve additional Exomiser analyses to test how much of the result comes from the phenotype and
-how much from the variant — eleven initially, plus one re-run after we found a flaw in our own control.
+We ran additional Exomiser analyses to test how much of the result comes from the phenotype and how
+much from the variant. We list them by family rather than by a single total, because the total has
+been miscounted in earlier drafts: **eight leave-one-HPO-out runs**, **one least-specific-term-alone
+run**, **one shuffled-phenotype run**, and the **unrelated-HPO control, which we had to rebuild twice**
+(original → r7 → r9). Output files for each are under `tools/results/controles/`.
+
+⚠️ **Read this section together with the note at the end of it.** The version of this control that
+travelled with our submitted entry is r7, and r7 was contaminated. The numbers below are the corrected
+r9 analysis. **The submitted prediction CSV is unaffected and unchanged** — it contains the two BUB1B
+variants and no control depends on it — so this is a correction to the write-up, not to the answer.
 
 **Leave-one-HPO-out (8 runs).** Removing each HPO term in turn: **BUB1B remained rank 1 in all
 eight**, with scores from 0.5447 to 0.7503. Removing the rhabdomyosarcoma term — the one a human
 would consider most diagnostic — actually *raised* the score to 0.7503. No single symptom carries the
 result.
 
-**Unrelated HPO terms (2 runs, one of which corrects the other).** Our first version of this control
+**Unrelated HPO terms (three versions, each correcting the last).** Our first version of this control
 replaced the eight clinical terms with five we described as "clinically unrelated" — seizure
 (HP:0001250), hearing impairment (HP:0000365), atrial septal defect (HP:0001631), conjunctivitis
 (HP:0000509) and recurrent respiratory infections (HP:0002205). BUB1B came out rank 1, score 0.5506.
@@ -101,10 +109,32 @@ septal defects are an established feature of MVA, and BubR1 loss disrupts cardia
 (PMID 40055864). So the run was not a phenotype-free control at all — it fed the pipeline two genuine
 MVA features.
 
-**We re-ran it with five terms verified against the same annotation set as absent from MVA1:** hearing
-impairment (HP:0000365), conjunctivitis (HP:0000509), recurrent respiratory infections (HP:0002205),
-headache (HP:0002315) and pruritus (HP:0000989). **BUB1B still came out top of the ranking, score 0.4187 on
-the dominant row.** The conclusion survives a clean control.
+**We re-ran it (r7) with five terms verified as absent from MVA1:** hearing impairment (HP:0000365),
+conjunctivitis (HP:0000509), recurrent respiratory infections (HP:0002205), headache (HP:0002315) and
+pruritus (HP:0000989). BUB1B came out rank 1, score **0.4187**. **This is the version that travelled
+with the submission, and it was contaminated too.**
+
+**The r7 check was against `OMIM:257300` and nothing else, which was not enough.** Hearing impairment
+(HP:0000365) is annotated to **OMIM:614114 (MVA2)**, to **ORPHA:1052** (the MVA umbrella term) and
+directly to **BUB1B, CEP57 and TRIP13**. Exomiser scores phenotype similarity over the whole ontology
+graph, so a term annotated to *any* MVA disease leaks the answer back in. The same class of error,
+twice, from an incomplete verification.
+
+**r9 — the clean control.** Five terms checked programmatically against all four MVA identifiers *and*
+against the three MVA genes (`hpo/01_verificar.py`, result in `hpo/verificacion.json`): conjunctivitis
+(HP:0000509), recurrent respiratory infections (HP:0002205), headache (HP:0002315), pruritus
+(HP:0000989) and **skin rash (HP:0000988)**, which replaces hearing impairment. **BUB1B is still rank 1
+in the proband's genome, score 0.3965 on the dominant row.** The conclusion survives a clean control;
+the score the submitted write-up quoted was inflated by 0.0222.
+
+**Screening control terms by eye does not work, and we stopped doing it.** Of thirteen candidate terms
+put through the automated check, **four were rejected** — three of them replacements we had proposed
+ourselves, because fever, dyspnoea and abdominal pain are each annotated to *TRIP13*.
+
+⚠️ **What the rule still does not guarantee.** It removes terms with a *direct* annotation. It does not
+remove terms that merely sit near an MVA term in the ontology graph, and Exomiser's similarity measure
+is graph-based. The defensible statement is *"no term in the control set is annotated to any MVA
+disease or MVA gene"*, not *"no term is related to MVA"*.
 
 *A note on the denominator, because we had this wrong.* An earlier version of this sentence said
 "rank 1 of 4,565 genes". 4,565 is the number of gene × inheritance-mode **rows** in that output file,
@@ -120,13 +150,13 @@ controls** — the contaminated one and its correction — so the delta measures
 MVA-annotated terms were worth, not what the patient's phenotype is worth. **That figure is
 withdrawn.**
 
-The right comparison is the real phenotype against the clean control: **0.5871 with the patient's
-eight terms, 0.4187 with five verified-unrelated terms, Δ = 0.1684**, and both values reproduce to
-four decimal places when the same two alleles are planted into three unrelated healthy genomes
-(§ Benchmark). We do **not** convert that delta into a percentage of the score: Exomiser combines
-phenotype and variant evidence non-linearly, and 0.4187 is not a phenotype-free baseline, so a share
-is not defined. It is a sensitivity of the score to the HPO query. Script and log:
-`tools/control_hpo_r7.sh`, `tools/logs/controles_hpo_r7.log`.
+The right comparison is the real phenotype against the **clean r9** control: **0.5871 with the
+patient's eight terms, 0.3965 with five verified-unrelated terms, Δ = 0.1906**, and both values
+reproduce to four decimal places when the same two alleles are planted into three unrelated healthy
+genomes (§ Benchmark). We do **not** convert that delta into a percentage of the score: Exomiser
+combines phenotype and variant evidence non-linearly, and 0.3965 is not a phenotype-free baseline, so
+a share is not defined. It is a sensitivity of the score to the HPO query. Script:
+`tools/control_hpo_r9.sh`; per-run outputs in `tools/results/controles/`.
 
 **Least-specific term alone (1 run).** With short stature (HP:0004322) as the only input, BUB1B fell
 to **rank 4** and HK1 took the top slot.
@@ -146,8 +176,8 @@ unrelated-HPO control with variant-level output shows the same two mappings — 
 clinically unrelated terms. The disease assignment comes from the gene's known inheritance modes via
 the OMIM prioritiser, not from the phenotype.
 
-What the phenotype measurably does in this case is move the combined score by 0.1684 without changing
-the top position. The least-specific-term control shows it is not nothing (short stature alone drops
+What the phenotype measurably does in this case is move the combined score by 0.1906 without changing
+the top position in the proband's genome. The least-specific-term control shows it is not nothing (short stature alone drops
 BUB1B to rank 4), but it does not select the interpretation, it does not choose the disease mapping,
 and it does not decide the answer.
 That is a narrower claim than "our pipeline found it from the symptoms", and it is the one the data
@@ -267,9 +297,27 @@ a narrow margin, not a separation.
 **Is the score a property of the patient's genome?** Planting the two public ClinVar records that
 reproduce this case's architecture (533901 `chr15:40209701 T>G` nonsense, 4600147 `chr15:40220612 T>A`
 VUS missense) into three unrelated healthy genomes returns **0.5871 with the real phenotype and
-0.4187 with five unrelated terms, identical to four decimal places in all three**. The gene reached
-the top position in 3/3 with the real phenotype and 2/3 with the unrelated one. The rank, not the
-score, is what the background changes.
+0.3965 with the five clean r9 unrelated terms, identical to four decimal places in all three**. The narrow
+statement is the one `replay/RESULTADOS.md` §2 makes: under this frozen pipeline, and given that none
+of the three backgrounds carries a retained BUB1B variant of its own, the planted gene's combined score
+does not move with the background while its rank does. That is stability of the score across the
+backgrounds we tested — one deterministic computation run three times — not a demonstration that the
+score is independent of the genome in general. A background carrying its own BUB1B variant (the
+1000 Genomes tier shows one, HG00101) was not tested with planted alleles, and our phase pilot already
+shows the score is not fully determined by the two alleles (0.9339 *cis* vs 0.9305 *trans*, § Phase).
+
+| Background | Real HPO, rank | Clean unrelated HPO, rank | Top gene under unrelated HPO |
+|---|---|---|---|
+| HG001 | 1 | **1** | BUB1B 0.3965 |
+| HG002 | 1 | **2** | KRT17 0.5766 |
+| HG005 | 1 | **3** | TNF 0.7436 |
+
+So with the real phenotype BUB1B is first in 3 of 3; with a clean unrelated phenotype it is first in
+**1 of 3**. Under the contaminated r7 set the same cells read 1 / 1 / 3, so the correction moves
+exactly one background, HG002. Neither KRT17 nor TNF is directly annotated to any of the five control
+terms — we checked `genes_to_phenotype.txt` — so the displacement is Exomiser's graph-based semantic
+similarity, and the replacement term "skin rash" sits near KRT17's cutaneous disease terms. In the
+proband's own genome BUB1B remains rank 1 under the clean control.
 
 **How much of the score is the ClinVar record?** This is the result that went against what we had
 written. Holding gene, consequence, partner allele and phenotype fixed and changing only the ClinVar
@@ -297,19 +345,43 @@ and it shows the top position survives without any ClinVar classification in the
 does **not** show that an allele no database had ever recorded would rank identically, and it is not a
 deletion of ClinVar from this case's own variant.
 
-**The principal null experiment is still open.** The pre-registered design calls for 37 healthy
-genomes; the seven GIAB genomes above are complete and the 30 unrelated 1000 Genomes genomes are still
-running at the time of writing. The prediction is stated against the **maximum**, so a single
-exceedance falsifies it, and the sentences we will publish for each outcome were frozen before those
-runs finished (`replay/RESULTADOS.md` §8).
+**The principal null experiment has now finished.** The pre-registered design calls for 37 healthy
+genomes. The seven GIAB genomes are above; the **30 unrelated 1000 Genomes genomes are complete**, with
+a maximum top-gene combined score of **0.5207 (CDH1, HG01885)** and **0 of 30 exceeding 0.5871**. The
+prediction was stated against the maximum, so a single exceedance would have falsified it, and the
+sentence published for this outcome was frozen before any of those runs finished
+(`replay/RESULTADOS.md` §8). Effective independence is roughly 33 unrelated individuals plus two trios,
+not 37 draws, and both callsets carry a lower rare-variant burden than clinical WGS, which lowers
+healthy top scores and biases the comparison *in our favour*.
+
+⚠️ One qualifier: *"BUB1B does not appear in the ranked table"* holds for the seven GIAB genomes. In
+the 1000 Genomes tier BUB1B does appear once, in HG00101, at rank 138 with a score of 0.0002. P-A2 was
+stated as "absent or below 0.25", so it holds — but the stronger wording does not.
+
+**Pre-registered predictions, re-scored against each definition.** The corrected control changes one
+of them, and it changes it against us, which is the outcome we pre-committed to publishing:
+
+| Prediction, as locked | Status |
+|---|---|
+| P-A — 0.5871 above every healthy genome's top score | **confirmed** (0 of 7 GIAB and 0 of 30 1000G exceed it) |
+| P-A2 — BUB1B absent or < 0.25 in healthy genomes | **confirmed** (absent in 7/7 GIAB; 0.0002 in one 1000G genome) |
+| P-B1 — planted BUB1B rank 1 in 3/3 with real HPO | **confirmed** |
+| P-B2 — planted BUB1B rank 1 in ≥ 2/3 with unrelated HPO | **falsified** with the clean control (1/3). It read confirmed (2/3) only with the contaminated set |
+| P-B3 — planted decoy rank 1 in ≥ 2/3 with real HPO | **not evaluable as locked** — a pool defect our own ingestion check caught; the corrected construct ran contrary to the predicted direction |
+| P-B4 — Δ(real − unrelated) < 0.20 | **confirmed** (0.1906 with the clean control, against 0.1684 with the contaminated one); the percentage form is withdrawn |
+| P-C — monotonic gradient, C-hi − C-lo ≥ 0.10 | **confirmed** (0.8212) — **our causal reading of it is retracted** |
+
+That is **five confirmed, one falsified and one not evaluable**. The falsification is P-B2, and the
+pre-registration said in advance that we *expected our own pipeline to fail this one* and pre-committed
+to publishing it if it did (`replay/PREREGISTRO.md`). We are not presenting it as a victory; we are
+presenting it because we said we would.
 
 **What the benchmark does not establish.** Every planted call is `PASS`, balanced and unambiguous, so
 this measures retrieval *given a perfect heterozygous call*, not end-to-end diagnostic sensitivity.
-Three case genes and one decoy are a replay of this case, not a general rare-disease benchmark. Of
-seven pre-registered predictions, five are confirmed, one is still open and one was not evaluable in
-its locked form because of a pool defect our own ingestion check caught; in the corrected construct it
-ran contrary to the predicted direction. All of this, and the three conclusions of ours that the
-reviewers refuted, is in `replay/RESULTADOS.md`.
+Three case genes and one decoy are a replay of this case, not a general rare-disease benchmark. Thirty
+seven healthy genomes are not a validation cohort, and the GIAB and 1000 Genomes callsets share biases
+of their own. All of this, and the three conclusions of ours that the reviewers refuted, is in
+`replay/RESULTADOS.md`.
 
 ## Q4 — Automated output or manual review?
 
@@ -387,6 +459,12 @@ demonstrated *trans* configuration, which is not observable in these data. **Par
 the two loci is the single highest-value follow-up for this case**; long-read or linked-read
 sequencing of the child, or allele-specific analysis of the BUB1B transcript, would also settle it.
 All three require new laboratory work.
+
+⚠️ **Settling phase would not settle the missense.** A confirmed *trans* configuration supports the
+compound-heterozygous model and contributes PM3-type evidence; it does **not** on its own reclassify
+p.Asn1002Lys from uncertain significance. Function is a separate question and would need a functional
+assay. The *cis* result is the decisive one in the other direction: it would refute this
+interpretation.
 
 ## Q10 — Secondary / incidental findings
 
@@ -466,20 +544,22 @@ Both routes converge on **NM_001211.6:c.2210T>G p.Leu737Ter** (nonsense; ClinVar
 Pathogenic/Likely pathogenic; gnomAD 9.98×10⁻⁵) and **c.3006T>G p.Asn1002Lys** (missense; gnomAD
 8.99×10⁻⁷; not in ClinVar) — the truncating-plus-missense pattern of viable MVA1.
 
-**Twelve robustness controls; the phenotype comes out weaker than we claimed.**
+**Robustness controls; the phenotype comes out weaker than we claimed.**
 Leave-one-HPO-out keeps BUB1B on top in all eight runs; five verified-unrelated HPO terms also return
-it there (0.4187 against 0.5871); and under those unrelated terms Exomiser still maps the
-recessive row to mosaic variegated aneuploidy, so the disease assignment comes from the OMIM
-prioritiser, not the phenotype. The finding is **variant-driven and
-phenotype-consistent**: the phenotype moves the score by 0.1684 and changes nothing else. We do not
-express that as a percentage — the combination is non-linear and a share is not defined.
+it there in the proband's genome (**0.3965 against 0.5871**); and under those unrelated terms Exomiser
+still maps the recessive row to mosaic variegated aneuploidy, so the disease assignment comes from the
+OMIM prioritiser, not the phenotype. The finding is **variant-driven and phenotype-consistent**: the
+phenotype moves the score by **0.1906** and changes nothing else. We do not express that as a
+percentage — the combination is non-linear and a share is not defined. The unrelated-HPO control had to
+be rebuilt twice; the version quoted in our submitted entry (0.4187) was contaminated by a term
+annotated to MVA2.
 
 **We then measured what this pipeline does when the answer is absent**, in a benchmark pre-registered
-in git before any case ran. Seven healthy GIAB
-genomes queried with the same eight terms top out at **0.5619 against our 0.5871** — a margin of
-0.025 on a null biased in our favour; the pre-registered 30-genome tier is still running, so that
-prediction is open. Planting the same two public ClinVar alleles into three unrelated healthy genomes
-reproduces 0.5871 and 0.4187 to four decimals, none of them carrying its own retained BUB1B allele. And substituting an **unclassified** BUB1B nonsense for the whitelisted one
+in git before any case ran. Seven healthy GIAB genomes queried with the same eight terms top out at
+**0.5619 against our 0.5871** — a margin of 0.025 on a null biased in our favour. The pre-registered
+30-genome 1000 Genomes tier has since finished: maximum **0.5207 (CDH1, HG01885)**, **0 of 30** above
+0.5871. Planting the same two public ClinVar alleles into three unrelated healthy genomes
+reproduces 0.5871 and 0.3965 to four decimals, none of them carrying its own retained BUB1B allele — though the *rank* under the unrelated phenotype holds in only one of the three. And substituting an **unclassified** BUB1B nonsense for the whitelisted one
 leaves the variant term at 1.0000 and moves the combined score only 0.0128 without losing the top
 position (ACMG PATHOGENIC → LIKELY_PATHOGENIC): the truncating consequence, not the database record,
 saturates the variant term.

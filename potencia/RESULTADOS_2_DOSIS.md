@@ -1,8 +1,13 @@
-# A 4× selectivity is not defensible for a cell carrying one extra chromosome
+# A 4× selectivity has no empirical support for a cell carrying one extra chromosome
 
 **Team: ciberpty** · 2026-09-01 · Pre-registered in `potencia/PREREGISTRO_2_DOSIS.md`, committed as
-`45c4ed7` **before** this ran. This analysis was designed to attack our own result from the same day,
-and it succeeded.
+`45c4ed7` **before** this ran. This analysis was designed to attack our own result from the same day.
+
+> **Clarification of 2026-09-06 (§3).** The first version of §3 read the pre-registered magnitude rule
+> onto the haematological stratum and concluded that the 4× scenario was "not defensible" as a
+> pre-committed consequence. The rule was written for **solid** lines, and there the exercise is
+> uninformative. The corrected reading is in §3; the title of this file was changed with it. The
+> pre-registration itself has not been edited.
 
 ---
 
@@ -63,24 +68,32 @@ evidence of curvature — which is not the same as evidence of linearity, as the
 Ippolito's < 40 nM in **highly aneuploid** cancer lines. This analysis says that number is measured at
 the far end of a dose relationship from where MVA cells sit.
 
-**And we must apply the magnitude rule, not shelter behind the falsification clause.** An
-adversarial reviewer pointed out that we took the softer of two rules our own pre-registration
-contains. The falsification clause fires in solid lines and is correctly applied — a confidence
-interval covering zero cannot be read as evidence of a small effect. But the pre-registration also
-set **|Δ₂| / σ < 0.10 → "the central scenario is then not defensible"**, and in the haematological
-stratum, where the slope *is* significant, **|Δ₂| / σ = 0.093**. That is below the line we drew in
-advance. The rule therefore fires where the estimate is admissible, and we apply its consequence
-rather than reporting a range of possibilities:
+**Correction of 2026-09-06: the pre-registered magnitude rule did not fire, and we withdraw the claim
+that it did.** §4 of `PREREGISTRO_2_DOSIS.md` defines Δ₂ and σ explicitly **in solid lines**, "the
+stratum relevant to this child". In solid lines the slope's 95% interval covers zero
+(`dosis.json`: −0.0118 … +0.0006, p = 0.076), so the falsification clause is what applies and the
+exercise is **uninformative for the stratum the rule was written about**. The 0.093 is the
+**haematological** ratio (`dosis.json`, `ratio_2` = 0.0935), and the pre-registration set no decision
+rule for that stratum. An earlier version of this section applied the < 0.10 threshold to it and
+reported "the 4× central scenario is not defensible" as a pre-committed consequence. That transferred
+a rule to a different stratum after seeing the result, which is the failure mode this whole
+pre-registration exists to prevent. It is withdrawn.
 
-> **The 4× central scenario is not defensible for these cells.** In the only lineage where the
-> aneuploidy–proteasome dependency exists at all, one whole chromosome moves the dependency less than
-> a tenth of a residual standard deviation — below the threshold we pre-registered as fatal to that
-> scenario. `potencia/RESULTADOS.md` and Track 2 §6 must say so, and both now do.
+What survives the correction, stated at the strength the data support:
+
+> **The 4× selectivity has no empirical support in these cells, and it never had any.** It is an
+> assumption imported from highly aneuploid cancer lines, and this analysis gives an independent
+> reason to doubt it: where the dependency exists at all, two altered arms move it 0.09 residual SD
+> against 0.84 at eighteen. That is descriptive, secondary and outside the pre-registered decision.
 >
-> What replaces it is not a smaller number, because we cannot convert gene effect to an EC50 ratio.
-> It is a **conditional design**: the selectivity is unknown, the assay is powered at 4× (0.897) and
-> underpowered at 2× (0.387), and the advancement threshold is now read off the measured aneuploid
-> fraction rather than assumed.
+> **The 4× has equally not been refuted as an EC50 ratio.** The stratum where the rule could have
+> fired returned a null, and CRISPR gene effect does not convert to EC50 in any case. "Unsupported"
+> and "refuted" are different states and we report the first.
+>
+> What replaces it is not a smaller number. It is a **conditional design**: the selectivity is an
+> unknown the experiment measures, the assay is powered at an assumed 4× (0.897) and underpowered at
+> an assumed 2× (0.387), and the advancement threshold is read off the measured aneuploid fraction
+> rather than assumed. `potencia/RESULTADOS.md` and Track 2 §6 are worded that way.
 
 **We are not converting this into an EC50 ratio, and the pre-registration said we would not.** CRISPR
 gene effect is complete permanent loss; a drug is partial reversible inhibition. There is no

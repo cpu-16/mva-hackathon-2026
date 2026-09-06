@@ -295,3 +295,26 @@ falsifies it. GIAB and 1000G are reported separately and never pooled.
 **And if all 30 are below but any lands in (0.5619, 0.5871]:** we will write that a second independent
 public genome produced a top score within 5% of the case, and that the remaining gap is smaller than
 the phenotype finite difference we are no longer expressing as a percentage.
+
+## 9. Addendum, 2026-09-06 — what changed after §1–§8 were written
+
+Nothing above is edited; this section supersedes it where they differ.
+
+**The unrelated-phenotype control used in §2, §6 and §7 (0.4187, ranks 1 / 1 / 3) was the contaminated
+r7 set** — HP:0000365 is annotated to MVA2, to ORPHA:1052 and to the three MVA genes. The clean r9 set
+(`hpo/RESULTADOS.md`, outputs in `replay/out_r9/`) gives **0.3965 in all three backgrounds**, ranks
+**1 / 2 / 3** (HG001 / HG002 / HG005), Δ = **0.1906**. Consequences for the scoreboard:
+
+| Prediction | Status after r9 and tier 2 |
+|---|---|
+| P-A | **confirmed** — tier 2 finished: 0 of 30 exceed 0.5871, maximum **0.5207 (CDH1, HG01885)**. The pre-committed §8 sentence for "0 of 30" applies verbatim with M = 0.5207, G = CDH1, S = HG01885 |
+| P-A2 | **confirmed** — absent in 7/7 GIAB; in the 1000 Genomes tier BUB1B appears once (HG00101, rank 138, score 0.0002), below the 0.25 the prediction allowed |
+| P-B2 | **falsified** — rank 1 in **1 of 3**, against the ≥ 2/3 it required. The pre-registration said we expected our own pipeline to fail this and that confirming it would be a concession; with the clean control it fails, which is the outcome we said we wanted |
+| P-B4 | **confirmed** — Δ = 0.1906 < 0.20 |
+
+Count: **5 confirmed (P-A, P-A2, P-B1, P-B4, P-C), 1 falsified (P-B2), 1 not evaluable (P-B3).** The
+§7 sentence "0.4187, rank 1 in two of three backgrounds" reads, with the clean control, "0.3965, rank 1
+in one of three". The narrow statement of §2 — score invariant across these three backgrounds, rank
+not — is unchanged in kind and is, with r9, the *only* background-independence claim we make: it is
+one deterministic computation run three times, not evidence that the score is independent of the
+genome in general.

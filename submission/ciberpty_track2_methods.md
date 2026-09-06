@@ -43,7 +43,7 @@ insufficient.
 filter 4 *for this child*, which is a patient-specific verdict rather than a property of the drug.
 We state the condition under which it would become appropriate — an MVA patient with an active
 tumour, where the comparator is cytotoxic chemotherapy rather than nothing — and we propose an
-experiment — an eight-week assay window, about twelve weeks from a fresh biopsy — that could fail to support the dependency in this child's own cells. It would not, on its own, close the tumour-board question, and we say so where we describe it.
+experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy because establishing the fibroblast line takes 4–8 weeks on its own — that could fail to support the dependency in this child's own cells. It would not, on its own, close the tumour-board question, and we say so where we describe it.
 
 ## Q3 — Generative AI declaration
 
@@ -129,17 +129,29 @@ no published functional assay, and its in-silico predictors disagree (REVEL 0.47
 0.923), which is why we let it stand as a VUS.
 
 We also asked whether aneuploidy burden could serve as a trial endpoint in these data, and computed
-that it cannot: simulating mean |BAF − 0.5| at DP 44 puts the detection limit at ~14% of cells for a
-clonal trisomy (16% under a stricter 2-SD criterion, against a measured between-chromosome SD of
-0.0035), while variegation leaves each chromosome at 1–2% — 7–16× below it. That constrains
-any proposal whose outcome depends on measuring aneuploidy from bulk sequencing.
+that it cannot. A first-order calculation — mean |BAF − 0.5| at DP 44 against a measured
+between-chromosome SD of 0.0035 — puts the detection limit at ~14% of cells for a clonal trisomy (16%
+under a stricter 2-SD criterion). A later calibrated simulation (Ψ over 125-site windows, Monte Carlo
+null) improves that to **2.07% at an overdispersion κ = 2**; that is a *simulated* limit conditional on
+κ, not a measured sensitivity, and it places variegation's 1–2% per chromosome at the edge of what is
+achievable rather than far below it. The argument that does not depend on any limit is
+**non-identifiability**: for a perfectly balanced variegated mixture, mean copy number is exactly 2 and
+mean allele fraction exactly 0.5 by symmetry, and simulated detection stays at the 0.1–0.2%
+false-positive rate even with 40% of cells aneuploid. That proof covers the balanced mixture we
+modelled, not every possible MVA genome, and it is enough to disqualify the endpoint.
+
+We ran the calibrated statistic on the proband and **withdrew the result**: the pre-registered
+threshold fires on all 22 autosomes, which indicates a null model that does not fit these data, and the
+pre-registered external control came back **not conclusive** because the control genomes were called
+differently from the proband. We report no clinical negative for this child.
 
 ## Q10 — Time and effort
 
 Approximately 30 hours of analyst time over two days (28–29 August 2026), of which the large majority
 went to literature verification and adversarial review rather than to computation. Compute was
 negligible: the genome-wide prioritisation ran in 53 seconds on a commodity workstation with no GPU,
-and the eleven robustness controls in about ten minutes.
+and the robustness controls in about ten minutes. Later rounds added the pre-registered DepMap,
+benchmark, phase, power and mosaicism-control analyses, all CPU-only and on public data.
 
 ## Q11 — Method abstract (≤500 words)
 No approved drug restores BubR1 function, so we did not look for one. We followed the lesion
@@ -166,8 +178,11 @@ level was significantly associated with multiple myeloma patients' response to p
 (Ippolito 2024, PMID 39247952), on cohorts small enough (8 complete responders vs 50 progressive)
 that we treat it as motivation, not prediction. The concentration reaches: EC50
 below 40 nM in highly aneuploid lines against a label Cmax of 89–120 ng/mL (231–312 nM) at
-1.3 mg/m² IV — a margin of 5.8–7.8× on total drug. The subcutaneous route does not pass once protein binding
-is considered, and we say so.
+1.3 mg/m² IV — a margin of 5.8–7.8× on **total plasma** drug at a peak. That is not free drug, not
+intratumoral drug and says nothing about duration of exposure; 312 nM is the top of a label interval,
+not a validated clinical threshold. Filter 3 asks whether the drug is disqualified on order of
+magnitude, and it is not. The subcutaneous route does not pass once protein binding is considered, and
+we say so.
 
 It then fails filter four for this child: motor neuropathy in 8% of paediatric patients, on top of
 existing skeletal muscle atrophy. But filter four is patient-specific.
@@ -175,12 +190,20 @@ For an MVA patient with an active malignancy — where the comparator is cytotox
 than nothing — the balance inverts, and biallelic BUB1B carries a high risk of embryonal tumours. Our
 deliverable is that answer prepared in advance, with its margin and its stopping rule.
 
-Strengths. Every candidate is killed or kept by a stated criterion, including our own. We report an antagonism a combination-minded team could walk into: reducing translation protects
+Strengths. Each candidate we assessed is killed or kept by a stated criterion, including our own — this
+is not an exhaustive screen of every agent proposed for aneuploidy, and §8 of the report lists what we
+excluded. We report an antagonism a combination-minded team could walk into: reducing translation protects
 CIN cells from proteasome inhibition (PMID 31530568), so mTOR inhibitors would be predicted to
 antagonise rather than synergise. The framework transfers to any rare disease.
 
 Limitations. The proteasome dependency is established in cancer aneuploidy, not constitutional
-mosaicism; whether it transfers is precisely what our eight-week experiment tests, and we
-have not assumed it. The EC50 is a conservative bound read from a figure panel. Phase is unproven and, we show, unobservable in these data; parental genotyping is the cheapest experiment here.
+mosaicism; whether it transfers is precisely what our experiment tests, and we have not assumed it. Our
+own pre-registered DepMap analysis found the association attenuated in solid lineages, which is the
+lineage of this child's tumour. The power figure of 0.897 belongs to an idealised simulation with an
+*assumed* fourfold selectivity, a 30% aneuploid culture and 10% well CV — none of them measured in
+these cells — so it is not a validated power estimate. The EC50 is a conservative bound read from a
+figure panel. Phase is unproven and, we show, unobservable in these data; parental genotyping is the
+cheapest informative experiment here, and a *trans* result would support the compound-heterozygous
+model without reclassifying the missense.
 And no disease-modifying drug can be recommended from these data today — what most changes his
 prognosis now is surveillance, not a molecule.

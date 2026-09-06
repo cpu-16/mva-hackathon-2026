@@ -3,6 +3,12 @@
 **Team: ciberpty** · 2026-09-01 · Pre-registered in `potencia/PREREGISTRO.md`, committed as `aa3143f`
 **before** any number below existed. Nothing here was chosen after seeing the result.
 
+> **Clarification of 2026-09-06 (§1).** The qualifier in §1 said that the companion analysis's
+> pre-registered magnitude rule "fires against the 4× scenario". It does not: that rule was fixed on
+> the **solid** stratum, which returned a null. The 0.897 is an idealised scenario with an *assumed*
+> selectivity, not a validated power estimate and not a mathematical bound on what the design can do.
+> Corrected below and in `RESULTADOS_2_DOSIS.md` §3. The pre-registration is unedited.
+
 ---
 
 ## 1. The pre-committed sentence, applied
@@ -15,15 +21,18 @@ write this and nothing else:
 > concentrations, 3 biological replicates per arm, 72 h — detects a **4× EC50 selectivity** in a
 > culture where **30% of cells carry an aneuploidy**, with 90% power at α = 0.05.
 >
-> ⚠️ **Read that with its qualifier, which is load-bearing: *powered for a 4× effect, if the treated
-> culture is ~30% aneuploid and well-level CV is 10%.*** Neither of those two is measured in these
-> cells. At 2× selectivity power is 0.387; at CV 0.15 it is 0.593. And a second pre-registered
+> ⚠️ **Read that with its qualifier, which is load-bearing: *powered for an assumed 4× effect, if the
+> treated culture is ~30% aneuploid and well-level CV is 10%.*** **None of those three is measured in
+> these cells**, so 0.897 describes an idealised scenario, not the power this experiment would have.
+> At an assumed 2× selectivity power is 0.387; at CV 0.15 it is 0.593. A second pre-registered
 > analysis the same day (`RESULTADOS_2_DOSIS.md`) gives us our own reason to doubt that 4× describes
-> a cell carrying one extra chromosome — and that analysis's own pre-registered magnitude rule
-> **fires against the 4× scenario**: in the lineage where the dependency exists, one chromosome moves
-> it 0.093 residual SD, below the 0.10 we declared fatal in advance. **The 4× central scenario is
-> therefore not defensible for these cells**, and "the assay is powered" without its qualifier is not
-> a statement we can defend.
+> a cell carrying one extra chromosome: where the aneuploidy–proteasome dependency exists at all, two
+> altered arms move it 0.09 residual SD against 0.84 at eighteen. **That is a reason to distrust the
+> assumption, not a measurement replacing it, and not the firing of a pre-registered rule** — the
+> rule was fixed on solid lines, where the slope's interval covers zero and the exercise is
+> uninformative (correction of 2026-09-06). So: the 4× central value is **unsupported for these
+> cells and equally unrefuted**, and "the assay is powered" without its qualifier is not a statement
+> we can defend.
 >
 > The separate caveat is **unaffected and still stands**: dermal fibroblasts are constitutional MVA
 > cells, not tumour cells, so a negative does not close the tumour-board question, and a positive is
@@ -78,11 +87,16 @@ is likely **lower** than *f* at biopsy.
 > conflated them. Record the number of abnormal chromosomes **per abnormal cell** at the same time —
 > `RESULTADOS_2_DOSIS.md` shows the per-cell burden matters as much as the fraction.
 >
-> | Measured *f* | What to do |
+> | Measured *f* | Suggested branch, **conditional on the assumed 4× selectivity** |
 > |---|---|
 > | ≥ 0.25 | Proceed as designed, n = 3 |
 > | 0.10 – 0.25 | n = 14 at *f* = 0.10; if that does not fit the window, enrich for aneuploid cells or move to a per-cell endpoint |
-> | < 0.10 | **Do not run the bulk viability assay.** It cannot answer the question at any feasible n. Go to a per-cell readout |
+> | < 0.10 | **Do not run the bulk viability assay** on this design. It cannot answer the question at any feasible n. Go to a per-cell readout |
+>
+> ⚠️ **Measuring *f* does not validate the branch it selects.** Every row above is computed at the
+> same assumed 4× within-cell selectivity, which is the quantity nobody has measured. *f* removes one
+> of three unmeasured inputs; the sample sizes stay conditional on the other two, and the table is a
+> planning aid, not a validated operating rule.
 
 Without that gate, a negative result from this experiment cannot be told apart from an underpowered
 one — which is precisely the failure mode a reviewer would use to dismiss §4 and §6 together.
@@ -131,8 +145,10 @@ Found by adversarial review of this document, and recorded rather than quietly f
   **upward**. The CV sweep (0.05 / 0.10 / 0.15) is the only handle on it, and CV 0.15 already costs
   more power than dropping a replicate.
 
-Both errors point the same way: **0.897 is an upper bound on the power of this design, not an
-estimate of it.**
+Both errors point the same way: **0.897 is optimistic even inside its own scenario.** State that
+precisely — it is an upper bound *relative to the model we pre-registered*, reached under assumed
+values of selectivity, aneuploid fraction and well CV. It is not a validated power estimate for
+patient cells, and it is not a mathematical bound on what any version of this experiment can achieve.
 
 ## 6. What this does not establish
 

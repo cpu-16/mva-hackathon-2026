@@ -14,8 +14,9 @@ is sourced in the sections that follow.*
 ### What we looked for
 
 An existing, already-approved medicine that could help a child with mosaic variegated aneuploidy caused
-by two changes in the *BUB1B* gene. We looked at every candidate the scientific literature points to,
-and we set out in advance the tests a candidate had to pass.
+by two changes in the *BUB1B* gene. We set out in advance the tests a candidate had to pass, and we put
+the main candidates the scientific literature points to through them. **This is not an exhaustive
+screen of every proposed agent**, and §8 lists what we ruled out and why.
 
 ### What we are **not** recommending
 
@@ -26,17 +27,20 @@ is more useful than an encouraging one.
   on this reasoning: no one has measured what dose would be needed to act on *this* problem, and the one
   route proposed for it — an effect on the cell's energy machinery — would need roughly a thousand times
   more drug than a person can safely take. (§3.1)
-- **Bortezomib** is a real, approved cancer medicine that acts on the specific weakness these cells
-  have. It reaches the needed concentration. But it causes nerve damage in about 18 in 100 children who
-  receive it, and this child already has muscle weakness. **Outside an active cancer, that trade is not
-  worth making.** (§4)
+- **Bortezomib** is a real, approved cancer medicine that acts on a weakness that **cancer cells with
+  extra chromosomes** have been shown to have. **Nobody has shown that this child's cells have it**, and
+  our own analysis of public data found the link weakest in the kind of tumour he had. The amount of
+  drug that reaches the blood is in the right range, but that is a measurement of total drug in plasma,
+  not proof that enough reaches the right place for long enough. It also causes nerve damage in about 18
+  in 100 children who receive it, and this child already has muscle weakness. **Outside an active
+  cancer, that trade is not worth making.** (§4)
 
 ### What can be done this month
 
 | | Action | Why |
 |---|---|---|
 | 1 | **Confirm the child's current age** with the care team | Every schedule below depends on it, and we do not have it |
-| 2 | **Renal ultrasound every 3 months, birth to age 7** | Published consensus recommendation for all forms of MVA (PMID 39264246) — not our idea, and not optional |
+| 2 | **Renal ultrasound every 3 months, birth to age 7** | Published consensus recommendation for all forms of MVA (PMID 39264246): the SIOP-Europe host-genome group's schedule, endorsed by the AACR workshop. Not our idea; how it is applied to this child is the treating team's decision |
 | 3 | **Regular full clinical examination**, including the orbit, skin and soft tissues | Rhabdomyosarcoma is not a kidney tumour and ultrasound will not find it. A 2026 case describes a child with MVA3 — the same condition caused by a different gene —
 whose second tumour appeared behind the eye at age 12 (PMID 42595739) |
 | 4 | **Avoid unnecessary radiation**; keep HPV vaccination up to date | Consensus guidance for these disorders (PMID 39264246) |
@@ -88,7 +92,7 @@ rather than a pure cell-culture inference.
 We state the size of the remaining leap rather than hide it. That evidence is drawn from **cancer**
 aneuploidy, and myeloma is a plasma-cell neoplasm carrying its own immunoglobulin-driven proteotoxic
 load. Whether the same dependency holds in **constitutional, variegated** aneuploidy is an
-extrapolation, and it is exactly what the experiment in §6 is designed to break (an eight-week assay window; about twelve weeks from a fresh biopsy).
+extrapolation, and it is exactly what the experiment in §6 is designed to break (an eight-week assay window; **12–16 weeks** from a fresh biopsy, because establishing the fibroblast line takes 4–8 weeks on its own).
 
 **We then tested that leap ourselves, and it did not survive.** Before looking at any result we
 pre-registered a test on public data (§3.5): does the aneuploidy–proteasome link extend beyond
@@ -98,19 +102,27 @@ significantly weaker in solid tumours than in haematological ones** (interaction
 ploidy excluded as a confounder. This child's tumour was a solid one. We report this because it
 weakens the argument we are making, and because we would rather find it than have a judge find it.
 
-Bortezomib clears the pharmacokinetic filter with margin: EC50 in highly aneuploid lines is below
+Bortezomib clears the pharmacokinetic filter as we define it: EC50 in highly aneuploid lines is below
 **40 nM**, while the approved 1.3 mg/m² IV dose reaches a Cmax of **89–120 ng/mL = 231–312 nM** — a
 ratio of **5.8–7.8**. We quote the whole label interval rather than its ceiling; read it as an
-order-of-magnitude margin, not a measured number.
+order-of-magnitude margin, not a measured number. **And read what the filter is:** Cmax is *total*
+plasma drug at a peak. It is not free drug, not intratumoral drug, and it says nothing about how long
+the concentration is held — bortezomib's plasma level falls steeply after infusion while proteasome
+inhibition persists, so neither exposure nor duration at the target is established by this number.
+**312 nM is the top of a label interval, not a validated clinical threshold**, and no aneuploidy-
+selective effective concentration has ever been measured in constitutional MVA cells. Filter 3 tests
+whether the drug is disqualified on order of magnitude. It passes that test and nothing stronger.
 
 It then fails our fourth filter, and we say so plainly: **not for this child, not now.** Bortezomib
 causes peripheral neuropathy in 18% of paediatric patients (8% motor), and this child already has
 skeletal muscle atrophy. Outside an active malignancy that risk-benefit does not hold.
 
-**What remains is a specific and actionable proposition.** Bortezomib does not repair the lesion —
-nothing restores BubR1 function — but it is the agent that exploits the best-characterised
-*consequence* of that lesion, and it is the one worth having ready for an MVA patient **with an
-active tumour**, where the comparator is not "no drug" but conventional cytotoxic chemotherapy. This child is an embryonal rhabdomyosarcoma survivor with a
+**What remains is a specific and testable proposition, not a demonstrated one.** Bortezomib does not
+repair the lesion — nothing restores BubR1 function — but it is the agent aimed at the
+best-characterised *consequence* of aneuploidy **in cancer cells**, and it is the one worth having
+ready as a question for an MVA patient **with an active tumour**, where the comparator is not "no
+drug" but conventional cytotoxic chemotherapy. We have not shown that dependency exists in this
+child's cells, and §6 exists because it might not. This child is an embryonal rhabdomyosarcoma survivor with a
 high risk of embryonal tumours (PMID 28553959) — and he has already had one. That sequence is not
 hypothetical: a 2026 case report describes a girl with MVA3 who had a Wilms tumour at three and an
 orbital embryonal rhabdomyosarcoma at **twelve** (PMID 42595739). Our contribution is to have the
@@ -171,15 +183,24 @@ against BUB1B variants that are already classified. That calibration set does no
 ClinVar 2026-08-28 release this gene carries **1,497 missense records, of which exactly one is
 Likely pathogenic** — at one star, from a single submitter — against **1,426 (95.3%) of uncertain
 significance**. Meanwhile **82 of its 94 truncating records are Pathogenic or Likely pathogenic**.
-The clinical evidence base of *BUB1B* is built on loss of function at a ratio of 82 to 1, so the
-base rate for a missense reaching P/LP here is **1 in 1,497**. A predictor cannot be calibrated on
-one positive, and waiting for the database is waiting for an event that has happened once in this
-gene's history. That is the quantitative reason the parental segregation test in §7 is not merely the
-cheapest route to this variant — it is the only practical one.
+The clinical evidence base of *BUB1B* is built on loss of function at a ratio of 82 to 1. In this
+snapshot, **1 of 1,497 submitted missense records** has reached P/LP.
 
-⚠️ A census measures the database, not the biology: missense alleles in this gene may simply be
-under-tested and under-submitted. Sieben's characterised **BUBR1^L1012P** is a missense causal enough
-to build a mouse model on, and we did not find it in this snapshot.
+⚠️ **Read that number for what it is: a property of the database, not a probability about this
+child's allele.** It is the rate at which *submitted* missense records in this gene have been
+*classified* P/LP, and submission and classification are driven by ascertainment, testing volume and
+submitter policy. It is **not** the prior probability that a given missense in *BUB1B* is causal, and
+we do not use it as one. Missense alleles here may simply be under-tested and under-submitted:
+Sieben's characterised **BUBR1^L1012P** is a missense causal enough to build a mouse model on, and we
+did not find it in this snapshot.
+
+What the census does establish is narrower and still useful: **the calibration set does not exist**.
+A predictor cannot be calibrated on one positive, so no in-silico classification of this allele can be
+anchored to same-gene truth. That is the quantitative reason the parental segregation test in §7 is
+the cheapest informative route available to us for this allele — **not the only conceivable one**.
+Functional assays on BubR1 (kinetochore localisation, PP2A-B56 binding, checkpoint output) exist and
+would speak to the substitution directly; they need material and a laboratory that we do not have, and
+they answer a different question than phase does.
 
 **The closest characterised missense sits ten residues away, and the mouse work on it carries a
 warning for us.** Sieben et al. modelled the human MVA missense **BUBR1^L1012P** in mice and paired it
@@ -263,7 +284,7 @@ an experiment, the second would close the question.
 **We do not reject metformin out of caution. We reject it with a number — and we state what kind of
 number it is.** For bortezomib, filter 3 is a true `Cmax / EC50` ratio against an EC50 measured in an
 aneuploidy-stratified model. For metformin no such EC50 exists: no published study gives an
-aneuploidy-selective effective concentration. AICAR's aneuploidy selectivity has in fact been reproduced in human cells — a trisomy-7 colonic line is fourfold more sensitive to AICAR than its isogenic diploid counterpart (PMID 22890317). That paper does not test metformin, and no published study gives metformin an aneuploidy-selective effective concentration at all. The 1000-fold figure is
+aneuploidy-selective effective concentration. AICAR's aneuploidy selectivity has in fact been reproduced in human cells — a trisomy-7 colonic line is fourfold more sensitive to AICAR than its isogenic diploid counterpart (PMID 22890317). **That paper attributes the effect to proteasomal EGFR degradation, not to AMPK**, which weakens rather than supports the AMPK route we are discussing here. It does not test metformin, and no published study gives metformin an aneuploidy-selective effective concentration at all. The 1000-fold figure is
 therefore a comparison between *concentration ranges* — micromolar plasma against millimolar complex I
 inhibition — not the same quantity as the bortezomib ratio. It is a coarser instrument, and it still
 points the same way.
@@ -305,7 +326,9 @@ repurposing arguments have.
 cohorts: with bortezomib as a single agent, 8 patients with a complete response had significantly
 higher aneuploidy scores than 50 with progressive disease (p = 0.014, one-tailed Mann-Whitney); in a
 bortezomib-plus-chemotherapy-and-dexamethasone cohort, 13 complete responders versus 14 minimal
-responders (p = 0.038); a third cohort trended the same way but had only 2 non-responders. That is a
+responders (p = 0.038, one-tailed; the figure legend calls that comparator group *minimal response*
+while the Results text calls it *progressive disease* — we report the legend and do not resolve the
+discrepancy); a third cohort trended the same way but had only 2 non-responders. That is a
 genuine human association built on small numbers — enough to justify running an experiment, not
 enough to predict an individual patient's response.
 
@@ -427,7 +450,10 @@ test of our question, the **aneuploidy × lineage interaction, is significant (p
 are the *larger* stratum, so this is attenuation, not low power.
 
 **What it costs us, stated plainly.** Two independent measurements agree: the link our bortezomib
-argument rests on is detectable where myeloma sits and attenuated in solid tumours. The §4 "prepared
+argument rests on is detectable where myeloma sits and attenuated in solid tumours. That attenuation is
+a statement about DepMap lines, not a claim that no solid-tumour evidence exists: Ippolito's own paper
+reports associations in pancreatic and paediatric PDX models (their Supplementary Fig. 8o–r), which in
+turn say nothing about constitutional MVA. The §4 "prepared
 answer for a second tumour" therefore rests on evidence **we could not extend to the relevant
 lineage**. We do not withdraw the proposal — the direction survives for two of three proteasome
 inhibitors, the mechanism is unchanged, and a null across heterogeneous cancer lines is not a null in
@@ -491,6 +517,12 @@ hackathon provides could supply one, and computed the answer instead of assertin
 
 ![Detection limit of bulk WGS for mosaic aneuploidy](fig1_detection_limit.png)
 
+*Figure 1 shows the **first-order** analysis only: mean |BAF − 0.5| against a fixed 0.005 noise floor,
+crossing at ≈14% of cells. **The later calibrated limit of 2.07% is not on this plot** — it comes from a
+different statistic (Ψ over 125-site windows against a Monte Carlo null at κ = 2) and cannot be read
+off this curve. Neither figure is a measurement of this child's genome; see "What we do not claim
+about this child" below.*
+
 **We are not proposing a new assay.** The correct endpoints exist and are standard: metaphase
 karyotyping with premature chromatid separation scoring is the diagnostic criterion for MVA; the
 micronucleus assay is an international standard (OECD TG 487); and single-cell DNA sequencing has
@@ -500,7 +532,11 @@ in liver and brain than previously reported.
 
 What we contribute is the number.
 
-The analysis used the **VCF only** — no BAM, hence no GC-LOESS normalisation. Four analyses were run,
+The analysis used the **VCF only**, so no GC-LOESS normalisation was applied. **That was our choice of
+input, not a limit of the challenge**: the organisers do distribute the raw reads (84.7 GB of FASTQ),
+and the statistic that ends up carrying the argument does not need them. An earlier version of this
+paragraph blamed the absence of alignments for the absence of GC normalisation, and it was wrong on
+both halves. Four analyses were run,
 of which three are refinements of the same B-allele-frequency statistic and one (depth-based dosage)
 is orthogonal; they are not four independent tests. In a trisomy, heterozygous sites split
 symmetrically, so the *mean* BAF does not move and the correct statistic is mean |BAF − 0.5|.
@@ -508,9 +544,21 @@ symmetrically, so the *mean* BAF does not move and the correct statistic is mean
 The measured standard deviation of mean |BAF − 0.5| across the 22 autosomes at fixed depth
 (DP 40–48, 857,435 sites) is **0.0035**, so the 0.005 noise floor we use — arising from GC content,
 mappability and segmental duplications — is a ≈1.4-SD criterion. Simulating at DP 44 against it gives
-a **practical detection limit of a clonal whole-chromosome trisomy present in ~14% of cells**; a
+a **first-order detection limit of a clonal whole-chromosome trisomy present in ~14% of cells**; a
 conventional 2-SD criterion moves it to 16% and 3-SD to 20%. Every stricter choice makes the assay
 look worse, so the conclusion does not rest on the threshold.
+
+**A later analysis improved that limit, and we report both because they answer slightly different
+questions.** Replacing the fixed 0.005 floor with a calibrated null — Ψ over 125-site windows, the
+measured Beagle switch process, the empirical segment-size distribution, and 40,000 Monte Carlo
+replicates per cell — gives a limit of **2.07% of cells at an overdispersion κ = 2**, and 1.46% at
+κ = 1, 2.95% at κ = 4 (`mosaico/RESULTADOS.md` §3; every value in `mosaico/ventana.json` at the
+chosen window W = 125). Read that number with its three conditions
+attached: **it is a simulated limit of detection under a fitted null, not a measured sensitivity, and
+it is conditional on κ**, which we estimate from these data at ≈2.3 rather than knowing independently.
+Under it, the 1–2% per chromosome that variegation implies sits **at the edge of what is achievable
+rather than far below it** — which is a worse position for the assay than the 14% figure suggested,
+not a better one.
 
 **Read sampling is not what sets that limit.** The simulation subtracts the binomial baseline at
 DP 44, so the 0.005 threshold a signal must clear is the *measured dispersion between chromosomes* —
@@ -522,14 +570,59 @@ sequencing deeper would barely move the limit.
 As an **illustrative bound, not a measurement of this child**: if 30% of cells were aneuploid — the
 order of magnitude of the diagnostic criterion, not a figure from this patient — spread across 22
 autosomes, each chromosome would be affected in **1–2% of cells**, and gains and losses of the same
-chromosome cancel in bulk. That sits **7–16× below** the 14–16% limit. And **bulk averaging erases variegation by
-construction**, at any depth. The cytogenetic hallmark of MVA, premature chromatid separation, leaves
-no trace in DNA sequence at all.
+chromosome cancel in bulk. Against the first-order 14–16% floor that is **7–16× below** it; against
+the calibrated 2.07% limit it is **at the boundary**. The conclusion survives either way, but it does
+not survive *because of* the limit, and the argument that does not depend on any limit is this one:
+
+**A perfectly balanced variegated mixture is not identifiable from bulk allele fractions.** Model a
+fraction *g* of cells gaining homologue A, an equal fraction gaining B, and matched losses of each.
+Mean copy number is exactly 2 and mean allele fraction exactly 0.5, **by symmetry**. Simulated under
+identical conditions, detection stays at **0.1–0.2% — the false-positive rate — from f = 2% up to
+f = 40%** (`mosaico/RESULTADOS.md` §4). That is not low power. Two biologically distinct cell
+populations produce the same observable distribution, so no depth and no statistic separates them.
+
+⚠️ **That proof is about the mixture we modelled, not about every MVA genome.** Real variegation need
+not be perfectly balanced between homologues or between gains and losses, and a sufficiently
+asymmetric pattern would leave a signal. What we have shown is that the architecture the disease name
+describes contains a regime that bulk DNA cannot reach even in principle — enough to disqualify the
+endpoint, not enough to say "bulk WGS can never see MVA".
+
+And **bulk averaging erases variegation by construction**, at any depth. The cytogenetic hallmark of
+MVA, premature chromatid separation, leaves no trace in DNA sequence at all.
 
 Every candidate signal we did observe traced to coverage, to segmental duplications (22q11,
 centromeres), or partially to GC content — partially, because our measured GC–coverage correlation was
 r = 0.43 from a sparse sample, and chr21, the largest deviation, is GC-poor. That is an insufficient
 measurement rather than an established explanation, and we report it as such.
+
+### What we do not claim about this child, and why
+
+We ran the calibrated statistic on the proband and **we withdrew the result**. It is not reported here
+as a negative finding, and the improved limit must not be read as one either. Three reasons, all from
+our own files:
+
+- **We calibrated one test and applied another.** The pre-registered Ψ threshold is exceeded on **22 of
+  22 autosomes** at every κ setting. That is not 22 mosaic events; it is a null model that does not
+  describe these data. The between-chromosome robust z-score we actually reported was chosen after
+  seeing the data and was never calibrated (`mosaico/RESULTADOS.md` §5).
+- **The residual signal is uncontrolled.** What remains is a global overdispersion of ≈2.3× the
+  binomial expectation, shared by all 22 autosomes and correlated at the ~200 kb scale. From the VCF
+  alone we cannot say whether it is technical or biological.
+- **The external control was pre-registered, it ran, and it came back not conclusive.** Ten unrelated
+  1000 Genomes individuals on two fixed windows (`mosaico/PREREGISTRO.md` amendment 4, committed
+  `6405d9e`; result `ce94b89`). The proband fell **below** the control envelope on both statistics and
+  both chromosomes — an outcome the amendment had not listed, so the pre-registered verdict is *not
+  conclusive*. The cause was declared in advance with its direction: the controls carry no GQ filter
+  and were called jointly across 3,202 samples against a singleton call for the proband, which inflates
+  their dispersion. A κ of 46 in a healthy individual is a property of the calling, not of biology.
+  **The control did not fail to run; it failed to be a control** (`mosaico/CONTROL_RESULTADO.md`).
+
+One narrow statement survives, and we make only it: against those ten genomes, window-scale
+overdispersion ranges from κ ≈ 6 to 46, and the proband's ≈2.3 is the **lowest in the comparison**, so
+his value is not anomalous in size. **That is not a clinical negative.** We are not reporting that this
+child has no clonal lesion above 2% of cells; we are reporting that our attempt to measure it did not
+produce an interpretable answer. Resolving it needs a control processed identically from reads, which
+we did not have.
 
 **Consequence:** no proposal whose endpoint is "reduced aneuploidy burden" can be evaluated with these
 data. Any screen must measure per-cell mis-segregation.
@@ -553,42 +646,64 @@ compatible with systemic toxicity as with therapeutic promise. That is why the g
 closing the tumour-board question**, which would need aneuploidy-high tumour-derived material. We say
 this now rather than after the data.
 
-**We previously hedged this experiment on statistical grounds as well, and that hedge was wrong. We
-computed it rather than keeping it.** An earlier version of this section argued that "variegation
-leaves each chromosome affected in 1–2% of cells, so a fibroblast population may simply not be
-aneuploid enough", and concluded that a negative was ambiguous by design. **The 1–2% is a
-per-chromosome figure** — 30% of cells divided across 22 autosomes — and it is the right denominator
-for §5, which asks whether bulk sequencing can see one specific chromosome. It is the wrong
-denominator here, because a cell is under proteotoxic load whichever chromosome it gained. A
-pre-registered power calculation (`potencia/PREREGISTRO.md`, committed before the run) gives **power
-0.897** for this design at the fraction that matters — 30% of cells carrying at least one aneuploidy,
-4× EC50 selectivity, n = 3, α = 0.05 — and **power 0.063** under the per-chromosome reading we had
-implied. The old hedge rested on the wrong denominator.
+**The quantity that governs this design is the fraction of cells carrying *any* aneuploidy, not the
+fraction carrying a *given* chromosome.** A cell is under proteotoxic load whichever chromosome it
+gained, so the ~30% of the diagnostic criterion is the right denominator here, while the 1–2% per
+chromosome is the right one for §5. A pre-registered power calculation
+(`potencia/PREREGISTRO.md`, committed before the run) gives **power 0.897** at 30% of cells with an
+assumed 4× EC50 selectivity, n = 3 and α = 0.05, against **power 0.063** under the per-chromosome
+reading. An earlier version of this section used the per-chromosome figure and concluded a negative
+would be ambiguous by design; that hedge rested on the wrong denominator and is withdrawn as a
+statement about statistical power.
 
-**The new statement needs its own qualifier, and a second pre-registered analysis the same day cut it
-down.** 0.897 holds *for a 4× effect, in a ~30% aneuploid culture, at 10% well-level CV*, and none of
-those three is measured in these cells. Worse for us: proteotoxic load is a dose, not a switch, and an
-MVA cell carries **about one** altered chromosome where the lines that gave the < 40 nM EC50 carry on
-the order of eighteen altered arms. In DepMap, in the one lineage where the aneuploidy–proteasome
-dependency is significant at all, PSMB5 dependency moves **0.09 residual SD at two arms against 0.84
-at eighteen** (`potencia/RESULTADOS_2_DOSIS.md`, pre-registered as `45c4ed7`; in solid lines the slope
-is not distinguishable from zero and we report that as uninformative). At a 2× selectivity the power
-is **0.387**. So: **the design is powered for the effect size we hoped for and underpowered for a
-plausible smaller one, and we cannot yet say which regime these cells are in.** We replaced one
-over-claim with a narrower one rather than defending the first.
+**Read 0.897 as an idealised scenario, not as this experiment's power.** It holds *for an assumed 4×
+selectivity, in a ~30% aneuploid culture, at 10% well-level CV*, and **none of those three has been
+measured in these cells**. The simulation is also weaker than the design we pre-registered: it fits a
+two-parameter Hill curve where the pre-registration promised four, and its noise model has no
+biological-replicate term. Both push the number upward, so 0.897 is optimistic **within its own
+model** — it is neither a validated power estimate for patient cells nor a mathematical ceiling on
+what a better-specified version of the experiment could achieve (`potencia/RESULTADOS.md` §5b).
 
-**It buys a protocol change, not just a corrected sentence.** Power collapses below a cell fraction of
-about 0.25 (0.589 at 0.20, 0.196 at 0.10), and **nobody has counted metaphases in these fibroblasts** —
-culture selection makes the true fraction likely lower than at biopsy. So the fraction is now a
-**gating measurement** rather than an assumption: metaphase counting with premature chromatid
-separation scoring on the culture that will actually be treated, at the passage that will be treated.
-That is not a new assay; it is the diagnostic criterion for MVA. Proceed at n = 3 if it is ≥ 0.25;
-n = 14 at 0.10; and **below 0.10 do not run the bulk viability assay at all** — go to a per-cell
-endpoint, because no feasible n rescues it. Details and every sweep in `potencia/RESULTADOS.md`.
+**A second pre-registered analysis the same day gives us our own reason to doubt the 4×.** Proteotoxic
+load is a dose, not a switch: an MVA cell carries **about one** altered chromosome where the lines that
+gave the < 40 nM EC50 carry on the order of eighteen altered arms. In DepMap, in the one lineage where
+the aneuploidy–proteasome dependency is significant at all, PSMB5 dependency moves **0.09 residual SD
+at two arms against 0.84 at eighteen** (`potencia/RESULTADOS_2_DOSIS.md`, pre-registered as `45c4ed7`).
+
+⚠️ **State precisely what that does and does not do, because we got this wrong once.** The
+pre-registration fixed its magnitude rule on the **solid** stratum. There the slope's 95% interval
+covers zero (−0.0118 … +0.0006, p = 0.076), so the falsification clause applies and the exercise is
+**uninformative** for the stratum the rule was written about. The 0.093 ratio is **haematological**,
+where no decision rule was pre-registered, and CRISPR gene effect does not convert into an EC50 ratio
+in either stratum. So the 4× central value is **unsupported for these cells and equally unrefuted**. An
+earlier version of this section reported the rule as having fired; it did not, and the correction is
+dated 2026-09-06 in `RESULTADOS_2_DOSIS.md` §3. At an assumed 2× selectivity power is **0.387**. The
+honest summary is that **we do not know which regime these cells are in, and the experiment is what
+would tell us.**
+
+**It still buys a protocol change, not just a corrected sentence.** Power collapses below a cell
+fraction of about 0.25 (0.589 at 0.20, 0.196 at 0.10), and **nobody has counted metaphases in these
+fibroblasts** — culture selection makes the true fraction likely lower than at biopsy. So the fraction
+becomes a **gating measurement** rather than an assumption, taken on the culture that will actually be
+treated, at the passage that will be treated. The endpoint is a **count of cells carrying at least one
+numerical chromosome abnormality**, recorded together with **how many abnormal chromosomes each
+abnormal cell carries**, because the second analysis shows the per-cell burden matters as much as the
+fraction.
+
+⚠️ **PCS scoring is a companion, not this measurement.** Premature chromatid separation is a
+centromere-cohesion phenotype and the diagnostic criterion for MVA; the aneuploid fraction is a count
+of abnormal chromosome *numbers*. The same metaphase slides yield both, at no extra cost, but they are
+different endpoints and an earlier version of this section conflated them.
+
+Indicative branches: n = 3 if the fraction is ≥ 0.25; n = 14 at 0.10; and **below 0.10 do not run the
+bulk viability assay** — go to a per-cell endpoint, because no feasible n rescues it. Every branch is
+computed at the same assumed 4× selectivity, so **measuring the fraction does not validate the branch
+it selects**: it removes one unmeasured input of three. Treat the table as planning, not as a validated
+operating rule. Details and every sweep in `potencia/RESULTADOS.md`.
 
 | Week | Step | Readout |
 |---|---|---|
-| 1–3 | Patient dermal fibroblasts from skin biopsy, plus two matched controls. **Gate:** metaphase count with PCS scoring on the culture to be treated, to measure the aneuploid cell fraction — the assay's power depends on it and it is unmeasured (`potencia/RESULTADOS.md` §3). **Patient cells are required:** RPE1 with reversine-induced aneuploidy reproduces Ippolito's own system and cannot test whether the dependency transfers to BUB1B-deficient constitutional MVA — we list it as a positive control, not a substitute. Without patient cells the go/no-go question is not answerable | Growth; baseline karyotype |
+| 1–3 | Patient dermal fibroblasts from skin biopsy, plus two matched controls. **Gate:** on the culture to be treated, count metaphases scoring (a) the proportion of cells with ≥ 1 numerical chromosome abnormality, (b) the number of abnormal chromosomes per abnormal cell, and (c) PCS, reported separately. (a) is the input the power model needs and it is unmeasured; (c) is the MVA diagnostic criterion and is not a substitute for it (`potencia/RESULTADOS.md` §3). **Patient cells are required:** RPE1 with reversine-induced aneuploidy reproduces Ippolito's own system and cannot test whether the dependency transfers to BUB1B-deficient constitutional MVA — we list it as a positive control, not a substitute. Without patient cells the go/no-go question is not answerable | Growth; baseline karyotype |
 | 2–4 | Allele fate: allele-specific RT-PCR ± NMD inhibitor; quantitative western blot with N- and C-terminal antibodies | N+/C− band implies truncation; loss of both implies NMD |
 | 4–6 | Bortezomib dose–response, **0–1,000 nM** with dense sampling below 100 nM, 72 h, patient versus control versus an aneuploidy-high positive control (reversine-treated RPE1) | EC50 and the ratio between them. The range spans the 312 nM clinical Cmax so the advancement threshold falls inside the data. **Extended from 0–400 nM after the power calculation:** at a selectivity of 10× the control's EC50 sits at the old ceiling and is estimated at the edge of the data, doubling the spread of the estimate (`potencia/RESULTADOS.md` §4) |
 | 4–6 | **Combination arm: bortezomib + everolimus** | Tests the predicted antagonism |
@@ -596,9 +711,10 @@ endpoint, because no feasible n rescues it. Details and every sweep in `potencia
 
 **Timeline, stated honestly in the heading it belongs in.** Eight weeks is the *assay* programme, and it
 holds only once a patient fibroblast line exists. Establishing 15–20 × 10⁶ fibroblasts from a fresh
-biopsy typically takes 4–8 weeks on its own, so from a standing start the realistic figure is
-**about twelve weeks**, not eight. We use "eight-week experiment" as shorthand for the assay window and
-nowhere as a promise of a twelve-week answer.
+biopsy typically takes 4–8 weeks on its own (`track2/DATOS_CANDIDATO.md` §7), so from a standing start
+the planning figure is **12–16 weeks**, not eight — and the same source warns that growth can be slower
+in MVA1 fibroblasts, which would push it further. We use "eight-week experiment" as shorthand for the
+assay window and nowhere as a promise of an answer in eight.
 
 **Advancement criteria, fixed before the data.** We state them in the direction that avoids rewarding
 toxicity:
@@ -628,8 +744,12 @@ toxicity:
    **Read the criterion off this table once *f* is measured**, and treat a shift materially below the
    corresponding row as a negative. A shift materially *above* it is not a better result — it is a
    reason to suspect the mixture model or systemic toxicity, which is what stop signal 4 below
-   exists for.
-2. **Effect at ≤312 nM**, the upper end of the clinical Cmax interval.
+   exists for. ⚠️ Every row assumes the same unmeasured 4× within-cell selectivity, so this table is a
+   pre-specified reading rule for the experiment, **not a validated threshold**. If the experiment ever
+   returns a selectivity estimate, the table is recomputed rather than defended.
+2. **Effect at ≤312 nM.** That is the top of the *total plasma* Cmax interval for the approved dose,
+   used here as an order-of-magnitude ceiling for plausibility. It is not free drug, not intratumoral
+   drug, and not a validated clinical threshold.
 3. **No increase in micronuclei among survivors** — filter 5.
 4. **A stop signal, not a go signal:** if patient fibroblasts are markedly more sensitive than controls
    *without* the aneuploidy-high positive control showing a larger shift still, the most likely reading
@@ -668,6 +788,16 @@ assessment including review of systems to identify signs of rhabdomyosarcoma and
 avoidance of radiation exposure, and HPV vaccination (PMID 39264246). The same source records that
 cancers in MVA1 are *"predominantly Wilms tumor and rhabdomyosarcoma, but MDS, AML and ALL have also
 been reported"*.
+
+**Provenance note, 2026-09-06.** These three passages — the 3-monthly-to-age-7 interval, the tumour
+spectrum, and the statement in §9 about the 15 published MVA2 individuals — come from the **full text**
+of PMID 39264246, not its abstract. On 2026-09-06 we re-verified all three against the open-access full
+text (PMC11705613, archived verbatim in `evidencia/consenso_fulltext_2026-09-06.xml`): the interval is
+attributed there to the SIOP-Europe Host Genome Working Group and SIOP Renal Tumor Study Group, with the
+AACR group stating that it *supports* those recommendations; the MVA2 sentence reads *"at the time of
+writing, none of the 15 individuals with MVA2 described in literature developed cancer"*, which describes
+the published literature, not a followed cohort, and is not a statement of zero risk. Nothing in our
+recommendation is original to us here; a clinician should read the consensus itself before acting.
 
 We had reached the 3-monthly-to-age-7 schedule independently, by extension from UK Wilms-risk
 recommendations that stop at age 5 (PMID 16857697). We report that convergence rather than our
@@ -724,15 +854,23 @@ phenotype, and would inform any future pregnancy. It is cheap, it can be done th
 `clinico/PARENTAL_SEGREGATION_ORDER.md` is a one-page laboratory request a clinician can adapt and
 sign: both loci, two Sanger amplicons with primer sequences, and an interpretation table written
 **before** the result, covering all five outcomes — including the *cis* result, which would refute
-our own Track 1 interpretation outright. The primers were designed against GRCh38 with common 1000 Genomes SNVs and RepeatMasker
-intervals excluded from the primer regions, and each of the four was then counted across the entire
-assembly: all occur exactly once. That check was not ceremonial — the first pair the design software
-returned sat inside an *AluY* element 272 bp from the *c.2210* site and has roughly a hundred exact
-copies in the genome. A primer like that does not fail in review; it fails in the laboratory, and in
-a segregation test allele drop-out reads as *"this parent does not carry it"*.
+our own Track 1 interpretation outright. The primers were designed against GRCh38 with common 1000
+Genomes SNVs and RepeatMasker intervals excluded from the primer regions, and each of the four was then
+counted across the entire assembly: all occur exactly once. **The RepeatMasker exclusion is what caught
+the bad pair** — the first design the software returned sat inside an *AluY* element 272 bp from the
+*c.2210* site, with roughly a hundred exact copies in the genome. The genome-wide count is
+**confirmation, not the filter**, and we state it that way rather than claiming we sifted a bad pair out
+at the counting step (`clinico/PARENTAL_SEGREGATION_ORDER.md`). Either way the failure it avoids is
+real: a primer like that does not fail in review, it fails in the laboratory, and in a segregation test
+allele drop-out reads as *"this parent does not carry it"*.
 
-This is the only experiment in the whole project that can settle the phase, inform a future
-pregnancy and speak to HP:0200067 at once, and it needs blood rather than a new laboratory.
+⚠️ **What segregation can and cannot deliver.** A *trans* result supports the compound-heterozygous
+model and contributes PM3-type evidence. **It does not by itself reclassify the missense as
+pathogenic**, and we do not treat it as doing so. A *cis* result is the informative one in the other
+direction: it would refute the Track 1 interpretation outright.
+
+This is the cheapest experiment in the project that speaks to phase, to a future pregnancy and to
+HP:0200067 at once, and it needs blood rather than a new laboratory.
 
 ---
 
@@ -847,7 +985,7 @@ We have tried to write something useful rather than something reassuring. The ho
 drug should he take today" is none — and we show why the obvious candidate cannot work rather than
 proposing it softly. The useful answer is a mechanism that matches his disease, an approved drug that
 reaches the required concentration, an explicit statement of the condition under which it would become
-appropriate, and an experiment — an eight-week assay window, about twelve weeks from a fresh biopsy —
+appropriate, and an experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy —
 that could fail to support it in this child's own cells. That experiment would not close the
 tumour-board question on its own, and §6 says so.
 
@@ -901,7 +1039,7 @@ underlying defect made worse?
 19. Yost S, et al. Biallelic *TRIP13* mutations predispose to Wilms tumor and chromosome missegregation. *Nat Genet* 2017. PMID 28553959
 20. FDA label, VELCADE (bortezomib), NDA 021602 s040, §12.3
 21. FDA BPCA Clinical Review, bortezomib paediatric safety, NDA 021602, 2015
-22. Aneuploid human colonic epithelial cells are sensitive to AICAR-induced growth inhibition through AMPK. 2013. PMID 22890317
+22. Aneuploid human colonic epithelial cells are sensitive to AICAR-induced growth inhibition through EGFR degradation. 2013. PMID 22890317
 23. **Nakano Y, Kuiper RP, et al. Update on Recommendations for Cancer Screening and Surveillance in Children with Genomic Instability Disorders.** *Clin Cancer Res* 2024. PMID 39264246 — the MVA-specific surveillance consensus used in §7
 24. **Schukken KM, et al. Paired CRISPR screens identify mitochondrial metabolism and UBE2H as aneuploid-specific dependencies in human cancer cell lines.** *bioRxiv* 2026 (preprint, not peer-reviewed). PMID 42094535
 25. Vempuluru VS, et al. Sequential presentation of Wilms' tumor and orbital rhabdomyosarcoma in a child with mosaic variegated aneuploidy syndrome 3. *Orbit* 2026. PMID 42595739

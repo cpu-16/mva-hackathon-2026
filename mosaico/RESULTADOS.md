@@ -75,7 +75,15 @@ weights, where the normal approximation is unreliable in the tail.
 | 4 | 2.95% |
 
 Against the 14% we published, that is a **6.8-fold improvement**, and it places the achievable limit
-at the upper edge of the 1–2% per chromosome that variegation implies.
+**at the upper edge of the 1–2% per chromosome that variegation implies** — that is, at the boundary of
+what the assay would need to reach, not comfortably below it.
+
+> **Nota de procedencia, añadida 2026-09-06.** Los tres números de esta tabla salen de
+> `mosaico/ventana.json`, en la ventana elegida `W_elegida = 125`, donde `lod_k1/k2/k4` valen
+> 0,014620 / 0,020734 / 0,029451. **No** salen de `lod_montecarlo.json` (0,01123 / 0,01592 / 0,02259,
+> con `n_segmentos` = 3) ni de `lod_medido.json` (0,01078 / 0,01528 / 0,02167), que son corridas con
+> otra configuración. Las cifras publicadas son correctas y trazables; lo que estaba mal era el
+> puntero. Comprobado leyendo los tres JSON. No se cambió ningún resultado.
 
 ## 4. The result that does not depend on any of that
 
@@ -171,5 +179,6 @@ mosaico/03_medir_switch.py tasa de switch medida
 mosaico/04_lod.py          LOD analítico
 mosaico/05_mc_gpu.py       LOD por Monte Carlo en GPU
 mosaico/06_ventana.py      elección de la ventana en datos públicos
+mosaico/ventana.json       LOD calibrado publicado en §3, en W = 125
 mosaico/07_probando.py     estadístico del probando
 ```

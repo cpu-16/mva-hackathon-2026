@@ -76,6 +76,10 @@ ax.annotate("variegation leaves each\nchromosome here (1–2%)",
             arrowprops=dict(arrowstyle="->", color=MUTED, linewidth=1,
                             connectionstyle="arc3,rad=-0.25"))
 
+# NOTA (2026-09-06): el limite calibrado posterior (Psi por ventanas, MC, kappa=2 -> 2.07%)
+# NO se dibuja aqui a proposito. Sale de otro estadistico y no se puede leer de esta curva;
+# superponerlo sugeriria que si. Vive en el texto del §5 y en mosaico/RESULTADOS.md §3.
+
 ax.set_xlim(0, 32)
 ax.set_ylim(0, 0.022)
 ax.set_xlabel("cells carrying a given trisomy  (%)", fontsize=10, color=INK)
@@ -99,7 +103,9 @@ ax.set_axisbelow(True)
 fig.text(0.005, -0.02,
          "Binomial simulation, DP = 44, 30,000 sites per point; the binomial baseline is subtracted. "
          "The 0.005 threshold is \u22481.4\u00d7 the standard deviation of mean |BAF \u2212 0.5| measured between "
-         "the 22 autosomes at fixed depth (SD = 0.0035); a 2-SD criterion would move the limit to 16 %.",
+         "the 22 autosomes at fixed depth (SD = 0.0035); a 2-SD criterion would move the limit to 16 %. "
+         "This is the first-order analysis; the calibrated \u03a8 limit of mosaico/RESULTADOS.md \u00a73 is a "
+         "different statistic and is not plotted here.",
          fontsize=7.8, color=MUTED, ha="left")
 
 fig.tight_layout()

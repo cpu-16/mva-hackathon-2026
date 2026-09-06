@@ -1,16 +1,39 @@
 # Video de pitch — 3 minutos
 
+## ⛔ ESTADO AL 6-SEP-2026: el mp4 es la v3. La v4 está escrita y SIN RENDERIZAR
+
+`GUION.md` es ahora la **v4** y `slides.html` está actualizado para acompañarla. **Nada de eso está en
+el video.** La sesión que escribió la v4 no pudo ejecutar Piper, ffmpeg ni el renderizador de slides,
+así que:
+
+| Archivo | Versión que contiene |
+|---|---|
+| `GUION.md` | **v4** (nueva) |
+| `slides.html` | **v4** (nueva) |
+| `slide01..08.png` | **pre-v4** — sin regenerar |
+| `audio/S1..S8.wav`, `narracion.wav` | **v3** — sin regenerar |
+| `pitch_MVA2026.mp4` | **v3**, 2:59.0, intacto |
+
+**No marcar el video como listo mientras el audio siga siendo el viejo.** Para terminar:
+`python3 render.py`, resintetizar S1–S8 con Piper a `--length-scale 1.415`, reensamblar con la receta
+`-t $A` de más abajo y **medir la duración con ffprobe**. La v4 tiene 408 palabras de narración contra
+las 411 de la v3, lo que extrapola a ~177,7 s — es una extrapolación, no una medida.
+
+`GUION_v3.md` conserva el guion que el mp4 actual sí narra.
+
+---
+
 **`pitch_MVA2026.mp4`** · **2:59.0** · 1920×1080 · 30 fps · 4.6 MB · audio AAC.
-El límite del hackathon es 3:00, así que queda **1.0 s de margen**. Regenerado el 30-ago-2026 (guion v3).
+El límite del hackathon es 3:00, así que queda **1.0 s de margen**. Generado el 30-ago-2026 (guion v3).
 
 ## Qué hay aquí
 
 | Archivo | Qué es |
 |---|---|
-| `pitch_MVA2026.mp4` | **el entregable** |
-| `GUION.md` | el guion v2, por secciones y con los tiempos |
+| `pitch_MVA2026.mp4` | el entregable — **hoy narra la v3** |
+| `GUION.md` | el guion **v4**, por secciones, con los cambios y lo que falta |
+| `GUION_v3.md` | el guion que el mp4 actual narra |
 | `GUION_v1.md` | la versión anterior, antes de la crítica de Codex y Cursor |
-| — | **v3 (30-ago):** S3, S5, S7 y S8 se rehicieron porque contradecían el reporte de la ronda 7 |
 | `narracion.json` | el guion extraído, lo que consume el TTS |
 | `slides.html` | las 8 slides (un solo archivo, una `<section>` por slide) |
 | `slide01..08.png` | las slides renderizadas |
