@@ -80,7 +80,7 @@ pre-existing muscle atrophy. **Not for this child, not now** (§5). What remains
 bounded answer for the setting of an active tumour, an experiment that could refute the premise in this
 child's own cells (§6), and the actions that change his prognosis today without any drug (§7).
 
-**What we contribute** is seven pre-registrations that constrain the claim — DepMap and its follow-up, MVA-Replay, mosaicism, power, dose–response and the TRIP13 transfer; the DepMap test came back against our mechanism, the mosaicism control came back not conclusive, the power analysis found the assay feasible only under unmeasured inputs, and the dose–response analysis left our 4× assumption unsupported — a reusable five-filter worksheet, and a retrieval-benchmark tool transferred to a
+**What we contribute** is eight pre-registrations that constrain the claim — DepMap and its follow-up, MVA-Replay, mosaicism, power and its four-parameter follow-up, dose–response, and the TRIP13 transfer; the DepMap test came back against our mechanism, the mosaicism control came back not conclusive, the power analyses showed the assay as first sized (n = 3) to be underpowered even under its own assumptions — about 12 cultures per arm are needed — and the dose–response analysis left our 4× assumption unsupported — a reusable five-filter worksheet, and a retrieval-benchmark tool transferred to a
 second MVA gene from a fresh clone of our repository (§9).
 
 ---
@@ -322,7 +322,8 @@ pre-registered follow-up, 8 Sep): with four free Hill parameters, a biological m
 EC50 (CV 0.20), a plate offset and per-well noise, **the design at n = 3 per arm has power 0.17** at the
 central scenario (f = 0.30, 4× selectivity), not the 0.897 of the original two-parameter simulation without
 biological variability, which we keep only as the optimistic reference. Fitting never failed; the cost is
-biology. Reaching 0.80 needs **12 independent cultures per arm** at f = 0.30, 23 at f = 0.20 and more than
+biology (a failed fit — non-convergence, EC50 at a bound, or a top below the bottom + 0.2 — counts as a
+non-rejection). Reaching 0.80 needs **12 independent cultures per arm** at f = 0.30, 23 at f = 0.20 and more than
 24 at f = 0.10 — so the n = 3 and n = 14 branches of earlier versions are retired, and *n* counts independent
 biological replicate cultures, not wells. None of the inputs is measured in these cells, CV_bio = 0.20 is an
 assumption (0.10–0.30 moves power at n = 3 between 0.23 and 0.12), and our own dose–response analysis leaves
@@ -437,7 +438,9 @@ proteasome inhibition (§3.4); bortezomib for this child today (§5).
   measured in constitutional MVA cells.
 - **Ippolito studied cancer aneuploidy.** Whether the dependency transfers is exactly what §6 tests; we have
   not assumed it. Our public-data test weakens the solid-tumour case and cannot speak to MVA cells.
-- **The power estimate is idealised** (two-parameter fit, no biological-replicate term, unmeasured inputs).
+- **The power estimate rests on unmeasured inputs**: CV_bio = 0.20 is assumed, the aneuploid fraction is
+  uncounted, the 4× selectivity is unsupported; under the declared model the design needs about 12
+  cultures per arm, and 0.897 is an optimistic two-parameter reference.
 - **The mosaicism control was not conclusive**; the patient-level result is withdrawn; no clinical negative.
 - **No trial specific to MVA1** was found in ClinicalTrials.gov, Open Targets, ChEMBL or CMap/LINCS; absence of an interface result is not proof of absence.
 - **The child's current age is unknown to us.**

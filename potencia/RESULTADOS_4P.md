@@ -1,7 +1,8 @@
 # Results — the four-parameter fit with biological variability (pre-registered follow-up)
 
 **Team ciberpty · run 2026-09-08, 00:23–00:29 EST**, per `PREREGISTRO_4P.md` (commit `fa9eaae`) and its
-Amendment 1 (parallel run, per-scenario seeds, committed before any number was seen). Script
+Amendment 1 (parallel run, per-scenario seeds — written before any number was seen, but committed only
+together with these results; see the provenance note appended to the pre-registration). Script
 `03_potencia_4p.py`; outputs `resultados_4p.json`, `_4p_stdout.txt`. Runtime 397.2 s on 32 cores.
 
 **Headline: under the model we had promised — four free Hill parameters, a shared biological multiplier on
@@ -19,9 +20,10 @@ the cost is biology, not the fit.**
 | Power, the original two-parameter fit on the same simulated data | 0.234 |
 | Reference: original two-parameter model without biological variability (`resultados.json`) | 0.897 |
 
-So of the drop from 0.897 to 0.167, most is the added biological and plate variability
-(0.897 → 0.234 with the same fitter) and the rest is the four-parameter fit
-(0.234 → 0.167).
+So of the drop from 0.897 to 0.167, the four-parameter fit itself costs 0.067 (0.234 → 0.167); the rest
+(0.897 → 0.234 with the same fitter) comes from what the re-run also changed relative to the original:
+the biological and plate variability, the 0–1,000 nM grid and the Welch test, which this design does not
+separate.
 
 ## Sweeps (one factor at a time from the central scenario; failure rate 0.000 throughout)
 

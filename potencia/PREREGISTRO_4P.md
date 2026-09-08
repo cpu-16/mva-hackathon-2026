@@ -106,3 +106,16 @@ two-parameter fit on the same data 0.234; n for 0.80: **12** at f = 0.30, **23**
 **> 24** at f = 0.10. P-4P1 and P-4P3 confirmed; P-4P2 (failures ≥ 5%) and P-4P4 (the fit is the larger
 cost) **falsified** — the cost is the biological variability. The n = 3 and n = 14 branches are retired from
 the main body per the pre-registered mapping.
+
+### Provenance correction — 2026-09-08, 00:45, after an adversarial read
+
+Amendment 1 says it was recorded "before any result was seen". The file timestamps support that
+(amendment 00:22, parallel script 00:23, results 00:29), but the **git record does not**: the amendment
+and the parallel script were committed in `8cee494` together with `resultados_4p.json`, not before it.
+The commit that precedes the run is `1fbc1b4` (00:10), which holds the single-threaded script. What the
+record therefore supports is: (i) the pre-registration text and predictions precede everything
+(`fa9eaae`); (ii) the sequential run was killed before its output existed (buffered stdout, no JSON);
+(iii) the parallel script differs from the committed sequential one by the multiprocessing wrapper,
+per-scenario seeds, unbuffered output and a NumPy `out=` argument in the Hill helper —
+`git diff 1fbc1b4 8cee494 -- potencia/03_potencia_4p.py` shows the 55 lines. The words "committed
+before" in Amendment 1 are withdrawn; the model, scenarios and decision rules were unchanged by that diff.

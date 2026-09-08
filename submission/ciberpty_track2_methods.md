@@ -43,7 +43,7 @@ insufficient.
 filter 4 *for this child*, which is a patient-specific verdict rather than a property of the drug.
 We state the condition under which it would become appropriate — an MVA patient with an active
 tumour, where the comparator is cytotoxic chemotherapy rather than nothing — and we propose an
-experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy because establishing the fibroblast line takes 4–8 weeks on its own — that could fail to support the dependency in this child's own cells. It would not, on its own, close the tumour-board question, and we say so where we describe it.
+experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy because establishing the fibroblast line takes 4–8 weeks on its own, more if twelve cultures per arm must be expanded — that could fail to support the dependency in this child's own cells. It would not, on its own, close the tumour-board question, and we say so where we describe it.
 
 ## Q3 — Generative AI declaration
 

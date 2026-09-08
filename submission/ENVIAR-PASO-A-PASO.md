@@ -45,18 +45,17 @@ report is the evidence behind that no rather than a candidate we are advocating 
 carried through the filters and then stopped by the safety filter for this patient; we state the one
 setting in which that verdict would invert, with the assay that would test it.
 
-Second, six analyses were pre-registered in git before they ran. Four of the first five came back
-against our own argument, and all are in the report, including the DepMap test that weakened our
-central mechanism and the mosaicism control that returned not conclusive. The sixth, run on 7 September
-from a fresh clone of the repository, transferred our retrieval benchmark tool to a second MVA gene
-(TRIP13): the pipeline held, and the run falsified two claims the repository made about itself, both
-now corrected with the log committed. The repository has the pre-registration commits and the
-timestamps; VERIFY.md explains how to check them without trusting us.
+Second, eight pre-registrations were committed to git before their analyses ran, and most came back
+against us: the DepMap test weakened our central mechanism, the mosaicism control returned not
+conclusive, and the power analyses showed the assay as first sized to be underpowered even under its
+own assumptions. A transfer of our retrieval benchmark tool to a second MVA gene (TRIP13), run from a
+fresh clone of the repository, held — and falsified two claims the repository made about itself, both
+corrected with the log committed. VERIFY.md explains how to check the timestamps without trusting us.
 
-This is our second Track 2 entry and replaces the first (6 September): same conclusions, with the
-transfer test, trametinib added to the filter table, and small corrections. The methods description
-form is Appendix B of this PDF. The repository is private during the hackathon and will be made public
-for the final evaluation, per the rules.
+This is our third and final Track 2 entry and replaces the second (7 September): same conclusions. Part I
+of the PDF is a 24-page decision document; Part II is the full evidence; the methods description form is
+Appendix B. The repository is private during the hackathon and will be made public for the final
+evaluation, per the rules.
 ```
 
 (El texto del envío 1 del 6-sep está en `NOTAS_ENVIO.md`.)

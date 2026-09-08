@@ -50,7 +50,11 @@ estructura de 14 páginas y 26 frases atacables). Lo hecho esta madrugada, todo 
    f = 0,30 y 23 a 0,20; sin fallos de ajuste; el costo es la variabilidad biológica (2 de 4
    predicciones falsadas). Las ramas n=3/n=14 están retiradas del §6 de las dos partes; 0,897 queda
    como referencia optimista; el abstract del Track 2 lo dice (496 palabras). Criterio de micronúcleos
-   convertido en regla con IC. Anclas nuevas en `verificar_afirmaciones.py`.
+   convertido en regla con IC. Anclas nuevas en `verificar_afirmaciones.py`. ⚠️ Un chequeo posterior
+   atrapó que la enmienda 1 decía «committed before any number was seen» y git lo contradice (entró en
+   el mismo commit que los resultados): retractado con nota de procedencia en el propio pre-registro, y
+   los números del modelo viejo (0,387; 0,589/0,196) que seguían sin etiqueta en el §6 quedaron
+   etiquetados. **Lección: «escrito antes» no es «commiteado antes»; commitear la enmienda antes de correr.**
 6. **Cambio #5 completado** — `track2/candidates.tsv` + `track2/render_candidates.py` (la hoja de
    filtros de las dos partes se genera desde el TSV; `--check` falla si difieren) +
    `entrega/make_track2.sh` (un comando: fig5 y tablas si están los datos DepMap, hoja, verificador,

@@ -98,7 +98,7 @@ rather than a pure cell-culture inference.
 We state the size of the remaining leap rather than hide it. That evidence is drawn from **cancer**
 aneuploidy, and myeloma is a plasma-cell neoplasm carrying its own immunoglobulin-driven proteotoxic
 load. Whether the same dependency holds in **constitutional, variegated** aneuploidy is an
-extrapolation, and it is exactly what the experiment in §6 is designed to break (an eight-week assay window; **12–16 weeks** from a fresh biopsy, because establishing the fibroblast line takes 4–8 weeks on its own).
+extrapolation, and it is exactly what the experiment in §6 is designed to break (an eight-week assay window; **12–16 weeks** from a fresh biopsy, because establishing the fibroblast line takes 4–8 weeks on its own — more if twelve independent cultures per arm must be expanded, §6).
 
 **We then tested the part of that leap that public data can test, and it did not survive.** Before looking at any result we
 pre-registered a test on public data (§3.5): does the aneuploidy–proteasome link extend beyond
@@ -125,7 +125,7 @@ It then fails our fourth filter, and we say so plainly: **not for this child, no
 causes peripheral neuropathy in 18% of paediatric patients (8% motor), and this child already has
 skeletal muscle atrophy. Outside an active malignancy that risk-benefit does not hold.
 
-**Seven pre-registrations were committed to git before their analyses ran** — DepMap and its follow-up, MVA-Replay, mosaicism, power, dose–response and the TRIP13 transfer. The DepMap test came back against our mechanism, the mosaicism control came back not conclusive, the power analysis found the assay feasible only under unmeasured inputs, and the dose–response analysis left our 4× assumption unsupported; all are reported.
+**Eight pre-registrations were committed to git before their analyses ran** — DepMap and its follow-up, MVA-Replay, mosaicism, power and its four-parameter follow-up, dose–response, and the TRIP13 transfer. The DepMap test came back against our mechanism, the mosaicism control came back not conclusive, the power analyses showed the assay as first sized (n = 3) to be underpowered even under its own assumptions — about 12 cultures per arm are needed — and the dose–response analysis left our 4× assumption unsupported; all are reported.
 
 **What remains is a specific and testable proposition, not a demonstrated one.** Bortezomib does not
 repair the lesion — nothing restores BubR1 function — but it is the agent aimed at the
@@ -776,9 +776,11 @@ gained, so the ~30% of the diagnostic criterion is the right denominator here, w
 chromosome is the right one for §5. A pre-registered power calculation
 (`potencia/PREREGISTRO.md`, committed before the run) gives **power 0.897** at 30% of cells with an
 assumed 4× EC50 selectivity, n = 3 and α = 0.05, against **power 0.063** under the per-chromosome
-reading. An earlier version of this section used the per-chromosome figure and concluded a negative
+reading (both from the original two-parameter model). An earlier version of this section used the per-chromosome figure and concluded a negative
 would be ambiguous by design; that hedge rested on the wrong denominator and is withdrawn as a
-statement about statistical power.
+statement about statistical power — although the four-parameter follow-up below restores a version of it
+for a different reason: at n = 3 the design is underpowered under the declared model, so the remedy is
+*n*, not the denominator.
 
 **Read 0.897 as an idealised scenario, not as this experiment's power.** It holds *for an assumed 4×
 selectivity, in a ~30% aneuploid culture, at 10% well-level CV*, and **none of those three has been
@@ -793,9 +795,10 @@ what a better-specified version of the experiment could achieve (`potencia/RESUL
 log-normal multiplier on each replicate culture's EC50 (CV_bio 0.20), a plate-level offset (CV 0.05),
 per-well noise (CV 0.10), the current 0–1,000 nM concentration grid, a Welch t on log10 EC50, and
 fitting failures counted as non-rejections. At the central scenario (f = 0.30, 4× selectivity, n = 3 per
-arm) **power is 0.167**. The two-parameter fit on the same simulated data gives 0.234, so most of the drop
-from 0.897 is the biological and plate variability, not the fit; fitting failures were 0.0% in every
-scenario. Power reaches 0.80 at **n = 12 independent cultures per arm at f = 0.30**, **n = 23 at
+arm) **power is 0.167**. The two-parameter fit on the same simulated data gives 0.234, so the four-parameter
+fit itself costs 0.067 and the rest of the drop from 0.897 comes from what the re-run also changed —
+the biological and plate variability, together with the 0–1,000 nM grid and the Welch test; fitting
+failures were 0.0% in every scenario. Power reaches 0.80 at **n = 12 independent cultures per arm at f = 0.30**, **n = 23 at
 f = 0.20**, and not within 24 at f = 0.10; at n = 3 it is 0.05 at f = 0.10 and 0.43 at f = 0.50, and
 CV_bio 0.10–0.30 moves it between 0.23 and 0.12. Two of the four pre-registered predictions were
 falsified — we expected fitting failures of at least 5% and expected the fit, not the biology, to be the
@@ -822,12 +825,13 @@ covers zero (−0.0118 … +0.0006, p = 0.076), so the falsification clause appl
 where no decision rule was pre-registered, and CRISPR gene effect does not convert into an EC50 ratio
 in either stratum. So the 4× central value is **unsupported for these cells and equally unrefuted**. An
 earlier version of this section reported the rule as having fired; it did not, and the correction is
-dated 2026-09-06 in `RESULTADOS_2_DOSIS.md` §3. At an assumed 2× selectivity power is **0.387**. The
+dated 2026-09-06 in `RESULTADOS_2_DOSIS.md` §3. At an assumed 2× selectivity the original two-parameter model gave **0.387**; the declared four-parameter model gives **0.068** at n = 3. The
 honest summary is that **we do not know which regime these cells are in, and the experiment is what
 would tell us.**
 
-**It still buys a protocol change, not just a corrected sentence.** Power collapses below a cell
-fraction of about 0.25 (0.589 at 0.20, 0.196 at 0.10), and **nobody has counted metaphases in these
+**It still buys a protocol change, not just a corrected sentence.** Power falls steeply with the aneuploid
+fraction — under the declared model, at n = 3, 0.096 at f = 0.20 and 0.050 at f = 0.10 (0.589 and 0.196
+under the original two-parameter model) — and **nobody has counted metaphases in these
 fibroblasts** — culture selection makes the true fraction likely lower than at biopsy. So the fraction
 becomes a **gating measurement** rather than an assumption, taken on the culture that will actually be
 treated, at the passage that will be treated. The endpoint is a **count of cells carrying at least one
@@ -859,7 +863,7 @@ takes is within our control. The same applies to the parental sampling in
 
 | Week | Step | Readout |
 |---|---|---|
-| 1–3 | Patient dermal fibroblasts from skin biopsy, plus two matched controls. **Gate:** on the culture to be treated, count metaphases scoring (a) the proportion of cells with ≥ 1 numerical chromosome abnormality, (b) the number of abnormal chromosomes per abnormal cell, and (c) PCS, reported separately. (a) is the input the power model needs and it is unmeasured; (c) is the MVA diagnostic criterion and is not a substitute for it (`potencia/RESULTADOS.md` §3). **Patient cells are required:** RPE1 with reversine-induced aneuploidy reproduces Ippolito's own system and cannot test whether the dependency transfers to BUB1B-deficient constitutional MVA — we list it as a positive control, not a substitute. Without patient cells the go/no-go question is not answerable | Growth; baseline karyotype |
+| 1–3 | Patient dermal fibroblasts from skin biopsy, plus two matched controls, **expanded to twelve independent cultures per arm (separate passages, separate plates) before week 4 — an expansion the eight-week assay window does not contain**. **Gate:** on the culture to be treated, count metaphases scoring (a) the proportion of cells with ≥ 1 numerical chromosome abnormality, (b) the number of abnormal chromosomes per abnormal cell, and (c) PCS, reported separately. (a) is the input the power model needs and it is unmeasured; (c) is the MVA diagnostic criterion and is not a substitute for it (`potencia/RESULTADOS.md` §3). **Patient cells are required:** RPE1 with reversine-induced aneuploidy reproduces Ippolito's own system and cannot test whether the dependency transfers to BUB1B-deficient constitutional MVA — we list it as a positive control, not a substitute. Without patient cells the go/no-go question is not answerable | Growth; baseline karyotype |
 | 2–4 | Allele fate: allele-specific RT-PCR ± NMD inhibitor; quantitative western blot with N- and C-terminal antibodies | An N+/C− band pattern is consistent with a stable truncated protein and loss of both with NMD — the RT-PCR arm decides; the blot alone does not |
 | 4–6 | Bortezomib dose–response, **0–1,000 nM** with dense sampling below 100 nM, 72 h, patient versus control versus an aneuploidy-high positive control (reversine-treated RPE1) | EC50 and the ratio between them. The range spans the 312 nM clinical Cmax so the advancement threshold falls inside the data. **Extended from 0–400 nM after the power calculation:** at a selectivity of 10× the control's EC50 sits at the old ceiling and is estimated at the edge of the data, doubling the spread of the estimate (`potencia/RESULTADOS.md` §4) |
 | 4–6 | **Combination arm: bortezomib + everolimus** | Tests the predicted antagonism |
@@ -1159,6 +1163,10 @@ HP:0200067 at once, and it needs blood rather than a new laboratory.
   assumed it.
 - **No trial specific to MVA1** was found in ClinicalTrials.gov, Open Targets, ChEMBL or CMap/LINCS.
   Absence of an interface result is not proof of absence.
+- **The power estimate rests on unmeasured inputs.** Under the declared four-parameter model with an assumed
+  CV_bio of 0.20 the design needs about 12 independent cultures per arm; CV_bio, the aneuploid fraction
+  and the 4× selectivity are all unmeasured in these cells, and the original 0.897 is an optimistic
+  two-parameter reference.
 - **The child's current age is unknown to us**, and the surveillance schedule depends on it.
 
 ---
@@ -1172,7 +1180,7 @@ We have tried to write something useful rather than something reassuring. The ho
 drug should he take today" is none — and we show why the obvious candidate cannot work by the mechanism proposed for it, rather than
 proposing it softly. The useful answer is a mechanism that matches his disease, an approved drug whose
 plasma levels are not excluded by the concentrations at which cancer cells respond, an explicit statement of the condition under which it would become
-appropriate, and an experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy —
+appropriate, and an experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy, more if twelve cultures per arm must be expanded —
 that could fail to support it in this child's own cells. That experiment would not close the
 tumour-board question on its own, and §6 says so.
 
