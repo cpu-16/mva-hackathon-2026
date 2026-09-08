@@ -1,7 +1,7 @@
 # Track 2 — Drug Repurposing for MVA1 (BUB1B compound heterozygosity)
 
 **Team: ciberpty** · Rare Disease, Real Kid: MVA Hackathon 2026
-Repository: https://github.com/cpu-16/mva-hackathon-2026 · Methods description: `methods_track2.md`
+Repository: https://github.com/cpu-16/mva-hackathon-2026 · Methods description: Appendix B of this PDF (`submission/ciberpty_track2_methods.md` in the repository)
 
 ---
 
@@ -365,6 +365,7 @@ and even there, the ratio is computed on total drug, which is the acknowledged w
 | Ixazomib | **Not evaluable** | Same gap. The β5 enzymatic IC50 (3.4 nM) is not a cellular aneuploidy-selective value |
 | Hydroxychloroquine | **Not evaluable, and mechanistically weakened** | Tang's hit was *chloroquine*, not HCQ — and chloroquine did **not** differentially inhibit the human CIN lines in that same paper |
 | Everolimus / sirolimus | **Not evaluable, and possibly counterproductive** | See §3.4 |
+| Trametinib | **Not evaluable — the gap most worth closing** | Highly aneuploid RPE1 clones activate RAF/MEK/ERK and are more sensitive to MEK inhibition, reproduced in human cancer lines (PMID 39251587). But that paper reports only *relative* IC50s, and the 0.45 nM it uses to sensitise clones to etoposide is a sub-lethal dose, not an IC50 — so there is no denominator. Cmax at the approved 2 mg/day is 22.2 ng/mL = 36.1 nM (Mekinist SmPC §5.2). It is approved from age 1 with an oral paediatric formulation, so it clears filters 1 and 5 on paper; it was pre-blocked in our DepMap test as a mechanism-unrelated comparator and came back null (§3.5). The first drug we would put through filter 3 once an absolute aneuploid IC50 is published |
 
 Substituting an IC50 from an unstratified tumour line would manufacture a ratio without meaning. We
 leave those cells empty rather than fill them.
@@ -957,7 +958,7 @@ HP:0200067 at once, and it needs blood rather than a new laboratory.
   metformin and bortezomib verdicts as the worked example, so a team working on a different rare disease
   can apply the framework without reading this report.
 - **The framework was transferred prospectively to the other two MVA genes, and it gives different
-  answers.** `TRANSFER_MVA2_MVA3.md` holds the worksheet filled for MVA2 (*CEP57*) and MVA3
+  answers.** `report/TRANSFER_MVA2_MVA3.md` holds the worksheet filled for MVA2 (*CEP57*) and MVA3
   (*TRIP13*) with the same candidate and the filters held fixed. For **MVA2** bortezomib **fails
   filter 4 and cannot be evaluated at filters 2–3**: no proteasome measurement exists in *CEP57*
   cells, and the setting that would invert the safety filter — an active malignancy — **has not been
@@ -973,6 +974,16 @@ HP:0200067 at once, and it needs blood rather than a new laboratory.
   rare disease can spike their own gene into a public genome in an afternoon. Its built-in check that
   a control HPO term is not annotated to the planted gene is what caught the contamination described
   in `hpo/RESULTADOS.md` — in our own control set.
+- **And we tested that sentence rather than leave it as a claim** (`replay/TRANSFER_TRIP13.md`,
+  pre-registered and pushed before the run). From a fresh clone of this repository, the tool planted two
+  public Likely_pathogenic *TRIP13* alleles — chosen by the frozen pool rule, not by us — into three
+  healthy GIAB genomes and queried them with six HPO terms transcribed from the abstract of the 2026
+  MVA3 case (PMID 42595739). TRIP13 came back **rank 1 in 3 of 3 backgrounds at 0.8332**, absent or
+  scoring 0 unspiked, and rank 1 / 2 / 3 under an unrelated phenotype — the same pattern as BUB1B. Each
+  background took under 3½ minutes and 2.5 GB. The operational half was the useful one: the clone
+  needed **four provisioning steps, three of which the tool's README did not list**, and the
+  regression tests the README said ran from a bare checkout did not. Both are fixed; the run that
+  found them is in the repository with every command and exit code.
 - The **gene panel** (BUB1B, CEP57, TRIP13, CENATAC, MAD1L1, MAD2L1BP, CEP192, BUB1, SMC5, TRIM37,
   CENPE) and the artefact controls used in the mosaicism analysis transfer to any MVA or PCS workup.
 - The **micronucleus → scDNA-seq endpoint** applies to mitotic CIN disorders. It does **not** transfer

@@ -562,7 +562,8 @@ positive.
 ## Q11 — Runtime and cost
 
 - Exomiser genome-wide run: **53 seconds** wall clock (32-core CPU, 16 GB JVM heap).
-- Twelve robustness controls: about 11 minutes total.
+- Robustness controls (the families listed under *Robustness controls* above, one Exomiser run each): about
+  a minute per run, roughly 11 minutes in total.
 - Targeted panel with REST annotation: under 5 minutes, dominated by API latency.
 - Mosaicism first-order BAF scan: about 10 minutes of `bcftools` streaming.
 - Mosaicism null calibration (40,000 Monte Carlo replicates per cell, eight window sizes): run with
@@ -621,7 +622,7 @@ insensitive to phase regardless. p.Asn1002Lys is functionally unproven and its p
 
 Commercially-available generative AI was used. Provider, plan and relevant setting for each:
 
-- **Anthropic**, Claude Opus via Claude Code, **Max** subscription plan, model-improvement data
+- **Anthropic**, Claude Opus and Claude Fable 5.1 via Claude Code, **Max** subscription plan, model-improvement data
   sharing disabled in account privacy settings.
 - **OpenAI**, Codex (gpt-5.6), **Plus** plan, "Improve the model for everyone" disabled.
 - **xAI Grok 4.6 via Cursor**, **Pro** plan, **Privacy Mode enabled** (zero data retention at Cursor

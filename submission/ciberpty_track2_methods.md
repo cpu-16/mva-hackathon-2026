@@ -49,7 +49,7 @@ experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy bec
 
 Commercially-available generative AI was used. Provider, plan and relevant setting for each:
 
-- **Anthropic**, Claude Opus via Claude Code, **Max** subscription plan, model-improvement data
+- **Anthropic**, Claude Opus and Claude Fable 5.1 via Claude Code, **Max** subscription plan, model-improvement data
   sharing disabled in account privacy settings.
 - **OpenAI**, Codex (gpt-5.6), **Plus** plan, "Improve the model for everyone" disabled.
 - **xAI Grok 4.6 via Cursor**, **Pro** plan, **Privacy Mode enabled** (zero data retention at Cursor

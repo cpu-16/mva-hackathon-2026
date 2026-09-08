@@ -1,0 +1,115 @@
+
+### 2026-09-07T22:11:41-05:00 REAL RUN HG001 (name T2_TRIP13_HG001)
+1788837109 [planted] running Exomiser ...
+1788837163 [noclinvar] running Exomiser ...
+1788837207 [unrelated] running Exomiser ...
+1788837254 [background] running Exomiser ...
+
+TRIP13 planted in HG001  (<clone>/replay/out_tool/T2_TRIP13_HG001.json)
+condition     score gene_rank /genes  moi                    top gene           acmg / ingested
+planted      0.8332         1   1876  AR                     TRIP13 0.8332      PATHOGENIC 2/2
+noclinvar    0.8332         1   1874  AR                     TRIP13 0.8332      PATHOGENIC 2/2
+unrelated     0.424         1   1878  AD                     TRIP13 0.424       PATHOGENIC 2/2
+background                      1875                         PAH 0.0575          
+delta ClinVar (planted - noclinvar) = 0.0   delta phenotype (planted - unrelated) = 0.4092
+[rc=0]
+
+### 2026-09-07T22:15:02-05:00 REAL RUN HG002 (name T2_TRIP13_HG002)
+1788837302 	Command being timed: "python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG001.vcf.gz --name T2_TRIP13_HG001"
+1788837302 	User time (seconds): 374.15
+1788837302 	System time (seconds): 14.15
+1788837302 	Percent of CPU this job got: 193%
+1788837302 	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:20.34
+1788837302 	Average shared text size (kbytes): 0
+1788837302 	Average unshared data size (kbytes): 0
+1788837302 	Average stack size (kbytes): 0
+1788837302 	Average total size (kbytes): 0
+1788837302 	Maximum resident set size (kbytes): 2375524
+1788837302 	Average resident set size (kbytes): 0
+1788837302 	Major (requiring I/O) page faults: 16
+1788837302 	Minor (reclaiming a frame) page faults: 2372616
+1788837302 	Voluntary context switches: 783358
+1788837302 	Involuntary context switches: 20908
+1788837302 	Swaps: 0
+1788837302 	File system inputs: 35916760
+1788837302 	File system outputs: 0
+1788837302 	Socket messages sent: 0
+1788837302 	Socket messages received: 0
+1788837302 	Signals delivered: 0
+1788837302 	Page size (bytes): 4096
+1788837302 	Exit status: 0
+1788837309 [planted] running Exomiser ...
+1788837358 [noclinvar] running Exomiser ...
+1788837400 [unrelated] running Exomiser ...
+1788837432 [background] running Exomiser ...
+
+TRIP13 planted in HG002  (<clone>/replay/out_tool/T2_TRIP13_HG002.json)
+condition     score gene_rank /genes  moi                    top gene           acmg / ingested
+planted      0.8332         1   2388  AR                     TRIP13 0.8332      PATHOGENIC 2/2
+noclinvar    0.8332         1   2388  AR                     TRIP13 0.8332      PATHOGENIC 2/2
+unrelated     0.424         2   2388  AD                     KRT17 0.5766       PATHOGENIC 2/2
+background      0.0       212   2388  AD                     KRT17 0.3925        
+delta ClinVar (planted - noclinvar) = 0.0   delta phenotype (planted - unrelated) = 0.4092
+[rc=0]
+
+1788837465 	Command being timed: "python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG002.vcf.gz --name T2_TRIP13_HG002"
+### 2026-09-07T22:17:45-05:00 REAL RUN HG005 (name T2_TRIP13_HG005)
+1788837465 	User time (seconds): 387.81
+1788837465 	System time (seconds): 10.51
+1788837465 	Percent of CPU this job got: 243%
+1788837465 	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:43.29
+1788837465 	Average shared text size (kbytes): 0
+1788837465 	Average unshared data size (kbytes): 0
+1788837465 	Average stack size (kbytes): 0
+1788837465 	Average total size (kbytes): 0
+1788837465 	Maximum resident set size (kbytes): 2530632
+1788837465 	Average resident set size (kbytes): 0
+1788837465 	Major (requiring I/O) page faults: 4
+1788837465 	Minor (reclaiming a frame) page faults: 2552187
+1788837465 	Voluntary context switches: 539256
+1788837465 	Involuntary context switches: 21856
+1788837465 	Swaps: 0
+1788837465 	File system inputs: 12703032
+1788837465 	File system outputs: 0
+1788837465 	Socket messages sent: 0
+1788837465 	Socket messages received: 0
+1788837465 	Signals delivered: 0
+1788837465 	Page size (bytes): 4096
+1788837465 	Exit status: 0
+1788837472 [planted] running Exomiser ...
+1788837509 [noclinvar] running Exomiser ...
+1788837539 [unrelated] running Exomiser ...
+1788837573 [background] running Exomiser ...
+
+TRIP13 planted in HG005  (<clone>/replay/out_tool/T2_TRIP13_HG005.json)
+condition     score gene_rank /genes  moi                    top gene           acmg / ingested
+planted      0.8332         1   2280  AR                     TRIP13 0.8332      PATHOGENIC 2/2
+noclinvar    0.8332         1   2280  AR                     TRIP13 0.8332      PATHOGENIC 2/2
+unrelated     0.424         3   2278  AD                     TNF 0.7436         PATHOGENIC 2/2
+background                      2279                         RYR2 0.4165         
+delta ClinVar (planted - noclinvar) = 0.0   delta phenotype (planted - unrelated) = 0.4092
+[rc=0]
+1788837606 	Command being timed: "python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG005.vcf.gz --name T2_TRIP13_HG005"
+### 2026-09-07T22:20:06-05:00 DONE
+1788837606 	User time (seconds): 360.11
+1788837606 	System time (seconds): 8.88
+1788837606 	Percent of CPU this job got: 262%
+1788837606 	Elapsed (wall clock) time (h:mm:ss or m:ss): 2:20.81
+1788837606 	Average shared text size (kbytes): 0
+1788837606 	Average unshared data size (kbytes): 0
+1788837606 	Average stack size (kbytes): 0
+1788837606 	Average total size (kbytes): 0
+1788837606 	Maximum resident set size (kbytes): 2529288
+1788837606 	Average resident set size (kbytes): 0
+1788837606 	Major (requiring I/O) page faults: 4
+1788837606 	Minor (reclaiming a frame) page faults: 2589397
+1788837606 	Voluntary context switches: 401945
+1788837606 	Involuntary context switches: 17836
+1788837606 	Swaps: 0
+1788837606 	File system inputs: 2775768
+1788837606 	File system outputs: 0
+1788837606 	Socket messages sent: 0
+1788837606 	Socket messages received: 0
+1788837606 	Signals delivered: 0
+1788837606 	Page size (bytes): 4096
+1788837606 	Exit status: 0

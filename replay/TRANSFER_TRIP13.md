@@ -134,3 +134,52 @@ to a path the tool resolves. The analysis YAML, the spike-in builder and the sco
 ## Amendments and results
 
 *(appended below with a date; the text above is never edited)*
+
+### Results — 2026-09-07, 22:10–22:20 local, from clone `ee7a050` (the commit of this file)
+
+Raw outputs: `replay/transfer_trip13/T2_TRIP13_HG00{1,2,5}.json`, `bare_clone.log` (every command
+of the operational half with its exit code) and `runs.log` (the three real runs under `/usr/bin/time -v`).
+
+#### Scientific half — all four predictions held
+
+| Background | planted (case HPO) | noclinvar | unrelated HPO | unspiked background | ingested |
+|---|---|---|---|---|---|
+| HG001 | **0.8332, rank 1**, AR | 0.8332, rank 1 | 0.4240, **rank 1** (AD row) | absent | 2/2 |
+| HG002 | **0.8332, rank 1**, AR | 0.8332, rank 1 | 0.4240, rank 2 | 0.0000, rank 212 | 2/2 |
+| HG005 | **0.8332, rank 1**, AR | 0.8332, rank 1 | 0.4240, rank 3 | absent | 2/2 |
+
+- **P-T1 confirmed.** Both alleles reached the variants table in 3 of 3, both `CONTRIBUTING`, ACMG
+  PATHOGENIC.
+- **P-T2 confirmed.** Rank 1 in 3 of 3 with combined score 0.8332 in each — identical to four decimals
+  across three backgrounds, the same stability the BUB1B construct showed. Phenotype score 0.6907.
+  Runner-up: PAH (HG001), KRT17 (HG002), RYR2 (HG005), all background-native.
+- **P-T3 confirmed, at the boundary.** Under the unrelated phenotype TRIP13 is rank 1 in exactly 1 of 3
+  (HG001; ranks 2 and 3 in the others), with score 0.4240 in all three. Same pattern as BUB1B
+  (rank 1/2/3 at 0.3965). Δ(planted − unrelated) = **0.4092**, larger than BUB1B's 0.1906: the six
+  case-report terms, four of which are ophthalmic findings not annotated to TRIP13, still pull the
+  score up by more than the eight MVA1 terms did. We report the absolute difference only.
+- **P-T4 confirmed.** TRIP13 absent from the ranked table in HG001 and HG005; score 0.0000 at rank 212
+  in HG002.
+- **Not predicted, reported:** switching the ClinVar whitelist off changed the score by **0.0000** in
+  all three backgrounds (whitelist flags went 1→0, score did not move), against 0.0021 for the BUB1B
+  construct. For two truncating Likely_pathogenic alleles the whitelist is worth nothing; Exomiser's
+  own consequence and frequency scoring carries them.
+
+#### Operational half — two of four predictions failed, and that is the useful part
+
+| Finding | Prediction | What happened |
+|---|---|---|
+| **F1** | O-1: tests pass in a bare clone | **Falsified.** `test_output_reuse.py` failed 9 of 9 sub-tests: `main()` calls `check_resources()` before the dry-run path, and the tests never stubbed it. The README sentence *"runs from a bare checkout"* was untrue at `ee7a050`. Fixed in the **test only** (`check_resources` is now patched like the other resource-touching functions); `mva_replay.py` is unchanged. |
+| **F2** | O-2: self-check names every missing resource at once | **Confirmed** for the four resources it checks (Exomiser, analysis YAML, ClinVar, HPOA — one message, four paths). But once those were present it died with a bare `AssertionError` at the REF check, because the chr15 FASTA is not among the resources it checks for. Documented in `README_TOOL.md`; the check itself is not changed. |
+| **F3** | O-3: ≤ 5 manual steps, all in `README_TOOL.md § Requirements` | **Count confirmed (4 steps), documentation falsified.** Three of the four were not in *Requirements*: the analysis YAML is expected at `tools/analysis_mva.yml` while a checkout carries it at `analysis/analysis_mva.yml`; the FASTA directory `replay/raw/fasta/` was only mentioned under pre-flight checks; the background VCFs and how to prepare them were not in the repository at all. *Requirements* now lists all four steps with sources and commands. |
+| **F4** | — | The reuse guard matches case names **by prefix**: `--name T_TRIP13_HG001` refused to run because the dry-run had written `T_TRIP13_HG001_dry4_*`. Documented behaviour, undocumented breadth. The three real runs were re-issued as `T2_*`; no result existed before the refusal, so nothing was re-run. Noted in `README_TOOL.md`. |
+| — | O-4: ≤ 120 s per Exomiser call, ≤ 12 GB RSS, ≤ 10 min per background | **Confirmed.** Per-call wall-clock from the run timestamps: HG001 54 / 44 / 47 / 48 s; HG002 49 / 42 / 32 / 33 s; HG005 37 / 30 / 34 / 33 s. Maximum resident set 2.4–2.5 GB. Per background, tool start to JSON: 3 min 20 s, 2 min 43 s, 2 min 21 s. Clone: 9.9 s, 12 MB. |
+
+**What this shows, and no more.** The frozen pipeline retrieves a second MVA gene, planted with two
+public Likely_pathogenic alleles and queried with a phenotype transcribed from a published abstract,
+at rank 1 in three healthy backgrounds — with the unrelated-phenotype control behaving exactly as it
+did for BUB1B. A fresh clone reaches that result in four documented provisioning steps and about
+three minutes of compute per background. It also showed that the repository's own claim about its
+tests was false and that its requirements list was three items short, both now corrected. It does
+not show diagnostic sensitivity, anything about the girl in PMID 42595739, or that the tool runs on a
+machine that has never held the resources.

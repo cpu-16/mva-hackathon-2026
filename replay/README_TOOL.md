@@ -17,16 +17,36 @@ cases in `PREREGISTRO.md`; the functions are copied from there, not rewritten.
 
 ## Requirements
 
-Required locally (not bundled in a fresh code checkout): `tools/exomiser-cli-15.1.0` with the 2602 hg38 + phenotype data,
-`pipeline/resources/clinvar.vcf.gz` (GRCh38) and `genes_to_phenotype.txt`. On the PATH: `java`,
-`bcftools`, `samtools`, `bgzip`, `tabix`, Python 3 (standard library only). About 10 GB RAM per run.
-No GPU. No patient data is read or written.
+A code checkout is 12 MB and contains none of the resources below. **Measured on a fresh clone
+(`TRANSFER_TRIP13.md`, 7-Sep-2026): four provisioning steps separate the clone from a working
+`--dry-run`.** Each is listed with where it comes from; `mva_replay.py` stops and names whichever is
+missing.
+
+1. **Exomiser 15.1.0 and its data** at `tools/exomiser-cli-15.1.0/` — the CLI release plus the
+   `2602_hg38` and `2602_phenotype` bundles (~55 GB, public, from the Exomiser download site), with
+   `application.properties` pointing `exomiser.data-directory` at the extracted bundles. **And the
+   frozen analysis at `tools/analysis_mva.yml`:** in a checkout it lives at `analysis/analysis_mva.yml`;
+   copy it there (`mkdir -p tools && cp analysis/analysis_mva.yml tools/`).
+2. **ClinVar and HPOA** at `pipeline/resources/`: `clinvar.vcf.gz` + `.tbi` (GRCh38, the release
+   Track 1 used) and `genes_to_phenotype.txt` (HPOA). `hp.obo` is optional, for resolving term names.
+3. **hg38 FASTA for the REF check** at `replay/raw/fasta/chrN.fa.bgz` (+ `.fai`, `.gzi`): UCSC
+   `goldenPath/hg38/chromosomes/chrN.fa.gz`, recompressed with `bgzip` and indexed with
+   `samtools faidx`. Without it the REF check degrades to a warning, not a failure. `--self-check`
+   needs `chr15`.
+4. **A background genome** — a single-sample, bgzip-compressed, tabix-indexed GRCh38 VCF. The seven
+   GIAB genomes used here are the NIST v4.2.1 GRCh38 benchmark VCFs
+   (`ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/.../NISTv4.2.1/GRCh38/HG00N_GRCh38_1_22_v4.2.1_benchmark.vcf.gz`),
+   prepared as `bcftools annotate -x INFO,FORMAT/ADALL,FORMAT/GQ in.vcf.gz -Oz -o replay/bg/HG00N.vcf.gz && bcftools index -t replay/bg/HG00N.vcf.gz`.
+   Any other single-sample VCF works; the script declares `GT/DP/AD/GQ` in the header if they are missing (Amendment 2).
+
+On the PATH: `java` (17+), `bcftools`, `samtools`, `bgzip`, `tabix`, Python 3 (standard library only).
+About 10 GB RAM per run. No GPU. No patient data is read or written.
 
 ## Usage
 
 ```bash
 cd replay
-./mva_replay.py --self-check          # 21 assertions when the local benchmark artefacts are present
+./mva_replay.py --self-check          # 21 assertions when the local benchmark artefacts (replay/out, replay/cases, chr15 FASTA) are present; 12 without them
 
 ./mva_replay.py --gene BUB1B \
     --allele 533901 \
@@ -40,7 +60,8 @@ Optional flags include `--hpo-unrelated`, `--phase trans|cis|unph`, `--sex MALE|
 `chr:pos:ref:alt`, or supported genomic HGVS strings.
 
 **Use a fresh case name or output directory for every invocation.** Existing files for the same
-case cause an error before analysis starts. A gene/background name alone cannot establish that
+case cause an error before analysis starts — and the match is by prefix, so `--name T_HG001` also
+collides with an earlier `T_HG001_dry` in the same `--out` (finding F4 of `TRANSFER_TRIP13.md`). A gene/background name alone cannot establish that
 alleles, phenotypes, phase and resources match a previous run. Automatic reuse is therefore disabled.
 This also applies after `--dry-run`, which writes sample YAML files: choose a different `--name`
 for the actual run. No old result is deleted or overwritten by this check.

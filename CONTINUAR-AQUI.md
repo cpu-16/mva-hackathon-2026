@@ -5,6 +5,47 @@ Léeme completo antes de tocar cualquier otro archivo.
 
 ---
 
+## 🆕 7-SEP-2026 — LAS MEJORAS DE LA REVISIÓN, HECHAS. **Nada reenviado todavía.**
+
+Gilberto pidió revisar si íbamos bien y luego «haz esas mejoras». Todo está en el markdown, los PDF
+regenerados (`entrega/build_pdfs.sh`, 23 + 53 pp., guardia de texto retractado en verde), el xlsx
+sincronizado, el verificador en «todo cuadra» y el repo pusheado. **El Track 2 NO se ha reenviado:**
+quedan 2 envíos, cuenta el último, hay hasta el 24-oct. Es decisión de Gilberto cuándo.
+
+1. **Transferencia real de MVA-Replay, pre-registrada y medida — `replay/TRANSFER_TRIP13.md`.**
+   Commit del pre-registro `ee7a050` (22:10), corridas 22:11–22:20 desde un **clon limpio** del repo
+   en el scratchpad. Gen TRIP13 (MVA3), dos alelos LP de ClinVar elegidos por la regla de pool
+   congelada (3910602 + 4070948), seis términos HPO transcritos del abstract de PMID 42595739, fondos
+   HG001/HG002/HG005. **Las cuatro predicciones científicas se confirmaron:** rank 1 en 3/3 a
+   **0,8332** (idéntico a cuatro decimales), ausente o 0,0 sin sembrar, rank 1/2/3 con fenotipo ajeno
+   (0,4240). Whitelist de ClinVar vale 0,0000 aquí (dato no predicho, reportado).
+   **Dos de cuatro predicciones operativas fallaron, y eso es lo valioso:** (F1) la prueba de regresión
+   que el README decía que corría en un clon limpio **no corría** — `check_resources()` no estaba
+   stubbeado; arreglado **solo en la prueba**, `mva_replay.py` intacto. (F3) tres de los cuatro pasos de
+   aprovisionamiento no estaban en *Requirements* de `README_TOOL.md` (YAML en `tools/` vs
+   `analysis/`, FASTA, fondos GIAB); ahora están con fuentes y comandos. (F2) el self-check muere con
+   `AssertionError` pelado si falta el FASTA chr15; documentado. (F4) el guardia de reutilización casa
+   por **prefijo** de nombre; documentado. Tiempos: 30–54 s por llamada, 2,4–2,5 GB, 2:21–3:20 por
+   fondo. Salidas en `replay/transfer_trip13/` (JSON + los dos logs con cada comando y su rc).
+   Está citado en el Track 2 §9 (bullet nuevo) y en el README del repo (tabla + «Reproducing»).
+2. **Trametinib** entró en la tabla del §3.3 del Track 2 como *Not evaluable — the gap most worth
+   closing*, con el abstract de PMID 39251587 bajado y guardado
+   (`evidencia/pubmed_39251587_2026-09-07.xml`) y el nulo de DepMap que ya existía. Cmax 22,2 ng/mL =
+   36,1 nM sale de la SmPC de Mekinist §5.2 vía `track2/CANDIDATOS_FARMACOCINETICA.md` §8 — no se
+   verificó contra la ficha original en esta sesión.
+3. **Menores:** Q11 del Track 1 ya no dice «twelve» (remite a las familias listadas, «about a minute
+   per run»); Q3/Q23 declaran «Claude Opus and Claude Fable 5.1»; el Track 2 cita
+   `report/TRANSFER_MVA2_MVA3.md` con ruta y la cabecera apunta al Apéndice B /
+   `submission/ciberpty_track2_methods.md`. Celdas xlsx tocadas: Track 1 B10 y B18, Track 2 B9.
+4. **No se tocó:** la longitud del reporte (53 pp.) — decisión de Gilberto; los abstracts (486/490
+   palabras, sin cambios); ningún pre-registro anterior.
+
+⛔ **Lo que queda es de Gilberto:** decidir si reenvía el Track 2 con este paquete
+(`entrega/listo-para-enviar/`, `entrega/ENVIAR-PASO-A-PASO.md`), y lo de siempre con fecha: repo
+público cuando Sage anuncie, borrar datos antes del 23-nov.
+
+---
+
 ## ✅ 6-SEP-2026, NOCHE — **LOS DOS TRACKS ESTÁN ENVIADOS**
 
 Video subido por Gilberto a **https://youtu.be/QGYHK0Ihs1c** (verificado accesible sin sesión). Los

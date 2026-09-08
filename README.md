@@ -36,7 +36,7 @@ claim — including four that came back against us. See [`VERIFY.md`](VERIFY.md)
 | Analysis | Result | What it does **not** establish |
 |---|---|---|
 | [`depmap/`](depmap/RESULTADOS.md) | Aneuploidy scoring of 2,420 DepMap 24Q4 lines against PRISM drug response and CRISPR dependency. The aneuploidy–proteasome link is **significantly weaker in solid lineages** (interaction p = 0.026); ploidy excluded as a confounder (p = 0.88). This child's tumour was solid. | That bortezomib does or does not work in MVA. It weakens our own argument, which is why it is here. |
-| [`replay/`](replay/RESULTADOS.md) | MVA-Replay plants public alleles into public genomes. The two alleles score **0.5871** with the real phenotype in three unrelated backgrounds, to four decimals. Across **7 GIAB + 30 1000 Genomes** healthy genomes, the highest top-gene score is **0.5619** and **0.5207** respectively — **0 of 37 exceed 0.5871**. | Diagnostic sensitivity. Every planted call is perfect and unambiguous; this measures retrieval given a clean heterozygous call, on a null biased in our favour. |
+| [`replay/`](replay/RESULTADOS.md) | MVA-Replay plants public alleles into public genomes. **Transferred to a second gene from a fresh clone** ([`TRANSFER_TRIP13.md`](replay/TRANSFER_TRIP13.md)): two public *TRIP13* alleles, rank 1 in 3 of 3 backgrounds at 0.8332, unspiked absent. The two alleles score **0.5871** with the real phenotype in three unrelated backgrounds, to four decimals. Across **7 GIAB + 30 1000 Genomes** healthy genomes, the highest top-gene score is **0.5619** and **0.5207** respectively — **0 of 37 exceed 0.5871**. | Diagnostic sensitivity. Every planted call is perfect and unambiguous; this measures retrieval given a clean heterozygous call, on a null biased in our favour. |
 | [`hpo/`](hpo/RESULTADOS.md) | The unrelated-phenotype control, rebuilt twice. With a term set verified against **all** MVA diseases and genes, BUB1B still ranks 1 in the proband's genome at **0.3965** (Δ = 0.1906 from the real phenotype) — but in planted healthy backgrounds its rank is **1, 2 and 3**. | That the ranking is background-independent. It is not, and the version quoted in our submitted Track 1 write-up (0.4187) was contaminated. |
 | [`mosaico/`](mosaico/RESULTADOS.md) | Bulk WGS cannot serve as an aneuploidy-burden endpoint. A calibrated simulation reaches a **2.07% detection limit at κ = 2**; more importantly, a perfectly balanced variegated mixture is **non-identifiable** — detection stays at the 0.1–0.2% false-positive rate even at 40% aneuploid cells. | Anything about this child. The patient-level result is **withdrawn**, and the pre-registered external control came back **not conclusive** ([`CONTROL_RESULTADO.md`](mosaico/CONTROL_RESULTADO.md)). We report no clinical negative. |
 | [`potencia/`](potencia/RESULTADOS.md) | Power for the proposed fibroblast assay is **0.897** under an assumed 4× selectivity, a 30% aneuploid culture and 10% well CV — and **0.063** under the per-chromosome reading our report had implied. A gating measurement is now part of the protocol. | A validated power estimate. None of the three inputs is measured in these cells, the Hill fit uses two parameters where the design promised four, and the noise model has no biological-replicate term. [`RESULTADOS_2_DOSIS.md`](potencia/RESULTADOS_2_DOSIS.md) removes the empirical support for the 4× without refuting it. |
@@ -75,7 +75,7 @@ Two things are reproducible without any access to the patient data, and one is n
 backgrounds. It is a single file with no new dependencies.
 
 ```bash
-python3 replay/test_output_reuse.py        # regression tests for output-collision handling; runs from a bare checkout
+python3 replay/test_output_reuse.py        # regression tests for output-collision handling; runs from a bare checkout (verified 7-Sep, after fixing the test that did not)
 replay/mva_replay.py --self-check          # 21 assertions, with a positive and a negative control
 ```
 
@@ -84,6 +84,13 @@ absent** — it verifies real ClinVar records and real benchmark outputs, so a b
 it. Those resources, and a real replay, need Exomiser 15.1.0 with its hg38 2602 data bundles (~55 GB,
 public), a GRCh38 FASTA and a background VCF. See [`replay/README_TOOL.md`](replay/README_TOOL.md) for
 the arguments and for the two failure modes it deliberately refuses to work around.
+
+**We measured that path instead of describing it.** [`replay/TRANSFER_TRIP13.md`](replay/TRANSFER_TRIP13.md)
+pre-registers, and then reports, a run of the tool on a second gene (*TRIP13*, two public ClinVar
+alleles, a phenotype transcribed from a published case) **from a fresh clone of this repository**: four
+provisioning steps, about three minutes per background, rank 1 in 3 of 3. It also found that the
+regression tests did not run from a bare checkout and that the requirements list was three items
+short; both are fixed, and the log that found them is committed.
 
 **The pre-registered public-data analyses.** `depmap/`, `vus/` and `potencia/` use only public data
 and CPU. Each directory holds its scripts numbered in run order and the JSON/CSV every reported number

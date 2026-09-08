@@ -1,0 +1,620 @@
+
+### 2026-09-07T22:10:51-05:00 STEP: 0 bare clone
+$ /usr/bin/time -f clone wall %e s gh repo clone cpu-16/mva-hackathon-2026 clone -- -q
+clone wall 9.89 s
+[rc=0]
+$ git log -1 --format=%h %cI %s
+ee7a050 2026-09-07T22:10:02-05:00 Pre-register the TRIP13 transfer run of MVA-Replay from a fresh clone
+[rc=0]
+$ du -sh --exclude=.git .
+12M	.
+[rc=0]
+
+### 2026-09-07T22:11:01-05:00 STEP: O-1 test_output_reuse in the bare clone
+$ python3 replay/test_output_reuse.py
+EFFFFFFFF
+======================================================================
+ERROR: test_distinct_name_allows_fresh_plan_and_preserves_old_output (__main__.OutputReuseTests.test_distinct_name_allows_fresh_plan_and_preserves_old_output)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 55, in test_distinct_name_allows_fresh_plan_and_preserves_old_output
+    replay.main(["--gene", "BUB1B", "--allele", "chr15:100:A:T",
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 "--allele", "chr15:200:C:G", "--hpo", "HP:9999999",
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 "--background", str(bg), "--out", str(out),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                 "--name", "fresh_case", "--dry-run"])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<clone>/replay/mva_replay.py", line 222, in main
+    check_resources()
+    ~~~~~~~~~~~~~~~^^
+  File "<clone>/replay/mva_replay.py", line 46, in check_resources
+    sys.exit("missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:\n  "
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             + "\n  ".join(missing))
+             ^^^^^^^^^^^^^^^^^^^^^^^
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+======================================================================
+FAIL: test_existing_outputs_rejected_before_any_read_or_write (__main__.OutputReuseTests.test_existing_outputs_rejected_before_any_read_or_write) (artifact='.vcf.gz', dry_run=False)
+----------------------------------------------------------------------
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 33, in test_existing_outputs_rejected_before_any_read_or_write
+    with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Choose a new --name" does not match "missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt"
+
+======================================================================
+FAIL: test_existing_outputs_rejected_before_any_read_or_write (__main__.OutputReuseTests.test_existing_outputs_rejected_before_any_read_or_write) (artifact='.vcf.gz', dry_run=True)
+----------------------------------------------------------------------
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 33, in test_existing_outputs_rejected_before_any_read_or_write
+    with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Choose a new --name" does not match "missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt"
+
+======================================================================
+FAIL: test_existing_outputs_rejected_before_any_read_or_write (__main__.OutputReuseTests.test_existing_outputs_rejected_before_any_read_or_write) (artifact='_planted.genes.tsv', dry_run=False)
+----------------------------------------------------------------------
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 33, in test_existing_outputs_rejected_before_any_read_or_write
+    with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Choose a new --name" does not match "missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt"
+
+======================================================================
+FAIL: test_existing_outputs_rejected_before_any_read_or_write (__main__.OutputReuseTests.test_existing_outputs_rejected_before_any_read_or_write) (artifact='_planted.genes.tsv', dry_run=True)
+----------------------------------------------------------------------
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 33, in test_existing_outputs_rejected_before_any_read_or_write
+    with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Choose a new --name" does not match "missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt"
+
+======================================================================
+FAIL: test_existing_outputs_rejected_before_any_read_or_write (__main__.OutputReuseTests.test_existing_outputs_rejected_before_any_read_or_write) (artifact='.json', dry_run=False)
+----------------------------------------------------------------------
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 33, in test_existing_outputs_rejected_before_any_read_or_write
+    with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Choose a new --name" does not match "missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt"
+
+======================================================================
+FAIL: test_existing_outputs_rejected_before_any_read_or_write (__main__.OutputReuseTests.test_existing_outputs_rejected_before_any_read_or_write) (artifact='.json', dry_run=True)
+----------------------------------------------------------------------
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 33, in test_existing_outputs_rejected_before_any_read_or_write
+    with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Choose a new --name" does not match "missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt"
+
+======================================================================
+FAIL: test_existing_outputs_rejected_before_any_read_or_write (__main__.OutputReuseTests.test_existing_outputs_rejected_before_any_read_or_write) (artifact='_planted.sample.yml', dry_run=False)
+----------------------------------------------------------------------
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 33, in test_existing_outputs_rejected_before_any_read_or_write
+    with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Choose a new --name" does not match "missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt"
+
+======================================================================
+FAIL: test_existing_outputs_rejected_before_any_read_or_write (__main__.OutputReuseTests.test_existing_outputs_rejected_before_any_read_or_write) (artifact='_planted.sample.yml', dry_run=True)
+----------------------------------------------------------------------
+SystemExit: missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<clone>/replay/test_output_reuse.py", line 33, in test_existing_outputs_rejected_before_any_read_or_write
+    with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Choose a new --name" does not match "missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt"
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.006s
+
+FAILED (failures=8, errors=1)
+[rc=1]
+
+### 2026-09-07T22:11:01-05:00 STEP: O-2 self-check in the bare clone (expected to stop and name what is missing)
+$ python3 replay/mva_replay.py --self-check
+missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/tools/exomiser-cli-15.1.0
+  <clone>/tools/analysis_mva.yml
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+[rc=1]
+
+### 2026-09-07T22:11:01-05:00 STEP: 1 provide Exomiser + analysis YAML
+$ python3 replay/mva_replay.py --self-check
+missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <clone>/pipeline/resources/clinvar.vcf.gz
+  <clone>/pipeline/resources/genes_to_phenotype.txt
+[rc=1]
+
+### 2026-09-07T22:11:01-05:00 STEP: 2 provide ClinVar + HPOA
+$ python3 replay/mva_replay.py --self-check
+Traceback (most recent call last):
+  File "<clone>/replay/mva_replay.py", line 361, in <module>
+    main()
+    ~~~~^^
+  File "<clone>/replay/mva_replay.py", line 223, in main
+    if a.self_check: return self_check()
+                            ~~~~~~~~~~^^
+  File "<clone>/replay/mva_replay.py", line 323, in self_check
+    assert ref_ok("chr15", 40209701, "T") is True and ref_ok("chr15", 40209701, "A") is False
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+[rc=1]
+
+### 2026-09-07T22:11:04-05:00 STEP: 3 dry-run with no background VCF
+$ python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG001.vcf.gz --dry-run --name T_TRIP13_HG001_dry3
+background VCF not found: <clone>/replay/bg/HG001.vcf.gz
+[rc=1]
+
+### 2026-09-07T22:11:04-05:00 STEP: 4 provide backgrounds
+$ python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG001.vcf.gz --dry-run --name T_TRIP13_HG001_dry4
+{
+ "name": "T_TRIP13_HG001_dry4",
+ "gene": "TRIP13",
+ "background": "<clone>/replay/bg/HG001.vcf.gz",
+ "sample": "HG001",
+ "hpo": [
+  "HP:0002667",
+  "HP:0006743",
+  "HP:0000520",
+  "HP:0000508",
+  "HP:0007663",
+  "HP:0012375"
+ ],
+ "hpo_unrelated": [
+  "HP:0000509",
+  "HP:0002205",
+  "HP:0002315",
+  "HP:0000989",
+  "HP:0000988"
+ ],
+ "phase": "trans",
+ "alleles": [
+  {
+   "chrom": "chr5",
+   "pos": 900524,
+   "ref": "T",
+   "alt": "TA",
+   "clinvar_id": "3910602",
+   "input": "chr5:900524:T:TA",
+   "clnsig": "Likely_pathogenic",
+   "clnrevstat": "criteria_provided,_single_submitter",
+   "geneinfo": "TRIP13:9319",
+   "ref_matches_fasta": null,
+   "background_overlap": false
+  },
+  {
+   "chrom": "chr5",
+   "pos": 914464,
+   "ref": "G",
+   "alt": "C",
+   "clinvar_id": "4070948",
+   "input": "chr5:914464:G:C",
+   "clnsig": "Likely_pathogenic",
+   "clnrevstat": "criteria_provided,_single_submitter",
+   "geneinfo": "TRIP13:9319",
+   "ref_matches_fasta": null,
+   "background_overlap": false
+  }
+ ],
+ "warnings": [
+  "no FASTA for chr5: REF of chr5:900524:T:TA not verified",
+  "no FASTA for chr5: REF of chr5:914464:G:C not verified"
+ ],
+ "hpo_annotated_to_gene": [
+  "HP:0002667 (OMIM:617598,ORPHA:1052,ORPHA:654)"
+ ],
+ "plan": {
+  "spiked_vcf": "<clone>/replay/out_tool/T_TRIP13_HG001_dry4.vcf.gz",
+  "spike_records": [
+   "chr5\t900524\t.\tT\tTA\t100\tPASS\t.\tGT:DP:AD:GQ\t0|1:44:22,22:99",
+   "chr5\t914464\t.\tG\tC\t100\tPASS\t.\tGT:DP:AD:GQ\t1|0:44:22,22:99"
+  ],
+  "runs": {
+   "planted": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG001_dry4_planted.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG001_dry4.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG001_dry4_planted --output-format TSV_GENE,TSV_VARIANT",
+   "noclinvar": "nice -n 12 java -Xmx10g -Dexomiser.hg38.use-clinvar-whitelist=false -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG001_dry4_noclinvar.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG001_dry4.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG001_dry4_noclinvar --output-format TSV_GENE,TSV_VARIANT",
+   "unrelated": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG001_dry4_unrelated.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG001_dry4.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG001_dry4_unrelated --output-format TSV_GENE,TSV_VARIANT",
+   "background": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG001_dry4_background.sample.yml --vcf <clone>/replay/bg/HG001.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG001_dry4_background --output-format TSV_GENE,TSV_VARIANT"
+  }
+ }
+}
+[rc=0]
+
+### 2026-09-07T22:11:05-05:00 STEP: 5 provide hg38 FASTA (chr5)
+$ python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG001.vcf.gz --dry-run --name T_TRIP13_HG001_dry5
+{
+ "name": "T_TRIP13_HG001_dry5",
+ "gene": "TRIP13",
+ "background": "<clone>/replay/bg/HG001.vcf.gz",
+ "sample": "HG001",
+ "hpo": [
+  "HP:0002667",
+  "HP:0006743",
+  "HP:0000520",
+  "HP:0000508",
+  "HP:0007663",
+  "HP:0012375"
+ ],
+ "hpo_unrelated": [
+  "HP:0000509",
+  "HP:0002205",
+  "HP:0002315",
+  "HP:0000989",
+  "HP:0000988"
+ ],
+ "phase": "trans",
+ "alleles": [
+  {
+   "chrom": "chr5",
+   "pos": 900524,
+   "ref": "T",
+   "alt": "TA",
+   "clinvar_id": "3910602",
+   "input": "chr5:900524:T:TA",
+   "clnsig": "Likely_pathogenic",
+   "clnrevstat": "criteria_provided,_single_submitter",
+   "geneinfo": "TRIP13:9319",
+   "ref_matches_fasta": true,
+   "background_overlap": false
+  },
+  {
+   "chrom": "chr5",
+   "pos": 914464,
+   "ref": "G",
+   "alt": "C",
+   "clinvar_id": "4070948",
+   "input": "chr5:914464:G:C",
+   "clnsig": "Likely_pathogenic",
+   "clnrevstat": "criteria_provided,_single_submitter",
+   "geneinfo": "TRIP13:9319",
+   "ref_matches_fasta": true,
+   "background_overlap": false
+  }
+ ],
+ "warnings": [],
+ "hpo_annotated_to_gene": [
+  "HP:0002667 (OMIM:617598,ORPHA:1052,ORPHA:654)"
+ ],
+ "plan": {
+  "spiked_vcf": "<clone>/replay/out_tool/T_TRIP13_HG001_dry5.vcf.gz",
+  "spike_records": [
+   "chr5\t900524\t.\tT\tTA\t100\tPASS\t.\tGT:DP:AD:GQ\t0|1:44:22,22:99",
+   "chr5\t914464\t.\tG\tC\t100\tPASS\t.\tGT:DP:AD:GQ\t1|0:44:22,22:99"
+  ],
+  "runs": {
+   "planted": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG001_dry5_planted.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG001_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG001_dry5_planted --output-format TSV_GENE,TSV_VARIANT",
+   "noclinvar": "nice -n 12 java -Xmx10g -Dexomiser.hg38.use-clinvar-whitelist=false -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG001_dry5_noclinvar.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG001_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG001_dry5_noclinvar --output-format TSV_GENE,TSV_VARIANT",
+   "unrelated": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG001_dry5_unrelated.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG001_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG001_dry5_unrelated --output-format TSV_GENE,TSV_VARIANT",
+   "background": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG001_dry5_background.sample.yml --vcf <clone>/replay/bg/HG001.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG001_dry5_background --output-format TSV_GENE,TSV_VARIANT"
+  }
+ }
+}
+[rc=0]
+$ python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG002.vcf.gz --dry-run --name T_TRIP13_HG002_dry5
+{
+ "name": "T_TRIP13_HG002_dry5",
+ "gene": "TRIP13",
+ "background": "<clone>/replay/bg/HG002.vcf.gz",
+ "sample": "HG002",
+ "hpo": [
+  "HP:0002667",
+  "HP:0006743",
+  "HP:0000520",
+  "HP:0000508",
+  "HP:0007663",
+  "HP:0012375"
+ ],
+ "hpo_unrelated": [
+  "HP:0000509",
+  "HP:0002205",
+  "HP:0002315",
+  "HP:0000989",
+  "HP:0000988"
+ ],
+ "phase": "trans",
+ "alleles": [
+  {
+   "chrom": "chr5",
+   "pos": 900524,
+   "ref": "T",
+   "alt": "TA",
+   "clinvar_id": "3910602",
+   "input": "chr5:900524:T:TA",
+   "clnsig": "Likely_pathogenic",
+   "clnrevstat": "criteria_provided,_single_submitter",
+   "geneinfo": "TRIP13:9319",
+   "ref_matches_fasta": true,
+   "background_overlap": false
+  },
+  {
+   "chrom": "chr5",
+   "pos": 914464,
+   "ref": "G",
+   "alt": "C",
+   "clinvar_id": "4070948",
+   "input": "chr5:914464:G:C",
+   "clnsig": "Likely_pathogenic",
+   "clnrevstat": "criteria_provided,_single_submitter",
+   "geneinfo": "TRIP13:9319",
+   "ref_matches_fasta": true,
+   "background_overlap": false
+  }
+ ],
+ "warnings": [],
+ "hpo_annotated_to_gene": [
+  "HP:0002667 (OMIM:617598,ORPHA:1052,ORPHA:654)"
+ ],
+ "plan": {
+  "spiked_vcf": "<clone>/replay/out_tool/T_TRIP13_HG002_dry5.vcf.gz",
+  "spike_records": [
+   "chr5\t900524\t.\tT\tTA\t100\tPASS\t.\tGT:DP:AD:GQ\t0|1:44:22,22:99",
+   "chr5\t914464\t.\tG\tC\t100\tPASS\t.\tGT:DP:AD:GQ\t1|0:44:22,22:99"
+  ],
+  "runs": {
+   "planted": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG002_dry5_planted.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG002_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG002_dry5_planted --output-format TSV_GENE,TSV_VARIANT",
+   "noclinvar": "nice -n 12 java -Xmx10g -Dexomiser.hg38.use-clinvar-whitelist=false -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG002_dry5_noclinvar.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG002_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG002_dry5_noclinvar --output-format TSV_GENE,TSV_VARIANT",
+   "unrelated": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG002_dry5_unrelated.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG002_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG002_dry5_unrelated --output-format TSV_GENE,TSV_VARIANT",
+   "background": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG002_dry5_background.sample.yml --vcf <clone>/replay/bg/HG002.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG002_dry5_background --output-format TSV_GENE,TSV_VARIANT"
+  }
+ }
+}
+[rc=0]
+$ python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG005.vcf.gz --dry-run --name T_TRIP13_HG005_dry5
+{
+ "name": "T_TRIP13_HG005_dry5",
+ "gene": "TRIP13",
+ "background": "<clone>/replay/bg/HG005.vcf.gz",
+ "sample": "HG005",
+ "hpo": [
+  "HP:0002667",
+  "HP:0006743",
+  "HP:0000520",
+  "HP:0000508",
+  "HP:0007663",
+  "HP:0012375"
+ ],
+ "hpo_unrelated": [
+  "HP:0000509",
+  "HP:0002205",
+  "HP:0002315",
+  "HP:0000989",
+  "HP:0000988"
+ ],
+ "phase": "trans",
+ "alleles": [
+  {
+   "chrom": "chr5",
+   "pos": 900524,
+   "ref": "T",
+   "alt": "TA",
+   "clinvar_id": "3910602",
+   "input": "chr5:900524:T:TA",
+   "clnsig": "Likely_pathogenic",
+   "clnrevstat": "criteria_provided,_single_submitter",
+   "geneinfo": "TRIP13:9319",
+   "ref_matches_fasta": true,
+   "background_overlap": false
+  },
+  {
+   "chrom": "chr5",
+   "pos": 914464,
+   "ref": "G",
+   "alt": "C",
+   "clinvar_id": "4070948",
+   "input": "chr5:914464:G:C",
+   "clnsig": "Likely_pathogenic",
+   "clnrevstat": "criteria_provided,_single_submitter",
+   "geneinfo": "TRIP13:9319",
+   "ref_matches_fasta": true,
+   "background_overlap": false
+  }
+ ],
+ "warnings": [],
+ "hpo_annotated_to_gene": [
+  "HP:0002667 (OMIM:617598,ORPHA:1052,ORPHA:654)"
+ ],
+ "plan": {
+  "spiked_vcf": "<clone>/replay/out_tool/T_TRIP13_HG005_dry5.vcf.gz",
+  "spike_records": [
+   "chr5\t900524\t.\tT\tTA\t100\tPASS\t.\tGT:DP:AD:GQ\t0|1:44:22,22:99",
+   "chr5\t914464\t.\tG\tC\t100\tPASS\t.\tGT:DP:AD:GQ\t1|0:44:22,22:99"
+  ],
+  "runs": {
+   "planted": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG005_dry5_planted.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG005_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG005_dry5_planted --output-format TSV_GENE,TSV_VARIANT",
+   "noclinvar": "nice -n 12 java -Xmx10g -Dexomiser.hg38.use-clinvar-whitelist=false -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG005_dry5_noclinvar.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG005_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG005_dry5_noclinvar --output-format TSV_GENE,TSV_VARIANT",
+   "unrelated": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG005_dry5_unrelated.sample.yml --vcf <clone>/replay/out_tool/T_TRIP13_HG005_dry5.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG005_dry5_unrelated --output-format TSV_GENE,TSV_VARIANT",
+   "background": "nice -n 12 java -Xmx10g -jar exomiser-cli-15.1.0.jar analyse --sample <clone>/replay/out_tool/T_TRIP13_HG005_dry5_background.sample.yml --vcf <clone>/replay/bg/HG005.vcf.gz --assembly GRCh38 --analysis <clone>/tools/analysis_mva.yml --output-directory <clone>/replay/out_tool --output-filename T_TRIP13_HG005_dry5_background --output-format TSV_GENE,TSV_VARIANT"
+  }
+ }
+}
+[rc=0]
+
+### 2026-09-07T22:11:08-05:00 STEP: REAL RUN HG001
+1788837068 refusing to reuse existing case files for 'T_TRIP13_HG001' in <clone>/replay/out_tool: T_TRIP13_HG001_dry4_background.sample.yml. Choose a new --name or an empty --out directory; cached results are not validated against the current inputs.
+[rc=1]
+
+1788837068 Command exited with non-zero status 1
+### 2026-09-07T22:11:08-05:00 STEP: REAL RUN HG002
+1788837068 	Command being timed: "python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG001.vcf.gz --name T_TRIP13_HG001"
+1788837068 	User time (seconds): 0.03
+1788837068 	System time (seconds): 0.00
+1788837068 	Percent of CPU this job got: 100%
+1788837068 	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
+1788837068 	Average shared text size (kbytes): 0
+1788837068 	Average unshared data size (kbytes): 0
+1788837068 	Average stack size (kbytes): 0
+1788837068 	Average total size (kbytes): 0
+1788837068 	Maximum resident set size (kbytes): 17276
+1788837068 	Average resident set size (kbytes): 0
+1788837068 	Major (requiring I/O) page faults: 0
+1788837068 	Minor (reclaiming a frame) page faults: 3105
+1788837068 	Voluntary context switches: 13
+1788837068 	Involuntary context switches: 3
+1788837068 	Swaps: 0
+1788837068 	File system inputs: 0
+1788837068 	File system outputs: 0
+1788837068 	Socket messages sent: 0
+1788837068 	Socket messages received: 0
+1788837068 	Signals delivered: 0
+1788837068 	Page size (bytes): 4096
+1788837068 	Exit status: 1
+1788837068 refusing to reuse existing case files for 'T_TRIP13_HG002' in <clone>/replay/out_tool: T_TRIP13_HG002_dry5_background.sample.yml. Choose a new --name or an empty --out directory; cached results are not validated against the current inputs.
+[rc=1]
+
+1788837068 Command exited with non-zero status 1
+### 2026-09-07T22:11:08-05:00 STEP: REAL RUN HG005
+1788837068 	Command being timed: "python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG002.vcf.gz --name T_TRIP13_HG002"
+1788837068 	User time (seconds): 0.03
+1788837068 	System time (seconds): 0.00
+1788837068 	Percent of CPU this job got: 100%
+1788837068 	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
+1788837068 	Average shared text size (kbytes): 0
+1788837068 	Average unshared data size (kbytes): 0
+1788837068 	Average stack size (kbytes): 0
+1788837068 	Average total size (kbytes): 0
+1788837068 	Maximum resident set size (kbytes): 17468
+1788837068 	Average resident set size (kbytes): 0
+1788837068 	Major (requiring I/O) page faults: 0
+1788837068 	Minor (reclaiming a frame) page faults: 3105
+1788837068 	Voluntary context switches: 13
+1788837068 	Involuntary context switches: 4
+1788837068 	Swaps: 0
+1788837068 	File system inputs: 0
+1788837068 	File system outputs: 0
+1788837068 	Socket messages sent: 0
+1788837068 	Socket messages received: 0
+1788837068 	Signals delivered: 0
+1788837068 	Page size (bytes): 4096
+1788837068 	Exit status: 1
+1788837068 refusing to reuse existing case files for 'T_TRIP13_HG005' in <clone>/replay/out_tool: T_TRIP13_HG005_dry5_background.sample.yml. Choose a new --name or an empty --out directory; cached results are not validated against the current inputs.
+[rc=1]
+
+1788837068 Command exited with non-zero status 1
+### 2026-09-07T22:11:08-05:00 DONE
+1788837068 	Command being timed: "python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele chr5:914464:G:C --hpo HP:0002667 HP:0006743 HP:0000520 HP:0000508 HP:0007663 HP:0012375 --sex FEMALE --background replay/bg/HG005.vcf.gz --name T_TRIP13_HG005"
+1788837068 	User time (seconds): 0.03
+1788837068 	System time (seconds): 0.00
+1788837068 	Percent of CPU this job got: 100%
+1788837068 	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
+1788837068 	Average shared text size (kbytes): 0
+1788837068 	Average unshared data size (kbytes): 0
+1788837068 	Average stack size (kbytes): 0
+1788837068 	Average total size (kbytes): 0
+1788837068 	Maximum resident set size (kbytes): 17272
+1788837068 	Average resident set size (kbytes): 0
+1788837068 	Major (requiring I/O) page faults: 0
+1788837068 	Minor (reclaiming a frame) page faults: 3099
+1788837068 	Voluntary context switches: 13
+1788837068 	Involuntary context switches: 3
+1788837068 	Swaps: 0
+1788837068 	File system inputs: 0
+1788837068 	File system outputs: 0
+1788837068 	Socket messages sent: 0
+1788837068 	Socket messages received: 0
+1788837068 	Signals delivered: 0
+1788837068 	Page size (bytes): 4096
+1788837068 	Exit status: 1

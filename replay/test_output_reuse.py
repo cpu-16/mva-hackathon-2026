@@ -1,4 +1,6 @@
-"""Regression checks for stale results; synthetic files, no genomic tools or data."""
+"""Regression checks for stale results; synthetic files, no genomic tools or data.
+
+The resource check is stubbed: these tests must pass in a bare checkout (TRANSFER_TRIP13.md, finding F1)."""
 import contextlib
 import importlib.util
 import io
@@ -29,7 +31,8 @@ class OutputReuseTests(unittest.TestCase):
                             "--background", str(bg), "--out", str(out)]
                     if dry_run:
                         args.append("--dry-run")
-                    with patch.object(replay, "sh") as query, patch.object(replay, "run_exomiser") as run:
+                    with patch.object(replay, "check_resources"), \
+                         patch.object(replay, "sh") as query, patch.object(replay, "run_exomiser") as run:
                         with self.assertRaisesRegex(SystemExit, "Choose a new --name"):
                             replay.main(args)
                         query.assert_not_called()
@@ -46,7 +49,8 @@ class OutputReuseTests(unittest.TestCase):
             out.mkdir()
             old = out / "BUB1B_background.json"
             old.write_text("previous result\n")
-            with patch.object(replay, "sh", return_value="PUBLIC_SAMPLE"), \
+            with patch.object(replay, "check_resources"), \
+                 patch.object(replay, "sh", return_value="PUBLIC_SAMPLE"), \
                  patch.object(replay, "clinvar_status", return_value={}), \
                  patch.object(replay, "ref_ok", return_value=True), \
                  patch.object(replay, "overlaps", return_value=False), \
