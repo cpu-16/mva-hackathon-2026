@@ -137,7 +137,7 @@ to a path the tool resolves. The analysis YAML, the spike-in builder and the sco
 
 ### Results — 2026-09-07, 22:10–22:20 local, from clone `ee7a050` (the commit of this file)
 
-Raw outputs: `replay/transfer_trip13/T2_TRIP13_HG00{1,2,5}.json`, `bare_clone.log` (every command
+Raw outputs (copied from the clone's `replay/out_tool/`): `replay/transfer_trip13/T2_TRIP13_HG00{1,2,5}.json`, `bare_clone.log` (every command
 of the operational half with its exit code) and `runs.log` (the three real runs under `/usr/bin/time -v`).
 
 #### Scientific half — all four predictions held
@@ -162,18 +162,21 @@ of the operational half with its exit code) and `runs.log` (the three real runs 
   in HG002.
 - **Not predicted, reported:** switching the ClinVar whitelist off changed the score by **0.0000** in
   all three backgrounds (whitelist flags went 1→0, score did not move), against 0.0021 for the BUB1B
-  construct. For two truncating Likely_pathogenic alleles the whitelist is worth nothing; Exomiser's
-  own consequence and frequency scoring carries them.
+  construct. For two truncating Likely_pathogenic alleles the whitelist bonus is worth nothing. ClinVar still
+  enters through the ACMG route — `acmg_evidence` keeps PP5 with the whitelist off — so this is
+  "the whitelist", not "ClinVar", as `README_TOOL.md` already warns.
 
-#### Operational half — two of four predictions failed, and that is the useful part
+#### Operational half — three of four predictions failed, and that is the useful part
+
+*Corrected 7-Sep 22:50, after an adversarial read of this section: O-2 was first written up as "confirmed". By its own pre-registered wording ("no second run needed to discover another") it is falsified, and the count is three of four, not two.*
 
 | Finding | Prediction | What happened |
 |---|---|---|
 | **F1** | O-1: tests pass in a bare clone | **Falsified.** `test_output_reuse.py` failed 9 of 9 sub-tests: `main()` calls `check_resources()` before the dry-run path, and the tests never stubbed it. The README sentence *"runs from a bare checkout"* was untrue at `ee7a050`. Fixed in the **test only** (`check_resources` is now patched like the other resource-touching functions); `mva_replay.py` is unchanged. |
-| **F2** | O-2: self-check names every missing resource at once | **Confirmed** for the four resources it checks (Exomiser, analysis YAML, ClinVar, HPOA — one message, four paths). But once those were present it died with a bare `AssertionError` at the REF check, because the chr15 FASTA is not among the resources it checks for. Documented in `README_TOOL.md`; the check itself is not changed. |
-| **F3** | O-3: ≤ 5 manual steps, all in `README_TOOL.md § Requirements` | **Count confirmed (4 steps), documentation falsified.** Three of the four were not in *Requirements*: the analysis YAML is expected at `tools/analysis_mva.yml` while a checkout carries it at `analysis/analysis_mva.yml`; the FASTA directory `replay/raw/fasta/` was only mentioned under pre-flight checks; the background VCFs and how to prepare them were not in the repository at all. *Requirements* now lists all four steps with sources and commands. |
+| **F2** | O-2: self-check names every missing resource at once | **Falsified.** The first message did name four resources at once (Exomiser, analysis YAML, ClinVar, HPOA — one message, four paths). But once those were present a second run died with a bare `AssertionError` at the REF check, because the chr15 FASTA (the TRIP13 run needs chr5; the self-check needs chr15) is not among the resources it checks for — exactly the "second run to discover another" the prediction excluded. Documented in `README_TOOL.md`; the check itself is not changed. |
+| **F3** | O-3: ≤ 5 manual steps, all in `README_TOOL.md § Requirements` | **Count confirmed (4 steps: `bare_clone.log` STEP 1, 2, 4 and 5; STEP 3 is the diagnostic dry-run that revealed the missing backgrounds), documentation falsified.** Three of the four were not in *Requirements*: the analysis YAML is expected at `tools/analysis_mva.yml` while a checkout carries it at `analysis/analysis_mva.yml`; the FASTA directory `replay/raw/fasta/` was only mentioned under pre-flight checks; the background VCFs and how to prepare them were not in the repository at all. *Requirements* now lists all four steps with sources and commands. |
 | **F4** | — | The reuse guard matches case names **by prefix**: `--name T_TRIP13_HG001` refused to run because the dry-run had written `T_TRIP13_HG001_dry4_*`. Documented behaviour, undocumented breadth. The three real runs were re-issued as `T2_*`; no result existed before the refusal, so nothing was re-run. Noted in `README_TOOL.md`. |
-| — | O-4: ≤ 120 s per Exomiser call, ≤ 12 GB RSS, ≤ 10 min per background | **Confirmed.** Per-call wall-clock from the run timestamps: HG001 54 / 44 / 47 / 48 s; HG002 49 / 42 / 32 / 33 s; HG005 37 / 30 / 34 / 33 s. Maximum resident set 2.4–2.5 GB. Per background, tool start to JSON: 3 min 20 s, 2 min 43 s, 2 min 21 s. Clone: 9.9 s, 12 MB. |
+| — | O-4: ≤ 120 s per Exomiser call, ≤ 12 GB RSS, ≤ 10 min per background | **Confirmed.** Per-call wall-clock from the run timestamps: HG001 54 / 44 / 47 / 48 s; HG002 49 / 42 / 32 / 33 s; HG005 37 / 30 / 34 / 33 s. Maximum resident set 2.3–2.4 GiB (2,375,524–2,530,632 KiB). Per background, tool start to JSON: 3 min 20 s, 2 min 43 s, 2 min 21 s. Clone: 9.9 s, 12 MB. |
 
 **What this shows, and no more.** The frozen pipeline retrieves a second MVA gene, planted with two
 public Likely_pathogenic alleles and queried with a phenotype transcribed from a published abstract,

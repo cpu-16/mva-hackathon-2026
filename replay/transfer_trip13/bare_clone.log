@@ -618,3 +618,19 @@ $ python3 replay/mva_replay.py --gene TRIP13 --allele chr5:900524:T:TA --allele 
 1788837068 	Signals delivered: 0
 1788837068 	Page size (bytes): 4096
 1788837068 	Exit status: 1
+
+### 2026-09-07T22:36:27-05:00 POST-FIX VERIFICATION in a second bare clone (clone2) at 8956240
+$ python3 replay/test_output_reuse.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.006s
+
+OK
+[rc=0]
+$ python3 replay/mva_replay.py --self-check
+missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:
+  <scratch>/clone2/tools/exomiser-cli-15.1.0
+  <scratch>/clone2/tools/analysis_mva.yml
+  <scratch>/clone2/pipeline/resources/clinvar.vcf.gz
+  <scratch>/clone2/pipeline/resources/genes_to_phenotype.txt
+[rc=1 — exit status of mva_replay.py; the pipe through sed reported 0]

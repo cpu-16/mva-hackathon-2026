@@ -19,12 +19,13 @@ quedan 2 envíos, cuenta el último, hay hasta el 24-oct. Es decisión de Gilber
    HG001/HG002/HG005. **Las cuatro predicciones científicas se confirmaron:** rank 1 en 3/3 a
    **0,8332** (idéntico a cuatro decimales), ausente o 0,0 sin sembrar, rank 1/2/3 con fenotipo ajeno
    (0,4240). Whitelist de ClinVar vale 0,0000 aquí (dato no predicho, reportado).
-   **Dos de cuatro predicciones operativas fallaron, y eso es lo valioso:** (F1) la prueba de regresión
+   **Tres de cuatro predicciones operativas fallaron, y eso es lo valioso:** (F1) la prueba de regresión
    que el README decía que corría en un clon limpio **no corría** — `check_resources()` no estaba
    stubbeado; arreglado **solo en la prueba**, `mva_replay.py` intacto. (F3) tres de los cuatro pasos de
    aprovisionamiento no estaban en *Requirements* de `README_TOOL.md` (YAML en `tools/` vs
    `analysis/`, FASTA, fondos GIAB); ahora están con fuentes y comandos. (F2) el self-check muere con
-   `AssertionError` pelado si falta el FASTA chr15; documentado. (F4) el guardia de reutilización casa
+   `AssertionError` pelado si falta el FASTA chr15 — o sea O-2 («nombra todo lo que falta de una vez»)
+   también se falsó; la primera redacción la dio por confirmada y un revisor lo atrapó. (F4) el guardia de reutilización casa
    por **prefijo** de nombre; documentado. Tiempos: 30–54 s por llamada, 2,4–2,5 GB, 2:21–3:20 por
    fondo. Salidas en `replay/transfer_trip13/` (JSON + los dos logs con cada comando y su rc).
    Está citado en el Track 2 §9 (bullet nuevo) y en el README del repo (tabla + «Reproducing»).
