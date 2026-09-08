@@ -1,4 +1,4 @@
-"""Synthesise the pitch narration with Qwen3-TTS VoiceDesign, on CPU.
+"""Synthesise the pitch narration with Qwen3-TTS VoiceDesign (GPU if available, else CPU).
 
 Run with the dedicated venv:  ~/qween/.venv-tts/bin/python video/tts_qwen.py [S1 S2 ...]
 Writes audio/S*.wav at 24 kHz. Verify afterwards with tts_verify.py (Qwen3-ASR), which is the
@@ -28,7 +28,9 @@ def main(argv):
     keys = argv or sorted(script)
     print(f"loading {MODEL} on cpu", flush=True)
     t0 = time.time()
-    model = Qwen3TTSModel.from_pretrained(MODEL, device_map="cpu", dtype=torch.float32)
+    dev = "cuda" if torch.cuda.is_available() else "cpu"      # GPU when free: ~10x faster per clip
+    print(f"device {dev}", flush=True)
+    model = Qwen3TTSModel.from_pretrained(MODEL, device_map=dev, dtype=torch.float32 if dev == "cpu" else torch.bfloat16)
     print(f"loaded in {time.time()-t0:.0f}s", flush=True)
 
     (HERE / "audio").mkdir(exist_ok=True)

@@ -1,0 +1,22 @@
+# Mekinist (trametinib) SmPC, EMA EPAR product information, downloaded 2026-09-08
+# Source: https://www.ema.europa.eu/en/documents/product-information/mekinist-epar-product-information_en.pdf (67 pp., sha256 below)
+# sha256: e9740c279dc56efc8c0abe9928f9fd6e69edfd7192baf6df7f5be09736566a55
+# Section 5.2 excerpt (pdftotext -layout, lines 1960-1975):
+Absorption
+
+Trametinib is absorbed orally with median time to achieve peak concentrations of 1.5 hours post-dose.
+The mean absolute bioavailability of a single 2 mg tablet dose is 72% relative to an intravenous (IV)
+microdose. The increase in exposure (Cmax and AUC) was dose-proportional following repeat dosing.
+Following administration of 2 mg once daily, steady-state geometric mean Cmax, AUC(0-) and predose
+concentration were 22.2 ng/ml, 370 ng*hr/ml and 12.1 ng/ml, respectively with a low peak:trough
+ratio (1.8). Inter-subject variability at steady state was low (<28%).
+
+Trametinib accumulates with repeat daily dosing with a mean accumulation ratio of 6.0 at 2 mg once
+daily dose. Steady state was achieved by Day 15.
+
+Administration of a single dose of trametinib with a high-fat, high-calorie meal resulted in a 70% and
+10% decrease in Cmax and AUC, respectively compared to fasted conditions (see sections 4.2 and 4.5).
+
+Distribution
+
+# Check: 22.2 ng/mL / 615.39 g/mol = 36.1 nM  (document says 36.1 nM)

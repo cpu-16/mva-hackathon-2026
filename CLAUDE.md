@@ -48,8 +48,9 @@ falsas y varios números mal copiados en rondas anteriores. Ahí es donde hay qu
    y reglas de parada escritos y **commiteados antes** de ejecutar nada. El timestamp de git es el
    activo del proyecto. Las enmiendas se añaden fechadas al final, nunca se edita el texto anterior.
    Ver `VERIFY.md` en el repo.
-4. **No uses la GPU.** Nada de este análisis la necesita y la RTX 4060 tiene historial de
-   congelamientos.
+4. **GPU: úsala si está libre** (orden de Gilberto del 8-sep-2026: «si la GPU está libre úsala, no me
+   estés usando la CPU»). Comprobar con `nvidia-smi` que no la usa nadie, vigilar temperatura, y si se
+   congela (historial de Xid 79) volver a CPU. Hasta ahora: TTS del video a 77 °C sin incidentes.
 5. **No invoques skills de diseño, 3D, animación ni graphify.** Aquí no aplican. Las que sí sirven:
    `cursor-agent` y el plugin de `codex` para revisión adversarial.
 6. **Verifica toda cita contra PubMed** antes de usarla. Método que funciona: bajar el abstract y

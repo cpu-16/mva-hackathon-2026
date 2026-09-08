@@ -1,64 +1,64 @@
-# 3-minute pitch — script v4
+# 3-minute pitch — script v5 (documentary cut)
 
-✅ **Rendered 2026-09-06.** `pitch_MVA2026.mp4` narrates this script: 177.87 s by ffprobe, 8 slides
-rendered from `deck.html`. 176.08 s by ffprobe.
+Target ≤ 180 s including a silent title beat, four chapter cards and a closing card. Judging: Rigor 35% · Impact 25% · Innovation 25% · Scalability 15%.
 
-Target ≤ 180 s. Judging: Rigor 35% · Impact 25% · Innovation 25% · Scalability 15%.
+**Why v5 (08-Sep-2026).** The v4 video was frozen on 6-Sep, before the report reconciled every headline with its evidence (Codex-as-judge round, 7/8-Sep). It still said *"Bortezomib clears filter three"* and *"If that tumour comes, filter four inverts"*, two sentences the report retired on purpose, and it carried none of the 7/8-Sep results (free-drug margin, DepMap follow-up by lineage, power 0.17 at n = 3, TRIP13 transfer, one-command regeneration). A video more triumphant than the paper is a self-contradiction a judge catches. v5 was drafted from Part I of the submitted document, fact-audited sentence by sentence by Codex (gpt-6-astra) against that text (`evidencia/codex_guion_v5_2026-09-08.md`), and the Track 1 sentences it could not see were verified against `submission/ciberpty_track1_report.md` before they went back in.
 
-**Why v4 (06-Sep-2026).** v3 spent its time narrating our corrections and showed no result of our own.
-The four changes:
+Every sentence below maps to a section of the report; the on-screen provenance line of each scene names it.
 
-- **S3** described "twelve controls" and the version of the unrelated-symptom control that was still
-  contaminated. It now gives the corrected number, and the part that goes against us: the score is
-  identical across genomes, the *rank* is not.
-- **S6** presented bortezomib's mechanism without our own test of it. It now states the DepMap result,
-  which weakens our case, because that is the only result in this project that came from our own
-  computation on a public dataset.
-- **S8** claimed the framework scales without showing anything runnable. It now names MVA-Replay, the
-  tool another team can run, and the decision each result would change.
-- Throughout: nothing claims a demonstrated benefit of bortezomib in this child or in MVA.
+## S1 — cold open — 44 w
 
----
+A child survived an embryonal rhabdomyosarcoma. His family shared his genome so that strangers might help. Which approved drug could help him, in mosaic variegated aneuploidy? Our answer: no drug should be started for this today. Here is why, and what would change it.
 
-## S1 — 38 w
+## S2 — the variant — 39 w
 
-A child survived an embryonal rhabdomyosarcoma. His cells miscount chromosomes when they divide — mosaic variegated aneuploidy. We were asked which approved drug could help him. The honest answer today is none. What we can offer is the evidence behind that no, and what would change it.
+The presumed cause: two BUB1B variants, from two independent analyses. One introduces a stop. The other is a missense of uncertain significance. Whether they sit on opposite copies of the gene is not established. There is no parental sample.
 
-## S2 — 58 w
+## S3 — the control — 37 w
 
-First the variant. Two independent analyses, required to agree: a hypothesis-free genome-wide run driven only by his eight clinical terms, and an eleven-gene panel with coordinates fetched from a versioned database. Both land on BUB1B — one nonsense allele, one missense. We cannot prove the two sit on opposite chromosomes. There are no parental samples, so this is a diagnosis pending segregation.
+Our replay tool plants known alleles into public healthy genomes. Thirty-seven unspiked genomes, asked the same symptoms: none scores higher than this case. We caught our own contaminated control, twice. One pre-registered prediction is falsified, and published.
 
-## S3 — 59 w
+## S4 — five filters — 34 w
 
-Our replay tool plants known alleles into public healthy genomes. We also asked thirty-seven unspiked ones the same symptoms: none scores higher than this case. Then we caught our own contaminated control, twice. Cleaned up, the score is identical in every background — but the rank is not, and one pre-registered prediction is falsified. We said in advance we would publish that.
+Five filters, not the usual two: approval, mechanism, exposure, safety in this child, direction of effect. A plasma peak is only a plausibility check. And among the cells that survive, is mis-segregation made worse?
 
-## S4 — 45 w
+## S5 — metformin — 37 w
 
-For the drug, five filters instead of the usual two. Approval and a plausible mechanism are necessary but not enough. Filter three is pharmacokinetic: does the achievable plasma level reach the concentration that works in a dish? Filter five, rarely applied: does the drug make mis-segregation worse?
+Metformin, the candidate the literature points to: no aneuploidy-selective effective concentration has ever been measured for it, and the complex one mechanism proposed for it needs about a thousand times the therapeutic plasma level. Not disproven. Unevaluable.
 
-## S5 — 41 w
+## S6 — bortezomib, against ourselves — 51 w
 
-Metformin is the candidate the literature points to. Nobody has measured what concentration it needs against aneuploid cells, so it cannot be evaluated on the mechanism proposed. And that mechanism, inhibiting complex one, needs a thousand times more drug than is safe.
+Bortezomib is not excluded by the exposure check; on free drug, the margin is unknown. We tested it, pre-registered, on public cancer data. Across four hundred and forty-four solid tumour lines, no proteasome inhibitor reached significance, and the target association is weaker in solid tumours. His tumour type was barely represented.
 
-## S6 — 61 w
+## S7 — safety, filter four — 52 w
 
-Bortezomib clears filter three, and then we tested it against ourselves. We pre-registered a question on public cancer data: does the aneuploidy–proteasome link extend to solid tumours? It does not. This child's tumour was solid. So the dependency is established in cancer aneuploidy, not in his cells. We have not shown it transfers.
+It fails the safety filter for him: neuropathy in eighteen percent of children in the paediatric trials, on existing muscle atrophy. Alone, it produced no objective responses in paediatric solid tumour trials. If a tumour returns, the comparator becomes chemotherapy, and the question goes to a tumour board, after a laboratory gate.
 
-## S7 — 43 w
+## S8 — the experiment — 40 w
 
-Bortezomib also fails filter four for him: motor neuropathy in eight percent of children, on existing muscle atrophy. What changes his prognosis today is not a molecule, it is surveillance, and published consensus says renal ultrasound every three months until he is seven.
+The experiment that could prove us wrong: his own fibroblasts, a bortezomib dose response, micronuclei among survivors. Under our pre-registered model, three cultures per arm give power of seventeen percent; twelve are needed. Sensitivity alone could mean toxicity, not benefit.
 
-## S8 — 55 w
+## S9 — what helps today, what scales — 35 w
 
-Two things scale. The five-filter worksheet, for any rare disease where someone proposes an approved drug. And the replay tool, which another team can run on their own gene in an afternoon. What we hand over is not a prescription. It is a prepared answer, with the measurement that would overturn it.
+What helps him today is surveillance, published consensus: renal ultrasound every three months to age seven. What scales: eight pre-registrations, a five-filter worksheet reusable as questions, and a replay tool transferred to a second gene.
 
----
+## S10 — close — 18 w
+
+Not a prescription. A prepared answer, written down now, with the measurements that would change the next decision.
+
+**Total: 387 narrated words.**
 
 ## Build record
 
-Rendered 2026-09-06 from `deck.html` with `render_video.py`; narration by Qwen3-TTS 1.7B VoiceDesign
-on CPU, every clip checked against this script by speech recognition (`tts_verify.py`). Measured total
-**176.08 s** (ffprobe), not extrapolated.
+Rendered 2026-09-08 from `deck.html` with `render_video.py` (12 Chromium pages in parallel); narration by
+Qwen3-TTS 1.7B VoiceDesign on the RTX 4060 (15 s per clip; the first pass of the day ran on CPU at
+~60 s per clip), every clip checked against this script by speech recognition (`tts_verify.py`,
+whisper base.en; S1, S5 and S7 re-checked with large-v3-turbo because base.en heard «embryonic»,
+«effect of» and «and 18%» — the large model confirms the script is spoken as written). Raw clips in
+`audio_raw_v5/`; the clips in `audio/` carry `atempo=1.06` so the narration plus the six silent beats
+fits under 180 s. Measured total by ffprobe: see the README table.
 
-S7 was re-synthesised once: the first take dropped the word "to" from *"every three months, to age
-seven"*. The line now reads *"until he is seven"*, which the recogniser confirms is spoken in full.
+Two adversarial passes by Codex (gpt-6-astra): the script audit before synthesis
+(`evidencia/codex_guion_v5_2026-09-08.md`) and the panel-judge read of the first render
+(`evidencia/codex_juez_video_v5_2026-09-08.md`, 76/100), whose fixes are in this cut. S1, S5, S7 and
+S10 were re-synthesised after that read.

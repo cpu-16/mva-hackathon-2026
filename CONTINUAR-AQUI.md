@@ -1,9 +1,63 @@
 # 🔄 CONTINUAR AQUÍ — estado del MVA Hackathon 2026
 
-**Última actualización: 06-sep-2026.** Documento de traspaso tras un `/clear`.
+**Última actualización: 08-sep-2026.** Documento de traspaso tras un `/clear`.
 Léeme completo antes de tocar cualquier otro archivo.
 
 ---
+
+## 🆕 8-SEP-2026, MAÑANA — VIDEO v5 (CORTE DOCUMENTAL), TRAMETINIB VERIFICADO. **Sigue quedando 1 envío; NO usado.**
+
+Gilberto: «haga lo que tenga que hacer, y si vas a mejorar el video que valga la pena y sea algo bien
+profesional, tipo documental, apóyate con Codex. El objetivo es ganar». Y a media sesión: **«si la GPU
+está libre úsala, no me estés usando la CPU»** → la regla 4 del `CLAUDE.md` («no uses la GPU») queda
+**relajada por orden explícita**: se usa cuando está libre y vigilando temperatura (TTS a 77 °C, sin
+incidentes). Sigue vigente el historial de Xid 79: si se congela, volver a CPU.
+
+1. **El video v4 contradecía al reporte** — era la única pieza del paquete que no pasó por la ronda del
+   7/8-sep: decía «Bortezomib clears filter three» e «If that tumour comes, filter four inverts», y no
+   llevaba nada del 7/8-sep. **v5 = corte documental**: apertura fría con texto cinético, cuatro
+   capítulos con tarjeta (I La variante · II Cinco filtros · III Contra nosotros · IV Qué ayuda, qué
+   escala), figuras reales del reporte como «exhibits» sobre papel con push-in lento, línea de
+   procedencia (sección, pre-registro, PMID, etiqueta FDA) en cada escena, grano y viñeta, sin música.
+   Fondo carbón, Charter + IBM Plex Mono, los dos acentos del informe. **`video/pitch_MVA2026.mp4`,
+   177,03 s, 34,6 MB, sha256 `6e61c08343964a9813224212aa13efa0cc6b4bbb08c863c1720fb546efbe876c`.**
+2. **Guion v5 (387 palabras)** redactado desde la Parte I; **Codex (gpt-6-astra) auditó cada frase**
+   contra ese texto (`evidencia/codex_guion_v5_2026-09-08.md`: 37 frases, con veredicto y cita). Se tomó
+   su precisión («not excluded», «margin unknown», «barely represented», «after a laboratory gate»,
+   «reusable as questions») y NO su descarte del material del Track 1 (37 genomas, control contaminado
+   dos veces, P-B2 falsada, sin muestra parental): eso está en `submission/ciberpty_track1_report.md`
+   y se verificó allí antes de devolverlo. Los números de potencia (0,17 con n = 3; 12 cultivos) van
+   con su condición («under our pre-registered model»).
+3. **Codex como juez del primer render** (dos hojas de contacto + guion):
+   `evidencia/codex_juez_video_v5_2026-09-08.md`, **76/100** (el reporte había sacado 72). Aplicado
+   antes del render final: S6 con la conclusión rectora como bloque dominante («conditional research
+   candidate, not a therapy»; margen terapéutico no establecido; el 99 nM que hace visible el 1–2,5×),
+   S7 con el 18 % contextualizado (25/140, regímenes con quimioterapia, «no objective responses» en
+   vez de «never shrunk»), S8 «test of cellular response, not tumour benefit», S9 «confirm his age
+   first» promovido y la extensión pasada de los 7 años dibujada en línea discontinua como
+   «our proposal, not consensus», S10 «measurements that would change the next decision», S5 «no
+   aneuploidy-selective effective concentration». **No aplicado a propósito** (divergiría del reporte):
+   el texto del embudo «the proteasome class survives filters 1–3» — es la figura del reporte; va a la
+   ronda de octubre. Lo mismo «healthy genomes» (es el vocabulario del Track 1).
+4. **Pipeline**: `render_video.py` ahora intercala silencios fijos (`TIMELINE`) y fotografía cada
+   fotograma con **12 páginas de Chromium en paralelo** (~9 min; la versión secuencial iba a 25).
+   `tts_qwen.py` usa CUDA si está libre (15 s por clip vs ~60 en CPU). Los clips crudos están en
+   `video/audio_raw_v5/`; los de `audio/` llevan `atempo=1.06` para caber en 180 s con las tarjetas.
+   `tts_verify.py` pasó 10/10; S1, S5 y S7 se reconfirmaron con whisper large-v3-turbo. Respaldo de la
+   v4 en `video/audio_v4_backup/` (incluye `pitch_v4.mp4`) y `video/GUION_v4.md`.
+5. **Trametinib verificado contra la fuente**: la SmPC de Mekinist (EMA, bajada el 8-sep) dice
+   literalmente «Following administration of 2 mg once daily, steady-state geometric mean Cmax … 22.2
+   ng/ml»; 22,2/615,39 = 36,1 nM ✓. Extracto y sha256 en `evidencia/mekinist_smpc_5.2_2026-09-08.txt`.
+   Cierra el «no se verificó contra la ficha original» del 7-sep.
+6. Encabezado de la sección del 7/8-sep corregido (`f3a1051`, no `5de9c4f`).
+
+⛔ **Lo que queda es de Gilberto, y es un solo paso:** **subir la v5 a YouTube como video nuevo** (YouTube
+no permite reemplazar el archivo; instrucciones, título y descripción listos en `video/YOUTUBE.md`),
+copiar la URL nueva y ponerla en el campo *Pitch video URL* del **tercer envío** del Track 2 (y en
+`submission/ciberpty_track1_report.md`, `NOTAS_ENVIO.md`, `ENVIAR-PASO-A-PASO.md`). No borrar la v4
+hasta que el envío 3 esté confirmado. El envío 3 sigue reservado para el **13–17 de octubre** tras la
+ronda adversarial completa (Codex juez con la rúbrica sobre el PDF de dos partes), y esa ronda debe
+incluir el texto del embudo (punto 3).
 
 ## 🆕 7/8-SEP-2026, MADRUGADA — RONDA «A GANAR» CON CODEX COMO JUEZ. **Queda 1 envío; NO usado todavía.**
 
@@ -11,7 +65,7 @@ Gilberto: «quiero que tú junto a Codex hagan lo mejor y pongan a prueba sus ca
 Codex (gpt-6-astra) juzgó el PDF enviado con la rúbrica oficial: **72/100 — tercio superior, no podio**
 (`evidencia/codex_juez_rubrica_2026-09-07.md`: puntajes por criterio, 5 cambios ordenados por retorno,
 estructura de 14 páginas y 26 frases atacables). Lo hecho esta madrugada, todo commiteado y pusheado
-(último `5de9c4f`), con el verificador en «todo cuadra»:
+(último `f3a1051`), con el verificador en «todo cuadra»:
 
 1. **Cambio #1 — cada titular reconciliado con la evidencia** (commit `213d6ff`): título y §1 dicen
    «presumed compound heterozygosity; phase not established»; la página familiar ya no convierte una

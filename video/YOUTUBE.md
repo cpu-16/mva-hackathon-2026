@@ -1,11 +1,13 @@
 # Subida a YouTube — título, descripción y ajustes
 
-✅ **SUBIDO el 6-sep-2026: https://youtu.be/QGYHK0Ihs1c**
-Comprobado sin sesión iniciada (oembed HTTP 200, título correcto, canal «Gilberto Ramos»), así que el
-jurado puede abrirlo. Es el campo *Pitch video URL* del formulario del Track 2.
+⚠️ **v5 lista para subir (8-sep-2026). La v4 sigue en línea en https://youtu.be/QGYHK0Ihs1c** y contradice
+al reporte actual (dice «clears filter three» e «inverts»). YouTube no permite reemplazar el archivo de un
+video: hay que **subir la v5 como video nuevo**, copiar la URL nueva y ponerla en el campo *Pitch video URL*
+del tercer envío del Track 2 (y en `submission/ciberpty_track1_report.md`, `NOTAS_ENVIO.md`,
+`ENVIAR-PASO-A-PASO.md`). No borrar la v4 hasta que el envío 3 esté confirmado.
 
-Archivo a subir: `~/datos/HACKATHON-MVA-2026/video/pitch_MVA2026.mp4`
-2:56.1 (176,08 s por ffprobe, límite 180) · 1920×1080 · 30 fps · 6,6 MB · sha256 `439b534b181571…`
+Archivo a subir: `~/datos/HACKATHON-MVA-2026/video/pitch_MVA2026.mp4` (v5, corte documental)
+(duración, tamaño y sha256 de la v5: ver `README.md` de esta carpeta, sección «Build record»)
 
 ## Ajustes de YouTube
 
@@ -23,7 +25,7 @@ etiquetas ni la miniatura.** El reto lo prohíbe expresamente y no aparece en el
 ## Título
 
 ```
-The honest answer is no drug — MVA Hackathon 2026, Track 2 (team ciberpty)
+A prepared answer, not a prescription — MVA Hackathon 2026 (team ciberpty)
 ```
 
 ## Descripción
@@ -36,26 +38,27 @@ basta decir que la voz es sintética, que es lo que un espectador necesita saber
 Three-minute pitch for "Rare Disease, Real Kid" (Sage Bionetworks, MVA Society, Hugging Face and
 BEACON). Team: ciberpty. Track 2, drug repurposing.
 
-The case is a child with mosaic variegated aneuploidy type 1, from compound heterozygous BUB1B
-variants. We were asked which already-approved drug could help him. Our answer is that none can be
-recommended today, and the useful part is the evidence behind that no.
+The case is a child with mosaic variegated aneuploidy type 1, with two BUB1B variants (presumed
+compound heterozygous; phase not established). We were asked which already-approved drug could help
+him. Our answer is that no drug should be started today, and the useful part is the evidence behind
+that answer and what would change it.
 
-What the three minutes cover:
+Chapters:
 
-00:00  The case, and why the honest answer is no
-00:22  The variant: two independent analyses required to converge on BUB1B
-00:50  A pre-registered benchmark: 37 healthy public genomes asked the same eight symptoms,
-       and the phenotype control of our own that came out against us
-01:18  Five filters instead of the usual two, including pharmacokinetics and direction of effect
-01:39  Metformin fails on concentration, by about three orders of magnitude
-01:56  Bortezomib clears that filter — then our own pre-registered test on public cancer data
-       weakened our case, and we report it
-02:20  What changes this child's prognosis today: published surveillance, not a molecule
-02:37  What scales: a reusable five-filter worksheet, and a tool another team can run on their gene
+I    The variant — two BUB1B alleles, a pre-registered retrieval benchmark on 37 healthy public
+     genomes, and the control of our own that came back against us
+II   Five filters — approval, mechanism, exposure, safety in this child, direction of effect;
+     metformin is unevaluable on the mechanism proposed for it
+III  Against ourselves — bortezomib is not excluded by the exposure check (free-drug margin unknown);
+     our pre-registered test on public cancer data found no significant proteasome-inhibitor
+     association in 444 solid-tumour lines and an attenuated target association in solid tumours;
+     it fails the safety filter for this child (neuropathy 18% of children, on existing muscle
+     atrophy); the experiment that could refute the premise needs 12 cultures per arm, not 3
+IV   What helps, what scales — consensus surveillance, eight pre-registrations, a five-filter
+     worksheet reusable as questions, and a replay tool transferred to a second MVA gene
 
-Five analyses in this work were pre-registered in git — hypothesis, statistic and stopping rules
-committed before the data was touched, with the commit timestamp as the evidence. Four of the five
-came back against our own argument, and all four are reported.
+Eight analyses were pre-registered in git — hypothesis, statistic and stopping rules committed
+before each run. Where a result came back against our own argument, it is in the report.
 
 Code, pre-registrations, results and the full report:
 https://github.com/cpu-16/mva-hackathon-2026
