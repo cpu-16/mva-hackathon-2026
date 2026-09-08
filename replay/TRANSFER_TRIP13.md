@@ -137,8 +137,11 @@ to a path the tool resolves. The analysis YAML, the spike-in builder and the sco
 
 ### Results — 2026-09-07, 22:10–22:20 local, from clone `ee7a050` (the commit of this file)
 
-Raw outputs (copied from the clone's `replay/out_tool/`): `replay/transfer_trip13/T2_TRIP13_HG00{1,2,5}.json`, `bare_clone.log` (every command
-of the operational half with its exit code) and `runs.log` (the three real runs under `/usr/bin/time -v`).
+Raw outputs (copied from the clone's `replay/out_tool/`): `replay/transfer_trip13/T2_TRIP13_HG00{1,2,5}.json`;
+`provision_and_dryrun.sh` and `real_runs.sh` (the exact scripts that ran, including the symlink steps);
+`bare_clone.log` (every tool invocation of the operational half with its exit code — the symlink commands
+themselves are in the script, not echoed in the log) and `runs.log` (the three real runs, each whole tool
+invocation under `/usr/bin/time -v`).
 
 #### Scientific half — all four predictions held
 
@@ -174,9 +177,18 @@ of the operational half with its exit code) and `runs.log` (the three real runs 
 |---|---|---|
 | **F1** | O-1: tests pass in a bare clone | **Falsified.** `test_output_reuse.py` failed 9 of 9 sub-tests: `main()` calls `check_resources()` before the dry-run path, and the tests never stubbed it. The README sentence *"runs from a bare checkout"* was untrue at `ee7a050`. Fixed in the **test only** (`check_resources` is now patched like the other resource-touching functions); `mva_replay.py` is unchanged. |
 | **F2** | O-2: self-check names every missing resource at once | **Falsified.** The first message did name four resources at once (Exomiser, analysis YAML, ClinVar, HPOA — one message, four paths). But once those were present a second run died with a bare `AssertionError` at the REF check, because the chr15 FASTA (the TRIP13 run needs chr5; the self-check needs chr15) is not among the resources it checks for — exactly the "second run to discover another" the prediction excluded. Documented in `README_TOOL.md`; the check itself is not changed. |
-| **F3** | O-3: ≤ 5 manual steps, all in `README_TOOL.md § Requirements` | **Count confirmed (4 steps: `bare_clone.log` STEP 1, 2, 4 and 5; STEP 3 is the diagnostic dry-run that revealed the missing backgrounds), documentation falsified.** Three of the four were not in *Requirements*: the analysis YAML is expected at `tools/analysis_mva.yml` while a checkout carries it at `analysis/analysis_mva.yml`; the FASTA directory `replay/raw/fasta/` was only mentioned under pre-flight checks; the background VCFs and how to prepare them were not in the repository at all. *Requirements* now lists all four steps with sources and commands. |
+| **F3** | O-3: ≤ 5 manual steps, all in `README_TOOL.md § Requirements` | **Count confirmed — three steps to the first dry-run that exits 0 (`bare_clone.log` STEP 1, 2, 4; it still carries two "no FASTA" warnings), four to a warning-free one (STEP 5); STEP 3 is the diagnostic dry-run that revealed the missing backgrounds — documentation falsified.** Three of the four were not in *Requirements*: the analysis YAML is expected at `tools/analysis_mva.yml` while a checkout carries it at `analysis/analysis_mva.yml`; the FASTA directory `replay/raw/fasta/` was only mentioned under pre-flight checks; the background VCFs and how to prepare them were not in the repository at all. *Requirements* now lists all four steps with sources and commands. |
 | **F4** | — | The reuse guard matches case names **by prefix**: `--name T_TRIP13_HG001` refused to run because the dry-run had written `T_TRIP13_HG001_dry4_*`. Documented behaviour, undocumented breadth. The three real runs were re-issued as `T2_*`; no result existed before the refusal, so nothing was re-run. Noted in `README_TOOL.md`. |
-| — | O-4: ≤ 120 s per Exomiser call, ≤ 12 GB RSS, ≤ 10 min per background | **Confirmed.** Per-call wall-clock from the run timestamps: HG001 54 / 44 / 47 / 48 s; HG002 49 / 42 / 32 / 33 s; HG005 37 / 30 / 34 / 33 s. Maximum resident set 2.3–2.4 GiB (2,375,524–2,530,632 KiB). Per background, tool start to JSON: 3 min 20 s, 2 min 43 s, 2 min 21 s. Clone: 9.9 s, 12 MB. |
+| — | O-4: ≤ 120 s per Exomiser call, ≤ 12 GB RSS, ≤ 10 min per background | **Confirmed.** Per-call wall-clock from the run timestamps: HG001 54 / 44 / 47 / 48 s; HG002 49 / 42 / 32 / 33 s; HG005 37 / 30 / 34 / 33 s. Maximum resident set 2.3–2.4 GiB (2,375,524–2,530,632 KiB). Per background, tool start to JSON: 3 min 20 s, 2 min 43 s, 2 min 21 s. Clone: 9.9 s, 12 MB. *Note on method:* `/usr/bin/time -v` wrapped the whole tool invocation (four Exomiser calls), not each call as the design says; per-call figures come from the tool's own timestamped progress lines, and the RSS is the peak over the four. |
+
+**Departures from the pre-registered protocol, declared.** The stopping rule said three dry-runs; there
+were five dry-run invocations (three diagnostic ones on HG001 while provisioning, then one per
+background), four `--self-check` invocations while provisioning, and one real-run invocation refused by
+the name guard (F4). None of them ran Exomiser: the 12 Exomiser runs are exactly the 12 pre-registered.
+Two sentences of the pre-registration overstate: "that is what any real MVA3 referral looks like" rests
+on one case and should read *a plausible* MVA3 referral; and the abstract says the variant was
+"suggesting a diagnosis" of MVA3, not that MVA3 was confirmed, and gives no zygosity. Neither changes a
+number.
 
 **What this shows, and no more.** The frozen pipeline retrieves a second MVA gene, planted with two
 public Likely_pathogenic alleles and queried with a phenotype transcribed from a published abstract,

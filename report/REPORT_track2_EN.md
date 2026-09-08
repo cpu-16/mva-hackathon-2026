@@ -365,7 +365,7 @@ and even there, the ratio is computed on total drug, which is the acknowledged w
 | Ixazomib | **Not evaluable** | Same gap. The β5 enzymatic IC50 (3.4 nM) is not a cellular aneuploidy-selective value |
 | Hydroxychloroquine | **Not evaluable, and mechanistically weakened** | Tang's hit was *chloroquine*, not HCQ — and chloroquine did **not** differentially inhibit the human CIN lines in that same paper |
 | Everolimus / sirolimus | **Not evaluable, and possibly counterproductive** | See §3.4 |
-| Trametinib | **Not evaluable — the gap most worth closing** | Highly aneuploid RPE1 clones activate RAF/MEK/ERK and are more sensitive to MEK inhibition, reproduced in human cancer lines (PMID 39251587). But we could recover only *relative* IC50s from it (its Fig. 5E), and the 0.45 nM it uses to sensitise clones to etoposide is a sub-lethal dose, not an IC50 — so there is no denominator. Cmax at the approved 2 mg/day is 22.2 ng/mL = 36.1 nM (Mekinist SmPC §5.2). It is approved from age 1 — in combination with dabrafenib, for BRAF V600E low-grade glioma — with an oral paediatric formulation, so it clears filters 1 and 5 on paper; it was pre-blocked in our DepMap test as a mechanism-unrelated comparator and came back null (§3.5). The first drug we would put through filter 3 once an absolute aneuploid IC50 is published |
+| Trametinib | **Not evaluable — the gap most worth closing** | Highly aneuploid RPE1 clones activate RAF/MEK/ERK and are more sensitive to MEK inhibition, reproduced in human cancer lines (PMID 39251587). But we could recover only *relative* IC50s from it (its Fig. 5E), and the 0.45 nM it uses to sensitise clones to etoposide is a sub-lethal dose, not an IC50 — so there is no denominator. Cmax at the approved 2 mg/day is 22.2 ng/mL = 36.1 nM (Mekinist SmPC §5.2). It is approved from age 1 — in combination with dabrafenib, for BRAF V600E low-grade glioma — with an oral paediatric formulation, so it clears filter 1; filters 2 and 5 are untested for it. It was pre-blocked in our DepMap test as a mechanism-unrelated comparator and came back null (§3.5). The first drug we would put through filter 3 once an absolute aneuploid IC50 is published |
 
 Substituting an IC50 from an unstratified tumour line would manufacture a ratio without meaning. We
 leave those cells empty rather than fill them.
@@ -978,12 +978,13 @@ HP:0200067 at once, and it needs blood rather than a new laboratory.
   pre-registered and pushed before the run). From a fresh clone of this repository, the tool planted two
   public Likely_pathogenic *TRIP13* alleles — chosen by the frozen pool rule, not by us — into three
   healthy GIAB genomes and queried them with six HPO terms transcribed from the abstract of the 2026
-  MVA3 case (PMID 42595739). TRIP13 came back **rank 1 in 3 of 3 backgrounds at 0.8332**, absent or
+  TRIP13 case (PMID 42595739). TRIP13 came back **rank 1 in 3 of 3 backgrounds at 0.8332**, absent or
   scoring 0 unspiked, and rank 1 / 2 / 3 under an unrelated phenotype — the same pattern as BUB1B. Each
   background took under 3½ minutes and about 2.4 GiB. The operational half was the useful one: the clone
   needed **four provisioning steps, three of which the tool's requirements list did not include**, and the
   regression tests the README said ran from a bare checkout did not. Both are fixed; the run that
-  found them is in the repository with every command and exit code.
+  found them is in the repository: the provisioning script, and the log of every tool invocation with its
+  exit code.
 - The **gene panel** (BUB1B, CEP57, TRIP13, CENATAC, MAD1L1, MAD2L1BP, CEP192, BUB1, SMC5, TRIM37,
   CENPE) and the artefact controls used in the mosaicism analysis transfer to any MVA or PCS workup.
 - The **micronucleus → scDNA-seq endpoint** applies to mitotic CIN disorders. It does **not** transfer
