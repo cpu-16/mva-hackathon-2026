@@ -94,7 +94,9 @@ Three activities, all documented in the repository:
 
 ## Q6 / Q7 — Data sources
 
-Publicly available sources only. No proprietary data.
+Publicly available drug, target and literature sources only; no proprietary data. The one controlled-access
+input is the challenge dataset itself (the proband's VCF and clinical document), used under the data
+transfer agreement described under *Data availability* and deleted within 30 days of the close.
 
 - **Literature:** PubMed / Europe PMC, cited by PMID throughout.
 - **Regulatory labels:** FDA labels and reviews — VELCADE (NDA 021602 s040; BPCA Clinical Review
@@ -120,8 +122,9 @@ chromosome alignment defects, and low overall BUBR1 abundance" (PMID 20516114), 
 heterogeneity (Sieben 2020, PMID 31738183).
 
 We were explicit about what we could not determine. Phase is not established, and we measured that it is not
-establishable from these data: there are no parental samples, the challenge distributes a VCF with no
-alignments so no read-backed phaser can be run, and the two variants lie 10,911 bp apart with no GATK
+establishable from these data: there are no parental samples; the challenge distributes a VCF and raw reads
+but no alignments, we did not align them, and short reads could not phase two variants whose only intervening
+heterozygous site lies 6.8 and 4.1 kb away; and the two variants lie 10,911 bp apart with no GATK
 phase tag on either — a limit visible in the data itself, since GATK did phase three variants 5 bp
 apart elsewhere in the same VCF. Reference-panel phasing fails separately: all three heterozygous
 sites inside the interval are absent from the 1000 Genomes 3,202-sample phased panel, and Beagle 5.5

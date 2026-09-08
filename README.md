@@ -28,7 +28,7 @@ patient-specific safety filter: **we recommend no drug today.** The proposition 
 prepared, evidence-backed answer for the case where a new tumour appears, together with the experiment
 that could show us we are wrong.
 
-**What we actually contribute** is not a claim, it is five pre-registered analyses that constrain the
+**What we actually contribute** is not a claim, it is six pre-registered analyses that constrain the
 claim — including four that came back against us. See [`VERIFY.md`](VERIFY.md).
 
 ## Results, with what each one does not show
