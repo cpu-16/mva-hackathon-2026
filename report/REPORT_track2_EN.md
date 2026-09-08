@@ -469,7 +469,7 @@ association in solid lines under the fitted model, not the absence of a clinical
 (These three numbers were first computed ad hoc; they now come from `depmap/05_seguimiento.py`, which
 reproduces all of them.)
 
-**Follow-up, pre-registered after seeing the result and run once (8 Sep; `depmap/PREREGISTRO_SEGUIMIENTO.md`,
+**Follow-up, pre-registered after seeing the result and run once (7 Sep; `depmap/PREREGISTRO_SEGUIMIENTO.md`,
 `depmap/RESULTADOS_SEGUIMIENTO.md`).** A reader asked for the uncertainty, the structure under the pooled
 "solid" stratum, and the representation of this child's tumour type. All four pre-registered predictions held:
 

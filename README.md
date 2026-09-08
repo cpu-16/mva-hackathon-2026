@@ -49,7 +49,8 @@ claim — including four that came back against us. See [`VERIFY.md`](VERIFY.md)
 ```
 pipeline/    Gene panel with provenance, chromosome maps, bcftools triage
 analysis/    Exomiser configuration: analysis specs, run scripts, HPO control scripts
-report/      Track 2 report (md + PDF), figures and figure source, working documents
+report/      Track 2 report: PART1_decision_document.md (the ~20-page reading version), REPORT_track2_EN.md (full evidence),
+             the PDF that binds both, candidates.tsv (machine-readable five-filter table), figures and their source
 submission/  Track 1 CSV, Track 1 report (md + PDF), Track 2 methods, methods form
 video/       3-minute pitch (mp4), narration script and slide source
 depmap/      Pre-registered DepMap aneuploidy × drug/dependency analysis
