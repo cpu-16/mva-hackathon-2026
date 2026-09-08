@@ -94,6 +94,11 @@ provisioning steps, about three minutes per background, rank 1 in 3 of 3. It als
 regression tests did not run from a bare checkout and that the requirements list was three items
 short; both are fixed, and the log that found them is committed.
 
+**The whole Track 2 package, one command.** `bash analysis/make_track2.sh` regenerates the DepMap follow-up figure
+and tables (when `depmap/raw/` is present), renders the five-filter worksheet from `report/candidates.tsv`, runs the
+claim verifier and builds both PDFs; from a fresh checkout it takes about 8 s and names what is missing
+(`evidencia/make_track2_fresh_checkout_2026-09-08.log`).
+
 **The pre-registered public-data analyses.** `depmap/`, `vus/` and `potencia/` use only public data
 and CPU. Each directory holds its scripts numbered in run order and the JSON/CSV every reported number
 comes from. `depmap/` needs the DepMap 24Q4 and PRISM 24Q2 downloads (figshare 27993248 and 25917643,

@@ -1085,6 +1085,13 @@ HP:0200067 at once, and it needs blood rather than a new laboratory.
   regression tests the README said ran from a bare checkout did not. Both are fixed; the run that
   found them is in the repository: the provisioning script, and the log of every tool invocation with its
   exit code.
+- **One command regenerates the Track 2 package.** `analysis/make_track2.sh` re-runs the DepMap follow-up
+  (`depmap/05_seguimiento.py`: figure 5 and its tables) when the public downloads are present, renders the
+  five-filter worksheet in both parts of this document from `report/candidates.tsv`, checks every reported
+  number against the results files (`analysis/verificar_afirmaciones.py`) and builds the PDFs. Run from a
+  fresh checkout of the repository it finished in 8 s with a peak of 179 MB, naming the one missing input —
+  the ~700 MB DepMap 24Q4 and PRISM 24Q2 downloads, which are not bundled — and building both PDFs from
+  the committed copies of the figure and tables (`evidencia/make_track2_fresh_checkout_2026-09-08.log`).
 - The **gene panel** (BUB1B, CEP57, TRIP13, CENATAC, MAD1L1, MAD2L1BP, CEP192, BUB1, SMC5, TRIM37,
   CENPE) and the artefact controls used in the mosaicism analysis transfer to any MVA or PCS workup.
 - The **micronucleus → scDNA-seq endpoint** applies to mitotic CIN disorders. It does **not** transfer

@@ -402,6 +402,12 @@ proteasome inhibition (§3.4); bortezomib for this child today (§5).
   checkout did not. Both fixed; the provisioning script and every tool invocation with its exit code are
   committed (`replay/TRANSFER_TRIP13.md`). It measures retrieval given a perfect call, not diagnostic
   sensitivity.
+- **One command regenerates the Track 2 package.** `analysis/make_track2.sh` re-runs the DepMap follow-up
+  (figure and tables) when the public downloads are present, renders the worksheet from `candidates.tsv`,
+  checks every reported number against the results files and builds the PDFs. Run from a fresh checkout of
+  the repository it finished in 8 s and 179 MB, naming the one missing input (the ~700 MB DepMap/PRISM
+  downloads, which it does not bundle) and building both PDFs from the committed copies
+  (`evidencia/make_track2_fresh_checkout_2026-09-08.log`).
 - The gene panel and artefact controls transfer to any MVA or PCS workup; the micronucleus → scDNA-seq
   endpoint applies to mitotic CIN disorders, **not** to Fanconi anaemia or Bloom syndrome.
 
