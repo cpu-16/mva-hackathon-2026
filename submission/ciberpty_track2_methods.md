@@ -202,8 +202,8 @@ framework transfers to any rare disease; applied to MVA2 and MVA3 it returns dif
 Limitations. The proteasome dependency is established in cancer aneuploidy, not constitutional
 mosaicism; whether it transfers is what our proposed experiment tests. Our
 own pre-registered DepMap analysis found the association attenuated in solid lineages, the lineage of
-this child's tumour. The 0.897 power figure belongs to an idealised simulation with an *assumed*
-fourfold selectivity, not a validated estimate. The EC50 is a conservative bound read from a figure
+this child's tumour. Under the pre-registered four-parameter model with biological variability the assay
+has power 0.17 at n = 3 and needs about 12 cultures per arm. The EC50 is a conservative bound read from a figure
 panel. Phase is unproven and unobservable in these data; parental genotyping is the cheapest
 informative experiment. No disease-modifying drug can be recommended from these data today — what most
 changes his prognosis now is surveillance, not a molecule.

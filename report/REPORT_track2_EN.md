@@ -788,6 +788,24 @@ biological-replicate term. Both push the number upward, so 0.897 is optimistic *
 model** — it is neither a validated power estimate for patient cells nor a mathematical ceiling on
 what a better-specified version of the experiment could achieve (`potencia/RESULTADOS.md` §5b).
 
+**We then ran the model we had promised, pre-registered as a follow-up (`potencia/PREREGISTRO_4P.md`,
+`RESULTADOS_4P.md`, 8 Sep), and it retires the small-n branches.** Four free Hill parameters, a shared
+log-normal multiplier on each replicate culture's EC50 (CV_bio 0.20), a plate-level offset (CV 0.05),
+per-well noise (CV 0.10), the current 0–1,000 nM concentration grid, a Welch t on log10 EC50, and
+fitting failures counted as non-rejections. At the central scenario (f = 0.30, 4× selectivity, n = 3 per
+arm) **power is 0.167**. The two-parameter fit on the same simulated data gives 0.234, so most of the drop
+from 0.897 is the biological and plate variability, not the fit; fitting failures were 0.0% in every
+scenario. Power reaches 0.80 at **n = 12 independent cultures per arm at f = 0.30**, **n = 23 at
+f = 0.20**, and not within 24 at f = 0.10; at n = 3 it is 0.05 at f = 0.10 and 0.43 at f = 0.50, and
+CV_bio 0.10–0.30 moves it between 0.23 and 0.12. Two of the four pre-registered predictions were
+falsified — we expected fitting failures of at least 5% and expected the fit, not the biology, to be the
+larger cost — and both are reported. **What *n* counts:** independent biological replicate cultures per
+arm, from separate passages on separate plates, each yielding one fitted EC50; technical wells are not
+*n*. **Consequence, per the pre-registered mapping:** the n = 3 branch and the "n = 14 at f = 0.10"
+branch of earlier versions are retired from this report; 0.897 remains only as the optimistic
+two-parameter reference; and a design that needs twelve independent cultures per arm from one biopsy is
+heavier than the eight-week assay window implies, which the timeline paragraph below now carries.
+
 **A second pre-registered analysis the same day gives us our own reason to doubt the 4×.** Proteotoxic
 load is a dose, not a switch: an MVA cell carries **about one** altered chromosome, two arms, against the
 eighteen-arm point at which we evaluated the dose response — close to the mean of the solid DepMap
@@ -822,11 +840,13 @@ centromere-cohesion phenotype and the diagnostic criterion for MVA; the aneuploi
 of abnormal chromosome *numbers*. The same metaphase slides yield both, at no extra cost, but they are
 different endpoints and an earlier version of this section conflated them.
 
-Indicative branches: n = 3 if the fraction is ≥ 0.25; n = 14 at 0.10; and **below 0.10 do not run the
-bulk viability assay** — go to a per-cell endpoint, because under our assumptions the required n grows past what a biopsy-derived culture can supply. Every branch is
-computed at the same assumed 4× selectivity, so **measuring the fraction does not validate the branch
-it selects**: it removes one unmeasured input of three. Treat the table as planning, not as a validated
-operating rule. Details and every sweep in `potencia/RESULTADOS.md`.
+Sample size, under the declared model: **about 12 independent cultures per arm if the measured fraction is
+≈ 0.30, 23 at ≈ 0.20, and below ≈ 0.20 do not run the bulk viability assay** — go to a per-cell endpoint,
+because the required n grows past what a biopsy-derived culture can supply (`RESULTADOS_4P.md`; the
+earlier n = 3 / n = 14 branches came from the optimistic two-parameter model and are retired). Every
+branch is computed at the same assumed 4× selectivity and CV_bio 0.20, so **measuring the fraction does
+not validate the branch it selects**: it removes one unmeasured input of four. Treat it as planning, not
+as a validated operating rule. Details and every sweep in `potencia/RESULTADOS.md` and `RESULTADOS_4P.md`.
 
 ⚠️ **Consent, assent and ethics approval come before week 1, and they are not ours to give.** Taking a
 skin biopsy from a child, establishing a fibroblast line from it and retaining that line require
@@ -846,7 +866,7 @@ takes is within our control. The same applies to the parental sampling in
 | 6–8 | **Micronucleus assay (OECD TG 487)** on survivors of every condition, plus FISH for 3–5 chromosomes | Micronucleus frequency as a proxy for mis-segregation (filter 5); FISH separates whole-chromosome loss from breakage, and proliferation is recorded because a change in division rate alone moves the count |
 
 **Timeline, stated honestly in the heading it belongs in.** Eight weeks is the *assay* programme, and it
-holds only once a patient fibroblast line exists. Establishing 15–20 × 10⁶ fibroblasts from a fresh
+holds only once a patient fibroblast line exists — and twelve independent cultures per arm must be expanded from it first. Establishing 15–20 × 10⁶ fibroblasts from a fresh
 biopsy typically takes 4–8 weeks on its own (`track2/DATOS_CANDIDATO.md` §7), so from a standing start
 the planning figure is **12–16 weeks**, not eight — and the same source warns that growth can be slower
 in MVA1 fibroblasts, which would push it further. We use "eight-week experiment" as shorthand for the
@@ -886,7 +906,13 @@ toxicity:
 2. **Effect at ≤312 nM.** That is the top of the *total plasma* Cmax interval for the approved dose,
    used here as an order-of-magnitude ceiling for plausibility. It is not free drug, not intratumoral
    drug, and not a validated clinical threshold.
-3. **No increase in micronuclei among survivors** — filter 5.
+3. **Filter 5 read as a decision, not a slogan.** Micronucleus frequency among survivors (per 1,000
+   binucleated cells, OECD TG 487) in treated versus vehicle cultures of the same line: the 95% confidence
+   interval of the treated-minus-vehicle difference must **exclude a relative increase of 50%** of the
+   vehicle rate — a threshold we set here for the design, not a validated one. An interval that includes
+   it is read as *not shown to pass filter 5*, never as a pass; the proliferation index is recorded because
+   a change in division rate alone moves the count, and FISH separates whole-chromosome loss from
+   breakage so that an increase is attributed to mis-segregation only when the FISH signal says so.
 4. **A stop signal, not a go signal:** if patient fibroblasts are markedly more sensitive than controls
    *without* the aneuploidy-high positive control showing a larger shift still, the most likely reading
    is constitutional toxicity in an MVA patient rather than selective killing of aneuploid cells. That

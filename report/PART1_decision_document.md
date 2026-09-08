@@ -3,7 +3,7 @@
 **Team: ciberpty** · Rare Disease, Real Kid: MVA Hackathon 2026
 Repository: https://github.com/cpu-16/mva-hackathon-2026 · Methods description: Appendix B of this PDF
 
-*This document has two parts. **Part I** (this part, about 24 pages including the reference list) is the decision document: every
+*This document has two parts. **Part I** (this part, 24 pages including the reference list) is the decision document: every
 conclusion, every number that carries it, and every limitation, at the length a judge can read in one
 sitting. **Part II** is the full evidence: the same sections at full length, with derivations, sources
 quoted verbatim, the correction history and every pre-registered analysis. Where Part I compresses,
@@ -300,7 +300,7 @@ single-cell DNA.
 **The experiment (Part II §6).** Patient dermal fibroblasts against two matched controls and a
 reversine-treated RPE1 positive control; allele-fate assays; a bortezomib dose–response 0–1,000 nM at 72 h
 (spanning the 312 nM Cmax); a bortezomib + everolimus arm for the predicted antagonism; a micronucleus
-assay with FISH for 3–5 chromosomes on survivors of every condition, with proliferation recorded because a change in division rate alone moves the count. Eight weeks of assay after 4–8 weeks to establish the line: a planning figure of **12–16 weeks**
+assay with FISH for 3–5 chromosomes on survivors of every condition, with proliferation recorded because a change in division rate alone moves the count. Eight weeks of assay after 4–8 weeks to establish the line (longer if twelve independent cultures per arm must be expanded first): a planning figure of **12–16 weeks**
 from biopsy (MVA1 fibroblasts may grow slower), after consent, assent and ethics approval whose timing is not ours to control.
 
 **What it decides, and what it cannot.** Fibroblasts are constitutional MVA cells, not tumour cells: a
@@ -311,15 +311,23 @@ not sample.
 
 | Reading | Consequence |
 |---|---|
-| Aneuploid-cell fraction *f* measured first, on the culture and passage to be treated (cells with ≥ 1 numerical abnormality, plus abnormal chromosomes per abnormal cell; PCS scored separately) | Gate: the bulk EC50 ratio to expect at an assumed 4× selectivity is 1.14× at f = 0.10, 1.30× at 0.20, 1.50× at 0.30, 2.00× at 0.50 — a pre-specified reading rule, not a validated threshold, recomputed if selectivity is ever estimated; indicative n = 3 at f ≥ 0.25, n = 14 at 0.10, and below f ≈ 0.10 use a per-cell endpoint instead of bulk viability |
+| Aneuploid-cell fraction *f* measured first, on the culture and passage to be treated (cells with ≥ 1 numerical abnormality, plus abnormal chromosomes per abnormal cell; PCS scored separately) | Gate: the bulk EC50 ratio to expect at an assumed 4× selectivity is 1.14× at f = 0.10, 1.30× at 0.20, 1.50× at 0.30, 2.00× at 0.50 — a pre-specified reading rule, not a validated threshold, recomputed if selectivity is ever estimated. Under the declared model (four-parameter fit, biological variability CV 0.20) the design needs **about 12 independent cultures per arm at f = 0.30 and 23 at f = 0.20**; below f ≈ 0.20 use a per-cell endpoint instead of bulk viability |
 | EC50 shift at the row for the measured *f*, 95% CI excluding 1, at ≤ 312 nM | Dependency signal: build the tumour-material stage. A shift materially *above* the row is not a better result — suspect the mixture model or systemic toxicity |
 | Patient cells markedly more sensitive **without** the positive control shifting more | **Stop**: the most likely reading is constitutional toxicity, the outcome most easily mistaken for success |
-| Micronuclei increase among survivors | **Stop**: fails filter 5 regardless of killing |
+| Micronucleus frequency among survivors (per 1,000 binucleated cells, treated vs vehicle): the 95% CI of the difference must exclude a 50% relative increase, a design threshold set here, with proliferation recorded and FISH attributing the increase to mis-segregation | **Stop** if the interval includes that increase: not shown to pass filter 5, regardless of killing |
 | No shift | Fails to support transfer in these cells; tumour question stays open |
 
-Power: 0.897 in an idealised simulation (n = 3, α = 0.05, assumed 4× selectivity, 30% aneuploid culture, 10% CV, a two-
-parameter Hill fit where four were pre-registered, no biological-replicate term) and 0.387 at 2×; none of the inputs is measured in these
-cells, and our own dose–response analysis leaves the 4× unsupported and unrefuted (`potencia/`).
+Power, stated under the model we pre-registered rather than the one we first ran (`potencia/RESULTADOS_4P.md`,
+pre-registered follow-up, 8 Sep): with four free Hill parameters, a biological multiplier on each replicate's
+EC50 (CV 0.20), a plate offset and per-well noise, **the design at n = 3 per arm has power 0.17** at the
+central scenario (f = 0.30, 4× selectivity), not the 0.897 of the original two-parameter simulation without
+biological variability, which we keep only as the optimistic reference. Fitting never failed; the cost is
+biology. Reaching 0.80 needs **12 independent cultures per arm** at f = 0.30, 23 at f = 0.20 and more than
+24 at f = 0.10 — so the n = 3 and n = 14 branches of earlier versions are retired, and *n* counts independent
+biological replicate cultures, not wells. None of the inputs is measured in these cells, CV_bio = 0.20 is an
+assumption (0.10–0.30 moves power at n = 3 between 0.23 and 0.12), and our own dose–response analysis leaves
+the 4× unsupported and unrefuted (`potencia/`). Twelve cultures per arm from one biopsy is heavier than an
+eight-week assay window implies, and we say so rather than keep the smaller number.
 
 ---
 

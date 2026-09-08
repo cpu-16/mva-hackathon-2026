@@ -35,8 +35,7 @@ estructura de 14 páginas y 26 frases atacables). Lo hecho esta madrugada, todo 
    (`evidencia/pubmed_bortezomib_paediatric_2026-09-07.xml`). Nada de eso favorece; se dice.
 4. **Cambio #4 — el PDF es ahora un documento de dos partes** (commit `50d41cf`):
    `track2/PART1_decision_document.md` (22 pp. con referencias) + Parte II = el reporte completo con
-   encabezados degradados y sin duplicar página familiar/referencias + Apéndice B. **77 páginas en total;
-   la Parte II empieza en la p. 23 y el Apéndice B en la 69.** `entrega/build_pdfs.sh` arma las tres
+   encabezados degradados y sin duplicar página familiar/referencias + Apéndice B. **82 páginas en total; la Parte II empieza en la p. 25.** `entrega/build_pdfs.sh` arma las tres
    piezas. Dos lecturas adversariales independientes (Codex + agente) de Parte I contra Parte II:
    2 blockers y ~15 majors, todos aplicados (`5de9c4f`): «shrank» → «reduced the growth», pauta
    pediátrica completa, la regla «materially above the row is not a better result» restaurada, ~30
@@ -44,12 +43,19 @@ estructura de 14 páginas y 26 frases atacables). Lo hecho esta madrugada, todo 
 5. **Cambio #3 (parcial) — tabla de evidencia de exposición** en §3.2 de ambas partes, con la ficha
    SPL de VELCADE bajada de DailyMed (`evidencia/velcade_spl_dailymed_2026-09-07.xml`): unión a
    proteínas 83 % → **el pico libre IV (≈39–53 nM, ≈99 nM con la cifra de 223 ng/mL) queda a 1–2,5× de la cota de
-   EC50 (<40 nM), no a 6–8×**. Está en el resumen ejecutivo, las hojas de filtros y el TSV. Falta de #3: implementar el
-   modelo de potencia de cuatro parámetros o retirar las ramas n=3/n=14 del cuerpo (se dejaron como
-   «indicativas»).
-6. **Cambio #5 (parcial)** — `track2/candidates.tsv`: hoja de cinco filtros legible por máquina
-   (pass/fail/untested/not_evaluable, contexto, fuente, razón). Falta: comando único que regenere la
-   figura y tabla principal desde el TSV (hoy `depmap/05_seguimiento.py` regenera fig5).
+   EC50 (<40 nM), no a 6–8×**. Está en el resumen ejecutivo, las hojas de filtros y el TSV. **#3 completado a las 00:29:**
+   `potencia/PREREGISTRO_4P.md` (commit `fa9eaae`, antes del script) → `03_potencia_4p.py` (paralelo en
+   32 núcleos, 397 s; enmienda 1 registra que la corrida secuencial se mató sin ver ningún número) →
+   `RESULTADOS_4P.md`. **Potencia con n = 3: 0,167, no 0,897**; hacen falta **12 cultivos por brazo** a
+   f = 0,30 y 23 a 0,20; sin fallos de ajuste; el costo es la variabilidad biológica (2 de 4
+   predicciones falsadas). Las ramas n=3/n=14 están retiradas del §6 de las dos partes; 0,897 queda
+   como referencia optimista; el abstract del Track 2 lo dice (496 palabras). Criterio de micronúcleos
+   convertido en regla con IC. Anclas nuevas en `verificar_afirmaciones.py`.
+6. **Cambio #5 completado** — `track2/candidates.tsv` + `track2/render_candidates.py` (la hoja de
+   filtros de las dos partes se genera desde el TSV; `--check` falla si difieren) +
+   `entrega/make_track2.sh` (un comando: fig5 y tablas si están los datos DepMap, hoja, verificador,
+   PDFs). Corrido desde un checkout limpio del repo: 8 s, 179 MB, nombra el único insumo ausente
+   (`evidencia/make_track2_fresh_checkout_2026-09-08.log`). `build_pdfs.sh` funciona en ambos layouts.
 7. Arreglo en el tool: `mva_replay.py` nombra el FASTA ausente en la primera corrida y el self-check ya
    no muere con `AssertionError` (22 aserciones; enmienda en `TRANSFER_TRIP13.md`).
 

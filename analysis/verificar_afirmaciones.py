@@ -111,6 +111,12 @@ def hechos(datos: Path) -> dict:
     h["potencia_r2"] = pot["sweeps"]["r"]["2.0"]
     h["potencia_r_central"] = pot["central_params"]["r"]
     h["potencia_f_central"] = pot["central_params"]["f"]
+    # --- potencia, modelo de cuatro parametros (seguimiento pre-registrado del 8-sep)
+    p4 = _json(datos / "potencia/resultados_4p.json")
+    h["potencia4p_central"] = p4["central"]["power"]
+    h["potencia4p_2p_mismos_datos"] = p4["central"]["power_2p_same_data"]
+    h["potencia4p_n80_f030"] = p4["n_for_80"]["0.3"]
+    h["potencia4p_n80_f020"] = p4["n_for_80"]["0.2"]
 
     # --- dosis (la correccion del 6-sep depende de esto)
     dos = _json(datos / "potencia/dosis.json")
@@ -160,6 +166,10 @@ ANCLAS = [
      ["tier1k_max", "tier1k_gen", "tier1k_muestra", "tier1k_n", "score_referencia"]),
     ("T1", r"0 of 7 GIAB and 0 of (\d+) 1000G", ["tier1k_n"]),
     ("T2", r"Read (\d+(?:\.\d+)?) as an idealised scenario", ["potencia_central"]),
+    ("T2", r"n = 3 per\s+arm\) \*\*power is (\d+(?:\.\d+)?)\*\*\. The two-parameter fit on the same simulated data gives (\d+(?:\.\d+)?)",
+     ["potencia4p_central", "potencia4p_2p_mismos_datos"]),
+    ("T2", r"Power reaches 0\.80 at \*\*n = (\d+) independent cultures per arm at f = 0\.30\*\*, \*\*n = (\d+) at\s+f = 0\.20\*\*",
+     ["potencia4p_n80_f030", "potencia4p_n80_f020"]),
     ("T2", r"\*\*(\d+(?:\.\d+)?)% of cells at an overdispersion κ = 2\*\*", ["lod_k2"]),
     ("T2", r"and (\d+(?:\.\d+)?)% at κ = 1, (\d+(?:\.\d+)?)% at κ = 4", ["lod_k1", "lod_k4"]),
     ("T2", r"\*\*(\d+(?:\.\d+)?) residual SD at two arms against (\d+(?:\.\d+)?) at eighteen\*\*",

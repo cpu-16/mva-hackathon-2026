@@ -89,3 +89,20 @@ declared model; it measures nothing about the child's cells.
 ## Results
 
 *(appended below, dated; the text above is never edited)*
+
+### Amendment 1 — 2026-09-08, 00:22, before any result was seen
+
+The first execution ran single-threaded and was stopped after 12 minutes at the owner's request to
+finish sooner; its standard output was still buffered and `resultados_4p.json` had not been written, so
+**no number from it was observed**. The script is re-run with the scenarios distributed over CPU cores
+(`multiprocessing`), which changes one thing only: each scenario now draws from its own random stream
+seeded from the master seed (20260908 plus the scenario index) instead of one sequential stream. Model,
+scenarios, simulation counts, predictions and decision rules are unchanged. No GPU is used.
+
+### Results — 2026-09-08, 00:29 EST (`03_potencia_4p.py`, one parallel run, 397.2 s)
+
+Full write-up: `RESULTADOS_4P.md`. Central power **0.167** (0.897 before), fitting failures 0.000,
+two-parameter fit on the same data 0.234; n for 0.80: **12** at f = 0.30, **23** at f = 0.20,
+**> 24** at f = 0.10. P-4P1 and P-4P3 confirmed; P-4P2 (failures ≥ 5%) and P-4P4 (the fit is the larger
+cost) **falsified** — the cost is the biological variability. The n = 3 and n = 14 branches are retired from
+the main body per the pre-registered mapping.
