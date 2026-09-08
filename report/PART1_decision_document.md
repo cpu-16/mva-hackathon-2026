@@ -7,7 +7,7 @@ Repository: https://github.com/cpu-16/mva-hackathon-2026 · Methods description:
 conclusion, every number that carries it, and every limitation, at the length a judge can read in one
 sitting. **Part II** is the full evidence: the same sections at full length, with derivations, sources
 quoted verbatim, the correction history and every pre-registered analysis. Where Part I compresses,
-Part II is authoritative for detail; nothing in Part I says more than Part II supports.*
+Part II is authoritative for detail; every number in Part I is taken from Part II or from the results files both cite.*
 
 ---
 
@@ -17,7 +17,7 @@ Part II is authoritative for detail; nothing in Part I says more than Part II su
 sourced in the sections that follow.*
 
 **What we looked for.** An existing, approved medicine that could help a child with mosaic variegated
-aneuploidy caused by two changes in the *BUB1B* gene. We fixed in advance the tests a candidate had to
+aneuploidy whose presumed cause is two changes in the *BUB1B* gene (one of them still formally uncertain, and whether they sit on opposite copies of the gene is not yet shown; §1, §10). We fixed in advance the tests a candidate had to
 pass and put the main candidates through them. It is not an exhaustive screen; §8 lists what we ruled
 out and why.
 
@@ -27,7 +27,7 @@ more useful than an encouraging one.
 - **Metformin**, the medicine most often suggested for this kind of problem, should not be started on
   this reasoning: no one has measured what dose would be needed to act on *this* problem, and the
   best-studied way it might act needs concentrations about a thousand times higher than the blood levels
-  the usual doses produce (§3.1).
+  the usual doses produce, and whether it could act another way at those levels has never been tested (§3.1).
 - **Bortezomib** is an approved cancer medicine that acts on a weakness that cancer cells with extra
   chromosomes have been shown to have. **Nobody has shown that this child's cells have it.** Our own
   analysis of public cancer data found the link weaker in solid tumours as a group, which is the group
@@ -40,15 +40,15 @@ more useful than an encouraging one.
 | | Action | Why |
 |---|---|---|
 | 1 | **Confirm the child's current age** with the care team | Every schedule below depends on it, and we do not have it |
-| 2 | **Renal ultrasound every 3 months, birth to age 7** | Published consensus for all forms of MVA (PMID 39264246). Not our idea; how it applies to this child is the treating team's decision |
+| 2 | **Renal ultrasound every 3 months, birth to age 7** | Published consensus for all forms of MVA (PMID 39264246: the SIOP-Europe host-genome group's schedule, endorsed by the AACR workshop). Not our idea; how it applies to this child is the treating team's decision |
 | 3 | **Regular full clinical examination**, including the orbit, skin and soft tissues | Rhabdomyosarcoma is not a kidney tumour; a 2026 case of the related MVA3 had a second tumour behind the eye at age 12 (PMID 42595739) |
 | 4 | **Avoid unnecessary radiation; keep HPV vaccination up to date** | Consensus guidance (PMID 39264246) |
 | 5 | **Ask about testing and counselling for both parents** — a ready-to-adapt laboratory request is included (`clinico/PARENTAL_SEGREGATION_ORDER.md`) | The clinical notes mention repeated miscarriages; a 2026 study linked that pattern to carriers of *BUB1B* changes (PMID 42434306). A hypothesis, not a diagnosis, and a simple test (§7) |
 
 **What would change the answer.** If a new tumour appears, the question changes from "should he take a
 medicine" to "which medicines belong in the treatment plan", and bortezomib becomes worth putting to a
-tumour board — as a possible *addition* to standard treatment, never a replacement. In children with
-other solid tumours it has been given safely at known doses but has not shrunk tumours on its own (§5).
+tumour board, after the laboratory test in §6 — as a possible *addition* to standard treatment, never a replacement. In children with
+other solid tumours it has been given at known doses — with real side effects — and has not shrunk tumours on its own (§5).
 We have written that answer down now so nobody has to assemble it in a hurry.
 
 **What we are not certain about.** The strongest evidence comes from cancer patients, not from
@@ -65,7 +65,8 @@ has ever been measured — and the complex I mechanism proposed for it needs mil
 against micromolar plasma levels (§3.1). **Bortezomib** survives: aneuploid cancer cells depend on the
 proteasome (Ippolito 2024, PMID 39247952), its total-plasma peak at the approved IV dose is 5.8–7.8 times
 the EC50 of highly aneuploid lines, and aneuploidy level tracked response in myeloma patients (§3.2).
-That comparison is an exposure plausibility screen on total drug, not a therapeutic threshold.
+That comparison is an exposure plausibility screen on total drug, not a therapeutic threshold: on free
+drug (83% protein-bound) the peak sits at the EC50 bound, not above it.
 
 **We then tested the part of that argument that public data can test, pre-registered, and it did not
 survive** (§4): across 444 solid-tumour cell lines no proteasome inhibitor reached significance, and the
@@ -78,8 +79,7 @@ pre-existing muscle atrophy. **Not for this child, not now** (§5). What remains
 bounded answer for the setting of an active tumour, an experiment that could refute the premise in this
 child's own cells (§6), and the actions that change his prognosis today without any drug (§7).
 
-**What we contribute** is six pre-registered analyses that constrain the claim — four of the first five
-came back against us — a reusable five-filter worksheet, and a retrieval-benchmark tool transferred to a
+**What we contribute** is six pre-registered analyses that constrain the claim — DepMap, MVA-Replay, mosaicism, power, dose–response and the TRIP13 transfer; the DepMap test came back against our mechanism, the mosaicism control came back not conclusive, and the two power analyses removed the support for our own assumptions — a reusable five-filter worksheet, and a retrieval-benchmark tool transferred to a
 second MVA gene from a fresh clone of our repository (§9).
 
 ---
@@ -89,7 +89,7 @@ second MVA gene from a fresh clone of our repository (§9).
 The proband carries two heterozygous `BUB1B` variants (NM_001211.6, MANE), read here as compound
 heterozygous **on presumption: phase is not established** (§10).
 
-| Variant | Consequence | Exomiser ACMG | ClinVar | gnomAD (Exomiser snapshot) |
+| Variant | Consequence | Exomiser ACMG | ClinVar | gnomAD (Exomiser snapshot, exomes NFE; VEP: 3×10⁻⁵ and no record) |
 |---|---|---|---|---|
 | `c.2210T>G` p.(Leu737Ter) | stop_gained | PATHOGENIC | 533901, Pathogenic/Likely pathogenic | 9.98×10⁻⁵ |
 | `c.3006T>G` p.(Asn1002Lys) | missense | UNCERTAIN_SIGNIFICANCE | **not present** (ClinVar holds `c.3006T>A`, a different nucleotide, VUS — does not transfer) | 9.0×10⁻⁷ |
@@ -100,7 +100,7 @@ published functional assay. On the AlphaFold model (pLDDT 91.1 at the residue) A
 solvent accessibility 0.162) in a hydrophobic pocket, and the substitution inserts a longer, charged side
 chain — evidence about the substitution, not a classification: no ΔΔG was computed, and the retrieved
 predictors disagree (REVEL 0.472, AlphaMissense 0.923). No calibration set exists to score it against: in
-ClinVar *BUB1B* carries 1,497 missense records of which one is Likely pathogenic, against 82 of 94
+ClinVar (2026-08-28 release) *BUB1B* carries 1,497 missense records of which one is Likely pathogenic — one star, single submitter — against 82 of 94
 truncating records P/LP — a property of the database, not a prior about this allele. The mouse model
 pairing the nearby missense L1012P with a truncation died prematurely (PMID 31738183); our proband is
 alive, so if that transfers, p.Asn1002Lys must retain more function than L1012P — a falsifiable
@@ -116,7 +116,7 @@ prediction §6 tests. Full detail: Part II §1.
 | 2 | Mechanistic | Does it address the lesion or a direct consequence of it? | Agents on uninvolved pathways |
 | 3 | **Pharmacokinetic** | **Is Cmax ≥ the effective in-vitro concentration?** | **Metformin** |
 | 4 | Patient-specific safety | Compatible with *this* child's comorbidities? | **Bortezomib, at present** |
-| 5 | Direction of effect | Does it avoid increasing mis-segregation in survivors? | Untested for every candidate; §6 is where it would be measured |
+| 5 | Direction of effect | Does it avoid increasing mis-segregation in survivors? | Untested for the candidates that reach it; §6 is where it would be measured |
 
 ![The five-filter funnel](fig3_funnel.png)
 
@@ -147,20 +147,33 @@ nephrocalcinosis. **Verdict: rejected at filter 3 as unevaluable, not as disprov
 Aneuploid cells carry a stoichiometric protein imbalance and compensate by increasing degradation, which
 makes them dependent on the proteasome; Ippolito et al. showed this across diploid-versus-aneuploid
 models and hundreds of cancer lines, and found aneuploidy level associated with myeloma patients'
-response to proteasome inhibitors (PMID 39247952). That human signal rests on small cohorts (8 complete
-responders vs 50 progressors, p = 0.014; 13 vs 14, p = 0.038) — enough to justify an experiment, not to
+response to proteasome inhibitors (PMID 39247952). That human signal rests on small cohorts and one-tailed tests (single agent: 8 complete responders vs 50 progressors, p = 0.014; with chemotherapy and dexamethasone: 13 complete vs 14 minimal responders per the figure legend, p = 0.038) — enough to justify an experiment, not to
 predict a patient. A 2026 paired-CRISPR preprint independently nominates proteasome subunits and UBE2H
 as aneuploid-specific dependencies (PMID 42094535; not peer-reviewed, weighted as corroboration).
 
 | | Value | Source |
 |---|---|---|
 | EC50, highly aneuploid lines (72 h) | **< 40 nM**, conservative bound read from Fig. 6o | PMID 39247952 |
-| Cmax, 1.3 mg/m² IV | **89–120 ng/mL = 231–312 nM** (whole label interval) | FDA label NDA 021602 |
+| Cmax, 1.3 mg/m² IV, repeated dosing | **89–120 ng/mL = 231–312 nM** (whole label interval) | FDA label NDA 021602 |
 | Ratio, IV | **5.8–7.8**, on total drug | — |
-| Subcutaneous | 53.1 nM; ratio 1.33 — does not survive any free-fraction correction | same |
+| Subcutaneous | 53.1 nM; ratio 1.33 — does not survive any plausible free-fraction correction | same |
 
-Read the ratio as an order of magnitude on *total* plasma drug at a peak — not free drug, not
-intratumoral, and silent on duration. Myeloma is a plasma-cell neoplasm with its own proteotoxic load and
+Read the ratio as an order of magnitude on *total* plasma drug at a peak. **The exposure evidence, laid out
+rather than reduced to a pass:**
+
+| Quantity | Value | What it does and does not support |
+|---|---|---|
+| Effective concentration | EC50 < 40 nM at 72 h in 5 highly aneuploid cancer lines, read from Fig. 6o (PMID 39247952); no tabulated value; medium and serum binding unstated | A bound on total drug in culture, not a threshold for MVA cells |
+| Plasma binding | 83% bound to human plasma proteins over 100–1,000 ng/mL (label §12.3) | Free fraction ≈ 17% |
+| Cmax, IV 1.3 mg/m² | 112 ng/mL first dose; 89–120 ng/mL twice weekly; 223 ng/mL in the IV-vs-SC comparison cohort (label §12.3) | Total drug at a peak; **free peak ≈ 39–53 nM** (or ≈ 99 nM from 223 ng/mL) |
+| Cmax, SC 1.3 mg/m² | 20.4 ng/mL, with AUC equivalent to IV (label §12.3) | Free peak ≈ 9 nM |
+| Pharmacodynamics | Maximal 20S inhibition 73–83% in whole blood at 5 min (label §12.2); elimination half-life 76–108 h on multiple dosing, with plasma falling steeply after infusion | Duration at the target is not established by any number here |
+
+On total drug the IV ratio is 5.8–7.8; **on free drug the free peak sits at, not above, the EC50 bound** —
+and the culture value is itself partly free drug in serum-containing medium, so the two sides are not
+on the same footing. What filter 3 supports is that the IV route is **not excluded**; it does not support
+comparable free exposure or duration at the target, and we do not correct one side for binding while
+leaving the other unexplained. The culture-side EC50 carries its own unstated medium and binding conditions. Myeloma is a plasma-cell neoplasm with its own proteotoxic load and
 clonal, not variegated, aneuploidy; MVA1 is a different setting in which the same dependency is plausible
 and **untested**. Part II §3.2.
 
@@ -171,7 +184,7 @@ and **untested**. Part II §3.2.
 | Carfilzomib, ixazomib | Not evaluable | No IC50 in an aneuploidy-stratified model; Cmax known, no valid denominator |
 | Hydroxychloroquine | Not evaluable, mechanistically weakened | Tang's hit was chloroquine, which did *not* differentially inhibit the human CIN lines |
 | Everolimus / sirolimus | Not evaluable, possibly counterproductive | §3.4 |
-| Trametinib | Not evaluable — the gap most worth closing | Aneuploid RPE1 clones are MEK-inhibitor-sensitive (PMID 39251587) but only relative IC50s were recoverable; Cmax 36.1 nM at 2 mg/day; approved from age 1 with dabrafenib; null in our DepMap test |
+| Trametinib | Not evaluable — the gap most worth closing | Aneuploid RPE1 clones are MEK-inhibitor-sensitive (PMID 39251587) but only relative IC50s were recoverable; Cmax 36.1 nM at 2 mg/day; approved from age 1 with dabrafenib for BRAF V600E low-grade glioma; filters 2 and 5 untested; null in our DepMap test |
 
 We leave cells empty rather than manufacture ratios from unstratified models.
 
@@ -179,7 +192,7 @@ We leave cells empty rather than manufacture ratios from unstratified models.
 
 Aneuploid cells are vulnerable to proteasome inhibition *because* of translational burden; ovarian
 carcinoma spheroids acquired resistance to proteasome inhibitors by suppressing mTORC1, and PTEN loss
-resensitised them (PMID 31530568). **Prediction, falsifiable:** everolimus or sirolimus would antagonise
+resensitised them (PMID 31530568). That paper did not test rapalogues; the antagonism is our inference from its mechanism. **Prediction, falsifiable:** everolimus or sirolimus would antagonise
 bortezomib in aneuploid cells; §6 tests the combination. The same paper notes bortezomib's poor clinical
 response in advanced ovarian cancer — a solid-tumour failure any honest reading carries. A tension we flag:
 mTORC1 hyperactivity correlates with sarcopenia in *monoallelic* BubR1 mice (PMID 31738183), a
@@ -191,7 +204,7 @@ muscle-directed rationale that points the other way and must not be read as supp
 
 The objection to §3.2 is that the human signal is myeloma and this child's tumour was an embryonal
 rhabdomyosarcoma. We had no number for solid tumours, so we produced one — drug list, directions,
-statistic, correction and stopping rules committed to `depmap/PREREGISTRO.md` before the analysis ran.
+statistic, correction and stopping rules committed to `depmap/PREREGISTRO.md` before the analysis ran (the commit history documents the record, not our conduct; deviations are listed in `VERIFY.md`, and one untestable hypothesis was recorded as a dated amendment).
 
 **Method.** An arm-level aneuploidy score for 2,420 DepMap 24Q4 lines (validated: stable MSI lines average
 5.0 altered arms, CIN lines 16.5), correlated with PRISM Repurposing drug sensitivity and DepMap CRISPR
@@ -200,22 +213,22 @@ gene effect. The pipeline is not blind: across 6,790 compounds 1.1% reach p < 0.
 **Result 1 — drugs (444 solid lines).** No proteasome inhibitor reached FDR < 0.05. Bortezomib
 ρ = −0.075 (95% bootstrap CI −0.168 to +0.017), carfilzomib −0.060, ixazomib +0.028; metformin null as
 predicted; paclitaxel, the cytotoxic control, ran the other way (+0.096), which argues against — without
-excluding — a "sick cells die more" confound. Haematological lines have no PRISM value for these drugs.
+excluding — a "sick cells die more" confound. Haematological lines have no PRISM value for these drugs (0 of 98 for bortezomib).
 
 **Result 2 — the target (946 lines).** PSMB5 dependency tracks aneuploidy overall (ρ = −0.198,
 q = 5×10⁻⁸) but splits by lineage: **haematological ρ = −0.261 (−0.422 to −0.084); solid ρ = −0.077
 (−0.149 to −0.009), q = 0.12** — the interval excludes zero narrowly while the pre-registered FDR test
 did not pass, and the pre-registered verdict stands. The **aneuploidy × lineage interaction is
 β = −0.017 (95% CI −0.031 to −0.002, p = 0.026)**; per ten additional altered arms PSMB5 dependency moves
-−0.06 in solid lines and −0.23 in haematological lines; ploidy adds nothing (p = 0.88).
+−0.06 in solid lines and −0.23 in haematological lines; ploidy adds nothing (p = 0.88), which does not exclude other confounding. These model statistics were first computed ad hoc and are now reproduced by the follow-up script.
 
 ![Follow-up: effect sizes with 95% bootstrap intervals; the solid stratum by lineage](fig5_seguimiento.png)
 
 **Follow-up, pre-registered after the result (`depmap/PREREGISTRO_SEGUIMIENTO.md`), all four predictions
 held.** Dropping each of 26 solid lineages never flips a sign or moves the interaction interval across
 zero (p 0.013–0.037); all 27 within-lineage intervals overlap zero; a fraction-of-arms score changes
-nothing, a ploidy-residualised score halves the small drug correlations (−0.075 → −0.028) without
-changing signs. The two assays share 365 solid models and agree with each other only at ρ = −0.070: they
+nothing, a ploidy-residualised score shrinks the small drug correlations by more than half (−0.075 → −0.028) without
+changing signs. The two assays share 365 solid models and agree with each other only at ρ = −0.070 (−0.176 to +0.033): they
 are different modalities on overlapping models, not independent replications. **Rhabdomyosarcoma:** 17
 scored lines, **3** with a drug value — less killed at 2.5 µM than 98%, 91% and 89% of solid lines —
 and 10 with a CRISPR value, unremarkable. No statistic is computed on them; it is a coverage limitation
@@ -226,7 +239,7 @@ attenuated in solid tumours: *the attenuation is not an artefact of any single l
 excludes zero; the solid-stratum association itself remains compatible with zero.* Ippolito's own
 bortezomib screen (Fig. 6p, reversine-induced aneuploidy, p < 0.0001) is positive; ours carries the same
 sign and fails significance, and an induced-aneuploidy design is the more sensitive of the two — so our
-null is weaker evidence against the link than theirs is for it. What we add is the lineage split. PRISM
+null is weaker evidence against the link than theirs is for it. Ippolito also report associations in pancreatic and paediatric PDX models (their Suppl. Fig. 8o–r), which say nothing about MVA. What we add is the lineage split. PRISM
 is a single-dose viability screen, not an EC50, and cancer lines are not constitutional MVA. Part II §3.5
 and `depmap/RESULTADOS*.md`.
 
@@ -238,24 +251,24 @@ Bortezomib is not excluded by the total-plasma comparison. It does not clear thi
 
 | Concern | Data | Relevance here |
 |---|---|---|
-| **Peripheral neuropathy** | 25/140 (18%) of paediatric patients, motor 11/140 (8%) (FDA BPCA review, 2015); adults grade ≥ 2 in 39% | **Skeletal muscle atrophy** (HP:0003202): the decisive objection |
+| **Peripheral neuropathy** | 25/140 (18%) of paediatric patients, motor 11/140 (8%) (FDA BPCA review, 2015); adults grade ≥ 2 in 39% by the IV route (FDA NDA 206927 s002, 2022) | **Skeletal muscle atrophy** (HP:0003202): the decisive objection |
 | Cytopenias, infection | FDA label | Prior chemotherapy; marrow reserve unknown |
 | GI toxicity, hypotension | FDA label | **Failure to thrive** (HP:0001508) |
-| Renal | PK not altered by renal impairment | **Nephrocalcinosis** (HP:0000121): function and hydration first |
+| Renal | PK not clinically altered by renal impairment, per label | **Nephrocalcinosis** (HP:0000121): function, hydration and electrolytes first |
 
 **Bortezomib is not proposed as prophylaxis or chronic therapy for this child.** Filter 4 is
 patient-specific: for an MVA patient with an active malignancy, the comparator becomes chemotherapy rather
 than nothing and the balance *can* invert — a judgement for the treating team and a tumour board, off
-label or under an n-of-1 protocol with its own ethics approval, not a result of this report.
+label or under an n-of-1 protocol with its own ethics approval and stopping rules, after the ex-vivo gate of §6, not a result of this report.
 
 **What is already known about bortezomib in the tumour he had, and in children — none of it in our
-favour.** RMS cell lines are killed at 13–26 nM, sparing primary myoblasts, and an RMS xenograft shrank
+favour.** RMS cell lines are killed at 13–26 nM, sparing primary myoblasts, and bortezomib reduced the growth of an RMS xenograft
 (PMID 18342500). But across the Pediatric Preclinical Testing Program, in-vivo activity against
 solid-tumour xenografts was limited while leukaemia xenografts responded (PMID 17420992). The COG phase I
-ADVL0015 set 1.2 mg/m² twice weekly as the paediatric dose, with dose-limiting thrombocytopenia at
+ADVL0015 set 1.2 mg/m² twice weekly for two of every three weeks as the paediatric dose, with dose-limiting thrombocytopenia at
 1.6 mg/m² and **no objective responses** in 15 children with refractory solid tumours (PMID 15570082);
 ADVL0916 with vorinostat likewise saw none, with a sensory neuropathy progressing to grade 4 as a DLT
-(PMID 22887890); an adult sarcoma phase II found minimal single-agent activity and closed its RMS arm for
+(PMID 22887890); an adult sarcoma phase II found minimal single-agent activity in soft-tissue sarcoma and closed its osteosarcoma/Ewing/rhabdomyosarcoma arm for low
 accrual (PMID 15739208). **Single-agent bortezomib has not shrunk a paediatric solid tumour in a trial.**
 If it is ever reached for, it would be as part of a combination, and the aneuploidy argument is a reason
 to ask whether MVA-driven tumours are the exception, not evidence that they are.
@@ -271,12 +284,12 @@ cure, not a contraindication, and never a reason to withhold curative therapy.
 **Bulk sequencing cannot serve as the aneuploidy-burden endpoint** (Part II §5). From the proband's VCF
 we computed a first-order detection limit of ~14% of cells for a clonal trisomy, then a calibrated
 simulated limit of **2.07% at overdispersion κ = 2** (1.46% at κ = 1, 2.95% at κ = 4) — a simulated limit
-under a fitted null, not a measured sensitivity. The 1–2% per chromosome that variegation implies sits at
+under a fitted null, not a measured sensitivity. If ~30% of cells were aneuploid spread across 22 autosomes — an illustrative bound, not a patient measurement — each chromosome would be affected in 1–2% of cells, which sits at
 that edge, and the argument that needs no limit is this: **a perfectly balanced variegated mixture is not
 identifiable from bulk allele fractions** — detection stays at the 0.1–0.2% false-positive rate from 2% to
 40% of cells. Real variegation need not be balanced, so this disqualifies the endpoint without saying bulk
 WGS can never see MVA. **We ran the calibrated statistic on the proband and withdrew the result**: the
-null did not describe the data (22 of 22 autosomes exceeded the threshold), the residual overdispersion
+null did not describe the data (22 of 22 autosomes exceeded the threshold), the z-score we had reported was chosen after seeing the data and never calibrated, the residual overdispersion
 (≈2.3×) is uncontrolled, and the pre-registered external control of ten 1000 Genomes individuals came back
 *not conclusive* because it was called differently from the proband. **No clinical negative is reported.**
 Any screen must measure mis-segregation per cell: metaphase counts, micronuclei (OECD TG 487), or
@@ -285,8 +298,8 @@ single-cell DNA.
 **The experiment (Part II §6).** Patient dermal fibroblasts against two matched controls and a
 reversine-treated RPE1 positive control; allele-fate assays; a bortezomib dose–response 0–1,000 nM at 72 h
 (spanning the 312 nM Cmax); a bortezomib + everolimus arm for the predicted antagonism; a micronucleus
-assay with FISH on survivors. Eight weeks of assay after 4–8 weeks to establish the line: **12–16 weeks**
-from biopsy, after consent, assent and ethics approval that are not ours to give.
+assay with FISH for 3–5 chromosomes on survivors of every condition, with proliferation recorded because a change in division rate alone moves the count. Eight weeks of assay after 4–8 weeks to establish the line: a planning figure of **12–16 weeks**
+from biopsy (MVA1 fibroblasts may grow slower), after consent, assent and ethics approval whose timing is not ours to control.
 
 **What it decides, and what it cannot.** Fibroblasts are constitutional MVA cells, not tumour cells: a
 sensitivity difference measures whether the dependency transfers to constitutional aneuploidy and is, on
@@ -296,14 +309,14 @@ not sample.
 
 | Reading | Consequence |
 |---|---|
-| Aneuploid-cell fraction *f* measured first (cells with ≥ 1 numerical abnormality; PCS scored separately) | Gate: the bulk EC50 ratio to expect at an assumed 4× selectivity is 1.14× at f = 0.10, 1.30× at 0.20, 1.50× at 0.30, 2.00× at 0.50 — a pre-specified reading rule, not a validated threshold; below f ≈ 0.10, use a per-cell endpoint instead of bulk viability |
-| EC50 shift ≥ the row for the measured *f*, CI excluding 1, at ≤ 312 nM | Dependency signal: build the tumour-material stage |
-| Patient cells markedly more sensitive **without** the positive control shifting more | **Stop**: reads as constitutional toxicity, the outcome most easily mistaken for success |
+| Aneuploid-cell fraction *f* measured first, on the culture and passage to be treated (cells with ≥ 1 numerical abnormality, plus abnormal chromosomes per abnormal cell; PCS scored separately) | Gate: the bulk EC50 ratio to expect at an assumed 4× selectivity is 1.14× at f = 0.10, 1.30× at 0.20, 1.50× at 0.30, 2.00× at 0.50 — a pre-specified reading rule, not a validated threshold, recomputed if selectivity is ever estimated; indicative n = 3 at f ≥ 0.25, n = 14 at 0.10, and below f ≈ 0.10 use a per-cell endpoint instead of bulk viability |
+| EC50 shift at the row for the measured *f*, 95% CI excluding 1, at ≤ 312 nM | Dependency signal: build the tumour-material stage. A shift materially *above* the row is not a better result — suspect the mixture model or systemic toxicity |
+| Patient cells markedly more sensitive **without** the positive control shifting more | **Stop**: the most likely reading is constitutional toxicity, the outcome most easily mistaken for success |
 | Micronuclei increase among survivors | **Stop**: fails filter 5 regardless of killing |
 | No shift | Fails to support transfer in these cells; tumour question stays open |
 
-Power: 0.897 in an idealised simulation (assumed 4× selectivity, 30% aneuploid culture, 10% CV, two-
-parameter Hill fit, no biological-replicate term) and 0.387 at 2×; none of the inputs is measured in these
+Power: 0.897 in an idealised simulation (n = 3, α = 0.05, assumed 4× selectivity, 30% aneuploid culture, 10% CV, a two-
+parameter Hill fit where four were pre-registered, no biological-replicate term) and 0.387 at 2×; none of the inputs is measured in these
 cells, and our own dose–response analysis leaves the 4× unsupported and unrefuted (`potencia/`).
 
 ---
@@ -316,7 +329,7 @@ age 7 for all MVA conditions, regular clinical assessment for rhabdomyosarcoma a
 avoidance of radiation, HPV vaccination. Cancers in MVA1 are predominantly Wilms tumour and
 rhabdomyosarcoma, with MDS, AML and ALL reported. **The gap that matters for this child:** the window
 closes at seven, and a 2026 MVA3 case had an orbital embryonal rhabdomyosarcoma at twelve (PMID 42595739),
-at a site renal ultrasound does not image. For a child who has already had an RMS we propose that the
+at a site renal ultrasound does not image. The consensus asks for clinical assessment without setting an end date; for a child who has already had an RMS we propose that the
 clinical-examination arm continue past seven, and we mark it as our extension.
 
 | Period | Surveillance | Frequency |
@@ -324,15 +337,15 @@ clinical-examination arm continue past seven, and we mark it as our extension.
 | Birth to 7 | Renal ultrasound (we suggest widening the field to liver, retroperitoneum, pelvis) | 3-monthly — **consensus**; the wider field is ours |
 | To 10, then reviewed | Full paediatric and oncological examination: abdomen, nodes, head and neck, **orbit**, skin, genitalia, soft tissues | 3-monthly to 7, then 6-monthly — continuing past 7 is **our extension** |
 | Post-ERMS | Relapse follow-up per tumour protocol | Avoid duplicate imaging |
-| Through childhood | Full blood count | 6-monthly is reasonable; **no evidence of benefit exists** |
+| Through childhood | Full blood count with differential | 6-monthly is reasonable; **no evidence of benefit exists** |
 | Lifelong | Family education; annual predisposition clinic | Urgent review for mass, haematuria, pain, deficit, bleeding, weight loss |
 
 The child's current age is not in the dataset and must be confirmed first. No serial AFP, CT, PET-CT or
 routine whole-body MRI while asymptomatic. If the child is past seven, missed scans should not be "caught
-up"; a baseline assessment by the predisposition team is the right course.
+up"; a baseline assessment and an individualised decision by the predisposition team is the right course. The whole table is a discussion framework for an expert predisposition clinic.
 
 **For the parents.** The clinical document records recurrent spontaneous abortion (HP:0200067). If the
-variants are in *trans* — the interpretation adopted here, not demonstrated — each parent should carry one;
+variants are in *trans* — the interpretation adopted here, not demonstrated — each parent would be expected to carry one;
 segregation testing establishes that and must precede any carrier-specific interpretation. A 2026 study of
 two families with recurrent pregnancy loss found heterozygous *BUB1B* variants (classified VUS) with elevated
 premature chromatid separation in the carriers' lymphocytes (PMID 42434306): a hypothesis, cheap to act on.
@@ -349,7 +362,7 @@ evidence; **it does not by itself reclassify the missense.**
 ## 8. What we do not propose
 
 MPS1/TTK inhibitors and reversine (not approved; they weaken a checkpoint that is already insufficient);
-apcin, proTAME, DCZ0415 (tool compounds, wrong gene); AICAR and 17-AAG (screen hits, not marketed;
+apcin and proTAME (APC/C tool compounds, not marketed); DCZ0415 (a TRIP13 inhibitor: wrong gene, not approved); AICAR and 17-AAG (screen hits, not marketed;
 positive controls only); metformin (§3.1); senolytics (the BubR1 evidence rests on genetic clearance of
 p16⁺ cells, PMID 22048312, and senescence is an anti-tumour barrier worth keeping here); mTOR inhibitors with
 proteasome inhibition (§3.4); bortezomib for this child today (§5).
@@ -372,7 +385,7 @@ proteasome inhibition (§3.4); bortezomib for this child today (§5).
 - **The retrieval benchmark is a tool, and we tested the claim.** `replay/mva_replay.py` plants two
   alleles into a public genome and returns score, rank, a ClinVar-whitelist-off counterfactual and an
   unrelated-phenotype control. Pre-registered and pushed before the run, from a **fresh clone** of the
-  repository, it planted two public Likely-pathogenic *TRIP13* alleles into three healthy GIAB genomes,
+  repository, it planted two public Likely-pathogenic *TRIP13* alleles — chosen by the frozen pool rule, not by us — into three healthy GIAB genomes,
   queried with six HPO terms transcribed from the abstract of PMID 42595739:
 
 | Background | Planted, case phenotype | Unrelated phenotype | Unspiked |
@@ -410,7 +423,7 @@ proteasome inhibition (§3.4); bortezomib for this child today (§5).
   not assumed it. Our public-data test weakens the solid-tumour case and cannot speak to MVA cells.
 - **The power estimate is idealised** (two-parameter fit, no biological-replicate term, unmeasured inputs).
 - **The mosaicism control was not conclusive**; the patient-level result is withdrawn; no clinical negative.
-- **No trial specific to MVA1** was found in ClinicalTrials.gov, Open Targets, ChEMBL or CMap/LINCS.
+- **No trial specific to MVA1** was found in ClinicalTrials.gov, Open Targets, ChEMBL or CMap/LINCS; absence of an interface result is not proof of absence.
 - **The child's current age is unknown to us.**
 
 ---
@@ -431,7 +444,7 @@ answer to a question this family may unfortunately have to ask.
 | Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not increase mis-segregation among survivors? | Verdict |
 |---|---|---|---|---|---|---|
 | **Metformin** | Yes (paediatric label from age 10) | Proposed as the marketed stand-in for the AICAR/AMPK hit | **Not evaluable** — no aneuploidy-selective EC50 exists; ~1000× short for the complex I mechanism | Renal clearance; nephrocalcinosis unassessed | Not reached | **Rejected at filter 3 as unevaluable** |
-| **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Not excluded on total drug: 231–312 nM vs < 40 nM (5.8–7.8×); IV only | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | **Untested** — the micronucleus arm of §6 | **Fails filter 4 for this child; filter 5 untested; conditional for an active tumour** |
+| **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Not excluded on total drug: 231–312 nM vs < 40 nM (5.8–7.8×); at the EC50 bound on free drug (≈ 39–53 nM); IV only | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | **Untested** — the micronucleus arm of §6 | **Fails filter 4 for this child; filter 5 untested; conditional for an active tumour** |
 | *(your candidate)* | | | | | | |
 
 **How to fill it in.** Filter 3 needs a real denominator measured in a model stratified for the disease
@@ -474,7 +487,7 @@ not evaluable), source and reason is `report/candidates.tsv`.
 28. Bersani F, Taulli R, et al. Bortezomib-mediated proteasome inhibition as a potential strategy for the treatment of rhabdomyosarcoma. *Eur J Cancer* 2008. PMID 18342500
 29. Houghton PJ, Morton CL, et al. Initial testing (stage 1) of the proteasome inhibitor bortezomib by the pediatric preclinical testing program. *Pediatr Blood Cancer* 2008. PMID 17420992
 30. Blaney SM, Bernstein M, et al. Phase I study of the proteasome inhibitor bortezomib in pediatric patients with refractory solid tumors: a Children's Oncology Group study (ADVL0015). *J Clin Oncol* 2004. PMID 15570082
-31. Muscal JA, Thompson PA, et al. A phase I trial of vorinostat and bortezomib in children with refractory or recurrent solid tumors (ADVL0916). *Pediatr Blood Cancer* 2013. PMID 22887890
+31. Muscal JA, Thompson PA, et al. A phase I trial of vorinostat and bortezomib in children with refractory or recurrent solid tumors: a Children's Oncology Group phase I consortium study (ADVL0916). *Pediatr Blood Cancer* 2013. PMID 22887890
 32. Maki RG, Kraft AS, et al. A multicenter Phase II study of bortezomib in recurrent or metastatic sarcomas. *Cancer* 2005. PMID 15739208
 33. Human aneuploid cells depend on the RAF/MEK/ERK pathway for overcoming increased DNA damage. *Nat Commun* 2024. PMID 39251587
 

@@ -32,8 +32,9 @@ is more useful than an encouraging one.
   extra chromosomes** have been shown to have. **Nobody has shown that this child's cells have it**, and
   our own analysis of public cancer data found the link weaker in solid tumours as a group, which is the
   group his tumour belongs to. The amount of
-  drug that reaches the blood is in the right range, but that is a measurement of total drug in plasma,
-  not proof that enough reaches the right place for long enough. It also causes nerve damage in about 18
+  drug that reaches the blood is in the right range on paper, but that is a measurement of total drug in
+  plasma — counting only the part not bound to blood proteins, it is just at the edge — and not proof that
+  enough reaches the right place for long enough. It also causes nerve damage in about 18
   in 100 children who receive it, and this child already has muscle weakness. **Outside an active
   cancer, that trade is not worth making.** (§4)
 
@@ -121,6 +122,8 @@ whether the drug is disqualified on order of magnitude. It passes that test and 
 It then fails our fourth filter, and we say so plainly: **not for this child, not now.** Bortezomib
 causes peripheral neuropathy in 18% of paediatric patients (8% motor), and this child already has
 skeletal muscle atrophy. Outside an active malignancy that risk-benefit does not hold.
+
+**Six analyses were pre-registered in git before they ran** — DepMap, MVA-Replay, mosaicism, power, dose–response and the TRIP13 transfer — and the DepMap test, the mosaicism control and both power analyses came back against our own argument; all are reported.
 
 **What remains is a specific and testable proposition, not a demonstrated one.** Bortezomib does not
 repair the lesion — nothing restores BubR1 function — but it is the agent aimed at the
@@ -358,6 +361,24 @@ untested. We treat the myeloma association as the reason to run the experiment, 
 We use the upper bound of the EC50 range, and we do not treat the 2.4 nM apoptosis figure from the
 same paper as an EC50.
 
+**The exposure evidence, laid out rather than reduced to a pass (label facts from the current DailyMed
+SPL, archived as `evidencia/velcade_spl_dailymed_2026-09-07.xml`):**
+
+| Quantity | Value | What it does and does not support |
+|---|---|---|
+| Effective concentration | EC50 < 40 nM at 72 h in 5 highly aneuploid cancer lines, read from Fig. 6o (PMID 39247952); the legend tabulates no value; culture medium and serum binding are unstated | A bound on total drug in culture, not a threshold for constitutional MVA cells |
+| Plasma protein binding | "averaged 83% over the concentration range of 100 to 1000 ng/mL" (§12.3) | Free fraction ≈ 17% |
+| Cmax, IV 1.3 mg/m² | 112 ng/mL after the first dose; 89–120 ng/mL twice weekly; 223 ng/mL in the repeat-dose IV-vs-SC comparison cohort (§12.3) | Total drug at a peak; **free peak ≈ 39–53 nM** from 231–312 nM, or ≈ 99 nM from 223 ng/mL |
+| Cmax, SC 1.3 mg/m² | 20.4 ng/mL; AUC equivalent to IV (geometric mean ratio 0.99) (§12.3) | Free peak ≈ 9 nM |
+| Pharmacodynamics | Maximal 20S proteasome inhibition 73–83% in whole blood, observed 5 min after the 1.3 mg/m² dose (§12.2); mean elimination half-life 76–108 h on multiple dosing (§12.3) while plasma falls steeply after infusion | Neither duration of inhibition at a tumour nor recovery is established by these numbers |
+| Not available | Free-drug EC50; intratumoral concentration; time above EC50 | Marked missing rather than imputed |
+
+On total drug the IV ratio is 5.8–7.8. **On free drug, the free peak (≈ 39–53 nM) sits at, not above,
+the < 40 nM bound** — and the culture-side value is itself partly free drug in serum-containing medium,
+so the two sides are not on the same footing and we do not correct one for binding while leaving the
+other unexplained. What filter 3 supports is that the IV route is **not excluded on the stated
+total-plasma peak comparison**; it does not establish comparable free exposure or duration at the target.
+
 **The subcutaneous route does not pass, and we withdraw the claim that it does.** Its nominal ratio is
 1.33 on *total* drug, and bortezomib is extensively protein-bound, so free concentration is a fraction
 of total Cmax. A margin of 1.33 does not survive any plausible free-fraction correction. The IV ratio of
@@ -449,8 +470,8 @@ sensitivity and DepMap CRISPR gene effect.
 
 **Result 1 — drugs.** In 444 solid-tumour lines, **no proteasome inhibitor reached FDR < 0.05.**
 Bortezomib (ρ = −0.075) and carfilzomib (ρ = −0.060) fall in the 4th and 8th percentile of all 6,790
-compounds *by direction* — suggestive and nothing more; ixazomib runs the other way. Metformin is null,
-as predicted. Paclitaxel, our pre-declared cytotoxic control, runs opposite, which argues against — without
+compounds *by direction* — suggestive and nothing more; ixazomib runs the other way (ρ = +0.028). Metformin is null,
+as predicted. Paclitaxel, our pre-declared cytotoxic control, runs opposite (ρ = +0.096), which argues against — without
 excluding — a "sick cells die more" confound. The pipeline is not blind: across all 6,790 compounds 1.1% reach p < 0.001
 against 0.1% expected by chance.
 
@@ -1053,8 +1074,9 @@ HP:0200067 at once, and it needs blood rather than a new laboratory.
   pre-registered and pushed before the run). From a fresh clone of this repository, the tool planted two
   public Likely_pathogenic *TRIP13* alleles — chosen by the frozen pool rule, not by us — into three
   healthy GIAB genomes and queried them with six HPO terms transcribed from the abstract of the 2026
-  TRIP13 case (PMID 42595739). TRIP13 came back **rank 1 in 3 of 3 backgrounds at 0.8332**, absent or
-  scoring 0 unspiked, and rank 1 / 2 / 3 under an unrelated phenotype — the same pattern as BUB1B. Each
+  TRIP13 case (PMID 42595739). TRIP13 came back **rank 1 in 3 of 3 backgrounds (HG001, HG002, HG005) at 0.8332**, absent
+  unspiked in HG001 and HG005 and scoring 0.0 at rank 212 in HG002, and rank 1 / 2 / 3 at 0.4240 under an unrelated
+  phenotype — the same pattern as BUB1B. Each
   background took under 3½ minutes and about 2.4 GiB. The operational half was the useful one: the clone
   needed **four provisioning steps, three of which the tool's requirements list did not include**, and the
   regression tests the README said ran from a bare checkout did not. Both are fixed; the run that
@@ -1132,7 +1154,7 @@ most often skipped.*
 | Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not increase mis-segregation among survivors? | Verdict |
 |---|---|---|---|---|---|---|
 | **Metformin** | Yes (paediatric label from age 10) | Proposed as the marketed stand-in for the AICAR/AMPK hit | **Not evaluable for aneuploidy selectivity — no such EC50 exists; and ~1000× short for the complex I mechanism proposed (µM plasma vs mM required)** | Renal clearance; nephrocalcinosis unassessed | Not reached | **Rejected at filter 3 as unevaluable on the proposed mechanism** |
-| **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Yes on total drug: 231–312 nM Cmax vs EC50 <40 nM (5.8–7.8×); IV only, not subcutaneous | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | **Untested** — no measurement exists; the micronucleus arm of §6 is where it would be tested | **Fails filter 4 for this child; filter 5 untested; conditional for a patient with an active tumour** |
+| **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Not excluded on total drug: 231–312 nM Cmax vs EC50 <40 nM (5.8–7.8×); at the EC50 bound on free drug (≈ 39–53 nM at 83% binding); IV only, not subcutaneous | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | **Untested** — no measurement exists; the micronucleus arm of §6 is where it would be tested | **Fails filter 4 for this child; filter 5 untested; conditional for a patient with an active tumour** |
 | *(your candidate)* | | | | | | |
 | *(your candidate)* | | | | | | |
 
@@ -1141,7 +1163,9 @@ stratified for the disease mechanism. If none exists, write *not evaluable* — 
 from an unrelated model, because that manufactures a ratio with no meaning. Filter 4 is patient-specific
 by construction, so a "fail" here is a statement about one person and one moment, not about the drug.
 Filter 5 asks the question repurposing exercises forget: among the cells that survive the drug, is the
-underlying defect made worse?
+underlying defect made worse? A machine-readable version of this worksheet, with a pass / fail / untested /
+not evaluable vocabulary, the model context behind each filter-3 entry, a source locator and a reason, is
+`report/candidates.tsv`.
 
 ---
 
@@ -1179,6 +1203,7 @@ underlying defect made worse?
 30. Blaney SM, Bernstein M, et al. Phase I study of the proteasome inhibitor bortezomib in pediatric patients with refractory solid tumors: a Children's Oncology Group study (ADVL0015). *J Clin Oncol* 2004. PMID 15570082
 31. Muscal JA, Thompson PA, et al. A phase I trial of vorinostat and bortezomib in children with refractory or recurrent solid tumors: a Children's Oncology Group phase I consortium study (ADVL0916). *Pediatr Blood Cancer* 2013. PMID 22887890
 32. Maki RG, Kraft AS, et al. A multicenter Phase II study of bortezomib in recurrent or metastatic sarcomas. *Cancer* 2005. PMID 15739208
+33. Human aneuploid cells depend on the RAF/MEK/ERK pathway for overcoming increased DNA damage. *Nat Commun* 2024. PMID 39251587
 
 ---
 
