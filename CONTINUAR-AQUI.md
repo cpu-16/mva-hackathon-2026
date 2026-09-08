@@ -43,8 +43,8 @@ estructura de 14 páginas y 26 frases atacables). Lo hecho esta madrugada, todo 
    matices devueltos.
 5. **Cambio #3 (parcial) — tabla de evidencia de exposición** en §3.2 de ambas partes, con la ficha
    SPL de VELCADE bajada de DailyMed (`evidencia/velcade_spl_dailymed_2026-09-07.xml`): unión a
-   proteínas 83 % → **el pico libre IV (≈39–53 nM) queda AL NIVEL de la cota de EC50 (<40 nM), no por
-   encima**. Está en el resumen ejecutivo, las hojas de filtros y el TSV. Falta de #3: implementar el
+   proteínas 83 % → **el pico libre IV (≈39–53 nM, ≈99 nM con la cifra de 223 ng/mL) queda a 1–2,5× de la cota de
+   EC50 (<40 nM), no a 6–8×**. Está en el resumen ejecutivo, las hojas de filtros y el TSV. Falta de #3: implementar el
    modelo de potencia de cuatro parámetros o retirar las ramas n=3/n=14 del cuerpo (se dejaron como
    «indicativas»).
 6. **Cambio #5 (parcial)** — `track2/candidates.tsv`: hoja de cinco filtros legible por máquina

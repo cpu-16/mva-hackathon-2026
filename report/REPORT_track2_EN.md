@@ -33,7 +33,8 @@ is more useful than an encouraging one.
   our own analysis of public cancer data found the link weaker in solid tumours as a group, which is the
   group his tumour belongs to. The amount of
   drug that reaches the blood is in the right range on paper, but that is a measurement of total drug in
-  plasma — counting only the part not bound to blood proteins, it is just at the edge — and not proof that
+  plasma — counting only the part not bound to blood proteins, it is within a factor of one to a few of the
+  level that killed cancer cells in the dish — and not proof that
   enough reaches the right place for long enough. It also causes nerve damage in about 18
   in 100 children who receive it, and this child already has muscle weakness. **Outside an active
   cancer, that trade is not worth making.** (§4)
@@ -110,8 +111,9 @@ weakens the argument we are making, and because we would rather find it than hav
 
 Bortezomib clears the pharmacokinetic filter as we define it: EC50 in highly aneuploid lines is below
 **40 nM**, while the approved 1.3 mg/m² IV dose reaches a Cmax of **89–120 ng/mL = 231–312 nM** — a
-ratio of **5.8–7.8**. We quote the whole label interval rather than its ceiling; read it as an
-order-of-magnitude margin, not a measured number. **And read what the filter is:** Cmax is *total*
+ratio of **5.8–7.8**. We quote the twice-weekly range the label reports rather than its ceiling (the same
+label gives 223 ng/mL in its IV-vs-SC cohort, §3.2); read it as an order-of-magnitude margin on total
+drug, not a measured number — on free drug the peak is within one- to 2.5-fold of the EC50 bound. **And read what the filter is:** Cmax is *total*
 plasma drug at a peak. It is not free drug, not intratumoral drug, and it says nothing about how long
 the concentration is held — bortezomib's plasma level falls steeply after infusion while proteasome
 inhibition persists, so neither exposure nor duration at the target is established by this number.
@@ -123,7 +125,7 @@ It then fails our fourth filter, and we say so plainly: **not for this child, no
 causes peripheral neuropathy in 18% of paediatric patients (8% motor), and this child already has
 skeletal muscle atrophy. Outside an active malignancy that risk-benefit does not hold.
 
-**Six analyses were pre-registered in git before they ran** — DepMap, MVA-Replay, mosaicism, power, dose–response and the TRIP13 transfer — and the DepMap test, the mosaicism control and both power analyses came back against our own argument; all are reported.
+**Seven pre-registrations were committed to git before their analyses ran** — DepMap and its follow-up, MVA-Replay, mosaicism, power, dose–response and the TRIP13 transfer. The DepMap test came back against our mechanism, the mosaicism control came back not conclusive, the power analysis found the assay feasible only under unmeasured inputs, and the dose–response analysis left our 4× assumption unsupported; all are reported.
 
 **What remains is a specific and testable proposition, not a demonstrated one.** Bortezomib does not
 repair the lesion — nothing restores BubR1 function — but it is the agent aimed at the
@@ -354,7 +356,7 @@ untested. We treat the myeloma association as the reason to run the experiment, 
 | | Value | Source |
 |---|---|---|
 | EC50 in highly aneuploid lines (72 h) | **< 40 nM** — conservative upper bound read from Fig. 6o (5 near-euploid vs 5 highly aneuploid cancer lines, p = 0.0317, Mann-Whitney); the figure legend reports no numeric EC50 values, so this is read off the plot | PMID 39247952 |
-| Cmax, 1.3 mg/m² IV, repeated dosing | **89–120 ng/mL = 231–312 nM** (label interval; we quote both ends) | FDA label, NDA 021602 s040, §12.3 |
+| Cmax, 1.3 mg/m² IV, repeated dosing | **89–120 ng/mL = 231–312 nM** (the twice-weekly range; the same label gives 223 ng/mL in its IV-vs-SC cohort — see the exposure table below) | FDA label, NDA 021602 s040, §12.3 |
 | Cmax, subcutaneous route | 20.4 ng/mL = 53.1 nM | same |
 | **Filter 3 ratio (IV)** | **5.8 – 7.8** | — |
 
@@ -367,14 +369,15 @@ SPL, archived as `evidencia/velcade_spl_dailymed_2026-09-07.xml`):**
 | Quantity | Value | What it does and does not support |
 |---|---|---|
 | Effective concentration | EC50 < 40 nM at 72 h in 5 highly aneuploid cancer lines, read from Fig. 6o (PMID 39247952); the legend tabulates no value; culture medium and serum binding are unstated | A bound on total drug in culture, not a threshold for constitutional MVA cells |
-| Plasma protein binding | "averaged 83% over the concentration range of 100 to 1000 ng/mL" (§12.3) | Free fraction ≈ 17% |
+| Plasma protein binding | "averaged 83% over the concentration range of 100 to 1000 ng/mL" (§12.3) | Free fraction ≈ 17%, applied below 100 ng/mL as an approximation |
 | Cmax, IV 1.3 mg/m² | 112 ng/mL after the first dose; 89–120 ng/mL twice weekly; 223 ng/mL in the repeat-dose IV-vs-SC comparison cohort (§12.3) | Total drug at a peak; **free peak ≈ 39–53 nM** from 231–312 nM, or ≈ 99 nM from 223 ng/mL |
 | Cmax, SC 1.3 mg/m² | 20.4 ng/mL; AUC equivalent to IV (geometric mean ratio 0.99) (§12.3) | Free peak ≈ 9 nM |
 | Pharmacodynamics | Maximal 20S proteasome inhibition 73–83% in whole blood, observed 5 min after the 1.3 mg/m² dose (§12.2); mean elimination half-life 76–108 h on multiple dosing (§12.3) while plasma falls steeply after infusion | Neither duration of inhibition at a tumour nor recovery is established by these numbers |
 | Not available | Free-drug EC50; intratumoral concentration; time above EC50 | Marked missing rather than imputed |
 
-On total drug the IV ratio is 5.8–7.8. **On free drug, the free peak (≈ 39–53 nM) sits at, not above,
-the < 40 nM bound** — and the culture-side value is itself partly free drug in serum-containing medium,
+On total drug the IV ratio is 5.8–7.8. **On free drug, the peak (≈ 39–53 nM, or ≈ 99 nM on the 223 ng/mL
+figure) is within one- to 2.5-fold of the < 40 nM bound** — and since that bound is an upper bound on the
+EC50, the true free-drug margin is unknown; the culture-side value is itself partly free drug in serum-containing medium,
 so the two sides are not on the same footing and we do not correct one for binding while leaving the
 other unexplained. What filter 3 supports is that the IV route is **not excluded on the stated
 total-plasma peak comparison**; it does not establish comparable free exposure or duration at the target.
@@ -1154,7 +1157,7 @@ most often skipped.*
 | Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not increase mis-segregation among survivors? | Verdict |
 |---|---|---|---|---|---|---|
 | **Metformin** | Yes (paediatric label from age 10) | Proposed as the marketed stand-in for the AICAR/AMPK hit | **Not evaluable for aneuploidy selectivity — no such EC50 exists; and ~1000× short for the complex I mechanism proposed (µM plasma vs mM required)** | Renal clearance; nephrocalcinosis unassessed | Not reached | **Rejected at filter 3 as unevaluable on the proposed mechanism** |
-| **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Not excluded on total drug: 231–312 nM Cmax vs EC50 <40 nM (5.8–7.8×); at the EC50 bound on free drug (≈ 39–53 nM at 83% binding); IV only, not subcutaneous | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | **Untested** — no measurement exists; the micronucleus arm of §6 is where it would be tested | **Fails filter 4 for this child; filter 5 untested; conditional for a patient with an active tumour** |
+| **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Not excluded on total drug: 231–312 nM Cmax vs EC50 <40 nM (5.8–7.8×); within one- to 2.5-fold of the bound on free drug (≈ 39–53 nM, ≈ 99 nM on the 223 ng/mL figure; 83% binding); IV only, not subcutaneous | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | **Untested** — no measurement exists; the micronucleus arm of §6 is where it would be tested | **Fails filter 4 for this child; filter 5 untested; conditional for a patient with an active tumour** |
 | *(your candidate)* | | | | | | |
 | *(your candidate)* | | | | | | |
 

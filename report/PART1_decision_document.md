@@ -65,8 +65,9 @@ has ever been measured — and the complex I mechanism proposed for it needs mil
 against micromolar plasma levels (§3.1). **Bortezomib** survives: aneuploid cancer cells depend on the
 proteasome (Ippolito 2024, PMID 39247952), its total-plasma peak at the approved IV dose is 5.8–7.8 times
 the EC50 of highly aneuploid lines, and aneuploidy level tracked response in myeloma patients (§3.2).
-That comparison is an exposure plausibility screen on total drug, not a therapeutic threshold: on free
-drug (83% protein-bound) the peak sits at the EC50 bound, not above it.
+That comparison is an exposure plausibility screen on total drug against an upper bound on the EC50, not a
+therapeutic threshold: on free drug (83% protein-bound) the peak is within one- to 2.5-fold of that bound,
+not the six- to eightfold the total-drug ratio suggests.
 
 **We then tested the part of that argument that public data can test, pre-registered, and it did not
 survive** (§4): across 444 solid-tumour cell lines no proteasome inhibitor reached significance, and the
@@ -79,7 +80,7 @@ pre-existing muscle atrophy. **Not for this child, not now** (§5). What remains
 bounded answer for the setting of an active tumour, an experiment that could refute the premise in this
 child's own cells (§6), and the actions that change his prognosis today without any drug (§7).
 
-**What we contribute** is six pre-registered analyses that constrain the claim — DepMap, MVA-Replay, mosaicism, power, dose–response and the TRIP13 transfer; the DepMap test came back against our mechanism, the mosaicism control came back not conclusive, and the two power analyses removed the support for our own assumptions — a reusable five-filter worksheet, and a retrieval-benchmark tool transferred to a
+**What we contribute** is seven pre-registrations that constrain the claim — DepMap and its follow-up, MVA-Replay, mosaicism, power, dose–response and the TRIP13 transfer; the DepMap test came back against our mechanism, the mosaicism control came back not conclusive, the power analysis found the assay feasible only under unmeasured inputs, and the dose–response analysis left our 4× assumption unsupported — a reusable five-filter worksheet, and a retrieval-benchmark tool transferred to a
 second MVA gene from a fresh clone of our repository (§9).
 
 ---
@@ -154,7 +155,7 @@ as aneuploid-specific dependencies (PMID 42094535; not peer-reviewed, weighted a
 | | Value | Source |
 |---|---|---|
 | EC50, highly aneuploid lines (72 h) | **< 40 nM**, conservative bound read from Fig. 6o | PMID 39247952 |
-| Cmax, 1.3 mg/m² IV, repeated dosing | **89–120 ng/mL = 231–312 nM** (whole label interval) | FDA label NDA 021602 |
+| Cmax, 1.3 mg/m² IV, repeated dosing | **89–120 ng/mL = 231–312 nM** (the twice-weekly range the label reports; the same label gives 223 ng/mL in its IV-vs-SC cohort) | FDA label NDA 021602 |
 | Ratio, IV | **5.8–7.8**, on total drug | — |
 | Subcutaneous | 53.1 nM; ratio 1.33 — does not survive any plausible free-fraction correction | same |
 
@@ -164,14 +165,15 @@ rather than reduced to a pass:**
 | Quantity | Value | What it does and does not support |
 |---|---|---|
 | Effective concentration | EC50 < 40 nM at 72 h in 5 highly aneuploid cancer lines, read from Fig. 6o (PMID 39247952); no tabulated value; medium and serum binding unstated | A bound on total drug in culture, not a threshold for MVA cells |
-| Plasma binding | 83% bound to human plasma proteins over 100–1,000 ng/mL (label §12.3) | Free fraction ≈ 17% |
+| Plasma binding | 83% bound to human plasma proteins over 100–1,000 ng/mL (label §12.3) | Free fraction ≈ 17%, applied below 100 ng/mL as an approximation |
 | Cmax, IV 1.3 mg/m² | 112 ng/mL first dose; 89–120 ng/mL twice weekly; 223 ng/mL in the IV-vs-SC comparison cohort (label §12.3) | Total drug at a peak; **free peak ≈ 39–53 nM** (or ≈ 99 nM from 223 ng/mL) |
 | Cmax, SC 1.3 mg/m² | 20.4 ng/mL, with AUC equivalent to IV (label §12.3) | Free peak ≈ 9 nM |
 | Pharmacodynamics | Maximal 20S inhibition 73–83% in whole blood at 5 min (label §12.2); elimination half-life 76–108 h on multiple dosing, with plasma falling steeply after infusion | Duration at the target is not established by any number here |
 
-On total drug the IV ratio is 5.8–7.8; **on free drug the free peak sits at, not above, the EC50 bound** —
-and the culture value is itself partly free drug in serum-containing medium, so the two sides are not
-on the same footing. What filter 3 supports is that the IV route is **not excluded**; it does not support
+On total drug the IV ratio is 5.8–7.8; **on free drug the peak (≈ 39–53 nM, or ≈ 99 nM on the 223 ng/mL
+figure) is within one- to 2.5-fold of the < 40 nM bound** — and since that bound is an upper bound on the
+EC50, the true free-drug margin is unknown; the culture value is itself partly free drug in serum-containing
+medium, so the two sides are not on the same footing. What filter 3 supports is that the IV route is **not excluded**; it does not support
 comparable free exposure or duration at the target, and we do not correct one side for binding while
 leaving the other unexplained. The culture-side EC50 carries its own unstated medium and binding conditions. Myeloma is a plasma-cell neoplasm with its own proteotoxic load and
 clonal, not variegated, aneuploidy; MVA1 is a different setting in which the same dependency is plausible
@@ -291,7 +293,7 @@ identifiable from bulk allele fractions** — detection stays at the 0.1–0.2% 
 WGS can never see MVA. **We ran the calibrated statistic on the proband and withdrew the result**: the
 null did not describe the data (22 of 22 autosomes exceeded the threshold), the z-score we had reported was chosen after seeing the data and never calibrated, the residual overdispersion
 (≈2.3×) is uncontrolled, and the pre-registered external control of ten 1000 Genomes individuals came back
-*not conclusive* because it was called differently from the proband. **No clinical negative is reported.**
+*not conclusive*: the proband fell below the control envelope, an outcome the amendment had not listed, with the controls' different calling explaining their inflated dispersion. **No clinical negative is reported.**
 Any screen must measure mis-segregation per cell: metaphase counts, micronuclei (OECD TG 487), or
 single-cell DNA.
 
@@ -444,7 +446,7 @@ answer to a question this family may unfortunately have to ask.
 | Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not increase mis-segregation among survivors? | Verdict |
 |---|---|---|---|---|---|---|
 | **Metformin** | Yes (paediatric label from age 10) | Proposed as the marketed stand-in for the AICAR/AMPK hit | **Not evaluable** — no aneuploidy-selective EC50 exists; ~1000× short for the complex I mechanism | Renal clearance; nephrocalcinosis unassessed | Not reached | **Rejected at filter 3 as unevaluable** |
-| **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Not excluded on total drug: 231–312 nM vs < 40 nM (5.8–7.8×); at the EC50 bound on free drug (≈ 39–53 nM); IV only | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | **Untested** — the micronucleus arm of §6 | **Fails filter 4 for this child; filter 5 untested; conditional for an active tumour** |
+| **Bortezomib** | Yes | Yes — proteasome dependency of aneuploid cells | Not excluded on total drug: 231–312 nM vs < 40 nM (5.8–7.8×); within one- to 2.5-fold of the bound on free drug (≈ 39–53 nM, ≈ 99 nM on the 223 ng/mL figure); IV only | **No — neuropathy in 18% of children, on pre-existing muscle atrophy** | **Untested** — the micronucleus arm of §6 | **Fails filter 4 for this child; filter 5 untested; conditional for an active tumour** |
 | *(your candidate)* | | | | | | |
 
 **How to fill it in.** Filter 3 needs a real denominator measured in a model stratified for the disease
