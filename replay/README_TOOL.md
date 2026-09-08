@@ -31,8 +31,8 @@ missing.
    Track 1 used) and `genes_to_phenotype.txt` (HPOA). `hp.obo` is optional, for resolving term names.
 3. **hg38 FASTA for the REF check** at `replay/raw/fasta/chrN.fa.bgz` (+ `.fai`, `.gzi`): UCSC
    `goldenPath/hg38/chromosomes/chrN.fa.gz`, recompressed with `bgzip` and indexed with
-   `samtools faidx`. Without it the REF check degrades to a warning, not a failure. `--self-check`
-   needs `chr15`.
+   `samtools faidx`. Without it the REF check degrades to a warning, not a failure, and
+   `--self-check` says so and skips its REF assertion (it exercises them with `chr15`).
 4. **A background genome** — a single-sample, bgzip-compressed, tabix-indexed GRCh38 VCF. The seven
    GIAB genomes used here are the NIST v4.2.1 GRCh38 benchmark VCFs
    (`ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/.../NISTv4.2.1/GRCh38/HG00N_GRCh38_1_22_v4.2.1_benchmark.vcf.gz`),
@@ -46,7 +46,7 @@ About 10 GB RAM per run. No GPU. No patient data is read or written.
 
 ```bash
 cd replay
-./mva_replay.py --self-check          # 21 assertions when the local benchmark artefacts (replay/out, replay/cases, chr15 FASTA) are present; 12 without them
+./mva_replay.py --self-check          # 22 assertions when the local benchmark artefacts (replay/out, replay/cases) are present; 13 without them. A missing chr15 FASTA is reported, not fatal
 
 ./mva_replay.py --gene BUB1B \
     --allele 533901 \

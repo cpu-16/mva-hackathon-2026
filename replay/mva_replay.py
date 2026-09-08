@@ -45,9 +45,14 @@ def check_resources():
     if missing:
         sys.exit("missing resource(s), not bundled in a code checkout — see replay/README_TOOL.md § Requirements:\n  "
                  + "\n  ".join(missing))
-    for exe in ("java", "bcftools", "tabix", "bgzip"):
+    for exe in ("java", "bcftools", "samtools", "tabix", "bgzip"):
         if subprocess.run(["which", exe], capture_output=True).returncode:
             sys.exit(f"{exe} not on PATH — see replay/README_TOOL.md § Requirements")
+    # Optional resources are named too, so a fresh checkout learns everything in one run
+    # (TRANSFER_TRIP13.md, finding F2: the FASTA used to surface only as a later AssertionError).
+    if not os.path.isdir(FASTA):
+        print(f"note: no hg38 FASTA directory at {FASTA} — the REF check degrades to a warning and "
+              "--self-check skips its REF assertions (README_TOOL.md § Requirements, item 3)", file=sys.stderr)
 
 def sh(cmd):
     return subprocess.run(cmd, capture_output=True, text=True).stdout
@@ -220,7 +225,7 @@ def main(argv=None):
     p.add_argument("--self-check", action="store_true")
     a = p.parse_args(argv)
     check_resources()
-    if a.self_check: return self_check()
+    if a.self_check: return self_check(a.fasta)
     if not (a.gene and len(a.allele) == 2 and a.hpo and a.background):
         p.error("--gene, two --allele, --hpo and --background are required")
     # ponytail: one gene, exactly two alleles per run; a panel is a shell loop over this script
@@ -311,7 +316,7 @@ def main(argv=None):
           f"delta phenotype (planted - unrelated) = {report['delta_phenotype_abs']}")
     for w in report["warnings"]: print("WARNING:", w)
 
-def self_check():
+def self_check(fasta=FASTA):
     """One executable check against the artefacts the 61-run benchmark already produced."""
     a1 = parse_allele("chr15:40209701:T:G"); a2 = parse_allele("NC_000015.10:g.40209701T>G"); a3 = parse_allele("533901")
     assert a1["chrom"] == "chr15" and a1["pos"] == 40209701 and a1["ref"] == "T" and a1["alt"] == "G"
@@ -320,7 +325,9 @@ def self_check():
     assert parse_allele("15-40209701-t-g")["chrom"] == "chr15"
     assert clinvar_status(a1)["clnsig"] == "Pathogenic/Likely_pathogenic"
     assert clinvar_status(parse_allele("chr15:40220612:T:G"))["clnsig"] == "absent"      # the child's real allele
-    assert ref_ok("chr15", 40209701, "T") is True and ref_ok("chr15", 40209701, "A") is False
+    have_fasta = ref_ok("chr15", 40209701, "T", fasta) is not None
+    assert (not have_fasta) or (ref_ok("chr15", 40209701, "T", fasta) is True and ref_ok("chr15", 40209701, "A", fasta) is False)
+    if not have_fasta: print(f"chr15 FASTA not found under {fasta}: the REF-check assertion was not exercised")
     recs = spike_records([parse_allele("chr15:40220612:T:A"), a1], "trans", True)
     assert recs[0].startswith("chr15\t40209701\t.\tT\tG\t100\tPASS\t.\tGT:DP:AD:GQ\t0|1:") and "\t1|0:" in recs[1]
     assert spike_records([a1], "trans", False)[0].startswith("15\t")

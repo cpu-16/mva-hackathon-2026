@@ -76,7 +76,7 @@ backgrounds. It is a single file with no new dependencies.
 
 ```bash
 python3 replay/test_output_reuse.py        # regression tests for output-collision handling; runs from a bare checkout (verified 7-Sep, after fixing the test that did not)
-replay/mva_replay.py --self-check          # 21 assertions, with a positive and a negative control
+replay/mva_replay.py --self-check          # 22 assertions, with a positive and a negative control; names missing resources instead of failing
 ```
 
 **`--self-check` needs the local analysis resources and will stop with their names if they are

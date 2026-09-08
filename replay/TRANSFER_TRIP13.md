@@ -198,3 +198,13 @@ three minutes of compute per background. It also showed that the repository's ow
 tests was false and that its requirements list was three items short, both now corrected. It does
 not show diagnostic sensitivity, anything about the girl in PMID 42595739, or that the tool runs on a
 machine that has never held the resources.
+
+### Amendment — 2026-09-07, 23:40, after the results: F2 fixed in the tool, not only in the docs
+
+`mva_replay.py` now (a) names the missing hg38 FASTA directory in the same first run that names the
+other resources, as a note rather than a fatal error, and (b) makes `--self-check` report a missing
+chr15 FASTA and skip its REF assertion instead of dying with a bare `AssertionError`. `samtools` joined
+the PATH check. The assertion count is 22 (13 without the benchmark artefacts). Verified in the
+resourced clone with the FASTA directory renamed away: exit 0 with the two messages. **Nothing in the
+analysis, the spike-in builder or the scoring changed**, and the TRIP13 results above were produced by
+the previous version of the file (commit `ee7a050`), which is why they are not re-run.
