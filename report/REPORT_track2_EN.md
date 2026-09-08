@@ -51,8 +51,10 @@ whose second tumour appeared behind the eye at age 12 (PMID 42595739) |
 If a new tumour appears, the question changes from "should he take a medicine" to "which medicines
 belong in the treatment plan". At that point bortezomib becomes worth putting to a tumour board, because
 the comparison is no longer against nothing — it is against chemotherapy that carries its own harms.
-**It would not replace standard treatment.** It would be a question to ask, backed by the evidence in §3
-and tested first in the laboratory experiment in §6.
+**It would not replace standard treatment.** In children with other solid tumours this medicine has been
+given safely at known doses but has not shrunk tumours on its own (§4), so the question would be whether
+it adds anything to standard treatment, never whether it replaces it. It would be a question to ask,
+backed by the evidence in §3 and tested first in the laboratory experiment in §6.
 
 We have written that answer down now so that nobody has to assemble it in a hurry later.
 
@@ -506,7 +508,7 @@ Bortezomib clears the pharmacology. It does not clear this patient today.
 and an embryonal rhabdomyosarcoma is a solid tumour. The argument below is weaker than the mechanism
 alone suggests, and the ex-vivo test in §6 is the gate, not a formality. For a patient with MVA
 **and an active malignancy**, where cytotoxic therapy is on the table regardless and the comparator is
-conventional chemotherapy rather than nothing, the balance inverts. Even then the route matters and we
+conventional chemotherapy rather than nothing, the balance can invert — that is a judgement for the treating team, not a result of this report. Even then the route matters and we
 name it: this would be off-label use decided by a molecular tumour board, or a formal n-of-1 protocol
 with its own ethics approval and its own stopping rules — not a recommendation that follows from this
 report. In that setting a proteasome
@@ -522,6 +524,26 @@ biallelic TRIP13 or BUB1B mutations have a high risk of embryonal tumors" (PMID 
 E-RMS arising in an MVA case with biallelic BUB1B has been characterised directly (PMID 16182441). **The realistic clinical question is not "what do we give him
 today" but "what do we reach for if there is a second tumour" — and that question deserves an answer
 prepared in advance, with its evidence and its threshold, rather than improvised under pressure.**
+
+**What is already known about bortezomib in the tumour he had, and in children.** We looked, because a
+tumour board would, and none of it is in this report's favour. Embryonal and alveolar rhabdomyosarcoma
+cell lines are killed at **13–26 nM**, concentrations that spared primary human myoblasts, and bortezomib
+reduced the growth of an RMS xenograft (PMID 18342500). Across the Pediatric Preclinical Testing Program
+panel the median in-vitro IC50 was 23 nM, **but in-vivo activity against the solid-tumour xenografts was
+limited** — one line reached intermediate activity, the rest low — while leukaemia xenografts responded
+(PMID 17420992). In children, the Children's Oncology Group phase I study ADVL0015 set the recommended
+dose at 1.2 mg/m² twice weekly for two of every three weeks, with dose-limiting thrombocytopenia at
+1.6 mg/m² and **no objective responses** among 15 children with refractory solid tumours (PMID 15570082);
+the vorinostat combination ADVL0916 likewise saw no objective responses, and a grade 2 sensory
+neuropathy that progressed to grade 4 was dose-limiting (PMID 22887890). In adults, a phase II study in
+sarcomas closed its osteosarcoma/Ewing/rhabdomyosarcoma arm for low accrual and reported minimal
+single-agent activity in soft-tissue sarcoma, with painful neuropathy prominent (PMID 15739208). The
+reading for a tumour board is therefore narrow: the in-vitro sensitivity of RMS at concentrations below
+the paediatric Cmax is real, the paediatric dose and toxicity profile are established, and single-agent
+bortezomib has not shrunk a paediatric solid tumour in a trial. If it is ever reached for, it would be as
+a component of a combination — which is what the sarcoma trial itself recommended — and the aneuploidy
+argument of this report is a reason to ask whether MVA-driven tumours are the exception, not evidence
+that they are.
 
 There is a second, immediate implication. Spindle poisons — vincristine, taxanes — depend on a
 competent mitotic checkpoint. With reduced BubR1 that arrest is less robust; a case of rhabdomyosarcoma with PCS/MVA treated with
@@ -1034,7 +1056,7 @@ The family of this child published their son's genome so that strangers might he
 what comes back.
 
 We have tried to write something useful rather than something reassuring. The honest answer to "what
-drug should he take today" is none — and we show why the obvious candidate cannot work rather than
+drug should he take today" is none — and we show why the obvious candidate cannot work by the mechanism proposed for it, rather than
 proposing it softly. The useful answer is a mechanism that matches his disease, an approved drug that
 reaches the required concentration, an explicit statement of the condition under which it would become
 appropriate, and an experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy —
@@ -1097,6 +1119,11 @@ underlying defect made worse?
 25. Vempuluru VS, et al. Sequential presentation of Wilms' tumor and orbital rhabdomyosarcoma in a child with mosaic variegated aneuploidy syndrome 3. *Orbit* 2026. PMID 42595739
 26. Wei TY, et al. Functional and clinical evidence for two novel heterozygous *BUB1B* variants and their value in precision genetic counseling for recurrent pregnancy loss. *Front Endocrinol* 2026. PMID 42434306
 27. Escalante LE, Hose J, et al. Chromosome duplication causes premature aging via defects in ribosome quality control. *PLoS Biol* 2025. PMID 41248159
+28. Bersani F, Taulli R, et al. Bortezomib-mediated proteasome inhibition as a potential strategy for the treatment of rhabdomyosarcoma. *Eur J Cancer* 2008. PMID 18342500
+29. Houghton PJ, Morton CL, et al. Initial testing (stage 1) of the proteasome inhibitor bortezomib by the pediatric preclinical testing program. *Pediatr Blood Cancer* 2008. PMID 17420992
+30. Blaney SM, Bernstein M, et al. Phase I study of the proteasome inhibitor bortezomib in pediatric patients with refractory solid tumors: a Children's Oncology Group study (ADVL0015). *J Clin Oncol* 2004. PMID 15570082
+31. Muscal JA, Thompson PA, et al. A phase I trial of vorinostat and bortezomib in children with refractory or recurrent solid tumors: a Children's Oncology Group phase I consortium study (ADVL0916). *Pediatr Blood Cancer* 2013. PMID 22887890
+32. Maki RG, Kraft AS, et al. A multicenter Phase II study of bortezomib in recurrent or metastatic sarcomas. *Cancer* 2005. PMID 15739208
 
 ---
 
