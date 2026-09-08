@@ -1,5 +1,26 @@
 # Registro de envíos — MVA Hackathon 2026
 
+## ✅ 7-SEP-2026, 23:21 — TRACK 2, ENVÍO 2 DE 3 (reemplaza al del 6-sep)
+
+Enviado desde `cpu-16` por CDP (`brave-cdp` + script websocket de una sesión). Captura:
+`evidencia/envio_track2_2026-09-07.png`. Respuesta del Space:
+**«Track 2 submission received ✓ — ciberpty (cpu-16) | Submission: 2»**.
+
+| Campo | Valor enviado |
+|---|---|
+| Team / Display Name | `ciberpty` |
+| GitHub repo URL | `https://github.com/cpu-16/mva-hackathon-2026` (commit `3821661`) |
+| Pitch video URL | `https://youtu.be/QGYHK0Ihs1c` (sin cambios) |
+| Report file | `ciberpty_track2_report.pdf` — **54 pp., 926,0 KB**, métodos como Apéndice B |
+| Notes for judges | el texto del 7-sep en `ENVIAR-PASO-A-PASO.md` (seis pre-registros; «replaces the first») |
+
+Qué cambió respecto al envío 1: la transferencia de MVA-Replay a TRIP13 desde un clon limpio
+(`replay/TRANSFER_TRIP13.md`, revisada por un agente independiente y por Codex antes de enviar),
+trametinib en la tabla del §3.3, rutas y declaración de IA corregidas. **Queda 1 envío de reserva.**
+El Track 1 no se reenvió (cambios cosméticos; riesgo de fila duplicada en el leaderboard).
+
+---
+
 ## ✅ 6-SEP-2026 — LOS DOS TRACKS ENVIADOS
 
 Enviados desde la cuenta `cpu-16` en el Space de Sage. Capturas de las dos confirmaciones en

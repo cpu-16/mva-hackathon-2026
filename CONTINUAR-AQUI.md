@@ -5,12 +5,21 @@ Léeme completo antes de tocar cualquier otro archivo.
 
 ---
 
-## 🆕 7-SEP-2026 — LAS MEJORAS DE LA REVISIÓN, HECHAS. **Nada reenviado todavía.**
+## ✅ 7-SEP-2026, 23:21 — **TRACK 2 REENVIADO (envío 2 de 3)** con las mejoras de abajo
+
+Gilberto delegó la decisión («tú eres el experto»). Se reenvió el Track 2 tras dos lecturas
+adversariales del material nuevo (agente independiente + Codex gpt-6-astra; ambas encontraron cosas
+reales, todas corregidas antes del click). Respuesta: **«Track 2 submission received ✓ — ciberpty
+(cpu-16) | Submission: 2»**. Detalle y captura: `entrega/NOTAS_ENVIO.md`,
+`evidencia/envio_track2_2026-09-07.png`. Commit enviado: `3821661`. **Queda 1 envío de reserva;
+cuenta el último.** El Track 1 no se reenvió a propósito.
+
+## 🆕 7-SEP-2026 — LAS MEJORAS DE LA REVISIÓN, HECHAS
 
 Gilberto pidió revisar si íbamos bien y luego «haz esas mejoras». Todo está en el markdown, los PDF
 regenerados (`entrega/build_pdfs.sh`, 23 + 53 pp., guardia de texto retractado en verde), el xlsx
-sincronizado, el verificador en «todo cuadra» y el repo pusheado. **El Track 2 NO se ha reenviado:**
-quedan 2 envíos, cuenta el último, hay hasta el 24-oct. Es decisión de Gilberto cuándo.
+sincronizado, el verificador en «todo cuadra» y el repo pusheado. (Escrito antes del reenvío de las
+23:21; ver la sección de arriba.)
 
 1. **Transferencia real de MVA-Replay, pre-registrada y medida — `replay/TRANSFER_TRIP13.md`.**
    Commit del pre-registro `ee7a050` (22:10), corridas 22:11–22:20 desde un **clon limpio** del repo
