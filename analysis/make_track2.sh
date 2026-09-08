@@ -13,7 +13,8 @@ step(){ echo; echo "### $(date -Is) $*"; }
 need(){ command -v "$1" >/dev/null 2>&1 || { echo "MISSING dependency: $1"; status=1; return 1; }; }
 
 step "dependencies"
-for d in python3 pandoc pdfinfo pdftotext; do need $d && echo "ok $d $($d --version 2>&1 | head -1)"; done
+for d in python3 pandoc; do need $d && echo "ok $d $($d --version 2>&1 | head -1)"; done
+for d in pdfinfo pdftotext; do need $d && echo "ok $d $($d -v 2>&1 | head -1)"; done
 python3 - <<'PY' || status=1
 import importlib
 for m in ("numpy","pandas","scipy","matplotlib","weasyprint","openpyxl"):
