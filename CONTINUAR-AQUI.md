@@ -5,6 +5,66 @@ Léeme completo antes de tocar cualquier otro archivo.
 
 ---
 
+## 🆕 7/8-SEP-2026, MADRUGADA — RONDA «A GANAR» CON CODEX COMO JUEZ. **Queda 1 envío; NO usado todavía.**
+
+Gilberto: «quiero que tú junto a Codex hagan lo mejor y pongan a prueba sus capacidades para ganar».
+Codex (gpt-6-astra) juzgó el PDF enviado con la rúbrica oficial: **72/100 — tercio superior, no podio**
+(`evidencia/codex_juez_rubrica_2026-09-07.md`: puntajes por criterio, 5 cambios ordenados por retorno,
+estructura de 14 páginas y 26 frases atacables). Lo hecho esta madrugada, todo commiteado y pusheado
+(último `5de9c4f`), con el verificador en «todo cuadra»:
+
+1. **Cambio #1 — cada titular reconciliado con la evidencia** (commit `213d6ff`): título y §1 dicen
+   «presumed compound heterozygosity; phase not established»; la página familiar ya no convierte una
+   objeción de concentración en una de dosis; «clears the pharmacology» → «not excluded by the
+   total-plasma peak comparison»; filtro 5 marcado **untested** en la hoja; REVEL/AlphaMissense
+   «retrieved, not run»; el fasado por lecturas cortas es imposible por los huecos de 6,8 y 4,1 kb
+   (no «no alignments»); Q6/Q7 separan el dataset de acceso controlado; y ~20 matices más.
+2. **Cambio #2 — seguimiento DepMap pre-registrado y corrido** (`depmap/PREREGISTRO_SEGUIMIENTO.md`
+   commit `ee59c9e` → `05_seguimiento.py` → `RESULTADOS_SEGUIMIENTO.md`, `fig5`). Las 4 predicciones se
+   cumplieron. Descubierto de paso: la interacción p = 0,026 y «ploidy p = 0,88» **no tenían script**;
+   ahora se reproducen (modelo completo vs. de efectos principales). Nuevo y en contra: los dos
+   ensayos comparten 365 modelos y concuerdan entre sí solo a ρ = −0,070 (ya no se dice «two
+   independent measurements»); **rabdomiosarcoma casi ausente del cribado** (17 líneas con score, 3
+   con PRISM, y esas 3 entre las menos sensibles a 2,5 µM); el score residualizado por ploidía reduce
+   la señal de fármaco a más de la mitad. ⚠️ El encabezado del pre-registro dice «8-sep 00:50» por un
+   reloj mal leído; **mandan los timestamps de git (7-sep 23:41)**, y está anotado en el propio archivo.
+3. **Bortezomib en el tumor que tuvo el niño y en niños** — §4 (Parte II) y §5 (Parte I): Bersani 2008
+   (líneas RMS 13–26 nM), PPTP 2008 (actividad in vivo limitada en sólidos), COG ADVL0015 y ADVL0916
+   (**sin respuestas objetivas**; dosis pediátrica 1,2 mg/m² dos veces por semana, 2 de cada 3 semanas),
+   Maki 2005 (fase II sarcomas, actividad mínima). Abstracts verificados y guardados
+   (`evidencia/pubmed_bortezomib_paediatric_2026-09-07.xml`). Nada de eso favorece; se dice.
+4. **Cambio #4 — el PDF es ahora un documento de dos partes** (commit `50d41cf`):
+   `track2/PART1_decision_document.md` (22 pp. con referencias) + Parte II = el reporte completo con
+   encabezados degradados y sin duplicar página familiar/referencias + Apéndice B. **77 páginas en total;
+   la Parte II empieza en la p. 23 y el Apéndice B en la 69.** `entrega/build_pdfs.sh` arma las tres
+   piezas. Dos lecturas adversariales independientes (Codex + agente) de Parte I contra Parte II:
+   2 blockers y ~15 majors, todos aplicados (`5de9c4f`): «shrank» → «reduced the growth», pauta
+   pediátrica completa, la regla «materially above the row is not a better result» restaurada, ~30
+   matices devueltos.
+5. **Cambio #3 (parcial) — tabla de evidencia de exposición** en §3.2 de ambas partes, con la ficha
+   SPL de VELCADE bajada de DailyMed (`evidencia/velcade_spl_dailymed_2026-09-07.xml`): unión a
+   proteínas 83 % → **el pico libre IV (≈39–53 nM) queda AL NIVEL de la cota de EC50 (<40 nM), no por
+   encima**. Está en el resumen ejecutivo, las hojas de filtros y el TSV. Falta de #3: implementar el
+   modelo de potencia de cuatro parámetros o retirar las ramas n=3/n=14 del cuerpo (se dejaron como
+   «indicativas»).
+6. **Cambio #5 (parcial)** — `track2/candidates.tsv`: hoja de cinco filtros legible por máquina
+   (pass/fail/untested/not_evaluable, contexto, fuente, razón). Falta: comando único que regenere la
+   figura y tabla principal desde el TSV (hoy `depmap/05_seguimiento.py` regenera fig5).
+7. Arreglo en el tool: `mva_replay.py` nombra el FASTA ausente en la primera corrida y el self-check ya
+   no muere con `AssertionError` (22 aserciones; enmienda en `TRANSFER_TRIP13.md`).
+
+**Decisión sobre el tercer y último envío:** NO gastarlo ahora. El envío 2 (7-sep 23:21) ya es un
+paquete sólido; el 3 debe ir con todo lo anterior **más** una ronda adversarial completa nueva (Codex
+juez otra vez con la rúbrica) y, si da tiempo, lo que falta de #3 y #5. Ventana recomendada:
+**13–17 de octubre**, nunca el último día (el Space ya ha estado congelado). Recordar: solo cuenta el
+último.
+
+⛔ **Codex se muere en silencio con prompts >~128 KB por argumento**: pasar el prompt por stdin
+(`codex exec - < prompt.txt`) y correrlo con `run_in_background` del harness, no con `nohup` (los
+`nohup` de esta sesión murieron a mitad). Cursor tiene la autenticación caducada (`agent login`).
+⚠️ Y un gotcha propio de esta sesión: el `cd` al repo hermano persiste entre llamadas; un script con
+rutas relativas editó el `CONTINUAR-AQUI.md` del repo y la copia posterior lo pisó. Usar rutas absolutas.
+
 ## ✅ 7-SEP-2026, 23:21 — **TRACK 2 REENVIADO (envío 2 de 3)** con las mejoras de abajo
 
 Gilberto delegó la decisión («tú eres el experto»). Se reenvió el Track 2 tras dos lecturas

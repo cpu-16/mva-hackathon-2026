@@ -3,7 +3,7 @@
 **Team: ciberpty** · Rare Disease, Real Kid: MVA Hackathon 2026
 Repository: https://github.com/cpu-16/mva-hackathon-2026 · Methods description: Appendix B of this PDF
 
-*This document has two parts. **Part I** (this part, about 20 pages including the reference list) is the decision document: every
+*This document has two parts. **Part I** (this part, 22 pages including the reference list) is the decision document: every
 conclusion, every number that carries it, and every limitation, at the length a judge can read in one
 sitting. **Part II** is the full evidence: the same sections at full length, with derivations, sources
 quoted verbatim, the correction history and every pre-registered analysis. Where Part I compresses,
