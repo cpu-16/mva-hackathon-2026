@@ -459,13 +459,52 @@ aneuploidy strongly overall (ρ = −0.198, q = 5.2×10⁻⁸, n = 946) — but 
 **significant in haematological lines (ρ = −0.261, q = 0.042, n = 113) and not in solid lines
 (ρ = −0.077, q = 0.118, n = 833)**. The 20S core as a set is indistinguishable from a random-gene
 background in solid lines (z = −0.51), and the pre-declared negative control PSMD9 is null throughout.
-Adjusting for ploidy and lineage, aneuploidy still predicts PSMB5 dependency (p = 0.0098) while
-**ploidy contributes nothing** (p = 0.88) — this is not whole-genome doubling in disguise. The formal
-test of our question, the **aneuploidy × lineage interaction, is significant (p = 0.026)**. Solid lines
+In a main-effects model adjusting for ploidy and lineage, aneuploidy still predicts PSMB5 dependency
+(β = −0.0079 per altered arm, p = 0.0098) while **ploidy adds nothing** (p = 0.88) — this is not
+whole-genome doubling in disguise. In the model with the interaction, the formal test of our question,
+the **aneuploidy × lineage term, is significant (β = −0.017, 95% CI −0.031 to −0.002, p = 0.026)**,
+and the solid-stratum slope on its own is −0.006 (95% CI −0.012 to +0.0002, p = 0.056). Solid lines
 are the *larger* stratum, so sample size is not the explanation; the interaction supports a weaker
 association in solid lines under the fitted model, not the absence of a clinically meaningful effect.
+(These three numbers were first computed ad hoc; they now come from `depmap/05_seguimiento.py`, which
+reproduces all of them.)
 
-**What it costs us, stated plainly.** Two independent measurements agree: the link our bortezomib
+**Follow-up, pre-registered after seeing the result and run once (8 Sep; `depmap/PREREGISTRO_SEGUIMIENTO.md`,
+`depmap/RESULTADOS_SEGUIMIENTO.md`).** A reader asked for the uncertainty, the structure under the pooled
+"solid" stratum, and the representation of this child's tumour type. All four pre-registered predictions held:
+
+![Follow-up: effect sizes with 95% bootstrap intervals, and the solid stratum split by lineage](fig5_seguimiento.png)
+
+- **Effect sizes.** Bortezomib ρ = −0.075 (95% bootstrap CI −0.168 to +0.017); every proteasome-inhibitor
+  interval in the drug screen includes zero. PSMB5 dependency: haematological ρ = −0.261 (−0.422 to −0.084),
+  solid ρ = −0.077 (−0.149 to −0.009) — that solid interval excludes zero narrowly while the pre-registered
+  FDR test did not pass (q = 0.12); the pre-registered verdict stands and both are reported. Per ten
+  additional altered arms, PSMB5 gene effect moves by −0.06 in solid lines and −0.23 in haematological lines.
+- **Not driven by any single lineage.** Dropping each of 26 solid lineages in turn never flips the sign of
+  the solid-stratum bortezomib or PSMB5 correlation, and the interaction's 95% CI never crosses zero
+  (p from 0.013 to 0.037). Inside the solid stratum, all 27 within-lineage intervals (17 lineages with
+  n ≥ 20 for CRISPR, 10 for PRISM) overlap zero; no lineage is singled out.
+- **The two assays barely agree with each other.** Across the 365 solid models with both measurements,
+  bortezomib sensitivity and PSMB5 dependency correlate at ρ = −0.070 (−0.176 to +0.033). They are different
+  modalities on overlapping models, not independent replications, and we no longer describe them as
+  "two independent measurements".
+- **Score definition.** Under a fraction-of-arms score the numbers are unchanged; under a
+  ploidy-residualised score the bortezomib and carfilzomib correlations shrink from −0.075/−0.060 to
+  −0.028/−0.028 (signs unchanged), so part of the small drug signal travels with ploidy-correlated aneuploidy.
+  The interaction is unaffected (p = 0.024–0.029).
+- **Rhabdomyosarcoma is essentially absent from the drug screen — and what is there does not help us.**
+  Seventeen RMS lines carry an aneuploidy score; **three** have a PRISM bortezomib value and they are
+  *less* killed at the single 2.5 µM dose than 98%, 91% and 89% of the 444 solid lines; **ten** have a
+  CRISPR PSMB5 value, spread between the 24th and 84th percentile. No statistic is computed on three or
+  ten lines. This is a coverage limitation of the public data for exactly the tumour type this child had,
+  and it is consistent with the limited in-vivo activity in solid-tumour xenografts reported by the
+  Pediatric Preclinical Testing Program (§4).
+
+The sentence the pre-registration commits us to, given these outcomes: **the attenuation in solid
+lineages is not an artefact of any single lineage and its interval excludes zero; the solid-stratum
+association itself remains compatible with zero.**
+
+**What it costs us, stated plainly.** Two measurements on overlapping models agree: the link our bortezomib
 argument rests on is detectable where myeloma sits and attenuated in solid tumours. That attenuation is
 a statement about DepMap lines, not a claim that no solid-tumour evidence exists: Ippolito's own paper
 reports associations in pancreatic and paediatric PDX models (their Supplementary Fig. 8o–r), which in

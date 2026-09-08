@@ -1,0 +1,115 @@
+## S1 — effect sizes with 95% bootstrap intervals
+  BORTEZOMIB   solid n= 444  rho=-0.075 [-0.168, +0.017]
+  CARFILZOMIB  solid n= 424  rho=-0.060 [-0.156, +0.036]
+  IXAZOMIB     solid n= 438  rho=+0.028 [-0.059, +0.116]
+  METFORMIN    solid n= 438  rho=+0.020 [-0.075, +0.117]
+  TRAMETINIB   solid n= 441  rho=+0.037 [-0.062, +0.132]
+  EVEROLIMUS   solid n= 441  rho=-0.025 [-0.121, +0.069]
+  PACLITAXEL   solid n= 440  rho=+0.096 [+0.004, +0.191]
+  CRISPR PSMB5         all            n= 946  rho=-0.198 [-0.260, -0.133]
+  CRISPR core20S_mean  all            n= 946  rho=-0.190 [-0.250, -0.130]
+  CRISPR PSMB5         solid          n= 833  rho=-0.077 [-0.149, -0.009]
+  CRISPR core20S_mean  solid          n= 833  rho=-0.096 [-0.161, -0.027]
+  CRISPR PSMB5         haematological n= 113  rho=-0.261 [-0.422, -0.084]
+  CRISPR core20S_mean  haematological n= 113  rho=-0.277 [-0.441, -0.097]
+
+## S2 — PSMB5 ~ score + haem + score×haem + ploidy (OLS), and the main-effects model
+  full   const       beta=-1.69460  95%CI=[-1.84780, -1.54139]  p=5.058e-85
+  full   score       beta=-0.00601  95%CI=[-0.01217, +0.00016]  p=0.05632
+  full   haem        beta=+0.92061  95%CI=[+0.72576, +1.11546]  p=1.213e-19
+  full   score:haem  beta=-0.01675  95%CI=[-0.03144, -0.00206]  p=0.02551  boot95=[-0.03222, -0.00340]
+  full   ploidy      beta=+0.00715  95%CI=[-0.05327, +0.06756]  p=0.8165
+  main   const       beta=-1.65310  95%CI=[-1.80224, -1.50396]  p=2.484e-85
+  main   score       beta=-0.00786  95%CI=[-0.01382, -0.00190]  p=0.009794
+  main   haem        beta=+0.74602  95%CI=[+0.62531, +0.86674]  p=1.471e-31
+  main   ploidy      beta=+0.00484  95%CI=[-0.05567, +0.06534]  p=0.8753
+  change in PSMB5 gene effect per 10 altered arms: solid -0.060, haematological -0.228  (n=946)
+
+## S3 — inside the solid stratum, by OncotreeLineage (n>=20 = pre-registered floor; below = descriptive)
+         measure                   lineage   n    rho     lo     hi              floor
+    CRISPR PSMB5                      Lung 102 -0.035 -0.234 +0.168                 OK
+    CRISPR PSMB5                 CNS/Brain  75 -0.185 -0.419 +0.051                 OK
+    CRISPR PSMB5             Head and Neck  69 -0.115 -0.358 +0.141                 OK
+    CRISPR PSMB5                      Skin  63 +0.141 -0.119 +0.408                 OK
+    CRISPR PSMB5         Esophagus/Stomach  57 -0.184 -0.425 +0.095                 OK
+    CRISPR PSMB5                     Bowel  54 -0.004 -0.252 +0.239                 OK
+    CRISPR PSMB5      Ovary/Fallopian Tube  39 -0.270 -0.506 +0.045                 OK
+    CRISPR PSMB5                    Breast  37 -0.117 -0.452 +0.218                 OK
+    CRISPR PSMB5                      Bone  36 -0.179 -0.475 +0.157                 OK
+    CRISPR PSMB5                  Pancreas  36 +0.077 -0.228 +0.364                 OK
+    CRISPR PSMB5               Soft Tissue  33 +0.102 -0.275 +0.455                 OK
+    CRISPR PSMB5     Bladder/Urinary Tract  29 +0.248 -0.122 +0.591                 OK
+    CRISPR PSMB5 Peripheral Nervous System  28 -0.041 -0.404 +0.385                 OK
+    CRISPR PSMB5                    Kidney  27 +0.012 -0.463 +0.428                 OK
+    CRISPR PSMB5             Biliary Tract  26 -0.122 -0.503 +0.317                 OK
+    CRISPR PSMB5                    Uterus  23 -0.264 -0.652 +0.195                 OK
+    CRISPR PSMB5                     Liver  22 -0.096 -0.474 +0.318                 OK
+    CRISPR PSMB5                    Pleura  19 -0.288 -0.660 +0.231 descriptive (n<20)
+    CRISPR PSMB5                    Cervix  17 -0.051 -0.650 +0.540 descriptive (n<20)
+    CRISPR PSMB5                       Eye  13 -0.050 -0.531 +0.442 descriptive (n<20)
+    CRISPR PSMB5                   Thyroid   9 -0.711 -1.000 +0.018 descriptive (n<20)
+    CRISPR PSMB5                  Prostate   8 -0.214 -0.924 +0.722 descriptive (n<20)
+    CRISPR PSMB5                    Testis   5 -0.600 -1.000 +0.875 descriptive (n<20)
+PRISM bortezomib                      Lung  82 -0.043 -0.269 +0.183                 OK
+PRISM bortezomib         Esophagus/Stomach  37 -0.176 -0.461 +0.137                 OK
+PRISM bortezomib                 CNS/Brain  36 -0.189 -0.549 +0.169                 OK
+PRISM bortezomib                      Skin  35 -0.174 -0.502 +0.180                 OK
+PRISM bortezomib                  Pancreas  29 +0.290 -0.029 +0.553                 OK
+PRISM bortezomib             Head and Neck  26 +0.130 -0.268 +0.521                 OK
+PRISM bortezomib                     Bowel  25 +0.020 -0.349 +0.394                 OK
+PRISM bortezomib      Ovary/Fallopian Tube  23 +0.083 -0.391 +0.513                 OK
+PRISM bortezomib     Bladder/Urinary Tract  22 -0.180 -0.565 +0.238                 OK
+PRISM bortezomib                     Liver  20 +0.000 -0.448 +0.462                 OK
+PRISM bortezomib                    Breast  18 +0.329 -0.142 +0.707 descriptive (n<20)
+PRISM bortezomib                    Kidney  17 +0.088 -0.444 +0.599 descriptive (n<20)
+PRISM bortezomib                      Bone  16 +0.068 -0.571 +0.563 descriptive (n<20)
+PRISM bortezomib                    Uterus  15 -0.039 -0.596 +0.569 descriptive (n<20)
+PRISM bortezomib               Soft Tissue  11 -0.184 -0.718 +0.466 descriptive (n<20)
+PRISM bortezomib                    Pleura   8 -0.381 -0.973 +0.539 descriptive (n<20)
+PRISM bortezomib                   Thyroid   8 -0.587 -1.000 +0.308 descriptive (n<20)
+PRISM bortezomib             Biliary Tract   6 -0.714 -1.000 +0.226 descriptive (n<20)
+PRISM bortezomib Peripheral Nervous System   6 -0.771 -1.000 +0.000 descriptive (n<20)
+
+## S4 — leave-one-lineage-out (solid stratum)
+  baseline: bortezomib rho=-0.075, PSMB5 rho=-0.077, interaction beta=-0.01675
+  bortezomib rho range -0.100..-0.053; sign flips: none
+  PSMB5 rho range -0.091..-0.067; sign flips: none
+  interaction beta range -0.01815..-0.01591; p range 0.0128..0.0373; CI crosses zero when dropping: none
+  -> pre-registered criterion: not driven by any single lineage
+
+## S5 — rhabdomyosarcoma coverage (descriptive only; no statistic on 3 or 10 lines)
+                                 subtype  aneuploidy_score  ploidy  bortezomib_lfc  lfc_percentile_in_solid  PSMB5  PSMB5_percentile_in_solid
+ModelID                                                                                                                                      
+ACH-002048    Embryonal Rhabdomyosarcoma                17    2.00             NaN                      NaN  -1.92                      39.98
+ACH-000051              Rhabdomyosarcoma                 0    2.00           -2.51                    90.77    NaN                        NaN
+ACH-001750    Embryonal Rhabdomyosarcoma                18    3.00             NaN                      NaN  -1.58                      71.43
+ACH-000833     Alveolar Rhabdomyosarcoma                21    3.00           -2.65                    89.19  -2.09                      24.49
+ACH-001751    Embryonal Rhabdomyosarcoma                18    3.00             NaN                      NaN    NaN                        NaN
+ACH-000100     Alveolar Rhabdomyosarcoma                20    3.00             NaN                      NaN  -1.96                      37.09
+ACH-001765     Alveolar Rhabdomyosarcoma                21    4.00             NaN                      NaN  -1.69                      61.10
+ACH-001740     Alveolar Rhabdomyosarcoma                21    4.00             NaN                      NaN  -1.91                      40.34
+ACH-002501     Alveolar Rhabdomyosarcoma                11    4.00             NaN                      NaN    NaN                        NaN
+ACH-000689    Embryonal Rhabdomyosarcoma                25    4.00             NaN                      NaN    NaN                        NaN
+ACH-003473    Embryonal Rhabdomyosarcoma                 6    2.00             NaN                      NaN    NaN                        NaN
+ACH-001050     Alveolar Rhabdomyosarcoma                16    4.00             NaN                      NaN  -2.02                      31.21
+ACH-000169    Embryonal Rhabdomyosarcoma                13    2.00           -1.73                    97.97  -1.66                      64.95
+ACH-001196    Embryonal Rhabdomyosarcoma                27    3.00             NaN                      NaN  -1.72                      58.46
+ACH-001745     Alveolar Rhabdomyosarcoma                22    4.00             NaN                      NaN  -1.34                      83.55
+ACH-002787  Pleomorphic Rhabdomyosarcoma                19    3.00             NaN                      NaN    NaN                        NaN
+ACH-002936     Alveolar Rhabdomyosarcoma                 8    4.00             NaN                      NaN    NaN                        NaN
+  scored RMS lines: 17; with PRISM bortezomib: 3; with CRISPR PSMB5: 10
+
+## S6 — the two assays on the same models
+  shared solid models n=365: rho(bortezomib LFC, PSMB5 effect)=-0.070 [-0.176, +0.033]
+  in that set: rho(score, LFC)=-0.087 [-0.186, +0.018]; rho(score, PSMB5)=-0.029 [-0.131, +0.068]
+
+## S7 — sensitivity to the score definition (fixed alternatives: fraction of callable arms; ploidy-residualised)
+  [frac ] BORTEZOMIB   rho=-0.077 [-0.170, +0.017]
+  [frac ] CARFILZOMIB  rho=-0.054 [-0.148, +0.046]
+  [frac ] IXAZOMIB     rho=+0.032 [-0.062, +0.121]
+  [frac ] interaction beta=-0.68455 95%CI=[-1.27928, -0.08982] p=0.02412 boot95=[-1.28522, -0.08245]
+  [resid] BORTEZOMIB   rho=-0.028 [-0.123, +0.061]
+  [resid] CARFILZOMIB  rho=-0.028 [-0.125, +0.066]
+  [resid] IXAZOMIB     rho=+0.018 [-0.073, +0.106]
+  [resid] interaction beta=-0.02338 95%CI=[-0.04430, -0.00246] p=0.02854 boot95=[-0.04440, -0.00298]
+  -> signs unchanged under both alternatives: True

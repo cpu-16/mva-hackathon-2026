@@ -115,3 +115,22 @@ aneuploid → more sensitive"**; CRISPR gene effect is more negative when the ge
 ## Results
 
 *(appended below, dated; the text above is never edited)*
+
+### Results — 2026-09-08, 01:00 (script `05_seguimiento.py`, one analytical run; re-executed once for a figure axis label, numbers identical)
+
+Full write-up: `RESULTADOS_SEGUIMIENTO.md`. Summary against the predictions:
+
+| Prediction | Outcome |
+|---|---|
+| P-S1 bortezomib solid CI includes zero | **Confirmed** — ρ = −0.075, 95% CI −0.168 to +0.017 |
+| P-S2 interaction CIs exclude zero | **Confirmed** — β = −0.01675, analytic −0.0314 to −0.0021, bootstrap −0.0322 to −0.0034 |
+| P-S3 not driven by any single lineage | **Confirmed** — no sign flip in 26 leave-one-out fits; interaction CI never crosses zero (p 0.013–0.037) |
+| P-S4 within-lineage intervals mostly overlap zero | All 27 do |
+| P-S5 signs unchanged under both score definitions | **Confirmed** — but the ploidy-residualised score shrinks bortezomib/carfilzomib ρ from −0.075/−0.060 to −0.028/−0.028 |
+
+Not predicted, reported: the solid-stratum PSMB5 bootstrap interval excludes zero narrowly (−0.149 to
+−0.009) while the pre-registered FDR test did not pass (q = 0.118) — the pre-registered verdict stands.
+The three ad-hoc numbers in `RESULTADOS.md` reproduce (main-effects model: β = −0.00786, p = 0.0098,
+ploidy p = 0.875; full model: interaction p = 0.0255). Rhabdomyosarcoma: 17 scored lines, 3 with a PRISM
+value — less killed than 98/91/89% of solid lines at 2.5 µM — and 10 with CRISPR, unremarkable. The two
+assays agree with each other at ρ = −0.070 across 365 shared models.

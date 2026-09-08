@@ -1,0 +1,18 @@
+ModelID,ProfileID,ploidy,arms_callable,aneuploidy_score,StrippedCellLineName,OncotreeLineage,OncotreePrimaryDisease,stratum,frac,resid,subtype,bortezomib_lfc,PSMB5,lfc_percentile_in_solid,PSMB5_percentile_in_solid
+ACH-002048,PR-7bX1tr,2.0,42,17,RMSYM,Soft Tissue,Rhabdomyosarcoma,solid,0.40476190476190477,6.996053925373905,Embryonal Rhabdomyosarcoma,,-1.92084236456341,,39.97599039615846
+ACH-000051,PR-AfhuNj,2.0,39,0,TE617T,Soft Tissue,Rhabdomyosarcoma,solid,0.0,-10.003946074626095,Rhabdomyosarcoma,-2.50892946819,,90.76576576576578,
+ACH-001750,PR-G46D6E,3.0,41,18,TTC442,Soft Tissue,Rhabdomyosarcoma,solid,0.43902439024390244,0.7499482482016262,Embryonal Rhabdomyosarcoma,,-1.5792653457525954,,71.42857142857143
+ACH-000833,PR-HnL4XR,3.0,41,21,RH30,Soft Tissue,Rhabdomyosarcoma,solid,0.5121951219512195,3.749948248201626,Alveolar Rhabdomyosarcoma,-2.65360030841,-2.0909945809191623,89.1891891891892,24.489795918367346
+ACH-001751,PR-L2ABsw,3.0,39,18,RH36,Soft Tissue,Rhabdomyosarcoma,solid,0.46153846153846156,0.7499482482016262,Embryonal Rhabdomyosarcoma,,,,
+ACH-000100,PR-NO2bZx,3.0,39,20,RH41,Soft Tissue,Rhabdomyosarcoma,solid,0.5128205128205128,2.749948248201626,Alveolar Rhabdomyosarcoma,,-1.9600141063374423,,37.09483793517407
+ACH-001765,PR-O238Fk,4.0,41,21,RH4,Soft Tissue,Rhabdomyosarcoma,solid,0.5121951219512195,-3.4961574289706547,Alveolar Rhabdomyosarcoma,,-1.6928141083471313,,61.104441776710686
+ACH-001740,PR-SvOJGW,4.0,41,21,RH28,Soft Tissue,Rhabdomyosarcoma,solid,0.5121951219512195,-3.4961574289706547,Alveolar Rhabdomyosarcoma,,-1.9108768881620584,,40.33613445378151
+ACH-002501,PR-UAyqFG,4.0,41,11,RMZ,Soft Tissue,Rhabdomyosarcoma,solid,0.2682926829268293,-13.496157428970655,Alveolar Rhabdomyosarcoma,,,,
+ACH-000689,PR-WguVHw,4.0,39,25,RH18,Soft Tissue,Rhabdomyosarcoma,solid,0.6410256410256411,0.5038425710293453,Embryonal Rhabdomyosarcoma,,,,
+ACH-003473,PR-ZUTeZC,2.0,39,6,CCLFPEDS0013T,Soft Tissue,Rhabdomyosarcoma,solid,0.15384615384615385,-4.003946074626095,Embryonal Rhabdomyosarcoma,,,,
+ACH-001050,PR-ZXiFr9,4.0,39,16,CW9019,Soft Tissue,Rhabdomyosarcoma,solid,0.41025641025641024,-8.496157428970655,Alveolar Rhabdomyosarcoma,,-2.020261123922214,,31.212484993997595
+ACH-000169,PR-dIGRQn,2.0,41,13,RD,Soft Tissue,Rhabdomyosarcoma,solid,0.3170731707317073,2.9960539253739054,Embryonal Rhabdomyosarcoma,-1.72952501331,-1.6583528889863688,97.97297297297297,64.94597839135653
+ACH-001196,PR-fRV9F5,3.0,41,27,SMSCTR,Soft Tissue,Rhabdomyosarcoma,solid,0.6585365853658537,9.749948248201626,Embryonal Rhabdomyosarcoma,,-1.7234649987286257,,58.463385354141664
+ACH-001745,PR-iTqaF5,4.0,41,22,RHJT,Soft Tissue,Rhabdomyosarcoma,solid,0.5365853658536586,-2.4961574289706547,Alveolar Rhabdomyosarcoma,,-1.33825465658941,,83.55342136854742
+ACH-002787,PR-lJ2Tej,3.0,40,19,NCCPRMS1C1,Soft Tissue,Rhabdomyosarcoma,solid,0.475,1.7499482482016262,Pleomorphic Rhabdomyosarcoma,,,,
+ACH-002936,PR-vE8egc,4.0,42,8,CCLFPEDS0043T,Soft Tissue,Rhabdomyosarcoma,solid,0.19047619047619047,-16.496157428970655,Alveolar Rhabdomyosarcoma,,,,

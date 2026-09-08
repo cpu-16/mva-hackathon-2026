@@ -99,3 +99,14 @@ python3 04_figura.py               # figura 4
 ```
 All inputs are public (DepMap 24Q4 figshare 27993248; PRISM Repurposing 24Q2 figshare 25917643).
 No patient data is used anywhere in this analysis.
+
+
+---
+**Note added 2026-09-08.** The three numbers in *Confounders, checked* (β = −0.0079, p = 0.0098; ploidy
+p = 0.88; interaction p = 0.026) were computed ad hoc when this file was written. They are now
+reproduced by `05_seguimiento.py`: the first two come from the main-effects model, the third from the
+model with the interaction term. Effect sizes with intervals, the lineage structure, the assay overlap,
+the score-definition sensitivity and the rhabdomyosarcoma coverage are in `RESULTADOS_SEGUIMIENTO.md`
+(pre-registered in `PREREGISTRO_SEGUIMIENTO.md`, commit `ee59c9e`). The phrase "two independent
+measurements" above overstates: the assays share 365 solid models and agree with each other only at
+ρ = −0.070.
