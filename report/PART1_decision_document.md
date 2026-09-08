@@ -3,7 +3,7 @@
 **Team: ciberpty** · Rare Disease, Real Kid: MVA Hackathon 2026
 Repository: https://github.com/cpu-16/mva-hackathon-2026 · Methods description: Appendix B of this PDF
 
-*This document has two parts. **Part I** (this part, 22 pages including the reference list) is the decision document: every
+*This document has two parts. **Part I** (this part, about 24 pages including the reference list) is the decision document: every
 conclusion, every number that carries it, and every limitation, at the length a judge can read in one
 sitting. **Part II** is the full evidence: the same sections at full length, with derivations, sources
 quoted verbatim, the correction history and every pre-registered analysis. Where Part I compresses,
@@ -443,25 +443,25 @@ answer to a question this family may unfortunately have to ask.
 
 ## The five-filter worksheet (reusable)
 
-*Rendered from `report/candidates.tsv` by `report/render_candidates.py`; the table below and the machine-readable file are the same object. Every candidate this report evaluated is a row; add yours.*
+*Rendered from `report/candidates.tsv` by `report/render_candidates.py`; the table below and the machine-readable file are the same object. Statuses only here; the model context and reason behind every cell are in the Part II worksheet and in the file. Every candidate this report evaluated is a row; add yours.*
 
 | Candidate | 1. Approved? | 2. Lesion or direct consequence? | 3. Cmax vs effective concentration | 4. Safe in *this* patient? | 5. No increase in mis-segregation? | Verdict |
 |---|---|---|---|---|---|---|
-| **metformin** | pass | pass | not evaluable — none: no aneuploidy-selective effective concentration exists; complex I route needs mM vs uM plasma | not reached | not reached | **rejected at filter 3 unevaluable** — Marketed stand-in for the AICAR/AMPK screen hit; the complex I mechanism cannot operate at plasma concentrations and an AMPK-mediated aneuploidy-selective effect is untested |
-| **bortezomib IV** | pass | pass | not excluded — EC50 <40 nM read from Fig. 6o of PMID 39247952 (5 near-euploid vs 5 highly aneuploid cancer lines, 72 h); Cmax 89-120 ng/mL = 231-312 nM at 1.3 mg/m2 IV (FDA label NDA 021602); ratio 5.8-7.8 on total plasma drug; 83% protein-bound so the free peak (~39-53 nM; ~99 nM on the label's 223 ng/mL figure) is within 1-2.5x of the <40 nM bound | **fail** | untested | **fails filter 4 for this child; conditional for active tumour** — Proteasome dependency of aneuploid cancer cells; paediatric neuropathy 18% (motor 8%) on pre-existing muscle atrophy; own DepMap test attenuated in solid lineages; RMS essentially absent from the drug screen |
-| **bortezomib SC** | pass | pass | **fail** — Cmax 20.4 ng/mL = 53.1 nM SC; nominal ratio 1.33 on total drug does not survive any free-fraction correction | **fail** | untested | **fails filter 3 and 4** — Subcutaneous route withdrawn at filter 3 |
-| **carfilzomib** | pass | pass | not evaluable — no IC50 in an aneuploidy-stratified model; Cmax 2.89 uM at 56 mg/m2 known, no valid denominator | not reached | not reached | **not evaluable** — Same mechanism class; no aneuploidy-stratified effective concentration published |
-| **ixazomib** | pass | pass | not evaluable — beta5 enzymatic IC50 3.4 nM is not a cellular aneuploidy-selective value; Cmax 171 nM at 4 mg oral | not reached | not reached | **not evaluable** — No valid denominator; own DepMap correlation ran the wrong direction (rho +0.028) |
-| **hydroxychloroquine** | pass | **fail** | not evaluable — Tang's hit was chloroquine, which did not differentially inhibit the human CIN lines in the same paper | not reached | not reached | **not evaluable mechanistically weakened** — Mechanism not supported in human CIN lines |
-| **everolimus sirolimus** | pass | **fail** | not evaluable — predicted to antagonise proteasome inhibition by relieving translational burden; whole-blood, not plasma, Cmax reported | not reached | not reached | **not evaluable possibly counterproductive** — Predicted antagonism with bortezomib; muscle-directed mTOR rationale in monoallelic mice points the other way and is not support for the combination |
-| **trametinib** | pass | untested | not evaluable — only relative IC50s recoverable from PMID 39251587; 0.45 nM sensitising dose is sub-lethal, not an IC50; Cmax 22.2 ng/mL = 36.1 nM at 2 mg/day (SmPC §5.2) | not reached | not reached | **not evaluable gap most worth closing** — Aneuploid RPE1 clones are MEK-inhibitor-sensitive; approved from age 1 with dabrafenib for BRAF V600E low-grade glioma; first candidate to re-run filter 3 once an absolute aneuploid IC50 is published |
-| **AICAR** | **fail** | pass | not reached — screen hit in isogenic trisomic MEFs and human trisomy-7 colonic cells | not reached | not reached | **fails filter 1** — Not marketed; in-vitro positive control only |
-| **17-AAG HSP90i** | **fail** | pass | not reached — 200 nM active dose in the Tang screen, not an IC50; no FDA/EMA-approved HSP90 inhibitor | not reached | not reached | **fails filter 1** — Not marketed; class limited by organ toxicity |
-| **reversine MPS1 TTK inhibitors** | **fail** | **fail** | not reached — research tools that induce aneuploidy | not reached | **fail** | **fails filter 1 and 5** — Weaken a checkpoint that is already insufficient |
-| **apcin proTAME** | **fail** | untested | not reached — APC/C tool compounds | not reached | not reached | **fails filter 1** — Not marketed |
-| **DCZ0415** | **fail** | **fail** | not reached — experimental TRIP13 inhibitor | not reached | not reached | **fails filter 1 and 2** — Wrong gene for MVA1; not approved |
-| **senolytics** | **fail** | untested | not reached — BubR1 senescence evidence rests on genetic INK-ATTAC clearance, not a drug | not reached | untested | **not proposed** — No agent approved with a senolytic indication; senescence is an anti-tumour barrier in a predisposition syndrome |
-| **UBE2H inhibitor** | **fail** | pass | not reached — top aneuploid-selective dependency in paired CRISPR screens (preprint) | not reached | not reached | **target to watch** — No approved inhibitor exists |
+| **metformin** | pass | pass | not evaluable | not reached | not reached | **rejected at filter 3 unevaluable** |
+| **bortezomib IV** | pass | pass | not excluded | **fail** | untested | **fails filter 4 for this child; conditional for active tumour** |
+| **bortezomib SC** | pass | pass | **fail** | **fail** | untested | **fails filter 3 and 4** |
+| **carfilzomib** | pass | pass | not evaluable | not reached | not reached | **not evaluable** |
+| **ixazomib** | pass | pass | not evaluable | not reached | not reached | **not evaluable** |
+| **hydroxychloroquine** | pass | **fail** | not evaluable | not reached | not reached | **not evaluable mechanistically weakened** |
+| **everolimus sirolimus** | pass | **fail** | not evaluable | not reached | not reached | **not evaluable possibly counterproductive** |
+| **trametinib** | pass | untested | not evaluable | not reached | not reached | **not evaluable gap most worth closing** |
+| **AICAR** | **fail** | pass | not reached | not reached | not reached | **fails filter 1** |
+| **17-AAG HSP90i** | **fail** | pass | not reached | not reached | not reached | **fails filter 1** |
+| **reversine MPS1 TTK inhibitors** | **fail** | **fail** | not reached | not reached | **fail** | **fails filter 1 and 5** |
+| **apcin proTAME** | **fail** | untested | not reached | not reached | not reached | **fails filter 1** |
+| **DCZ0415** | **fail** | **fail** | not reached | not reached | not reached | **fails filter 1 and 2** |
+| **senolytics** | **fail** | untested | not reached | not reached | untested | **not proposed** |
+| **UBE2H inhibitor** | **fail** | pass | not reached | not reached | not reached | **target to watch** |
 | *(your candidate)* | | | | | | |
 
 **How to fill it in.** Filter 3 needs a real denominator measured in a model stratified for the disease

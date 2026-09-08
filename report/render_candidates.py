@@ -18,25 +18,28 @@ STATUS = {"pass": "pass", "fail": "**fail**", "untested": "untested", "not_evalu
 def cell(s):
     return STATUS.get(s, s).replace("_", " ")
 
-def render():
+def render(compact):
+    """compact=True (Part I): statuses and verdict only, one page. compact=False (Part II): with the
+    filter-3 model context and the reason, i.e. every column of the TSV a reader needs."""
     rows = list(csv.DictReader(open(TSV, encoding="utf-8"), delimiter="\t"))
     out = [HEADER, SEP]
     for r in rows:
         name = r["candidate"].replace("_", " ")
         verdict = r["verdict"].replace("_", " ").replace(";", "; ")
-        out.append(f"| **{name}** | {cell(r['filter1_approved'])} | {cell(r['filter2_mechanism'])} | "
-                   f"{cell(r['filter3_exposure'])} — {r['model_context_for_filter3']} | {cell(r['filter4_safety_this_child'])} | "
-                   f"{cell(r['filter5_direction_of_effect'])} | **{verdict}** — {r['reason']} |")
+        f3 = cell(r['filter3_exposure']) if compact else f"{cell(r['filter3_exposure'])} — {r['model_context_for_filter3']}"
+        v = f"**{verdict}**" if compact else f"**{verdict}** — {r['reason']}"
+        out.append(f"| **{name}** | {cell(r['filter1_approved'])} | {cell(r['filter2_mechanism'])} | {f3} | "
+                   f"{cell(r['filter4_safety_this_child'])} | {cell(r['filter5_direction_of_effect'])} | {v} |")
     out.append("| *(your candidate)* | | | | | | |")
     return "\n".join(out)
 
 BLOCK = re.compile(r"\| Candidate \| 1\. Approved\?.*?\n(?:\|.*\n)+?\| \*\(your candidate\)\* \|[^\n]*\n(?:\| \*\(your candidate\)\* \|[^\n]*\n)?", re.S)
 
 def main():
-    table = render() + "\n"
     check = "--check" in sys.argv
     bad = 0
     for path in TARGETS:
+        table = render(compact=path.endswith("PART1_decision_document.md")) + "\n"
         s = open(path, encoding="utf-8").read()
         m = BLOCK.search(s)
         if not m:

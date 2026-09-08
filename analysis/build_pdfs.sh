@@ -48,8 +48,8 @@ open(f"{tmp}/part2.md", "w", encoding="utf-8").write(head + s)
 PY
 pdf "$T2PDF" "$RPT/PART1_decision_document.md" "$TMP/part2.md" "$TMP/appb.md"
 
-cp "$T1PDF" "$OUT/ciberpty_track1_report.pdf"
-cp "$T2PDF" "$OUT/ciberpty_track2_report.pdf"
+[ "$T1PDF" -ef "$OUT/ciberpty_track1_report.pdf" ] || cp "$T1PDF" "$OUT/ciberpty_track1_report.pdf"
+[ "$T2PDF" -ef "$OUT/ciberpty_track2_report.pdf" ] || cp "$T2PDF" "$OUT/ciberpty_track2_report.pdf"
 
 # Stale-text guard: retracted wording that must not survive in the shipped PDFs.
 # 0.4187 is deliberately NOT here — the write-up discloses the contaminated value on purpose.
