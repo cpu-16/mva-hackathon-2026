@@ -8,11 +8,11 @@ Full report: `track2/REPORT_track2.pdf`
 
 ## Q2 — Describe your approach in detail (variant/mechanism → candidate medication)
 
-We went from variant to candidate in five steps, and the third and fifth are where most candidates die.
+We went from variant to candidate in five steps; exposure was most often unevaluable, and the direction-of-effect question remains untested for the one candidate not excluded.
 
-**Step 1 — establish the lesion.** Compound heterozygosity in BUB1B: `c.2210T>G` p.Leu737Ter, a
-nonsense allele that removes the C-terminal 313 residues, including the kinase domain (UniProt O60566 annotates it at 766–1050), paired with `c.3006T>G` p.Asn1002Lys inside that domain. Loss of function, matching
-the truncating-plus-missense pattern of viable MVA1: a null allele with a hypomorphic one. Reading the pair as null-plus-hypomorph is our reading of the human truncating-plus-missense pattern (PMID 20516114), which does not state that complete biallelic loss is lethal, and neither do we; the separate prediction that p.Asn1002Lys retains more residual function than L1012P comes from the Sieben mouse series (PMID 31738183), not from 20516114.
+**Step 1 — define the working hypothesis.** Two heterozygous BUB1B variants, presumed in *trans* (phase not established; Q9): `c.2210T>G` p.Leu737Ter, a
+nonsense allele that, if translated, predicts a 736-residue product lacking residues 737–1050 (314 residues), including the kinase domain (UniProt O60566 annotates it at 766–1050), paired with `c.3006T>G` p.Asn1002Lys inside that domain. Working hypothesis: loss of function, matching
+the truncating-plus-missense pattern of viable MVA1 — a truncating allele paired in *trans* with a functionally impaired missense allele, phase and residual function unestablished. Reading the pair as null-plus-hypomorph is our reading of the human truncating-plus-missense pattern (PMID 20516114), which does not state that complete biallelic loss is lethal, and neither do we; the hypothesis that p.Asn1002Lys retains residual function is motivated by the Sieben mouse series (PMID 31738183), not by 20516114, and its rank relative to L1012P is not established.
 
 **Step 2 — follow the mechanism downstream, not at the lesion.** No approved drug restores BubR1.
 We therefore asked what the lesion *produces* that is druggable. The chain is: weakened spindle
@@ -20,29 +20,31 @@ assembly checkpoint → chromosome mis-segregation → constitutional aneuploidy
 imbalance of protein complexes → proteotoxic stress. The last link is the one with approved drugs
 against it.
 
-**Step 3 — five filters instead of the usual two.** Repurposing exercises typically ask only whether
-a drug is approved and whether its mechanism is plausible. We added three:
+**Step 3 — five filters instead of the usual two.** Beyond the two questions every exercise asks — is it approved, is the mechanism plausible — we added three:
 
 | # | Filter | Question |
 |---|---|---|
 | 1 | Regulatory | Approved for marketing? |
 | 2 | Mechanistic | Does it address the actual lesion or its consequence? |
-| 3 | **Pharmacokinetic** | **Is Cmax ≥ the effective in vitro concentration?** |
+| 3 | **Pharmacokinetic** | **Is the achievable exposure excluded by the effective in-vitro concentration? ("not excluded" is the best outcome this screen can return)** |
 | 4 | Patient-specific safety | Compatible with *this* child's comorbidities? |
-| 5 | **Direction of effect** | Does it avoid increasing mis-segregation in survivors? |
+| 5 | **Direction of effect** | Can an increase in mis-segregation among survivors beyond a prespecified margin be excluded? |
 
 **Step 4 — apply them, and report what dies.** Metformin — the candidate the literature points to,
-descending from the AICAR hit of Tang et al. (PMID 21315436) — fails filter 3: therapeutic plasma
-levels are micromolar while complex I inhibition requires millimolar (PMID 37343530), and no
-published study gives metformin an aneuploidy-selective effective concentration to compare against.
+descending from the AICAR hit of Tang et al. (PMID 21315436) — is not evaluable at filter 3: no
+published study gives metformin an aneuploidy-selective effective concentration to compare against, and the
+complex-I mechanism proposed for it carries a separate objection — therapeutic plasma levels are micromolar
+while complex I inhibition requires millimolar (PMID 37343530).
 MPS1/TTK
-inhibitors and reversine fail filter 5 by construction: they weaken a checkpoint that is already
-insufficient.
+inhibitors and reversine are opposed at filter 2 by construction — they weaken a checkpoint that is already
+insufficient — and the quantitative filter-5 margin is untested for them.
 
-**Step 5 — the survivor, with its stopping condition.** Bortezomib passes filters 1–3 and fails
+**Step 5 — the candidate not excluded, with its stopping condition.** Bortezomib passes filters 1–2, is not
+excluded by filter 3 on a total-plasma peak comparison (free exposure and duration at the target unresolved), and fails
 filter 4 *for this child*, which is a patient-specific verdict rather than a property of the drug.
-We state the condition under which it would become appropriate — an MVA patient with an active
-tumour, where the comparator is cytotoxic chemotherapy rather than nothing — and we propose an
+We state the condition under which it would become a question for a tumour board — an MVA patient with an active
+tumour, where the comparator is cytotoxic chemotherapy rather than nothing; a changed comparator, not an established
+benefit — and we propose an
 experiment — an eight-week assay window, 12–16 weeks from a fresh biopsy because establishing the fibroblast line takes 4–8 weeks on its own, more if twelve cultures per arm must be expanded — that could fail to support the dependency in this child's own cells. It would not, on its own, close the tumour-board question, and we say so where we describe it.
 
 ## Q3 — Generative AI declaration
@@ -114,15 +116,14 @@ transfer agreement described under *Data availability* and deleted within 30 day
 None.
 
 ## Q9 — How did you characterize the variant's mechanism?
-Loss of function, with the druggable target displaced downstream of the lesion.
+Working hypothesis: impaired BUB1B function, with a candidate drug target downstream; phase and the missense allele's functional effect remain unresolved.
 
 The nonsense allele removes the entire C-terminal kinase domain; the missense allele sits inside it.
 Cell lines derived from MVA patients with biallelic mutations show "an impaired mitotic checkpoint,
 chromosome alignment defects, and low overall BUBR1 abundance" (PMID 20516114), and allele-specific effects — not merely total BubR1 quantity — drive phenotypic
 heterogeneity (Sieben 2020, PMID 31738183).
 
-We were explicit about what we could not determine. Phase is not established, and we measured that it is not
-establishable from these data: there are no parental samples; the challenge distributes a VCF and raw reads
+We were explicit about what we could not determine. Phase is not established, and the routes available to us were uninformative: there are no parental samples; the challenge distributes a VCF and raw reads
 but no alignments, we did not align them, and short reads could not phase two variants whose only intervening
 heterozygous site lies 6.8 and 4.1 kb away; and the two variants lie 10,911 bp apart with no GATK
 phase tag on either — a limit visible in the data itself, since GATK did phase three variants 5 bp
@@ -145,7 +146,8 @@ achievable rather than far below it. The argument that does not depend on any li
 **non-identifiability**: for a perfectly balanced variegated mixture, mean copy number is exactly 2 and
 mean allele fraction exactly 0.5 by symmetry, and simulated detection stays at the 0.1–0.2%
 false-positive rate even with 40% of cells aneuploid. That proof covers the balanced mixture we
-modelled, not every possible MVA genome, and it is enough to disqualify the endpoint.
+modelled, not every possible MVA genome; it disqualifies the endpoint for that case, and for this child no clinical
+negative is reported.
 
 We ran the calibrated statistic on the proband and **withdrew the result**: the pre-registered
 threshold fires on all 22 autosomes, which indicates a null model that does not fit these data, and the
@@ -154,59 +156,51 @@ differently from the proband. We report no clinical negative for this child.
 
 ## Q10 — Time and effort
 
-Approximately 30 hours of analyst time over two days (28–29 August 2026), of which the large majority
-went to literature verification and adversarial review rather than to computation. Compute was
+Approximately 30 hours of analyst time over the first two days (28–29 August 2026), of which the large majority
+went to literature verification and adversarial review rather than to computation; the later pre-registered rounds
+(30 August to 5 October) added several working days of analysis, verification and adversarial review, not logged to the hour. Compute was
 negligible: the genome-wide prioritisation ran in 53 seconds on a commodity workstation with no GPU,
-and the robustness controls in about ten minutes. Later rounds added the pre-registered DepMap,
-benchmark, power and mosaicism-control analyses, all on public data. The phase pilot is **not** one of
-the pre-registered five — it ran before that pre-registration and we do not count it as one
-(`VERIFY.md` lists the five pairs). All of this is CPU-only except the mosaicism null calibration,
+and the robustness controls in about ten minutes. Later rounds added the pre-registered analyses, on public inputs and, for the mosaicism work, the controlled-access proband VCF: eight in total — DepMap and its
+follow-up, MVA-Replay, mosaicism, power and its four-parameter follow-up, dose–response, and the TRIP13 transfer
+(`VERIFY.md` lists each pre-registration with its result file and amendments). The phase pilot is **not** one of
+them — it ran before any pre-registration and we do not count it. All of this is CPU-only except the mosaicism null calibration,
 which used one consumer GPU.
 
 ## Q11 — Method abstract (≤500 words)
-No approved drug restores BubR1 function, so we did not look for one. We followed the lesion
+No approved drug restores BubR1 function. We followed the lesion
 downstream — weakened spindle assembly checkpoint, mis-segregation, constitutional aneuploidy,
 stoichiometric protein imbalance, proteotoxic stress — and asked which approved agent acts on the
 last link.
 
-We applied five filters instead of the usual two. Beyond "is it approved" and "is the mechanism
-plausible", we added a pharmacokinetic filter (does the achievable Cmax reach the concentration
-effective in vitro?), a patient-specific safety filter, and a direction-of-effect filter (does the drug
-increase mis-segregation among survivors?).
+We applied five explicit filters. Beyond "is it approved" and "is the mechanism
+plausible", we added a pharmacokinetic filter (is achievable exposure excluded by the effective in-vitro
+concentration?), a patient-specific safety filter, and a direction-of-effect filter (can an increase beyond a prespecified
+micronucleus harm margin among survivors be excluded?).
 
-Metformin, the candidate the literature points to, dies on filter three: therapeutic plasma levels are
-micromolar while complex I inhibition requires millimolar (PMID 37343530). AICAR's selectivity does
-reproduce in human cells (PMID 22890317), but that paper does not test metformin, and AICAR is not
-approved.
-
-Bortezomib survives filters one to three. Aneuploid cells depend on increased protein degradation, and
-aneuploidy level was associated with multiple myeloma patients' response to proteasome inhibitors
+Metformin, the candidate the literature points to, is not evaluable on filter three: no aneuploidy-selective
+effective concentration exists, and its complex-I mechanism needs millimolar levels against micromolar plasma (PMID 37343530). Bortezomib passes filters one and two (mechanism plausible in cancer aneuploidy; our own pre-registered test on public solid-tumour lines did not establish it there) and is not excluded by three. Aneuploidy level was associated with multiple myeloma patients' response to proteasome inhibitors
 (Ippolito 2024, PMID 39247952), on cohorts small enough (8 complete responders vs 50 progressive) that
-we treat it as motivation, not prediction. An EC50 below 40 nM in highly aneuploid lines against a
-label Cmax of 89–120 ng/mL (231–312 nM) at 1.3 mg/m² IV gives a margin of 5.8–7.8× on **total plasma**
-drug at a peak — not free or intratumoral drug, and 312 nM is the top of a label interval, not a
-validated clinical threshold.
+we treat it as motivation, not prediction. Label Cmax 231–312 nM (1.3 mg/m² IV) over a 40 nM reference bound read from a figure gives
+5.8–7.8× on **total plasma** drug — Cmax/40, not Cmax/EC50; free peak ≈ 39–53 nM — not a therapeutic margin.
 
-It then fails filter four for this child: motor neuropathy in 8% of paediatric patients, on top of
+It then fails filter four for this child: peripheral neuropathy in 18% (motor 8%) of patients in a paediatric trial with combination chemotherapy, on top of
 existing skeletal muscle atrophy. But filter four is patient-specific. For an MVA patient with an
-active malignancy — where the comparator is cytotoxic chemotherapy — the balance
-inverts, and biallelic BUB1B carries a high risk of embryonal tumours. Our deliverable is that answer
-prepared in advance, with its margin and its stopping rule.
+active malignancy — where the comparator is cytotoxic chemotherapy — the comparator changes, though
+benefit remains unestablished; biallelic BUB1B disease carries a high risk of embryonal tumours (phase not established here). Our deliverable is a conditional tumour-stage research comparison, with unresolved exposure and selectivity
+requirements, plus a separate constitutional-cell vulnerability assay.
 
-Strengths. Every candidate is killed or kept by a stated criterion, including our own; this is not an
-exhaustive screen, and §8 of the report lists what we excluded. We report an antagonism a
-combination-minded team could walk into: reducing translation protects CIN cells from proteasome
-inhibition (PMID 31530568), so mTOR inhibitors would be predicted to antagonise, not synergise. The
-framework transfers to any rare disease; applied to MVA2 and MVA3 it returns different verdicts.
+Strengths. Every candidate carries a stated status against a stated criterion, including our own; filter five stays untested; §8 lists what we
+excluded. We report a predicted antagonism: reducing translation protects CIN cells from proteasome
+inhibition (PMID 31530568), so mTOR inhibitors would antagonise, not synergise. The
+questions apply to any rare disease; re-run on MVA2 and MVA3 — a transfer inside the MVA group, not a general demonstration — they return different verdicts.
 
 Limitations. The proteasome dependency is established in cancer aneuploidy, not constitutional
-mosaicism; whether it transfers is what our proposed experiment tests. Our
+mosaicism; §6 measures response and constitutional-cell vulnerability, not mechanism. Our
 own pre-registered DepMap analysis found the association attenuated in solid lineages, the lineage of
-this child's tumour. Under the pre-registered four-parameter model with biological variability the assay
-has power 0.17 at n = 3 and needs about 12 cultures per arm. The EC50 is a conservative bound read from a figure
-panel. Phase is unproven and unobservable in these data; parental genotyping is the cheapest
-informative experiment. No disease-modifying drug can be recommended from these data today — what most
-changes his prognosis now is surveillance, not a molecule.
+this child's tumour. Under the pre-registered four-parameter model (f = 0.30, 4× selectivity, CV 0.20) the equal-EC50 test has simulated
+power 0.17 at n = 3 and first exceeds 0.80 at n = 12; the full advancement rule is not powered. Phase is not established; parental genotyping is the cheapest
+informative experiment. No disease-modifying drug can be recommended from these data today; the clearest action
+supported by guidance is surveillance, not a molecule.
 
 ---
 

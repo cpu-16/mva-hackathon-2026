@@ -16,7 +16,7 @@ la regla **vieja**: el anuncio #10 del Space dice que subió a 3 y que el panel 
 
 Archivo: `~/datos/HACKATHON-MVA-2026/video/pitch_MVA2026.mp4`
 Título, descripción, capítulos y ajustes: **`video/YOUTUBE.md`** — cópialo de ahí.
-✅ **Hecho: https://youtu.be/QGYHK0Ihs1c** — verificado accesible sin sesión iniciada.
+✅ **Hecho (v5, 5-oct-2026): https://youtu.be/B41MOaD5LPs** — verificado accesible sin sesión (oEmbed). La v4 (QGYHK0Ihs1c) sigue en línea hasta confirmar el envío 3.
 
 ---
 
@@ -28,34 +28,38 @@ El formulario tiene cinco campos. Estos son los valores:
 |---|---|
 | Team / Display Name (optional) | `ciberpty` |
 | **GitHub repo URL \*** | `https://github.com/cpu-16/mva-hackathon-2026` |
-| **Pitch video URL \*** | `https://youtu.be/QGYHK0Ihs1c` |
+| **Pitch video URL \*** | `https://youtu.be/B41MOaD5LPs` |
 | **Report file (PDF or Markdown) \*** | `entrega/listo-para-enviar/ciberpty_track2_report.pdf` |
 | Notes for judges (optional) | el texto de abajo |
 
 El formulario **solo acepta un archivo**, así que la descripción de métodos del Track 2 va **dentro
 del PDF, como apéndice**. No hay que subirla aparte.
 
-### Notes for judges — texto para copiar (versión del 7-sep, envío 2 de 3)
+### Notes for judges — texto para copiar (versión del 5-oct, envío 3 de 3)
 
 ```
 Two things are worth knowing before you open this.
 
-First, the answer is negative. No approved drug can be recommended for this child today, and the
+First, the answer is negative. No disease-modifying drug is supported for this child today, and the
 report is the evidence behind that no rather than a candidate we are advocating for. Bortezomib is
-carried through the filters and then stopped by the safety filter for this patient; we state the one
-setting in which that verdict would invert, with the assay that would test it.
+carried through the filters as a conditional research candidate — not excluded by a total-plasma
+exposure comparison, with free exposure, duration and tumour selectivity in MVA unresolved — and is
+stopped by the safety filter for this patient; we state the one setting in which the question would
+have to be asked again, and the experiment on his own constitutional cells that would inform it.
 
 Second, eight pre-registrations were committed to git before their analyses ran, and most came back
-against us: the DepMap test weakened our central mechanism, the mosaicism control returned not
-conclusive, and the power analyses showed the assay as first sized to be underpowered even under its
-own assumptions. A transfer of our retrieval benchmark tool to a second MVA gene (TRIP13), run from a
-fresh clone of the repository, held — and falsified two claims the repository made about itself, both
-corrected with the log committed. VERIFY.md explains how to check the timestamps without trusting us.
+against us: PRISM did not establish the predicted drug association in solid lines, the mosaicism
+control returned not conclusive, and the power analyses showed the assay as first sized to be
+underpowered even under its own assumptions. A transfer of our retrieval benchmark tool to a second
+MVA gene (TRIP13), run from a fresh clone of the repository, held — and falsified two claims the
+repository made about itself, both corrected with the log committed. VERIFY.md explains how to check
+the timestamps without trusting us.
 
-This is our third and final Track 2 entry and replaces the second (7 September): same conclusions. Part I
-of the PDF is a 24-page decision document; Part II is the full evidence; the methods description form is
-Appendix B. The repository is private during the hackathon and will be made public for the final
-evaluation, per the rules.
+This is our third and final Track 2 entry and replaces the second (7 September): same conclusions,
+every sentence reconciled against our own results after three further adversarial reads, the
+worksheet on readable landscape pages, and a new pitch video. Part I of the PDF is the decision
+document; Part II is the full evidence; the methods description form is Appendix B. The repository
+is private during the hackathon and will be made public for the final evaluation, per the rules.
 ```
 
 (El texto del envío 1 del 6-sep está en `NOTAS_ENVIO.md`.)

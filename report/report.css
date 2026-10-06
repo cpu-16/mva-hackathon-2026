@@ -183,3 +183,32 @@ a { color: #16786c; text-decoration: none; }
 /* control de saltos */
 h2 { break-before: auto; }
 .pagebreak { break-before: page; }
+
+/* --- hoja de filtros: pagina apaisada propia, para que la columna Verdict no se corte --- */
+@page wide {
+  size: A4 landscape;
+  margin: 16mm 16mm 16mm 16mm;
+  @bottom-center { content: counter(page); font-family: "Bitstream Charter", serif; font-size: 8.5pt; color: #8a8378; }
+  @top-right { content: "Rare Disease, Real Kid · MVA Hackathon 2026"; font-family: "Bitstream Charter", serif; font-size: 7.8pt; color: #b3ada3; letter-spacing: 0.02em; }
+}
+.worksheet { page: wide; break-before: page; break-after: page; width: 262mm; margin-left: -47mm; }
+.worksheet table { table-layout: fixed; width: 262mm; font-size: 7.6pt; line-height: 1.3; }
+.worksheet th, .worksheet td { overflow-wrap: anywhere; hyphens: auto; padding: 1.2mm 1.4mm; vertical-align: top; box-sizing: border-box; }
+.worksheet col { width: auto !important; }
+.worksheet th:nth-child(1), .worksheet td:nth-child(1) { width: 11%; }
+.worksheet th:nth-child(2), .worksheet td:nth-child(2) { width: 7%; }
+.worksheet th:nth-child(3), .worksheet td:nth-child(3) { width: 8%; }
+.worksheet th:nth-child(4), .worksheet td:nth-child(4) { width: 29%; }
+.worksheet th:nth-child(5), .worksheet td:nth-child(5) { width: 7%; }
+.worksheet th:nth-child(6), .worksheet td:nth-child(6) { width: 8%; }
+.worksheet th:nth-child(7), .worksheet td:nth-child(7) { width: 30%; }
+.worksheet.compact th:nth-child(1), .worksheet.compact td:nth-child(1) { width: 17%; }
+.worksheet.compact th:nth-child(2), .worksheet.compact td:nth-child(2) { width: 10%; }
+.worksheet.compact th:nth-child(3), .worksheet.compact td:nth-child(3) { width: 13%; }
+.worksheet.compact th:nth-child(4), .worksheet.compact td:nth-child(4) { width: 15%; }
+.worksheet.compact th:nth-child(5), .worksheet.compact td:nth-child(5) { width: 11%; }
+.worksheet.compact th:nth-child(6), .worksheet.compact td:nth-child(6) { width: 13%; }
+.worksheet.compact th:nth-child(7), .worksheet.compact td:nth-child(7) { width: 21%; }
+.worksheet.compact table { font-size: 8.4pt; }
+.worksheet.compact th, .worksheet.compact td { padding: 0.9mm 1.2mm; }
+.worksheet tr { break-inside: avoid; }

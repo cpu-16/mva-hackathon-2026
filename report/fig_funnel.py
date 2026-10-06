@@ -22,12 +22,12 @@ FILTERS = [
      "AICAR · 17-AAG · reversine · apcin · proTAME · DCZ0415"),
     ("2  Mechanistic", "Addresses the lesion or its consequence?",
      "agents on uninvolved pathways"),
-    ("3  Pharmacokinetic", "C$_{max}$ $\\geq$ effective concentration?",
+    ("3  Pharmacokinetic", "Exposure not excluded by the effective concentration?",
      "METFORMIN — no aneuploidy-selective EC$_{50}$ exists;\n~1000$\\times$ short for the complex I route proposed"),
     ("4  Safety in $\\it{this}$ patient", "Compatible with his comorbidities?",
-     "BORTEZOMIB — neuropathy 18% of children, on existing muscle atrophy"),
-    ("5  Direction of effect", "Avoids worsening mis-segregation?",
-     "anything selecting for unstable clones"),
+     "BORTEZOMIB — neuropathy in 18% of patients (children and young adults)\nin a trial with chemotherapy, on existing muscle atrophy"),
+    ("5  Direction of effect", "Increase beyond margin excluded?",
+     "micronucleus increase beyond margin; long-term clonal selection unresolved"),
 ]
 
 fig, ax = plt.subplots(figsize=(9.1, 6.5))
@@ -62,23 +62,24 @@ for i, (name, question, killed) in enumerate(FILTERS):
 
 # salida
 y_out = TOP - len(FILTERS) * STEP - 0.15
-ax.add_patch(FancyBboxPatch((0.15, y_out - 0.78), 9.7, 1.56,
+ax.add_patch(FancyBboxPatch((0.15, y_out - 0.85), 15.0, 1.7,
              boxstyle="round,pad=0.02,rounding_size=0.14",
              facecolor="#e4f2ef", edgecolor=ACCENT, linewidth=1.8, zorder=2))
-ax.text(5.0, y_out + 0.41, "Nothing passes all five today",
+ax.text(7.65, y_out + 0.45, "Nothing passes all five today",
         fontsize=12.2, weight="bold", color=ACCENT, ha="center", va="center", zorder=3)
-ax.text(5.0, y_out - 0.22,
-        "The proteasome class survives filters 1$-$3 and is held\n"
-        "as a conditional answer for a future active tumour ($\\S$4, $\\S$6)",
+ax.text(7.65, y_out - 0.25,
+        "Bortezomib IV is not excluded by the total-plasma peak comparison; free exposure, duration\n"
+        "and tumour selectivity in MVA are unresolved. Held as a question for a future active tumour\n"
+        "(safety filter; ex-vivo experiment). Other proteasome inhibitors: not evaluable",
         fontsize=9.0, color=INK, ha="center", va="center", zorder=3)
 
-ax.text(0.35, TOP + 1.15, "Five filters, not two",
+ax.text(0.35, TOP + 1.15, "Five filters",
         fontsize=15, weight="bold", color=INK)
 ax.text(0.35, TOP + 0.78,
-        "Filters 3 and 5 are the two most often skipped, and they eliminate the most candidates.",
+        "This assessment makes exposure plausibility and disease-worsening risk explicit.",
         fontsize=9.6, color=MUTED)
 
-ax.set_xlim(0, 15.4); ax.set_ylim(y_out - 1.25, TOP + 1.7)
+ax.set_xlim(0, 15.4); ax.set_ylim(y_out - 1.3, TOP + 1.7)
 ax.axis("off")
 fig.tight_layout()
 fig.savefig("fig3_funnel.png", dpi=200, facecolor=SURFACE, bbox_inches="tight")

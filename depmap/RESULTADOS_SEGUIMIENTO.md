@@ -1,6 +1,6 @@
 # Results — pre-registered follow-up of the DepMap analysis (effect sizes, structure, sensitivity)
 
-**Team ciberpty · run 2026-09-08, 00:55–01:00.** Plan fixed in `PREREGISTRO_SEGUIMIENTO.md`
+**Team ciberpty · run 2026-09-07, ~23:43–23:46 EST** (the pre-registration header misstates the date as 8 Sep; the git timestamps govern). Plan fixed in `PREREGISTRO_SEGUIMIENTO.md`
 (commit `ee59c9e`) before `05_seguimiento.py` was written. One run; seed 20260908; 2,000 bootstrap
 resamples. Outputs: `resultados_seguimiento.csv`, `resultados_seguimiento_lineajes.csv`,
 `resultados_seguimiento_loo.csv`, `resultados_seguimiento_rms.csv`, `resultados_seguimiento.json`,

@@ -168,7 +168,7 @@ ANCLAS = [
     ("T2", r"Read (\d+(?:\.\d+)?) as an idealised scenario", ["potencia_central"]),
     ("T2", r"n = 3 per\s+arm\) \*\*power is (\d+(?:\.\d+)?)\*\*\. The two-parameter fit on the same simulated data gives (\d+(?:\.\d+)?)",
      ["potencia4p_central", "potencia4p_2p_mismos_datos"]),
-    ("T2", r"Power reaches 0\.80 at \*\*n = (\d+) independent cultures per arm at f = 0\.30\*\*, \*\*n = (\d+) at\s+f = 0\.20\*\*",
+    ("T2", r"first crosses 0\.80 at \*\*n = (\d+) independent cultures per arm at f = 0\.30\*\*, \*\*n = (\d+) at\s+f = 0\.20\*\*",
      ["potencia4p_n80_f030", "potencia4p_n80_f020"]),
     ("T2", r"\*\*(\d+(?:\.\d+)?)% of cells at an overdispersion κ = 2\*\*", ["lod_k2"]),
     ("T2", r"and (\d+(?:\.\d+)?)% at κ = 1, (\d+(?:\.\d+)?)% at κ = 4", ["lod_k1", "lod_k4"]),

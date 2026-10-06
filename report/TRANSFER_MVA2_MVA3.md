@@ -18,8 +18,8 @@ The answers are different, and they are different *early*:
 
 | | MVA1 — biallelic *BUB1B* | MVA2 — biallelic *CEP57* | MVA3 — biallelic *TRIP13* |
 |---|---|---|---|
-| Bortezomib verdict | Fails filter 4 for **this** child; conditional for a patient with an active tumour | **Fails filter 4; filters 2–3 not evaluable** | **Conditional — passes 1–3, filters 4–5 undecided** |
-| Where it stops | Patient-specific safety, with the inverting condition **demonstrably present** (he has already had an embryonal tumour) | Patient-specific safety, with the inverting condition **never reported** in 15 published individuals — and the mechanism unmeasurable besides | Nothing stops it; nothing licenses it either |
+| Bortezomib verdict | Fails filter 4 for **this** child; conditional for a patient with an active tumour | **Filter 4 not evaluable without a patient; filter 2 pass on plausibility; filter 3 generic comparison, transfer unestablished (amendment of 2026-10-05, below)** | **Conditional — passes 1–2, not excluded at 3, filters 4–5 undecided** |
+| Where it stops | Patient-specific safety, with the setting requiring reassessment **demonstrably present** (he has already had an embryonal tumour) | Patient-specific safety, with the setting requiring reassessment **never reported** in 15 published individuals — and the mechanism unmeasurable besides | Nothing stops it; nothing licenses it either |
 
 This is a **prospective, desk-based** exercise. Neither worksheet rests on a patient, a sample or an
 experiment. No proteasome data of any kind exist for *CEP57*- or *TRIP13*-deficient cells
@@ -62,7 +62,7 @@ is no comparator against which an 18% paediatric neuropathy rate becomes accepta
 
 | Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not increase mis-segregation among survivors? | Verdict |
 |---|---|---|---|---|---|---|
-| **Bortezomib** | Yes | **Not evaluable.** It does not touch the lesion (centrosomal microtubule nucleation/stabilisation, PMID 21552266). The consequence route is the aneuploidy-driven proteasome dependency (PMID 39247952) and **no proteasome measurement in *CEP57* cells exists**. *CEP57*-MVA cells show "minimal SAC deficiency" (PMID 28553959), which is a statement about the checkpoint and not about the aneuploid burden the drug exploits — so it is a reason to expect less, not a demonstration of less | **Not evaluable.** No aneuploidy-stratified EC50 in *CEP57*-deficient cells exists (§4 below) | **Fails.** The report's positive case is conditional on an active malignancy, because outside one the 18% paediatric neuropathy rate decides against it (REPORT §4). **No cancer has been reported in the 15 published MVA2 individuals** (PMID 39264246), so the setting that inverts this filter has not been observed to occur | Not reached | **Fails at filter 4, and cannot be evaluated at filters 2–3.** Different from MVA1 in kind: MVA1 also fails filter 4, but there the inverting condition demonstrably exists — this child has already had an embryonal tumour |
+| **Bortezomib** | Yes | **Not evaluable.** It does not touch the lesion (centrosomal microtubule nucleation/stabilisation, PMID 21552266). The consequence route is the aneuploidy-driven proteasome dependency (PMID 39247952) and **no proteasome measurement in *CEP57* cells exists**. *CEP57*-MVA cells show "minimal SAC deficiency" (PMID 28553959), which is a statement about the checkpoint and not about the aneuploid burden the drug exploits — so it is a reason to expect less, not a demonstration of less | **Not evaluable.** No aneuploidy-stratified EC50 in *CEP57*-deficient cells exists (§4 below) | **Fails.** The report's positive case is conditional on an active malignancy, because outside one the 18% paediatric neuropathy rate decides against it (REPORT §4). **No cancer has been reported in the 15 published MVA2 individuals** (PMID 39264246), so the setting that inverts this filter has not been observed to occur | Not reached | **Fails at filter 4, and cannot be evaluated at filters 2–3.** Different from MVA1 in kind: MVA1 also fails filter 4, but there the setting requiring reassessment demonstrably exists — this child has already had an embryonal tumour |
 
 **Why filter 2 is "not evaluable" and not "no" — we corrected this after an adversarial review.**
 An earlier version of this sheet rejected the candidate *at filter 2*, reasoning from "minimal SAC
@@ -96,7 +96,7 @@ lines of PMID 39247952. Either one reopens the sheet. Neither exists today.
 
 | Candidate | 1. Approved? | 2. Addresses lesion or a direct consequence? | 3. Cmax ≥ effective concentration? | 4. Safe in *this* patient? | 5. Does not increase mis-segregation among survivors? | Verdict |
 |---|---|---|---|---|---|---|
-| **Bortezomib** | Yes | **Yes — on the same footing as MVA1.** Not the lesion (nothing restores TRIP13), but the best-characterised consequence: severe SAC impairment and "a high rate of chromosome missegregation" (PMID 28553959) feeding the proteasome dependency of aneuploid cells (PMID 39247952) | **Yes on total drug, with the same denominator as MVA1 and the same weakness:** 231–312 nM Cmax (IV, 1.3 mg/m², FDA label NDA 021602 s040 §12.3) vs EC50 < 40 nM in highly aneuploid lines (PMID 39247952) = **5.8–7.8×**. IV only; the subcutaneous route (53.1 nM) does not pass. The EC50 is from aneuploidy-stratified **cancer** lines, not *TRIP13* cells | **Not evaluable — no patient.** The generic burden transfers unchanged: peripheral neuropathy in 18% of paediatric patients, motor in 8% (FDA BPCA Clinical Review, NDA 021602, 2015). Whether it is acceptable is a statement about one child at one moment | **No evidence it increases mis-segregation; untested — and the stake is higher here.** With no detectable TRIP13 and severe SAC impairment (PMID 28553959), a survivor population selected for instability is a more serious failure mode than in a checkpoint-competent tissue. Endpoint: micronucleus assay, OECD TG 487 | **Conditional, not approved. Same standing as MVA1 minus this child's specific contraindication: a question for a tumour board in an MVA3 patient with an active tumour, gated on the ex-vivo test of REPORT §6** |
+| **Bortezomib** | Yes | **Yes — on the same footing as MVA1.** Not the lesion (nothing restores TRIP13), but the best-characterised consequence: severe SAC impairment and "a high rate of chromosome missegregation" (PMID 28553959) feeding the proteasome dependency of aneuploid cells (PMID 39247952) | **Yes on total drug, with the same denominator as MVA1 and the same weakness:** 231–312 nM Cmax (IV, 1.3 mg/m², FDA label NDA 021602 s040 §12.3) vs EC50 < 40 nM in highly aneuploid lines (PMID 39247952) = **5.8–7.8×**. IV only; the subcutaneous route (53.1 nM, ratio 1.33 on total drug) is exposure-unresolved, neither pass nor fail. The EC50 is from aneuploidy-stratified **cancer** lines, not *TRIP13* cells | **Not evaluable — no patient.** The generic burden transfers unchanged: peripheral neuropathy in 18% of paediatric patients, motor in 8%, in a trial of bortezomib with intensive combination chemotherapy (FDA BPCA Clinical Review, NDA 021602, 2015) — not an attributable single-agent risk. Whether it is acceptable is a statement about one child at one moment | **No evidence it increases mis-segregation; untested — and the stake is higher here.** With no detectable TRIP13 and severe SAC impairment (PMID 28553959), a survivor population selected for instability is a more serious failure mode than in a checkpoint-competent tissue. Endpoint: micronucleus assay, OECD TG 487 | **Conditional, not approved. Same standing as MVA1 minus this child's specific contraindication: a question for a tumour board in an MVA3 patient with an active tumour, gated on the ex-vivo test of REPORT §6** |
 
 **Three constraints we carry across with the candidate, not just the favourable half.**
 
@@ -252,3 +252,20 @@ The drug verdict is the part that changes. Most of the report does not:
 - PMID 42595739 — Vempuluru VS, et al. Sequential Wilms' tumor and orbital rhabdomyosarcoma in a child with MVA3. *Orbit* 2026
 - FDA label, VELCADE (bortezomib), NDA 021602 s040, §12.3
 - FDA BPCA Clinical Review, bortezomib paediatric safety, NDA 021602, 2015
+
+
+---
+
+## Amendment — 2026-10-05 (appended; the text above is left as written)
+
+After a judge round on 5 October the evidence standard behind the worksheet was made explicit and applied uniformly:
+**filter 2 is mechanistic plausibility** (demonstrated disease-specific activity is a separate field, unestablished for
+every candidate and every gene), **filter 3 is the same generic cancer-model exposure comparison for all three genes**
+(disease-specific transfer unestablished for all three), and **filter 4 is patient-specific and not evaluable without a
+patient**. Consequences for the sheets above: MVA2 filter 2 moves from "not evaluable" to **pass on plausibility**
+(constitutional mosaic aneuploidy is the defining phenotype, PMID 21552266; the checkpoint-severity argument in §1 was a
+statement about the checkpoint, not about aneuploid burden, and is not used); MVA2 filter 3 becomes the same generic
+comparison as MVA1, transfer unestablished; MVA2 filter 4 is **not evaluable without a patient**, with the literature
+supplying no tumour-treatment setting (no malignancy reported in the 15 published individuals, PMID 39264246). The
+phrases "passes 1–3" and "inverting condition" in the tables above were replaced on the same date by "passes 1–2, not
+excluded at 3" and "setting requiring reassessment", to match the report. Everything else stands.

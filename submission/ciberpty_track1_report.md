@@ -2,7 +2,7 @@
 
 **Team: ciberpty** · MVA Hackathon 2026 · Proband PROBAND01
 Repository: https://github.com/cpu-16/mva-hackathon-2026
-Pitch video: https://youtu.be/QGYHK0Ihs1c
+Pitch video: https://youtu.be/B41MOaD5LPs
 
 > **This write-up supersedes our earlier Track 1 submissions. The predictions CSV is byte-for-byte
 > unchanged** — same two BUB1B variants, same score — so this is a correction to the methods

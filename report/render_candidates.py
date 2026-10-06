@@ -10,10 +10,10 @@ import csv, re, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 TSV = f"{HERE}/candidates.tsv"
 TARGETS = [f"{HERE}/PART1_decision_document.md", f"{HERE}/REPORT_track2_EN.md"]
-HEADER = "| Candidate | 1. Approved? | 2. Lesion or direct consequence? | 3. Cmax vs effective concentration | 4. Safe in *this* patient? | 5. No increase in mis-segregation? | Verdict |"
+HEADER = "| Candidate | F1 approved | F2 mechanism | F3 exposure | F4 safe in *this* patient | F5 margin excluded | Verdict |"
 SEP = "|---|---|---|---|---|---|---|"
 STATUS = {"pass": "pass", "fail": "**fail**", "untested": "untested", "not_evaluable": "not evaluable",
-          "not_reached": "not reached", "not_excluded": "not excluded"}
+          "not_reached": "not reached", "not_excluded": "not excluded", "unresolved": "exposure unresolved"}
 
 def cell(s):
     return STATUS.get(s, s).replace("_", " ")
@@ -33,7 +33,7 @@ def render(compact):
     out.append("| *(your candidate)* | | | | | | |")
     return "\n".join(out)
 
-BLOCK = re.compile(r"\| Candidate \| 1\. Approved\?.*?\n(?:\|.*\n)+?\| \*\(your candidate\)\* \|[^\n]*\n(?:\| \*\(your candidate\)\* \|[^\n]*\n)?", re.S)
+BLOCK = re.compile(r"\| Candidate \| (?:1\. Approved\?|F1 approved).*?\n(?:\|.*\n)+?\| \*\(your candidate\)\* \|[^\n]*\n(?:\| \*\(your candidate\)\* \|[^\n]*\n)?", re.S)
 
 def main():
     check = "--check" in sys.argv

@@ -32,7 +32,7 @@ for i,(nme,col,al) in enumerate(marks):
 a.axvline(0,color=MUTED,lw=.8,ls=":")
 a.set_xlabel("Spearman ρ  ·  aneuploidy score vs drug sensitivity\n(negative = more aneuploid, more killed)",fontsize=9.2,color=INK)
 a.set_ylabel("compounds",fontsize=9.2,color=INK)
-a.set_title("A · PRISM: 6,790 compounds, 444 solid-tumour lines",fontsize=10.4,weight="bold",color=INK,loc="left")
+a.set_title("A · PRISM: 6,790 compounds; evaluable solid lines vary by compound (424–444)",fontsize=10.4,weight="bold",color=INK,loc="left")
 a.text(.02,.60,"No proteasome inhibitor\nreaches FDR < 0.05.\nBortezomib sits in the 4th\npercentile by direction —\nsuggestive, not significant.",
        transform=a.transAxes,fontsize=8.1,color=MUTED,va="top",ha="left",
        bbox=dict(boxstyle="round,pad=0.45",facecolor=SURF,edgecolor="#ddd8cf",linewidth=.7))

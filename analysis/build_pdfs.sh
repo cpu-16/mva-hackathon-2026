@@ -43,7 +43,7 @@ s = re.sub(r"^(#{2,6}) ", lambda m: "#" + m.group(1) + " ", s, flags=re.M)   # d
 head = ("# Part II — Full evidence\n\n*The complete report: every section at full length, with derivations, "
         "sources quoted verbatim, the correction history and every pre-registered analysis. Part I is the "
         "reading version; where the two differ in wording, this part carries the detail and Part I never "
-        "claims more than this part supports. Section numbers match Part I.*\n\n")
+        "claims more than this part supports. Section numbers differ between the parts: Part I §4 (public-data test) is Part II §3.5, Part I §5 (safety) is Part II §4, Part I §6 (endpoints and experiment) spans Part II §5–6; §1–3 and §7–10 correspond.*\n\n")
 open(f"{tmp}/part2.md", "w", encoding="utf-8").write(head + s)
 PY
 pdf "$T2PDF" "$RPT/PART1_decision_document.md" "$TMP/part2.md" "$TMP/appb.md"

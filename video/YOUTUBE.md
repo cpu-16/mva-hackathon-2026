@@ -1,10 +1,10 @@
 # Subida a YouTube — título, descripción y ajustes
 
-⚠️ **v5 lista para subir (8-sep-2026). La v4 sigue en línea en https://youtu.be/QGYHK0Ihs1c** y contradice
-al reporte actual (dice «clears filter three» e «inverts»). YouTube no permite reemplazar el archivo de un
-video: hay que **subir la v5 como video nuevo**, copiar la URL nueva y ponerla en el campo *Pitch video URL*
-del tercer envío del Track 2 (y en `submission/ciberpty_track1_report.md`, `NOTAS_ENVIO.md`,
-`ENVIAR-PASO-A-PASO.md`). No borrar la v4 hasta que el envío 3 esté confirmado.
+✅ **v5 subida el 5-oct-2026 como video nuevo, oculto (no listado): https://youtu.be/B41MOaD5LPs** (canal
+«Gilberto Antonio Ramos», el que estaba logueado en el perfil de Brave; la v4 sigue en línea en
+https://youtu.be/QGYHK0Ihs1c en el otro canal y no se borra hasta confirmar el envío 3). Verificado con
+oEmbed sin sesión. Subida por CDP (`brave-cdp` + `DOM.setFileInputFiles`), título y descripción de abajo,
+«no es contenido para niños», comentarios no tocados.
 
 Archivo a subir: `~/datos/HACKATHON-MVA-2026/video/pitch_MVA2026.mp4` (v5, corte documental)
 (duración, tamaño y sha256 de la v5: ver `README.md` de esta carpeta, sección «Build record»)
