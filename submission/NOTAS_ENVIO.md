@@ -1,5 +1,32 @@
 # Registro de envíos — MVA Hackathon 2026
 
+## ✅ 5-OCT-2026, ~20:55 — TRACK 2, **ENVÍO 3 DE 3 (el último; es el que revisa el panel)**
+
+Enviado desde `cpu-16` por CDP (`brave-cdp`, ventana ensanchada con `Browser.setWindowBounds` para que
+Gradio muestre las seis pestañas; `DOM.setFileInputFiles` para el PDF). Capturas:
+`evidencia/envio_track2_2026-10-05_formulario.png` (formulario lleno) y
+`evidencia/envio_track2_2026-10-05.png` (confirmación). Respuesta del Space:
+**«Track 2 submission received ✓ — ciberpty (cpu-16) | Submission: 3»**.
+
+| Campo | Valor enviado |
+|---|---|
+| Team / Display Name | `ciberpty` |
+| GitHub repo URL | `https://github.com/cpu-16/mva-hackathon-2026` (commit `506a29a`) |
+| Pitch video URL | `https://youtu.be/B41MOaD5LPs` (**v5, corte documental**, subida el 5-oct como oculto) |
+| Report file | `ciberpty_track2_report.pdf` — **94 pp., 1,33 MB**, sha256 `fbfd407c5bf784dc…`; Parte I + Parte II + Apéndice B |
+| Notes for judges | el texto del 5-oct en `ENVIAR-PASO-A-PASO.md` (288 palabras, párrafos corridos) |
+
+Qué cambió respecto al envío 2 (7-sep): seis pasadas de Codex (gpt-6-astra) como juez con la rúbrica
+(72 → 77 → 79 → 82 → 84 → 85 → 86/100) y una lectura de Cursor/Grok 4.7, todas en `evidencia/`; una
+conclusión rectora única en resúmenes, hoja, embudo y Apéndice B; §6 como dos preguntas con regla de cota
+superior para micronúcleos; especificación de la etapa tumoral con umbrales provisionales (regla definida
+sobre K = 100(1−R), precedencia harm › advance › insufficient › inconclusive); estándar uniforme de filtros
+entre genes (hoja de transferencia enmendada); hojas de filtros en páginas apaisadas generadas desde el
+TSV; VERIFY.md con los ocho pre-registros; video v5. **No quedan envíos del Track 2.** El Track 1 no se
+reenvió (el PDF del Track 1 en el repo lleva la URL del video v5; la v4 sigue en línea para el envío ya hecho).
+
+---
+
 ## ✅ 7-SEP-2026, 23:21 — TRACK 2, ENVÍO 2 DE 3 (reemplaza al del 6-sep)
 
 Enviado desde `cpu-16` por CDP (`brave-cdp` + script websocket de una sesión). Captura:

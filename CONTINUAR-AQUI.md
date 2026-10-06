@@ -1,9 +1,50 @@
 # 🔄 CONTINUAR AQUÍ — estado del MVA Hackathon 2026
 
-**Última actualización: 08-sep-2026.** Documento de traspaso tras un `/clear`.
+**Última actualización: 05-oct-2026.** Documento de traspaso tras un `/clear`.
 Léeme completo antes de tocar cualquier otro archivo.
 
 ---
+
+## ✅ 5-OCT-2026 — **TRACK 2 ENVIADO POR ÚLTIMA VEZ (3 de 3). No queda nada que enviar.**
+
+Gilberto: «apóyate con codex y cursor para terminar lo que nos hace falta y entregar todo… el objetivo es
+ganar y ayudar y estar lo más cercano a 100». Hecho en una sola sesión:
+
+1. **Video v5 subido a YouTube** como oculto: https://youtu.be/B41MOaD5LPs (canal «Gilberto Antonio Ramos»,
+   el logueado en el perfil de Brave; la v4 QGYHK0Ihs1c está en otro canal y sigue en línea). Verificado por
+   oEmbed sin sesión. `video/YOUTUBE.md` actualizado.
+2. **Seis pasadas de Codex (gpt-6-astra) como juez con la rúbrica oficial**, cada una sobre el PDF
+   reconstruido: **72 → 77 → 79 → 82 → 84 → 85 → 86/100**. Informes en
+   `evidencia/codex_juez_rubrica{{,_r2,_r3,_r4,_r5,_r6}}_2026-10-05.md`. Cursor (Grok 4.7 high) solo respondió
+   con un prompt corto (página familiar + resumen + Q11): `evidencia/cursor_juez_grok47_2026-10-05.md`; con el
+   PDF entero se quedó mudo tres veces (no escribe nada en `--mode ask` si el prompt es largo).
+3. **Lo corregido** (todo verificado contra los archivos de resultados antes de tocar el texto): conclusión
+   rectora única; embudo «la clase del proteasoma supera 1–3» → bortezomib IV no excluido, exposición
+   libre/duración/selectividad sin resolver; «cuatro predicciones» → cinco (P-S1–P-S5); Q10 «five pairs» →
+   ocho; «the balance inverts» → cambia el comparador, no el balance; vía SC «fail» → «exposure unresolved»;
+   regla del filtro 5 con cota superior de Δ − M y margen provisional del 50 %; neuropatía 25/140 con su
+   contexto (AALL07P1, quimio combinada, edades 1,0–26,8, verificado en la revisión de la FDA); 313 → 314
+   residuos; ADVL0015 «15 enrolled, 11 assessable»; trametinib filtro 2 «pass» por plausibilidad; MVA2
+   re-puntuado con el mismo estándar (enmienda fechada en `TRANSFER_MVA2_MVA3.md`); especificación de la
+   etapa tumoral con umbrales provisionales y precedencia harm › advance › insufficient › inconclusive;
+   `VERIFY.md` con los ocho pre-registros; títulos de la figura DepMap; hojas de filtros en **páginas
+   apaisadas** (`report.css`: `@page wide`, `margin-left: -47mm` porque WeasyPrint mantiene el ancho del
+   cuerpo de la primera página; encabezados F1–F5; `tr {{ break-inside: avoid }}`).
+4. **Envío 3** desde `cpu-16`: «Track 2 submission received ✓ — ciberpty (cpu-16) | Submission: 3». Detalle en
+   `entrega/NOTAS_ENVIO.md`; capturas en `evidencia/envio_track2_2026-10-05*.png`. Repo pusheado:
+   `1bee325` + `506a29a`.
+5. **Anuncio #26 del Space (28-sep):** los ganadores se anuncian el **18-dic-2026** (antes 25-nov); no cambia
+   el cierre del 24-oct ni la forma de enviar.
+
+**Lo que Codex seguía pidiendo y NO se hizo** (para quien quiera saber dónde está el techo): simular la regla
+completa de avance del §6 (no solo la prueba de EC50 iguales); definir el comparador y la agregación de los
+dos donantes control en el propio pre-registro; acortar la Parte I quitando el historial de correcciones.
+Ya no se puede reenviar, así que es información para el repo público, no para otro envío.
+
+⛔ **Lo único que queda, y tiene fecha:** hacer público el repo cuando Sage anuncie la evaluación final
+(anuncio #10), y **borrar los datos del paciente antes del 23-nov-2026** con correo a Synapse
+(`data/BORRAR-AL-TERMINAR.md`). Gotcha de sesión: `pkill -f "<texto>"` mata la propia shell si el texto
+está en la línea de comando; `chrome-agent` necesita el nombre de instancia cuando hay otra sesión abierta.
 
 ## 🆕 8-SEP-2026, MAÑANA — VIDEO v5 (CORTE DOCUMENTAL), TRAMETINIB VERIFICADO. **Sigue quedando 1 envío; NO usado.**
 

@@ -64,13 +64,13 @@ archivo de datos del que salió. Ha pasado con el conteo de variantes, con el fa
 detección, con la atribución a ClinVar, con el denominador de genes, y —el 1-sep— con una línea base
 que se infló para que un hallazgo propio pareciera mayor.
 
-## ✅ Estado al cierre del 6-sep-2026: **ENVIADO, los dos tracks**
+## ✅ Estado al cierre del 5-oct-2026: **ENVIADO TODO; no quedan envíos del Track 2**
 
 - **Track 1** — envío **3 de 6**, `100.0/100`, F-max 1.000. El CSV nunca cambió; lo que se reenvió es
   el write-up corregido.
-- **Track 2** — envío **1 de 3**, recibido. Panel humano, ~2-3 meses. **Cuenta el último**, así que
-  todavía se puede mejorar y reenviar hasta el **24-oct-2026** sin arriesgar nada.
-- Video: https://youtu.be/QGYHK0Ihs1c
+- **Track 2** — envío **3 de 3** el 5-oct-2026 (es el que revisa el panel; ganadores el 18-dic-2026 según el
+  anuncio #26). Seis pasadas de Codex juez: 72 → 86/100. **No se puede reenviar.**
+- Video: v5 https://youtu.be/B41MOaD5LPs (subido 5-oct-2026; la v4 QGYHK0Ihs1c sigue en línea)
 
 **Lo único que queda, y tiene fecha:** hacer público el repo cuando Sage anuncie la evaluación final,
 y **borrar los datos del paciente antes del 23-nov-2026** con correo a Synapse
