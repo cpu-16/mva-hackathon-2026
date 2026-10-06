@@ -143,8 +143,10 @@ listed implementation deviations from this document (missing-fit precedence, no 
 boundary tolerance, no CPU fallback implemented, acceptance denominator, CV as log-SD, independent-sample
 micronucleus interval, patient-only micronucleus arm). All are recorded as deviations; none is corrected by
 editing the run. Four **exploratory, post-hoc** checks were then run (`05_regla_exploratorio.py`, 82.3 s, GPU):
-paired micronucleus interval; the null without the donor effect (false advance ≤ 0.005 at every n, so the
-inflation is the donor effect, not multiplicity); f = 0.10 at n = 3, 6, 23 (P-R5's clause holds there too);
-and the effective donor/patient ratio under the fitted estimand (1.469, below the 1.50 row). They are
-labelled exploratory everywhere and do not change the pre-registered outcomes: P-R1, P-R3, P-R4 confirmed;
+paired micronucleus interval; the null without the donor effect (false advance at most 0.00525 = 21/4,000 at every n, supporting donor
+heterogeneity, not multiplicity, as the driver); f = 0.10 at n = 3, 6, 23 (P-R5's clause holds there too);
+and the effective donor/patient ratio under the fitted estimand (1.469, below the 1.50 row). The first Results paragraph above is **superseded** on two points: "P-R5 confirmed" should read "confirmed at
+n = 12 only", and the sentence calling the two-donor aggregation an insufficient multiplicity control is
+withdrawn (an intersection of two ≤ 5 % events cannot exceed 5 %). The checks are
+labelled exploratory and do not change the pre-registered outcomes: P-R1, P-R3, P-R4 confirmed;
 P-R2 first clause falsified; P-R5 confirmed only at the one n the design simulated.

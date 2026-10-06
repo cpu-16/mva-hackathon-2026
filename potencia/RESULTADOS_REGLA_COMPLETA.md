@@ -19,13 +19,14 @@ PDF proposes (f = 0.30, 4× within-cell selectivity, 12 cultures per arm, no tru
 the probability that an experiment ends in *advance* is **0.442**; 0.281 end as
 *insufficient response* and 0.276 as *inconclusive*. No n in {3, 6, 12, 23} reaches 0.80:
 *advance* rises with n (0.012 → 0.127 → 0.459 → 0.622) and so does
-*insufficient response* (0.089 → 0.371), while *inconclusive* collapses. The reason is in
-check D below: under the fitted-EC50 estimand the model's own expected donor/patient ratio at the
-central scenario is **1.469** (noiseless half-viability ratio 1.488), slightly *below* the
-mixture-table row of 1.50 that the PDF reads as the threshold. A rule whose threshold sits at or above
-the expected effect converges, as precision grows, to *insufficient*, not to *advance*: the row was
-derived from the simple mixture formula and is not reachable on average by the four-parameter fit the
-design uses. This is the defect the judge round named and we did not test before submitting.
+*insufficient response* (0.089 → 0.371), while *inconclusive* collapses. A reading consistent with this,
+from the **exploratory** check D below: under the fitted-EC50 estimand the Monte Carlo geometric contrast between
+the control lines and the patient line at the central scenario is **1.469** (noiseless half-viability ratio of
+the mixture 1.488), slightly *below* the mixture-table row of 1.50 that the PDF reads as the threshold — the row
+was derived from the simple mixture formula, not from the four-parameter fit the design uses. We do not claim a
+limiting behaviour for large n (D did not study it, and the donor-level shifts do not average out with more
+cultures); what the simulation shows is that at the n values tested the threshold is cleared less often than
+the equal-EC50 test would suggest. This is the defect the judge round named and we did not test before submitting.
 
 ## Fitter acceptance test (run first)
 
@@ -43,7 +44,7 @@ see deviations).
 | 12 | **0.046** / 0.852 / 0.102 | 0.200 / 0.594 / 0.206 | **0.459** / 0.266 / 0.276 |
 | 23 | **0.070** / 0.927 / 0.004 | 0.280 / 0.712 / 0.009 | **0.622** / 0.371 / 0.007 |
 
-*Harm* and *toxicity stop* were ≤ 0.003 in every δ = 0 scenario; the full table below has every value.
+*Harm* was 0 and *toxicity stop* at most 0.00325 (13/4,000) in the δ = 0 scenarios; the full table below has every value.
 
 ## All scenarios (five outcomes per scenario, plus the missing-EC50 rate)
 
@@ -83,34 +84,36 @@ see deviations).
 | | Pre-registered | Outcome |
 |---|---|---|
 | P-R1 | central *advance* < 0.80 and < 0.60 | **Confirmed** — 0.442 |
-| P-R2 | null false-advance ≤ 0.05 at every n; dominant outcome not *harm* | **First clause falsified** — 0.001, 0.015, 0.046, **0.070** at n = 3, 6, 12, 23; second clause holds (*insufficient* or *inconclusive* dominate: at n = 3 *inconclusive* 0.641 > *insufficient* 0.358; the script's automated check only tested "not harm", weaker than the clause) |
+| P-R2 | null false-advance ≤ 0.05 at every n; dominant outcome *insufficient response* or *inconclusive*, not *harm* | **First clause falsified** — 0.001, 0.015, 0.046, **0.070** at n = 3, 6, 12, 23; second clause holds (*insufficient* or *inconclusive* dominate: at n = 3 *inconclusive* 0.641 > *insufficient* 0.358; the script's automated check only tested "not harm", weaker than the clause) |
 | P-R3 | δ = 0.5: *advance* < 0.20, *inconclusive* dominant | **Confirmed** — 0.002 and 0.722 |
 | P-R4 | no n reaches 0.80 *advance* at f = 0.30, r = 4 | **Confirmed** — 0.622 at n = 23 |
 | P-R5 | f = 0.10: *insufficient* > *advance* for every n | **Confirmed at n = 12 only** (0.252 vs 0.112), the only n the pre-registered design simulated at f = 0.10; the "every n" clause was not testable by that design. Exploratory check C (below) finds it holds at n = 3, 6 and 23 as well — reported as exploratory, not as a pre-registered confirmation |
 
-## Why P-R2 failed — tested, not asserted
+## Why P-R2 failed — one diagnosis tested (exploratory)
 
 The first version of this file blamed the two donor comparisons sharing the patient arm. That cannot be
 the mechanism: the intersection of two events each of probability ≤ 0.05 is ≤ 0.05 whatever their
 dependence. **Exploratory check B** removes the donor-level variance component (CV_donor = 0) and
 leaves everything else: the null false-advance rate falls to 0.001, 0.002, 0.005, 0.002
-at n = 3, 6, 12, 23. The inflation is therefore the **donor effect**: each line carries a persistent
-random shift that the Welch test — which treats cultures as the independent unit — never sees, so the
-interval narrows with n while the between-line difference does not, and the per-comparison error grows
-with precision. Multiplicity is not the problem; the unit of inference is. Any real experiment needs a
-donor-level random effect (or more control donors) in the analysis, pre-registered before the data.
-The pre-registered mapping's sentence stands as written: **the rule as written admits false advancement
-above the nominal level under the null (0.070 at n = 23); the threshold — here, the test itself —
-must be tightened before use.**
+at n = 3, 6, 12, 23. This supports **donor-level heterogeneity** as the driver: each line carries a persistent
+random shift that the Welch test — which treats cultures as the independent unit — cannot estimate from
+within-line variances. Check B does not isolate every interaction, does not report per-comparison rejection
+rates or interval coverage, and leaves passage clustering in place, so it is support for the diagnosis, not
+a proof of it. Multiplicity is not the problem; the unit of inference is. A real experiment would need the
+analysis to model the line level (for example a mixed model with line as a random effect) rather than
+per-donor Welch comparisons; adding control donors alone does not remove the patient line's own shift. No
+revised analysis was evaluated here. The pre-registered mapping's sentence stands as written: **the rule as
+written admits false advancement above the nominal level under the null (0.070 at n = 23); the threshold
+must be tightened before use** — and, we add, so must the test behind it.
 
 ## Exploratory checks (post-hoc, after the adversarial read; not pre-registered)
 
 | Check | Result |
 |---|---|
-| **A** — micronucleus interval on the *paired* per-culture contrast D_i = T_i − 1.5·V_i (vehicle and treated share the culture multiplier, so the primary's independent-sample interval is too wide) | *advance* at r = 4: 0.024, 0.210, **0.527**, 0.632 at n = 3, 6, 12, 23 (primary: 0.012, 0.127, 0.459, 0.622); null false-advance 0.003, 0.015, 0.054, 0.063. The primary is conservative on the micronucleus side; the conclusion (no n reaches 0.80) does not change |
+| **A** — micronucleus interval on the *paired* per-culture contrast D_i = T_i − 1.5·V_i (vehicle and treated share the culture multiplier, so the primary's independent-sample interval is too wide) | *advance* at r = 4: 0.024, 0.210, **0.527**, 0.632 at n = 3, 6, 12, 23 (primary: 0.012, 0.127, 0.459, 0.622); null false-advance 0.003, 0.015, 0.054, 0.063. The primary is conservative on the micronucleus side in the scenarios tested (δ = 0 only); D_i still treats cultures as independent, so passage clustering is not addressed; the conclusion (no n reaches 0.80) does not change within these scenarios |
 | **B** — null with CV_donor = 0 | false-advance 0.001, 0.002, 0.005, 0.002: the inflation is the donor effect |
 | **C** — f = 0.10 at n = 3, 6, 23 | *insufficient* / *advance*: 0.084 / 0.003; 0.163 / 0.028; 0.348 / 0.227 — P-R5's clause holds at every n tested |
-| **D** — effective true ratio, central scenario, n = 23 | mean log10(donor − patient) over fitted EC50s = 0.1671 → ratio **1.469** (SD across experiments 0.082); 54 % of experiments have a point estimate below the 1.50 row; noiseless half-viability ratio of the mixture 1.488 (107.5 vs 160 nM) |
+| **D** — geometric contrast under the fitted estimand, central scenario, n = 23 | mean fitted log10 EC50 of the two control lines minus the patient line's, averaged across experiments and exponentiated (a Monte Carlo estimate of the geometric contrast, not an exact or arithmetic-mean ratio) = 0.1671 → **1.469** (SD across experiments 0.082); 54 % of experiments have a point estimate below the 1.50 row; noiseless half-viability ratio of the mixture 1.488 (107.5 vs 160 nM) |
 
 ## Deviations and limitations (from the adversarial read; all accepted)
 
@@ -129,6 +132,8 @@ must be tightened before use.**
   data (shared culture multiplier); it is conservative. Check A gives the paired version.
 - **Only the patient line decides the micronucleus criterion** — our reading of the PDF's "treated versus
   vehicle cultures of the same line"; the pre-registration did not say it explicitly.
+- Clock times, commit chronology and the unchanged-PDF statement are verifiable in the git history of the
+  repository, not in the JSON files; the earlier equal-EC50 power is in `RESULTADOS_4P.md`.
 - f is treated as measured without error; the 4× selectivity, the vehicle rate (20 per 1,000) and the
   three variance components are design values, not measurements. Nothing here is about the child's cells.
 
@@ -148,7 +153,7 @@ B shows.
   0.80; the design as submitted is a pilot for estimating operating characteristics, not a decisive
   experiment.*
 - P-R2 fails → *the rule as written admits false advancement at rate 0.07 under the null at n = 23
-  (0.046 at n = 12); the test must account for the donor level before use.*
+  (0.046 at n = 12); the threshold must be tightened before use, and the analysis must model the line level.*
 - Any outcome → the tables above are the record; nothing in the submitted PDF is edited.
 
 Compute: 142.0 s + 82.3 s on one consumer GPU (CUDA), after the owner's instruction to use it; no patient data.
