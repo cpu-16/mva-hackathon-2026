@@ -1,0 +1,18 @@
+A:paired:n=3:r=1.0                 advance 0.003 insufficient 0.347 inconclusive 0.650 harm 0.000 tox 0.000
+A:paired:n=3:r=4.0                 advance 0.024 insufficient 0.095 inconclusive 0.878 harm 0.000 tox 0.004
+A:paired:n=6:r=1.0                 advance 0.015 insufficient 0.668 inconclusive 0.318 harm 0.000 tox 0.000
+A:paired:n=6:r=4.0                 advance 0.210 insufficient 0.170 inconclusive 0.618 harm 0.000 tox 0.002
+A:paired:n=12:r=1.0                advance 0.054 insufficient 0.838 inconclusive 0.108 harm 0.000 tox 0.000
+A:paired:n=12:r=4.0                advance 0.527 insufficient 0.276 inconclusive 0.198 harm 0.000 tox 0.000
+A:paired:n=23:r=1.0                advance 0.063 insufficient 0.932 inconclusive 0.005 harm 0.000 tox 0.000
+A:paired:n=23:r=4.0                advance 0.632 insufficient 0.360 inconclusive 0.008 harm 0.000 tox 0.000
+B:null_no_donor:n=3                advance 0.001 insufficient 0.324 inconclusive 0.675 harm 0.000 tox 0.000
+B:null_no_donor:n=6                advance 0.002 insufficient 0.666 inconclusive 0.332 harm 0.000 tox 0.000
+B:null_no_donor:n=12               advance 0.005 insufficient 0.925 inconclusive 0.070 harm 0.000 tox 0.000
+B:null_no_donor:n=23               advance 0.002 insufficient 0.998 inconclusive 0.001 harm 0.000 tox 0.000
+C:f=0.10:n=3                       advance 0.003 insufficient 0.084 inconclusive 0.911 harm 0.000 tox 0.003
+C:f=0.10:n=6                       advance 0.028 insufficient 0.163 inconclusive 0.810 harm 0.000 tox 0.000
+C:f=0.10:n=23                      advance 0.227 insufficient 0.348 inconclusive 0.425 harm 0.000 tox 0.000
+D:central:n=23                     advance 0.631 insufficient 0.355 inconclusive 0.013 harm 0.000 tox 0.000
+D: {'mean': 0.16714560612592602, 'sd_across_experiments': 0.08247037802382698, 'ratio': 1.4694188478516144, 'table_row': 1.5, 'share_of_experiments_with_point_estimate_below_row': 0.542} {'patient_half_nM': 107.52245207128445, 'control_half_nM': 160.0, 'ratio': 1.4880613017821094}
+runtime 82.3

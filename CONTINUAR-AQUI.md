@@ -36,7 +36,12 @@ ganar y ayudar y estar lo más cercano a 100». Hecho en una sola sesión:
 6. **Simulación de la regla completa del §6, HECHA después del envío (21:07–21:12), pre-registrada y commiteada antes de
    correr (`646a364` → script `2cf6596`), en la GPU (LM por lotes en PyTorch, prueba de aceptación contra scipy 99,2 %):
    `potencia/RESULTADOS_REGLA_COMPLETA.md`. **Avance 0,44 en el diseño propuesto, nunca 0,80; falso avance 0,07 con n = 23**
-   porque las dos comparaciones comparten el brazo del paciente (P-R2 falsada). Addenda fechados en el §6 de las dos partes
+   (P-R2 falsada). **Codex leyó el primer write-up y lo tumbó en cuatro puntos** (mezcla de realizaciones, el «cara o cruz»,
+   P-R5 solo con n = 12, y el diagnóstico de P-R2: dos eventos ≤ 5 % no intersecan por encima de 5 % por dependencia); se
+   probaron los diagnósticos con una corrida exploratoria fechada (`05_regla_exploratorio.py`): la inflación es el efecto
+   de donante (sin él, ≤ 0,005), el ratio real del modelo bajo el estimando ajustado es 1,47 < 1,50 (por eso «insufficient»
+   crece con n), y el intervalo pareado de micronúcleos sube el avance a 0,53 sin cambiar la conclusión. Lectura en
+   `evidencia/codex_lectura_regla_completa_2026-10-05.md`; la versión equivocada queda en git (`a3848c6`). Addenda fechados en el §6 de las dos partes
    (solo repo; el PDF enviado no cambia) y fila nueva en el README. **Error de la sesión que esto repara a medias:** Codex
    pedía esta simulación desde la pasada 4 y yo gasté el tercer envío sin hacerla ni avisar; Gilberto lo señaló. El
    envío ya no se puede cambiar; lo que el jurado verá es el repo cuando se haga público.

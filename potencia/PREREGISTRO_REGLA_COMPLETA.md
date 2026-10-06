@@ -134,3 +134,17 @@ f = 0.10 gives *insufficient* 0.25 > *advance* 0.11 (P-R5 confirmed). **P-R2 fal
 false-advance rate under the null is 0.046 at n = 12 but **0.070 at n = 23**, because the two donor
 comparisons share the patient arm; the "both donors" aggregation fixed above is not a sufficient
 multiplicity control. Both sentences of the pre-registered mapping go into the `report/` addenda.
+
+### Amendment 1 — 2026-10-05, ~21:25, after an adversarial read of the first write-up (no re-run of the primary)
+
+The primary run and its JSON are untouched. The read (`evidencia/codex_lectura_regla_completa_2026-10-05.md`)
+found the write-up wrong on four points (listed in `RESULTADOS_REGLA_COMPLETA.md`, last section) and
+listed implementation deviations from this document (missing-fit precedence, no convergence criterion,
+boundary tolerance, no CPU fallback implemented, acceptance denominator, CV as log-SD, independent-sample
+micronucleus interval, patient-only micronucleus arm). All are recorded as deviations; none is corrected by
+editing the run. Four **exploratory, post-hoc** checks were then run (`05_regla_exploratorio.py`, 82.3 s, GPU):
+paired micronucleus interval; the null without the donor effect (false advance ≤ 0.005 at every n, so the
+inflation is the donor effect, not multiplicity); f = 0.10 at n = 3, 6, 23 (P-R5's clause holds there too);
+and the effective donor/patient ratio under the fitted estimand (1.469, below the 1.50 row). They are
+labelled exploratory everywhere and do not change the pre-registered outcomes: P-R1, P-R3, P-R4 confirmed;
+P-R2 first clause falsified; P-R5 confirmed only at the one n the design simulated.
