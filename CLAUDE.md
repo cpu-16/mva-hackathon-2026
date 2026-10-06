@@ -39,9 +39,10 @@ falsas y varios números mal copiados en rondas anteriores. Ahí es donde hay qu
 
 ## Cómo trabajar aquí
 
-1. **Lee `CONTINUAR-AQUI.md` completo antes de tocar nada.** Hay ~50 archivos `.md` y varios se
-   contradicen porque son de rondas distintas. Ese documento abre con la tabla de **qué archivo manda**
-   para cada cosa. `evidencia/` es archivo histórico, **no** fuente de verdad.
+1. **Lee `ESTADO.md` primero** (el «ahora», ≤ 10 KB, con la tabla de **qué archivo manda**); el historial
+   largo por rondas está en `CONTINUAR-AQUI.md` (117 KB, se consulta con `rg`) y el detalle diario en
+   `BITACORA.md`. Hay ~50 archivos `.md` y varios se contradicen porque son de rondas distintas.
+   `evidencia/` es archivo histórico, **no** fuente de verdad.
 2. **El repositorio git es la carpeta hermana** `~/datos/mva-hackathon-2026`, no esta. Esta carpeta
    tiene los datos del paciente y no es un repo. Para commitear, se copia allá.
 3. **Pre-registrar antes de correr.** Cualquier análisis nuevo lleva su diseño, hipótesis, estadístico
