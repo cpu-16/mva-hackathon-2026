@@ -72,8 +72,8 @@ que se infló para que un hallazgo propio pareciera mayor.
   anuncio #26). Seis pasadas de Codex juez: 72 → 86/100. **No se puede reenviar.**
 - Video: v5 https://youtu.be/B41MOaD5LPs (subido 5-oct-2026; la v4 QGYHK0Ihs1c sigue en línea)
 
-**Lo único que queda, y tiene fecha:** hacer público el repo cuando Sage anuncie la evaluación final,
-y **borrar los datos del paciente antes del 23-nov-2026** con correo a Synapse
+**Lo único que queda, y tiene fecha:** hacer público el repo el **25-oct-2026** (cierre 24-oct 23:59 UTC; la FAQ exige
+público «once the Hackathon ends»), y **borrar los datos del paciente antes del 23-nov-2026** con correo a Synapse
 (`data/BORRAR-AL-TERMINAR.md`).
 
 ## ⚠️ Reglas de envío: verifícalas antes de recomendar nada

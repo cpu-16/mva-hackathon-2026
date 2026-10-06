@@ -53,8 +53,9 @@ completa de avance del §6 (no solo la prueba de EC50 iguales); definir el compa
 dos donantes control en el propio pre-registro; acortar la Parte I quitando el historial de correcciones.
 Ya no se puede reenviar, así que es información para el repo público, no para otro envío.
 
-⛔ **Lo único que queda, y tiene fecha:** hacer público el repo cuando Sage anuncie la evaluación final
-(anuncio #10), y **borrar los datos del paciente antes del 23-nov-2026** con correo a Synapse
+⛔ **Lo único que queda, y tiene fecha:** **hacer público el repo el 25-oct-2026** (la FAQ del Space: «it must be made
+public once the Hackathon ends»; cierre 24-oct 23:59 UTC = 6:59 p. m. Panamá; la evaluación del Track 2 arranca ese mismo
+día, no hay que esperar anuncio; GitHub → Settings → Change visibility), y **borrar los datos del paciente antes del 23-nov-2026** con correo a Synapse
 (`data/BORRAR-AL-TERMINAR.md`). Gotcha de sesión: `pkill -f "<texto>"` mata la propia shell si el texto
 está en la línea de comando; `chrome-agent` necesita el nombre de instancia cuando hay otra sesión abierta.
 
