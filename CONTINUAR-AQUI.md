@@ -33,6 +33,13 @@ ganar y ayudar y estar lo más cercano a 100». Hecho en una sola sesión:
 4. **Envío 3** desde `cpu-16`: «Track 2 submission received ✓ — ciberpty (cpu-16) | Submission: 3». Detalle en
    `entrega/NOTAS_ENVIO.md`; capturas en `evidencia/envio_track2_2026-10-05*.png`. Repo pusheado:
    `1bee325` + `506a29a`.
+6. **Simulación de la regla completa del §6, HECHA después del envío (21:07–21:12), pre-registrada y commiteada antes de
+   correr (`646a364` → script `2cf6596`), en la GPU (LM por lotes en PyTorch, prueba de aceptación contra scipy 99,2 %):
+   `potencia/RESULTADOS_REGLA_COMPLETA.md`. **Avance 0,44 en el diseño propuesto, nunca 0,80; falso avance 0,07 con n = 23**
+   porque las dos comparaciones comparten el brazo del paciente (P-R2 falsada). Addenda fechados en el §6 de las dos partes
+   (solo repo; el PDF enviado no cambia) y fila nueva en el README. **Error de la sesión que esto repara a medias:** Codex
+   pedía esta simulación desde la pasada 4 y yo gasté el tercer envío sin hacerla ni avisar; Gilberto lo señaló. El
+   envío ya no se puede cambiar; lo que el jurado verá es el repo cuando se haga público.
 5. **Anuncio #26 del Space (28-sep):** los ganadores se anuncian el **18-dic-2026** (antes 25-nov); no cambia
    el cierre del 24-oct ni la forma de enviar.
 

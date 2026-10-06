@@ -124,3 +124,13 @@ declared model; it measures nothing about the child's cells.
 ## Results
 
 *(appended below, dated; the text above is never edited)*
+
+### Results — 2026-10-05, 21:09–21:12 EST (`04_regla_completa.py`, commit `2cf6596`, one GPU run, 142 s)
+
+Full write-up: `RESULTADOS_REGLA_COMPLETA.md`. Fitter acceptance test passed (99.2 % within 0.02;
+identical failure flags). Central *advance* **0.44** (P-R1 confirmed); no n reaches 0.80 (P-R4
+confirmed; 0.62 at n = 23); δ = 0.5 gives *advance* 0.002 with *inconclusive* 0.72 (P-R3 confirmed);
+f = 0.10 gives *insufficient* 0.25 > *advance* 0.11 (P-R5 confirmed). **P-R2 falsified in part:** the
+false-advance rate under the null is 0.046 at n = 12 but **0.070 at n = 23**, because the two donor
+comparisons share the patient arm; the "both donors" aggregation fixed above is not a sufficient
+multiplicity control. Both sentences of the pre-registered mapping go into the `report/` addenda.

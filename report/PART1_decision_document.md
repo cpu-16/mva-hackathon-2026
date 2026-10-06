@@ -351,6 +351,10 @@ eight-week assay window implies, and we say so rather than keep the smaller numb
 
 ---
 
+**Addendum, 5 October 2026 (after the final submission; repository only — the submitted PDF is unchanged).** The judge rounds objected that the power figures above cover the equal-EC50 test, not the complete rule. We pre-registered and ran that simulation after submitting (`potencia/PREREGISTRO_REGLA_COMPLETA.md`, commit `646a364`; `potencia/RESULTADOS_REGLA_COMPLETA.md`; 4,000 experiments per scenario on a consumer GPU, 142 s). **The 0.80 does not carry over.** At the design proposed here (f = 0.30, 4× selectivity, 12 cultures per arm, no true micronucleus increase) the probability that an experiment ends in *advance* is **0.44**, with 0.28 *insufficient response* and 0.28 *inconclusive*; no n in {3, 6, 12, 23} reaches 0.80 (0.62 at n = 23), because the mixture-table row sits exactly at the model's expected bulk ratio, so a precise estimate falls wholly below it about half the time. A true micronucleus increase at the margin (δ = 0.5) leaves 0.72 of experiments *inconclusive*; at twice the margin 0.57 end in *harm*. And **the two-donor aggregation is not a sufficient multiplicity control**: under the null (no selectivity) the false-advance rate is 0.046 at n = 12 but **0.070 at n = 23**, because both donor comparisons share the patient arm. Consequences, stated as the pre-registration required: the design as submitted is a **pilot for estimating operating characteristics, not a decisive experiment**; the minimum effect must be set *below* the model's expectation (or the bulk-EC50 criterion replaced by the per-cell endpoint already proposed for f < 0.20); and the aggregation across control donors must be a joint test, pre-registered before any real experiment.
+
+---
+
 ## 7. Actionable now, without any drug
 
 **The clearest clinical action supported by published guidance is surveillance, and there is an MVA-specific

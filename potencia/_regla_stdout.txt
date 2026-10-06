@@ -1,0 +1,31 @@
+acceptance test: {'n_curves': 500, 'within_0p02': 0.992, 'same_failure_flag': 1.0, 'gpu_failures': 0, 'cpu_failures': 0, 'max_abs_diff': 0.03883869904182147, 'passed': True}
+central                  f=0.3 r=4.0 n=12 δ=0.0  advance 0.442  insufficient 0.281  inconclusive 0.276  harm 0.000  tox 0.000  missing 0.000
+sweep:n=3                f=0.3 r=4.0 n= 3 δ=0.0  advance 0.010  insufficient 0.088  inconclusive 0.900  harm 0.000  tox 0.002  missing 0.000
+sweep:n=6                f=0.3 r=4.0 n= 6 δ=0.0  advance 0.118  insufficient 0.183  inconclusive 0.698  harm 0.000  tox 0.001  missing 0.000
+sweep:n=12               f=0.3 r=4.0 n=12 δ=0.0  advance 0.466  insufficient 0.261  inconclusive 0.274  harm 0.000  tox 0.000  missing 0.000
+sweep:n=23               f=0.3 r=4.0 n=23 δ=0.0  advance 0.635  insufficient 0.356  inconclusive 0.009  harm 0.000  tox 0.000  missing 0.000
+sweep:f=0.1              f=0.1 r=4.0 n=12 δ=0.0  advance 0.112  insufficient 0.252  inconclusive 0.635  harm 0.000  tox 0.000  missing 0.000
+sweep:f=0.2              f=0.2 r=4.0 n=12 δ=0.0  advance 0.269  insufficient 0.246  inconclusive 0.485  harm 0.000  tox 0.000  missing 0.000
+sweep:f=0.3              f=0.3 r=4.0 n=12 δ=0.0  advance 0.467  insufficient 0.270  inconclusive 0.263  harm 0.000  tox 0.000  missing 0.000
+sweep:f=0.5              f=0.5 r=4.0 n=12 δ=0.0  advance 0.596  insufficient 0.278  inconclusive 0.126  harm 0.000  tox 0.000  missing 0.000
+sweep:r=1.0              f=0.3 r=1.0 n=12 δ=0.0  advance 0.040  insufficient 0.858  inconclusive 0.102  harm 0.000  tox 0.000  missing 0.000
+sweep:r=2.0              f=0.3 r=2.0 n=12 δ=0.0  advance 0.202  insufficient 0.576  inconclusive 0.222  harm 0.000  tox 0.000  missing 0.000
+sweep:r=4.0              f=0.3 r=4.0 n=12 δ=0.0  advance 0.446  insufficient 0.281  inconclusive 0.273  harm 0.000  tox 0.000  missing 0.000
+sweep:delta=0.0          f=0.3 r=4.0 n=12 δ=0.0  advance 0.450  insufficient 0.270  inconclusive 0.281  harm 0.000  tox 0.000  missing 0.000
+sweep:delta=0.25         f=0.3 r=4.0 n=12 δ=0.25  advance 0.079  insufficient 0.268  inconclusive 0.653  harm 0.000  tox 0.000  missing 0.000
+sweep:delta=0.5          f=0.3 r=4.0 n=12 δ=0.5  advance 0.002  insufficient 0.273  inconclusive 0.722  harm 0.003  tox 0.000  missing 0.000
+sweep:delta=1.0          f=0.3 r=4.0 n=12 δ=1.0  advance 0.000  insufficient 0.121  inconclusive 0.314  harm 0.565  tox 0.000  missing 0.000
+grid:n=3:r=1.0           f=0.3 r=1.0 n= 3 δ=0.0  advance 0.001  insufficient 0.358  inconclusive 0.641  harm 0.000  tox 0.000  missing 0.000
+grid:n=3:r=2.0           f=0.3 r=2.0 n= 3 δ=0.0  advance 0.006  insufficient 0.223  inconclusive 0.771  harm 0.000  tox 0.000  missing 0.000
+grid:n=3:r=4.0           f=0.3 r=4.0 n= 3 δ=0.0  advance 0.012  insufficient 0.089  inconclusive 0.895  harm 0.000  tox 0.003  missing 0.000
+grid:n=6:r=1.0           f=0.3 r=1.0 n= 6 δ=0.0  advance 0.015  insufficient 0.665  inconclusive 0.321  harm 0.000  tox 0.000  missing 0.000
+grid:n=6:r=2.0           f=0.3 r=2.0 n= 6 δ=0.0  advance 0.045  insufficient 0.415  inconclusive 0.539  harm 0.000  tox 0.000  missing 0.000
+grid:n=6:r=4.0           f=0.3 r=4.0 n= 6 δ=0.0  advance 0.127  insufficient 0.174  inconclusive 0.698  harm 0.000  tox 0.000  missing 0.000
+grid:n=12:r=1.0          f=0.3 r=1.0 n=12 δ=0.0  advance 0.046  insufficient 0.852  inconclusive 0.102  harm 0.000  tox 0.000  missing 0.000
+grid:n=12:r=2.0          f=0.3 r=2.0 n=12 δ=0.0  advance 0.200  insufficient 0.594  inconclusive 0.206  harm 0.000  tox 0.000  missing 0.000
+grid:n=12:r=4.0          f=0.3 r=4.0 n=12 δ=0.0  advance 0.459  insufficient 0.266  inconclusive 0.276  harm 0.000  tox 0.000  missing 0.000
+grid:n=23:r=1.0          f=0.3 r=1.0 n=23 δ=0.0  advance 0.070  insufficient 0.927  inconclusive 0.004  harm 0.000  tox 0.000  missing 0.000
+grid:n=23:r=2.0          f=0.3 r=2.0 n=23 δ=0.0  advance 0.280  insufficient 0.712  inconclusive 0.009  harm 0.000  tox 0.000  missing 0.000
+grid:n=23:r=4.0          f=0.3 r=4.0 n=23 δ=0.0  advance 0.622  insufficient 0.371  inconclusive 0.007  harm 0.000  tox 0.000  missing 0.000
+{'P-R1_central_advance_below_0.80_and_0.60': True, 'P-R1_central_advance': 0.44225, 'P-R2_null_false_advance_le_0.05_all_n': False, 'P-R2_null_dominant_not_harm': True, 'P-R3_delta0.5_advance_below_0.20': True, 'P-R3_delta0.5_inconclusive_dominant': True, 'P-R4_no_n_reaches_0.80_advance': True, 'P-R5_f0.10_insufficient_exceeds_advance': True} runtime 142.0 s
+rc=0
