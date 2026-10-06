@@ -138,3 +138,8 @@ chromosome abnormality**; PCS scoring is a useful companion, not the measurement
     depmap/psmb5_merged.csv           input, from the pre-registered DepMap package
 
 CPU only, no patient data, no new download.
+
+
+---
+
+**Note appended 2026-10-05.** The §3 statement that "the assay is powered at an assumed 4× (0.897) and underpowered at an assumed 2× (0.387)" is historical: it refers to the original two-parameter power model (`RESULTADOS.md`), superseded by the pre-registered four-parameter follow-up (`PREREGISTRO_4P.md` → `RESULTADOS_4P.md`, 8 Sep), under which the equal-EC50 test has power 0.167 at n = 3 for 4× and 0.068 for 2×, with about 12 cultures per arm needed at f = 0.30. The conclusion of this file — that a 4× selectivity has no empirical support for a one-chromosome cell — stands.

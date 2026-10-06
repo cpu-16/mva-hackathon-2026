@@ -19,6 +19,9 @@ amendment is appended and dated rather than editing the text above it. The pairs
 | `mosaico/PREREGISTRO.md` | `ed0feae` | 2026-08-30T17:29:35-05:00 | `mosaico/RESULTADOS.md` | `453d20a` 2026-08-30T19:34:16-05:00 |
 | `potencia/PREREGISTRO.md` | `aa3143f` | 2026-09-01T16:39:47-05:00 | `potencia/RESULTADOS.md` | `eec870c` 2026-09-01T17:22:44-05:00 |
 | `potencia/PREREGISTRO_2_DOSIS.md` | `45c4ed7` | 2026-09-01T17:36:04-05:00 | `potencia/RESULTADOS_2_DOSIS.md` | `8c33031` 2026-09-01T17:43:17-05:00 |
+| `depmap/PREREGISTRO_SEGUIMIENTO.md` (follow-up, registered after the first result) | `ee59c9e` | 2026-09-07T23:41:48-05:00 | `depmap/RESULTADOS_SEGUIMIENTO.md` | `612a0f1` 2026-09-07T23:46:51-05:00 |
+| `replay/TRANSFER_TRIP13.md` pre-registration | `ee7a050` | 2026-09-07T22:10:02-05:00 | `replay/TRANSFER_TRIP13.md` results + logs | `8956240` 2026-09-07T22:22:51-05:00 |
+| `potencia/PREREGISTRO_4P.md` | `fa9eaae` | 2026-09-08T00:09:27-05:00 | `potencia/RESULTADOS_4P.md` (amendment 1 entered with the results; see its provenance note) | `8cee494` 2026-09-08T00:33:46-05:00 |
 | `mosaico/PREREGISTRO.md` amendment 4 + analysis code | `6405d9e` 2026-09-01T16:55:40-05:00 → `138a40f` 2026-09-01T18:53:39-05:00 | see left | `mosaico/CONTROL_RESULTADO.md` | `ce94b89` 2026-09-01T21:42:52-05:00 |
 
 **The sixth pair is the one a hostile reviewer should check first, because its result goes against

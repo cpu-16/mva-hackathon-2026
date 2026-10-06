@@ -32,7 +32,7 @@ for i,(nme,col,al) in enumerate(marks):
 a.axvline(0,color=MUTED,lw=.8,ls=":")
 a.set_xlabel("Spearman ρ  ·  aneuploidy score vs drug sensitivity\n(negative = more aneuploid, more killed)",fontsize=9.2,color=INK)
 a.set_ylabel("compounds",fontsize=9.2,color=INK)
-a.set_title("A · PRISM: 6,790 compounds; evaluable solid lines vary by compound (424–444)",fontsize=10.4,weight="bold",color=INK,loc="left")
+a.set_title("A · PRISM: 6,790 compounds; n = 424–444 solid lines",fontsize=10.4,weight="bold",color=INK,loc="left")
 a.text(.02,.60,"No proteasome inhibitor\nreaches FDR < 0.05.\nBortezomib sits in the 4th\npercentile by direction —\nsuggestive, not significant.",
        transform=a.transAxes,fontsize=8.1,color=MUTED,va="top",ha="left",
        bbox=dict(boxstyle="round,pad=0.45",facecolor=SURF,edgecolor="#ddd8cf",linewidth=.7))
@@ -54,7 +54,7 @@ b.text(.98,.97,"interaction aneuploidy × lineage: p = 0.026\nthe association is
        transform=b.transAxes,fontsize=8.3,color=ALERT,ha="right",va="top",weight="bold")
 for s in ("top","right"): b.spines[s].set_visible(False)
 
-fig.suptitle("Pre-registered test of our own candidate — and it did not hold up in solid tumours",
+fig.suptitle("Pre-registered test of our own candidate: no significant drug association; weaker PSMB5 link in solid lines",
              fontsize=12.4,weight="bold",color=INK,x=.008,ha="left",y=.995)
 fig.tight_layout(rect=[0,0,1,.94])
 fig.savefig("../track2/fig4_depmap.png",dpi=200,facecolor=SURF,bbox_inches="tight")

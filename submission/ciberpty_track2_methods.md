@@ -83,8 +83,7 @@ Three activities, all documented in the repository:
    one wrong paper (a study of acromegaly cited as Wilms surveillance, PMID 17652220, replaced by
    16857697); one merged attribution (two KARD papers under a single citation, separated into
    PMID 23789096 and 23345399); and one over-extension (PMID 28553959 was being used to carry the
-   proteotoxic rationale to CEP57, which that same source contradicts — we withdrew that use and kept
-   the paper only for the BUB1B/TRIP13 embryonal-tumour sentence its abstract actually states).
+   proteotoxic rationale to CEP57, which that same source contradicts — we withdrew the inference from checkpoint severity to proteotoxic burden and retain the paper for its reported tumour associations and checkpoint findings).
 2. **Adversarial review by independent models.** Two different language models were asked to attack
    our own drafts. They found, among others, a claim of ours that contradicted **our own data file**:
    the report stated that Tang et al. used only stable trisomies, when our extraction record shows
@@ -124,7 +123,7 @@ chromosome alignment defects, and low overall BUBR1 abundance" (PMID 20516114), 
 heterogeneity (Sieben 2020, PMID 31738183).
 
 We were explicit about what we could not determine. Phase is not established, and the routes available to us were uninformative: there are no parental samples; the challenge distributes a VCF and raw reads
-but no alignments, we did not align them, and short reads could not phase two variants whose only intervening
+but no alignments, we did not align them, and ordinary short-read fragments would not be expected to bridge two variants whose only intervening
 heterozygous site lies 6.8 and 4.1 kb away; and the two variants lie 10,911 bp apart with no GATK
 phase tag on either — a limit visible in the data itself, since GATK did phase three variants 5 bp
 apart elsewhere in the same VCF. Reference-panel phasing fails separately: all three heterozygous
